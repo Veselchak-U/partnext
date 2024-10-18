@@ -26,3 +26,19 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+dart_code_metrics:
+  extends:
+    - package:dart_code_metrics_presets/all.yaml
+  rules:
+    - avoid-dynamic: false
+    - avoid-late-keyword: false
+    - avoid-border-all: false
+    - member-ordering: false
+    - no-empty-block: false
+    - no-magic-number: false
+    - prefer-const-border-radius: false
+    - prefer-immediate-return: false
+    - prefer-match-file-name:
+        exclude:
+          - lib/app/service/network/api_client/entities/request_data.dart

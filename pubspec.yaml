@@ -1,4 +1,4 @@
-name: Partnext
+name: partnext
 description: "Partnext mobile application."
 publish_to: 'none'
 
@@ -17,7 +17,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: 4.0.0
+  # Linter
+  flutter_lints: 5.0.0
+  dart_code_metrics_presets: 2.17.0
 
 flutter:
   uses-material-design: true
