@@ -54,6 +54,9 @@ dev_dependencies:
   flutter_gen_runner:
   json_serializable:
 
+  # Utils
+  flutter_launcher_icons: 0.14.1
+
 flutter:
   generate: true
   uses-material-design: true
@@ -111,3 +114,12 @@ flutter_gen:
   output: lib/app/assets/
   integrations:
     flutter_svg: true
+
+# Usage: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: "assets/images/app_icon.png"
+  android: true
+  adaptive_icon_background: "assets/images/app_icon_background.png"
+  adaptive_icon_foreground: "assets/images/app_icon_foreground.png"
+  ios: true
+  remove_alpha_ios: true
