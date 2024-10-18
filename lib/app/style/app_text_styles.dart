@@ -8,7 +8,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     // letterSpacing: 0.5,
     color: AppColors.textBlack,
-    // fontFamily: FontFamily.poppins,
+    // fontFamily: FontFamily.montserrat,
     // fontFamilyFallback: const [FontFamily.amaticSC],
   );
 }
