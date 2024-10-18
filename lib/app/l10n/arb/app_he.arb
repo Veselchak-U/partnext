@@ -1,0 +1,29 @@
+{
+  "page_not_found": "הדף לא נמצא",
+  "to_initial_screen": "למסך ראשי",
+  "go_to_login_screen": "משתמש לא מורשה-עבור למסך הכניסה",
+  "authorization": "אישור",
+  "invalid_code": "קוד לא תקין",
+  "no_internet_connection": "אין חיבור לאינטרנט",
+  "server_timeout": "השרת הפסיק לעבוד",
+  "no_data": "אין נתונים",
+  "auth_failed": "שגיאת אימות",
+  "wrong_code": "קוד שגוי. נסה שוב...",
+  "user_phone_exist": "קיים כבר משתמש עם מספר הטלפון הזה!",
+  "field_not_unique": "שדה זה אינו ייחודי: {name}",
+  "@field_not_unique": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "field_required": "שדה חובה: {name}",
+  "@field_required": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
+}

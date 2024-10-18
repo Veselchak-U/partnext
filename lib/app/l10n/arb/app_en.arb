@@ -1,0 +1,29 @@
+{
+  "page_not_found": "Page not found",
+  "to_initial_screen": "To initial screen",
+  "go_to_login_screen": "Unauthorized user - go to the login screen",
+  "authorization": "Authorization",
+  "invalid_code": "Invalid OTP code",
+  "no_internet_connection": "No internet connection",
+  "server_timeout": "Server timeout",
+  "no_data": "No data",
+  "auth_failed": "Authentication error",
+  "wrong_code": "Wrong code. Try again...",
+  "user_phone_exist": "User with this phone number exist!",
+  "field_not_unique": "This field is not unique: {name}",
+  "@field_not_unique": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "field_required": "This field is required: {name}",
+  "@field_required": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
+}

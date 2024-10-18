@@ -2,15 +2,24 @@
 
 Partnext mobile application.
 
-## Getting Started
+## Generate localization files:
 
-This project is a starting point for a Flutter application.
+`flutter gen-l10n`
 
-A few resources to get you started if this is your first Flutter project:
+## Code generation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+`dart run build_runner build --delete-conflicting-outputs`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Start project
+
+- PROD-version:
+`flutter run lib/main.dart --dart-define-from-file=tools/configs/prod_config.json`
+- 
+- DEV-version:
+`flutter run lib/main.dart --dart-define-from-file=tools/configs/dev_config.json`
+
+## Build prod-versions
+
+APK: `sh tools/scripts/build_prod_apk.sh`
+AAB: `sh tools/scripts/build_prod_aab.sh`
+IPA: `sh tools/scripts/build_prod_ipa.sh`
