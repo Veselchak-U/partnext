@@ -48,4 +48,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String field_required(String name) {
     return 'This field is required: $name';
   }
+
+  @override
+  String get welcome_label => 'Opportunities | Partnerships | Connections';
+
+  @override
+  String get start => 'Start';
+
+  @override
+  String get already_have_account => 'Already have an account?';
+
+  @override
+  String get login => 'Login';
 }

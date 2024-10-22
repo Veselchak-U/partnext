@@ -9,23 +9,31 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/features/auth/presentation/login/login_screen.dart';
+import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
+import 'package:partnext/features/home/presentation/home_screen.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
+import 'package:partnext/features/initial/presentation/initial_screen.dart';
+import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
+import 'package:partnext/features/welcome/presentation/welcome_screen.dart';
+import 'package:provider/provider.dart';
 
 class AppNavigation {
   static final _allowingWithoutAuthorization = [
     AppRoute.initial.path,
+    AppRoute.welcome.path,
+    AppRoute.login.path,
     AppRoute.signUp.path,
     AppRoute.verifyPhone.path,
-    AppRoute.login.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
   static Future<bool> _isUnauthorizedUser() async {
-    return true;
+    final token = await DI.get<UserRepository>().getAccessToken();
 
-    // final token = await DI.get<UserRepository>().getAccessToken();
-    //
-    // return token == null;
+    return token == null;
   }
 
   static void goToScreen({required String name}) {
@@ -50,21 +58,43 @@ class AppNavigation {
       return NavigationErrorScreen(state.error);
     },
     routes: [
-      // GoRoute(
-      //   name: AppRoute.initial.name,
-      //   path: AppRoute.initial.path,
-      //   pageBuilder: (context, state) => NoTransitionPage(
-      //     child: Provider(
-      //       lazy: false,
-      //       create: (context) => InitialScreenVm(
-      //         context,
-      //         DI.get<InitialController>(),
-      //       ),
-      //       dispose: (context, vm) => vm.dispose(),
-      //       child: const InitialScreen(),
-      //     ),
-      //   ),
-      // ),
+      GoRoute(
+        name: AppRoute.initial.name,
+        path: AppRoute.initial.path,
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: Provider(
+            lazy: false,
+            create: (context) => InitialScreenVm(
+              context,
+              DI.get<InitialController>(),
+            ),
+            dispose: (context, vm) => vm.dispose(),
+            child: const InitialScreen(),
+          ),
+        ),
+      ),
+      GoRoute(
+        name: AppRoute.welcome.name,
+        path: AppRoute.welcome.path,
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: const WelcomeScreen(),
+        ),
+      ),
+      GoRoute(
+        name: AppRoute.login.name,
+        path: AppRoute.login.path,
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        name: AppRoute.signUp.name,
+        path: AppRoute.signUp.path,
+        builder: (context, state) => const SignUpScreen(),
+      ),
+      GoRoute(
+        name: AppRoute.home.name,
+        path: AppRoute.home.path,
+        builder: (context, state) => const HomeScreen(),
+      ),
     ],
   );
 

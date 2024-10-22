@@ -25,5 +25,9 @@
         "type": "String"
       }
     }
-  }
+  },
+  "welcome_label": "הזדמנויות | שותפויות | קשרים",
+  "start": "התחל",
+  "already_have_account": "כבר יש לך חשבון?",
+  "login": "התחברות"
 }

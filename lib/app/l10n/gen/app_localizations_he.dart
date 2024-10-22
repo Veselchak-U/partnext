@@ -48,4 +48,16 @@ class AppLocalizationsHe extends AppLocalizations {
   String field_required(String name) {
     return 'שדה חובה: $name';
   }
+
+  @override
+  String get welcome_label => 'הזדמנויות | שותפויות | קשרים';
+
+  @override
+  String get start => 'התחל';
+
+  @override
+  String get already_have_account => 'כבר יש לך חשבון?';
+
+  @override
+  String get login => 'התחברות';
 }

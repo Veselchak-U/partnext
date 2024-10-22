@@ -20,6 +20,7 @@ class AppTheme {
       onSurface: AppColors.primary,
     ),
     primaryColor: AppColors.primary,
+    scaffoldBackgroundColor: AppColors.background,
     navigationBarTheme: _navigationBarThemeLight,
     textButtonTheme: _textButtonThemeLight,
     dividerTheme: _dividerThemeLight,
@@ -43,7 +44,10 @@ class AppTheme {
   static final _textButtonThemeLight = TextButtonThemeData(
     style: ButtonStyle(
       textStyle: WidgetStateProperty.all(
-        AppTextStyles.s16w400,
+        AppTextStyles.s14w700.copyWith(
+          fontFamily: FontFamily.montserrat,
+          decoration: TextDecoration.underline,
+        ),
       ),
       foregroundColor: WidgetStateProperty.resolveWith(
         (states) => states.contains(WidgetState.disabled) ? AppColors.gray : AppColors.primaryLight,

@@ -10,6 +10,9 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_error_
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
+import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 
 class DI {
   static final _sl = GetIt.instance;
@@ -47,29 +50,27 @@ class DI {
   }
 
   void _dataSources() {
-    // _sl.registerLazySingleton<UserLocalDatasource>(() => UserLocalDatasourceImpl(
-    //       _sl<StorageService>(),
-    //       _sl<SecureStorageService>(),
-    //       _sl<DbService>(),
-    //     ));
+    _sl.registerLazySingleton<UserLocalDatasource>(() => UserLocalDatasourceImpl(
+          _sl<SecureStorageService>(),
+        ));
     // _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
     //       _sl<ApiClient>(),
     //     ));
   }
 
   void _repositories() {
-    // _sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
-    //       _sl<UserLocalDatasource>(),
-    //     ));
+    _sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
+          _sl<UserLocalDatasource>(),
+        ));
     // _sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
     //       _sl<AuthDatasource>(),
     //     ));
   }
 
   void _businessLogic() {
-    // _sl.registerFactory(() => InitialController(
-    //       _sl<UserRepository>(),
-    //     ));
+    _sl.registerFactory(() => InitialController(
+          _sl<UserRepository>(),
+        ));
   }
 
   void _providers() {

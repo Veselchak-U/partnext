@@ -29,6 +29,9 @@ dependencies:
   http: 1.2.2
   mime: 1.0.5
 
+  # State management
+  control: 0.2.0
+
   # Utils
   logger: 2.4.0
   path_provider:
@@ -61,6 +64,10 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
 
   fonts:
     - family: Montserrat

@@ -172,6 +172,30 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שדה חובה: {name}'**
   String field_required(String name);
+
+  /// No description provided for @welcome_label.
+  ///
+  /// In he, this message translates to:
+  /// **'הזדמנויות | שותפויות | קשרים'**
+  String get welcome_label;
+
+  /// No description provided for @start.
+  ///
+  /// In he, this message translates to:
+  /// **'התחל'**
+  String get start;
+
+  /// No description provided for @already_have_account.
+  ///
+  /// In he, this message translates to:
+  /// **'כבר יש לך חשבון?'**
+  String get already_have_account;
+
+  /// No description provided for @login.
+  ///
+  /// In he, this message translates to:
+  /// **'התחברות'**
+  String get login;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

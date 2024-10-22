@@ -2,10 +2,13 @@ class AppRoute {
   static const initial = AppRoute('initial', '/');
 
   // Auth
+  static const welcome = AppRoute('welcome', '/welcome');
+  static const login = AppRoute('login', '/login');
   static const signUp = AppRoute('signUp', '/signUp');
   static const verifyPhone = AppRoute('verifyPhone', '/verifyPhone');
   static const successRegistration = AppRoute('successRegistration', '/successRegistration');
-  static const login = AppRoute('login', '/login');
+
+  static const home = AppRoute('home', '/home');
 
   final String name;
   final String path;
