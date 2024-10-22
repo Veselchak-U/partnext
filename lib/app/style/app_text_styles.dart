@@ -7,7 +7,7 @@ class AppTextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     // letterSpacing: 0.5,
-    color: AppColors.textBlack,
+    color: AppColors.primary,
     // fontFamily: FontFamily.montserrat,
     // fontFamilyFallback: const [FontFamily.amaticSC],
   );

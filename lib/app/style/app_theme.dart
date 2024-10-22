@@ -10,16 +10,16 @@ class AppTheme {
     fontFamily: FontFamily.montserrat,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: AppColors.backgroundRed,
-      onPrimary: AppColors.textWhite,
-      secondary: AppColors.backgroundYellow,
-      onSecondary: AppColors.textBlack,
-      error: AppColors.backgroundRed,
-      onError: AppColors.textWhite,
-      surface: AppColors.backgroundWhite,
-      onSurface: AppColors.textBlack,
+      primary: AppColors.primary,
+      onPrimary: AppColors.white,
+      secondary: AppColors.primaryLight,
+      onSecondary: AppColors.white,
+      error: AppColors.red,
+      onError: AppColors.white,
+      surface: AppColors.white,
+      onSurface: AppColors.primary,
     ),
-    primaryColor: AppColors.backgroundRed,
+    primaryColor: AppColors.primary,
     navigationBarTheme: _navigationBarThemeLight,
     textButtonTheme: _textButtonThemeLight,
     dividerTheme: _dividerThemeLight,
@@ -46,39 +46,39 @@ class AppTheme {
         AppTextStyles.s16w400,
       ),
       foregroundColor: WidgetStateProperty.resolveWith(
-        (states) => states.contains(WidgetState.disabled) ? AppColors.textDisabled : AppColors.textBlack,
+        (states) => states.contains(WidgetState.disabled) ? AppColors.gray : AppColors.primaryLight,
       ),
       padding: WidgetStateProperty.all(EdgeInsets.zero),
     ),
   );
 
   static const _dividerThemeLight = DividerThemeData(
-    color: AppColors.divider,
+    color: AppColors.gray,
     space: 1,
   );
 
   static final _textSelectionThemeLight = TextSelectionThemeData(
-    cursorColor: AppColors.backgroundGreen,
-    selectionHandleColor: AppColors.backgroundGreen,
-    selectionColor: AppColors.backgroundGreen.withOpacity(0.3),
+    cursorColor: AppColors.primary,
+    selectionHandleColor: AppColors.primary,
+    selectionColor: AppColors.primary.withOpacity(0.3),
   );
 
   static final _checkboxThemeLight = CheckboxThemeData(
     fillColor: WidgetStateProperty.resolveWith<Color?>(
       (states) => states.contains(WidgetState.disabled)
-          ? AppColors.backgroundIconDisabled
+          ? AppColors.gray
           : states.contains(WidgetState.selected)
-              ? AppColors.backgroundYellow
-              : AppColors.backgroundWhite,
+              ? AppColors.orange
+              : AppColors.white,
     ),
   );
   static final _radioThemeLight = RadioThemeData(
     fillColor: WidgetStateProperty.resolveWith<Color?>(
       (states) => states.contains(WidgetState.disabled)
-          ? AppColors.backgroundIconDisabled
+          ? AppColors.gray
           : states.contains(WidgetState.selected)
-              ? AppColors.backgroundYellow
-              : AppColors.backgroundBlack,
+              ? AppColors.orange
+              : AppColors.white,
     ),
   );
 }
