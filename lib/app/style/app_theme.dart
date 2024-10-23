@@ -21,6 +21,7 @@ class AppTheme {
     ),
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
+    disabledColor: AppColors.disabled,
     navigationBarTheme: _navigationBarThemeLight,
     textButtonTheme: _textButtonThemeLight,
     dividerTheme: _dividerThemeLight,

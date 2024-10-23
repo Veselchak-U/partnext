@@ -196,6 +196,66 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התחברות'**
   String get login;
+
+  /// No description provided for @invalid_phone_number.
+  ///
+  /// In he, this message translates to:
+  /// **'מספר טלפון לא חוקי, אנא נסה שוב :)'**
+  String get invalid_phone_number;
+
+  /// No description provided for @terms_must_accepted.
+  ///
+  /// In he, this message translates to:
+  /// **'כדי להירשם, עליך להסכים לתנאים וההגבלות'**
+  String get terms_must_accepted;
+
+  /// No description provided for @registration.
+  ///
+  /// In he, this message translates to:
+  /// **'רישום'**
+  String get registration;
+
+  /// No description provided for @full_name.
+  ///
+  /// In he, this message translates to:
+  /// **'שם מלא'**
+  String get full_name;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In he, this message translates to:
+  /// **'מספר טלפון'**
+  String get phone_number;
+
+  /// No description provided for @next.
+  ///
+  /// In he, this message translates to:
+  /// **'הבא'**
+  String get next;
+
+  /// No description provided for @i_accept.
+  ///
+  /// In he, this message translates to:
+  /// **'אני מקבל'**
+  String get i_accept;
+
+  /// No description provided for @terms_and_conditions.
+  ///
+  /// In he, this message translates to:
+  /// **'תנאים והגבלות'**
+  String get terms_and_conditions;
+
+  /// No description provided for @and.
+  ///
+  /// In he, this message translates to:
+  /// **'ו'**
+  String get and;
+
+  /// No description provided for @privacy_policy.
+  ///
+  /// In he, this message translates to:
+  /// **'מדיניות פרטיות'**
+  String get privacy_policy;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

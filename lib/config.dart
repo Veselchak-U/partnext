@@ -7,6 +7,8 @@ import 'package:path_provider/path_provider.dart';
 class Config {
   static const appName = 'Partnext';
   static const isProdBuild = bool.fromEnvironment('PROD_BUILD');
+  static const termsAndConditionsUrl = 'https://clublab.bitango.co.il/page/termsOfUse';
+  static const privacyPolicyUrl = 'https://clublab.bitango.co.il/page/termsOfUse';
 
   static late final Env environment;
 

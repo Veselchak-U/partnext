@@ -10,6 +10,8 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_error_
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
+import 'package:partnext/features/auth/datasource/auth_datasource.dart';
+import 'package:partnext/features/auth/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
@@ -39,8 +41,8 @@ class DI {
       },
       interceptors: [
         HttpAuthInterceptor(
-          getAccessToken: () => Future.value(''), //_sl<UserLocalDatasource>().getAccessToken(),
-          setAccessToken: (value) => Future.value(), //_sl<UserLocalDatasource>().setAccessToken(value),
+          getAccessToken: () => _sl<UserLocalDatasource>().getAccessToken(),
+          setAccessToken: (value) => _sl<UserLocalDatasource>().setAccessToken(value),
           goLoginScreen: () => AppNavigation.goToScreen(name: AppRoute.login.name),
         ),
         const HttpLogInterceptor(),
@@ -53,18 +55,18 @@ class DI {
     _sl.registerLazySingleton<UserLocalDatasource>(() => UserLocalDatasourceImpl(
           _sl<SecureStorageService>(),
         ));
-    // _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
-    //       _sl<ApiClient>(),
-    //     ));
+    _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
+          _sl<ApiClient>(),
+        ));
   }
 
   void _repositories() {
     _sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
           _sl<UserLocalDatasource>(),
         ));
-    // _sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-    //       _sl<AuthDatasource>(),
-    //     ));
+    _sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
+          _sl<AuthDatasource>(),
+        ));
   }
 
   void _businessLogic() {

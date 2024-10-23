@@ -72,40 +72,43 @@ class CommonButton extends StatelessWidget {
             child: InkWell(
               onTap: _isDisabled ? null : onTap,
               borderRadius: _borderRadius,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 56.w),
-                  Expanded(
-                    child: Text(
-                      label,
-                      style: textStyle ?? AppTextStyles.s16w700.copyWith(color: foregroundColor),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 56.w),
+                    Expanded(
+                      child: Text(
+                        label,
+                        style: textStyle ?? AppTextStyles.s16w700.copyWith(color: foregroundColor),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  iconPath != null
-                      ? Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8).w,
-                          width: 40.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.white,
-                          ),
-                          alignment: Alignment.center,
-                          child: SvgPicture.asset(
-                            iconPath ?? '',
-                            width: 24.w,
-                            colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-                          ),
-                        )
-                      : SizedBox(width: 56.w),
-                ],
+                    iconPath != null
+                        ? Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8).w,
+                            width: 40.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.white,
+                            ),
+                            alignment: Alignment.center,
+                            child: SvgPicture.asset(
+                              iconPath ?? '',
+                              width: 24.w,
+                              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+                            ),
+                          )
+                        : SizedBox(width: 56.w),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        loading ? const LoadingIndicator(color: AppColors.white) : const SizedBox.shrink(),
+        loading ? const LoadingIndicator() : const SizedBox.shrink(),
       ],
     );
   }

@@ -36,11 +36,14 @@ dependencies:
   logger: 2.4.0
   path_provider:
   path:
+  url_launcher: 6.3.1
 
   # UI
   cupertino_icons: 1.0.8
   flutter_screenutil: 5.9.3
   flutter_svg: 2.0.10+1
+  phone_form_field: 9.2.8
+  flutter_country_selector: 1.0.12
 
   # Code generation
   json_annotation: 4.9.0

@@ -29,5 +29,15 @@
   "welcome_label": "Opportunities | Partnerships | Connections",
   "start": "Start",
   "already_have_account": "Already have an account?",
-  "login": "Login"
+  "login": "Login",
+  "invalid_phone_number": "Invalid phone number, please try again :)",
+  "terms_must_accepted": "To register, you must agree to the terms and conditions",
+  "registration": "Registration",
+  "full_name": "Full name",
+  "phone_number": "Phone number",
+  "next": "Next",
+  "i_accept": "I accept",
+  "terms_and_conditions": "Terms & Conditions",
+  "and": "and",
+  "privacy_policy": "privacy policy"
 }

@@ -11,6 +11,8 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
+import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
+import 'package:partnext/features/auth/repository/auth_repository.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
@@ -88,7 +90,15 @@ class AppNavigation {
       GoRoute(
         name: AppRoute.signUp.name,
         path: AppRoute.signUp.path,
-        builder: (context, state) => const SignUpScreen(),
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => SignUpScreenVm(
+            context,
+            DI.get<AuthRepository>(),
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const SignUpScreen(),
+        ),
       ),
       GoRoute(
         name: AppRoute.home.name,

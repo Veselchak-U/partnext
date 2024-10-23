@@ -60,4 +60,34 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get login => 'התחברות';
+
+  @override
+  String get invalid_phone_number => 'מספר טלפון לא חוקי, אנא נסה שוב :)';
+
+  @override
+  String get terms_must_accepted => 'כדי להירשם, עליך להסכים לתנאים וההגבלות';
+
+  @override
+  String get registration => 'רישום';
+
+  @override
+  String get full_name => 'שם מלא';
+
+  @override
+  String get phone_number => 'מספר טלפון';
+
+  @override
+  String get next => 'הבא';
+
+  @override
+  String get i_accept => 'אני מקבל';
+
+  @override
+  String get terms_and_conditions => 'תנאים והגבלות';
+
+  @override
+  String get and => 'ו';
+
+  @override
+  String get privacy_policy => 'מדיניות פרטיות';
 }

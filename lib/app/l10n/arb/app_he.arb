@@ -29,5 +29,15 @@
   "welcome_label": "הזדמנויות | שותפויות | קשרים",
   "start": "התחל",
   "already_have_account": "כבר יש לך חשבון?",
-  "login": "התחברות"
+  "login": "התחברות",
+  "invalid_phone_number": "מספר טלפון לא חוקי, אנא נסה שוב :)",
+  "terms_must_accepted": "כדי להירשם, עליך להסכים לתנאים וההגבלות",
+  "registration": "רישום",
+  "full_name": "שם מלא",
+  "phone_number": "מספר טלפון",
+  "next": "הבא",
+  "i_accept": "אני מקבל",
+  "terms_and_conditions": "תנאים והגבלות",
+  "and": "ו",
+  "privacy_policy": "מדיניות פרטיות"
 }

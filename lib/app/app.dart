@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_country_selector/flutter_country_selector.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/gen/app_localizations.dart';
 import 'package:partnext/app/l10n/l10n.dart';
@@ -46,7 +47,10 @@ class _AppState extends State<App> {
             debugShowCheckedModeBanner: false,
             routerConfig: AppNavigation.router,
             locale: locale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            localizationsDelegates: const [
+              ...AppLocalizations.localizationsDelegates,
+              ...CountrySelectorLocalization.localizationsDelegates,
+            ],
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme.light,
             scaffoldMessengerKey: _scaffoldMessengerKey,

@@ -15,11 +15,14 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/close.svg
+  SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [send];
+  List<SvgGenImage> get values => [close, send];
 }
 
 class $AssetsImagesGen {

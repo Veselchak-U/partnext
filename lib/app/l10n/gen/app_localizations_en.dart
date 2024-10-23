@@ -60,4 +60,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get invalid_phone_number => 'Invalid phone number, please try again :)';
+
+  @override
+  String get terms_must_accepted => 'To register, you must agree to the terms and conditions';
+
+  @override
+  String get registration => 'Registration';
+
+  @override
+  String get full_name => 'Full name';
+
+  @override
+  String get phone_number => 'Phone number';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get i_accept => 'I accept';
+
+  @override
+  String get terms_and_conditions => 'Terms & Conditions';
+
+  @override
+  String get and => 'and';
+
+  @override
+  String get privacy_policy => 'privacy policy';
 }
