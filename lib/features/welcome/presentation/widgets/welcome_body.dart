@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/assets/assets.gen.dart';
@@ -31,7 +33,7 @@ class WelcomeBody extends StatelessWidget {
                 context.l10n.welcome_label,
                 style: AppTextStyles.s14w600,
               ),
-              SizedBox(height: 145.h),
+              SizedBox(height: max(145, 145.h)),
             ],
           ),
         ),

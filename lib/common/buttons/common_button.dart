@@ -36,27 +36,27 @@ class CommonButton extends StatelessWidget {
       borderRadius: _borderRadius,
     );
 
-    return _isDisabled
-        ? baseDecoration.copyWith(
-            color: AppColors.gray,
-          )
-        : switch (type) {
-            CommonButtonType.primary => baseDecoration.copyWith(
-                color: AppColors.primary,
-              ),
-            CommonButtonType.bordered => baseDecoration.copyWith(
-                border: Border.all(color: AppColors.primary),
-              ),
-          };
+    final backgroundColor = _isDisabled ? AppColors.disabled : AppColors.primary;
+
+    return switch (type) {
+      CommonButtonType.primary => baseDecoration.copyWith(
+          color: backgroundColor,
+        ),
+      CommonButtonType.bordered => baseDecoration.copyWith(
+          border: Border.all(color: backgroundColor, width: 2),
+        ),
+    };
   }
 
   Color get foregroundColor {
-    return _isDisabled
-        ? AppColors.gray
-        : switch (type) {
-            CommonButtonType.primary => AppColors.white,
-            CommonButtonType.bordered => AppColors.primary,
-          };
+    return switch (type) {
+      CommonButtonType.primary => AppColors.white,
+      CommonButtonType.bordered => _isDisabled ? AppColors.disabled : AppColors.primary,
+    };
+  }
+
+  Color get iconColor {
+    return _isDisabled ? AppColors.disabled : AppColors.primary;
   }
 
   @override
@@ -75,24 +75,31 @@ class CommonButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(width: 56.w),
+                  Expanded(
+                    child: Text(
+                      label,
+                      style: textStyle ?? AppTextStyles.s16w700.copyWith(color: foregroundColor),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   iconPath != null
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16).r,
+                      ? Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8).w,
+                          width: 40.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.white,
+                          ),
+                          alignment: Alignment.center,
                           child: SvgPicture.asset(
                             iconPath ?? '',
-                            width: 24.r,
-                            height: 24.r,
-                            colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn),
+                            width: 24.w,
+                            colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
                           ),
                         )
-                      : SizedBox(width: 16.r),
-                  Text(
-                    label,
-                    style: textStyle ?? AppTextStyles.s16w700.copyWith(color: foregroundColor),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(width: 16.r),
+                      : SizedBox(width: 56.w),
                 ],
               ),
             ),

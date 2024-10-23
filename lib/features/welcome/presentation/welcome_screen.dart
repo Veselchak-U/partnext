@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:partnext/app/assets/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/style/app_colors.dart';
@@ -64,10 +65,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const Spacer(),
                       CommonButton(
                         label: context.l10n.start,
+                        iconPath: Assets.icons.send.path,
                         onTap: _goSignUpScreen,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4).h,
+                        padding: const EdgeInsets.symmetric(vertical: 8).h,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
