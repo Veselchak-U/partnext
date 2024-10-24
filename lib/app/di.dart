@@ -10,8 +10,8 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_error_
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
-import 'package:partnext/features/auth/datasource/auth_datasource.dart';
-import 'package:partnext/features/auth/repository/auth_repository.dart';
+import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
+import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';

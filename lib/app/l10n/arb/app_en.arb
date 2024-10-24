@@ -33,11 +33,16 @@
   "invalid_phone_number": "Invalid phone number, please try again :)",
   "terms_must_accepted": "To register, you must agree to the terms and conditions",
   "registration": "Registration",
-  "full_name": "Full name",
-  "phone_number": "Phone number",
+  "full_name": "Full Name",
+  "phone_number": "Phone Number",
   "next": "Next",
   "i_accept": "I accept",
   "terms_and_conditions": "Terms & Conditions",
   "and": "and",
-  "privacy_policy": "privacy policy"
+  "privacy_policy": "privacy policy",
+  "do_not_have_account": "Don't have an account yet?",
+  "password_must_contain": "The password must consist of 6 digits",
+  "enter_validation_code": "Please enter the validation code that we sent you",
+  "did_not_get_code": "Didn’t get the code?",
+  "resend_code": "Resend Code"
 }

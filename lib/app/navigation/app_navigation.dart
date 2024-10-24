@@ -9,15 +9,18 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
+import 'package:partnext/features/auth/presentation/login/login_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
-import 'package:partnext/features/auth/repository/auth_repository.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/initial/presentation/initial_screen.dart';
 import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
+import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
+import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
 import 'package:partnext/features/welcome/presentation/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +30,7 @@ class AppNavigation {
     AppRoute.welcome.path,
     AppRoute.login.path,
     AppRoute.signUp.path,
-    AppRoute.verifyPhone.path,
+    // AppRoute.verifyPhone.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -85,7 +88,16 @@ class AppNavigation {
       GoRoute(
         name: AppRoute.login.name,
         path: AppRoute.login.path,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => LoginScreenVm(
+            context,
+            // DI.get<AuthRepository>(),
+            // DI.get<UserRepository>(),
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         name: AppRoute.signUp.name,
@@ -95,9 +107,22 @@ class AppNavigation {
           create: (context) => SignUpScreenVm(
             context,
             DI.get<AuthRepository>(),
+            DI.get<UserRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const SignUpScreen(),
+        ),
+      ),
+      GoRoute(
+        name: AppRoute.questionnaire.name,
+        path: AppRoute.questionnaire.path,
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => QuestionnaireScreenVm(
+            context,
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const QuestionnaireScreen(),
         ),
       ),
       GoRoute(

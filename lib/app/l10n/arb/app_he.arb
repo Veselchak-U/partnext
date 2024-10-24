@@ -39,5 +39,10 @@
   "i_accept": "אני מקבל",
   "terms_and_conditions": "תנאים והגבלות",
   "and": "ו",
-  "privacy_policy": "מדיניות פרטיות"
+  "privacy_policy": "מדיניות פרטיות",
+  "do_not_have_account": "עדיין אין לך חשבון?",
+  "password_must_contain": "הסיסמה חייבת להכיל 6 ספרות",
+  "enter_validation_code": "נא להזין את קוד האימות ששלחנו לך",
+  "did_not_get_code": "לא קיבלת את הקוד?",
+  "resend_code": "לשלוח שוב קוד"
 }

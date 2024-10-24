@@ -71,10 +71,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registration => 'Registration';
 
   @override
-  String get full_name => 'Full name';
+  String get full_name => 'Full Name';
 
   @override
-  String get phone_number => 'Phone number';
+  String get phone_number => 'Phone Number';
 
   @override
   String get next => 'Next';
@@ -90,4 +90,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacy_policy => 'privacy policy';
+
+  @override
+  String get do_not_have_account => 'Don\'t have an account yet?';
+
+  @override
+  String get password_must_contain => 'The password must consist of 6 digits';
+
+  @override
+  String get enter_validation_code => 'Please enter the validation code that we sent you';
+
+  @override
+  String get did_not_get_code => 'Didn’t get the code?';
+
+  @override
+  String get resend_code => 'Resend Code';
 }

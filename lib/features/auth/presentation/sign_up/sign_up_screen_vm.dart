@@ -7,15 +7,18 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/string_ext.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/config.dart';
-import 'package:partnext/features/auth/repository/auth_repository.dart';
+import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
 
 class SignUpScreenVm {
   final BuildContext _context;
   final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
   SignUpScreenVm(
     this._context,
     this._authRepository,
+    this._userRepository,
   ) {
     _init();
   }
@@ -23,10 +26,14 @@ class SignUpScreenVm {
   final loading = ValueNotifier<bool>(false);
   final termsConfirmed = ValueNotifier<bool>(false);
   final termsMustAccepted = ValueNotifier<bool>(false);
-  final formKey = GlobalKey<FormState>();
+  final pageController = PageController();
+
+  final firstFormKey = GlobalKey<FormState>();
+  final secondFormKey = GlobalKey<FormState>();
 
   String _fullName = '';
   String _phone = '';
+  String _code = '';
 
   void _init() {}
 
@@ -34,6 +41,7 @@ class SignUpScreenVm {
     loading.dispose();
     termsConfirmed.dispose();
     termsMustAccepted.dispose();
+    pageController.dispose();
   }
 
   void onFullNameChanged(String value) {
@@ -41,7 +49,12 @@ class SignUpScreenVm {
   }
 
   void onPhoneChanged(String value) {
-    _phone = value;
+    final normalizedPhone = value.removeLeadingSymbols('0');
+    _phone = normalizedPhone;
+  }
+
+  void onCodeChanged(String value) {
+    _code = value;
   }
 
   void onTermsConfirmedChanged(bool? value) {
@@ -63,10 +76,10 @@ class SignUpScreenVm {
     _context.goNamed(AppRoute.login.name);
   }
 
-  Future<void> goPhoneValidation() async {
+  Future<void> sendOtp() async {
     FocusScope.of(_context).unfocus();
 
-    final validForm = formKey.currentState?.validate();
+    final validForm = firstFormKey.currentState?.validate();
     if (validForm == false) return;
 
     if (!termsConfirmed.value) {
@@ -78,14 +91,11 @@ class SignUpScreenVm {
 
     _setLoading(true);
     try {
-      final normalizedPhone = _phone.removeLeadingSymbols('0');
-      await _authRepository.requestOtp(normalizedPhone);
+      await _authRepository.register(_fullName, _phone);
+      await _authRepository.requestOtp(_phone);
 
       if (!_context.mounted) return;
-      _context.pushNamed(
-        AppRoute.verifyPhone.name,
-        extra: normalizedPhone,
-      );
+      goNextPage();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -93,49 +103,60 @@ class SignUpScreenVm {
     _setLoading(false);
   }
 
-  Future<void> createAccount() async {
+  Future<void> resendOtp() async {
     FocusScope.of(_context).unfocus();
-
-    final validForm = formKey.currentState?.validate();
-    if (validForm == false) return;
-
-    if (!termsConfirmed.value) {
-      termsMustAccepted.value = true;
-      _onError(_context.l10n.terms_must_accepted);
-
-      return;
-    }
 
     _setLoading(true);
     try {
-      // final normalizedPhone = _phone.removeLeadingSymbols('0');
-
-      // final model = RegistrationApiModel(
-      //   firstName: _firstName,
-      //   lastName: _lastName,
-      //   phone: normalizedPhone,
-      // );
-      //
-      // await _authRepository.register(model);
-      // await _authRepository.requestOtp(normalizedPhone);
-      //
-      // if (!_context.mounted) return;
-      // _context.pushNamed(
-      //   AppRoute.verifyPhone.name,
-      //   extra: normalizedPhone,
-      // );
+      await _authRepository.requestOtp(_phone);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
     }
     _setLoading(false);
+  }
+
+  Future<void> login() async {
+    FocusScope.of(_context).unfocus();
+
+    final validForm = secondFormKey.currentState?.validate();
+    if (validForm == false) return;
+
+    _setLoading(true);
+    try {
+      final user = await _authRepository.login(_phone, _code);
+      await _userRepository.setUser(user);
+
+      if (!_context.mounted) return;
+      _context.goNamed(AppRoute.questionnaire.name);
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  void goNextPage() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.decelerate,
+    );
+  }
+
+  void goPreviousPage() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.decelerate,
+    );
   }
 
   void _setLoading(bool value) {
+    if (!_context.mounted) return;
     loading.value = value;
   }
 
   void _onError(String message) {
+    if (!_context.mounted) return;
     AppOverlays.showErrorBanner(message);
   }
 }

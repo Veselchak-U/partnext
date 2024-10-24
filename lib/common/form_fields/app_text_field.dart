@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
-import 'package:partnext/common/form_fields/app_field_header.dart';
+import 'package:partnext/common/utils/app_transitions.dart';
 import 'package:partnext/common/widgets/loading_indicator.dart';
 
 class AppTextField extends StatefulWidget {
@@ -137,8 +137,8 @@ class _AppTextFieldState extends State<AppTextField> {
                     ? AppColors.primary
                     : AppColors.white;
 
-            final headerText = hasError ? formState.errorText : null;
-            final headerTextColor = hasError ? AppColors.red : AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5);
+            final errorText = hasError ? formState.errorText : null;
+            // final headerTextColor = hasError ? AppColors.red : AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5);
 
             final prefixIconPath = widget.prefixIconPath;
             final prefixIconColor = widget.prefixIconColor?.withOpacity(widget.enabled ? 1 : 0.5);
@@ -162,7 +162,7 @@ class _AppTextFieldState extends State<AppTextField> {
               suffixIcon = widget.suffixIcon ?? const SizedBox.shrink();
             }
 
-            final outerHeight = widget.minLines == 1 ? max(58.0, 58.h) : (widget.minLines * 21.h) + (58 - 21).h;
+            // final outerHeight = widget.minLines == 1 ? max(58.0, 58.h) : (widget.minLines * 21.h) + (58 - 21).h;
             final innerHeight = widget.minLines == 1 ? max(48.0, 48.h) : (widget.minLines * 21.h) + (48 - 21).h;
 
             return Column(
@@ -170,99 +170,96 @@ class _AppTextFieldState extends State<AppTextField> {
               children: [
                 Text(
                   widget.label ?? '',
-                  style: AppTextStyles.s14w400.copyWith(color: headerTextColor),
+                  style: AppTextStyles.s14w400, //.copyWith(color: headerTextColor),
                 ),
-                SizedBox(
-                  height: outerHeight,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Container(
-                        height: innerHeight,
-                        decoration: BoxDecoration(
-                          color: widget.background ?? AppColors.white,
-                          borderRadius: BorderRadius.circular(8).r,
-                          border: Border.all(color: borderColor, width: 1),
-                          // boxShadow: widget.enabled ? [shadow] : null,
-                        ),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(8).r,
-                          onTap: widget.onTap,
-                          child: Row(
-                            children: [
-                              prefixIconPath == null
-                                  ? SizedBox(width: max(24, 24.r))
-                                  : Padding(
-                                      padding: EdgeInsetsDirectional.only(start: 20.r, end: 8.r),
-                                      child: SvgPicture.asset(
-                                        prefixIconPath,
-                                        width: max(24, 24.r),
-                                        height: max(24, 24.r),
-                                        fit: BoxFit.scaleDown,
-                                        colorFilter: prefixIconColor == null
-                                            ? null
-                                            : ColorFilter.mode(prefixIconColor, BlendMode.srcIn),
-                                      ),
-                                    ),
-                              Expanded(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    TextField(
-                                      focusNode: widget.readOnly ? null : focusNode,
-                                      onTapOutside: widget.readOnly ? null : (_) => focusNode.unfocus,
-                                      controller: controller,
-                                      readOnly: widget.readOnly || widget.loading,
-                                      obscureText: widget.obscureText,
-                                      ignorePointers: widget.readOnly,
-                                      minLines: widget.minLines,
-                                      maxLines: widget.maxLines,
-                                      inputFormatters: widget.inputFormatters,
-                                      keyboardType: widget.keyboardType,
-                                      textInputAction: widget.textInputAction ?? TextInputAction.next,
-                                      style: AppTextStyles.s14w400.copyWith(
-                                        color: AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5),
-                                      ),
-                                      decoration: InputDecoration(
-                                        // labelText: labelText,
-                                        // labelStyle: AppTextStyles.s14w400.copyWith(
-                                        //   color: AppColors.textBlack.withOpacity(widget.enabled ? 1 : 0.5),
-                                        // ),
-                                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        hintText: widget.hint,
-                                        hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.disabled),
-                                        alignLabelWithHint: widget.minLines > 1,
-                                        border: InputBorder.none,
-                                        filled: widget.filled,
-                                      ),
-                                    ),
-                                    if (widget.loading) const LoadingIndicator(color: AppColors.red),
-                                  ],
+                SizedBox(height: 12.h),
+                Container(
+                  height: innerHeight,
+                  decoration: BoxDecoration(
+                    color: widget.background ?? AppColors.white,
+                    borderRadius: BorderRadius.circular(8).r,
+                    border: Border.all(color: borderColor, width: 1),
+                    // boxShadow: widget.enabled ? [shadow] : null,
+                  ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8).r,
+                    onTap: widget.onTap,
+                    child: Row(
+                      children: [
+                        prefixIconPath == null
+                            ? SizedBox(width: max(24, 24.r))
+                            : Padding(
+                                padding: EdgeInsetsDirectional.only(start: 20.r, end: 8.r),
+                                child: SvgPicture.asset(
+                                  prefixIconPath,
+                                  width: max(24, 24.r),
+                                  height: max(24, 24.r),
+                                  fit: BoxFit.scaleDown,
+                                  colorFilter: prefixIconColor == null
+                                      ? null
+                                      : ColorFilter.mode(prefixIconColor, BlendMode.srcIn),
                                 ),
                               ),
-                              suffixIcon,
+                        Expanded(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              TextField(
+                                focusNode: widget.readOnly ? null : focusNode,
+                                onTapOutside: widget.readOnly ? null : (_) => focusNode.unfocus,
+                                controller: controller,
+                                readOnly: widget.readOnly || widget.loading,
+                                obscureText: widget.obscureText,
+                                ignorePointers: widget.readOnly,
+                                minLines: widget.minLines,
+                                maxLines: widget.maxLines,
+                                inputFormatters: widget.inputFormatters,
+                                keyboardType: widget.keyboardType,
+                                textInputAction: widget.textInputAction ?? TextInputAction.next,
+                                style: AppTextStyles.s14w400.copyWith(
+                                  color: AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5),
+                                ),
+                                decoration: InputDecoration(
+                                  // labelText: labelText,
+                                  // labelStyle: AppTextStyles.s14w400.copyWith(
+                                  //   color: AppColors.textBlack.withOpacity(widget.enabled ? 1 : 0.5),
+                                  // ),
+                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                  hintText: widget.hint,
+                                  hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.disabled),
+                                  alignLabelWithHint: widget.minLines > 1,
+                                  border: InputBorder.none,
+                                  filled: widget.filled,
+                                ),
+                              ),
+                              if (widget.loading) const LoadingIndicator(color: AppColors.red),
                             ],
                           ),
                         ),
-                      ),
-                      Positioned.directional(
-                        textDirection: Directionality.of(context),
-                        top: 0,
-                        start: 16.w,
-                        child: AppFieldHeader(
-                          text: headerText,
-                          color: headerTextColor.withOpacity(widget.enabled ? 1 : 0.5),
-                        ),
-                      ),
-                    ],
+                        suffixIcon,
+                      ],
+                    ),
                   ),
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  transitionBuilder: AppTransitions.errorFieldTransitionBuilder,
+                  child: (errorText ?? '').isNotEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 4).h,
+                          child: Text(
+                            errorText ?? '',
+                            style: AppTextStyles.s14w400.copyWith(color: AppColors.red),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ),
                 widget.description != null
                     ? Padding(
                         padding: const EdgeInsets.only(top: 4).h,
                         child: Text(
                           widget.description ?? '',
-                          style: AppTextStyles.s12w400.copyWith(color: headerTextColor),
+                          style: AppTextStyles.s14w400, //.s12w400.copyWith(color: headerTextColor),
                         ),
                       )
                     : const SizedBox.shrink(),

@@ -5,7 +5,7 @@ class AppRoute {
   static const welcome = AppRoute('welcome', '/welcome');
   static const login = AppRoute('login', '/login');
   static const signUp = AppRoute('signUp', '/signUp');
-  static const verifyPhone = AppRoute('verifyPhone', '/verifyPhone');
+  static const questionnaire = AppRoute('questionnaire', '/questionnaire');
   static const successRegistration = AppRoute('successRegistration', '/successRegistration');
 
   static const home = AppRoute('home', '/home');

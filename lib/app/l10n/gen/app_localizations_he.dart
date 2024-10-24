@@ -90,4 +90,19 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get privacy_policy => 'מדיניות פרטיות';
+
+  @override
+  String get do_not_have_account => 'עדיין אין לך חשבון?';
+
+  @override
+  String get password_must_contain => 'הסיסמה חייבת להכיל 6 ספרות';
+
+  @override
+  String get enter_validation_code => 'נא להזין את קוד האימות ששלחנו לך';
+
+  @override
+  String get did_not_get_code => 'לא קיבלת את הקוד?';
+
+  @override
+  String get resend_code => 'לשלוח שוב קוד';
 }

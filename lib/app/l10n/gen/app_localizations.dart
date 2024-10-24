@@ -256,6 +256,36 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'מדיניות פרטיות'**
   String get privacy_policy;
+
+  /// No description provided for @do_not_have_account.
+  ///
+  /// In he, this message translates to:
+  /// **'עדיין אין לך חשבון?'**
+  String get do_not_have_account;
+
+  /// No description provided for @password_must_contain.
+  ///
+  /// In he, this message translates to:
+  /// **'הסיסמה חייבת להכיל 6 ספרות'**
+  String get password_must_contain;
+
+  /// No description provided for @enter_validation_code.
+  ///
+  /// In he, this message translates to:
+  /// **'נא להזין את קוד האימות ששלחנו לך'**
+  String get enter_validation_code;
+
+  /// No description provided for @did_not_get_code.
+  ///
+  /// In he, this message translates to:
+  /// **'לא קיבלת את הקוד?'**
+  String get did_not_get_code;
+
+  /// No description provided for @resend_code.
+  ///
+  /// In he, this message translates to:
+  /// **'לשלוח שוב קוד'**
+  String get resend_code;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
