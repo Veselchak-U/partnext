@@ -286,6 +286,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'לשלוח שוב קוד'**
   String get resend_code;
+
+  /// No description provided for @phone_validation.
+  ///
+  /// In he, this message translates to:
+  /// **'אימות טלפון'**
+  String get phone_validation;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

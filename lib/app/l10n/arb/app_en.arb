@@ -44,5 +44,6 @@
   "password_must_contain": "The password must consist of 6 digits",
   "enter_validation_code": "Please enter the validation code that we sent you",
   "did_not_get_code": "Didn’t get the code?",
-  "resend_code": "Resend Code"
+  "resend_code": "Resend Code",
+  "phone_validation": "Phone Validation"
 }

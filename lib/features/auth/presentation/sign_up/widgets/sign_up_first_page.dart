@@ -21,14 +21,9 @@ class SignUpFirstPage extends StatefulWidget {
   State<SignUpFirstPage> createState() => _SignUpFirstPageState();
 }
 
-class _SignUpFirstPageState extends State<SignUpFirstPage> with AutomaticKeepAliveClientMixin<SignUpFirstPage> {
-  @override
-  bool get wantKeepAlive => true;
-
+class _SignUpFirstPageState extends State<SignUpFirstPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     final vm = context.read<SignUpScreenVm>();
 
     return MainSimpleLayout(

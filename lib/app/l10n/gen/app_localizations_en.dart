@@ -105,4 +105,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resend_code => 'Resend Code';
+
+  @override
+  String get phone_validation => 'Phone Validation';
 }

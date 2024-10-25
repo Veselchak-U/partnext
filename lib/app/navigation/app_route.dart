@@ -1,8 +1,8 @@
 class AppRoute {
   static const initial = AppRoute('initial', '/');
+  static const welcome = AppRoute('welcome', '/welcome');
 
   // Auth
-  static const welcome = AppRoute('welcome', '/welcome');
   static const login = AppRoute('login', '/login');
   static const signUp = AppRoute('signUp', '/signUp');
   static const questionnaire = AppRoute('questionnaire', '/questionnaire');

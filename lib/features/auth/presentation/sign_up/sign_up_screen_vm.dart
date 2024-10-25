@@ -143,13 +143,6 @@ class SignUpScreenVm {
     );
   }
 
-  void goPreviousPage() {
-    pageController.previousPage(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.decelerate,
-    );
-  }
-
   void _setLoading(bool value) {
     if (!_context.mounted) return;
     loading.value = value;

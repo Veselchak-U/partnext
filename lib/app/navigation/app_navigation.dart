@@ -30,7 +30,6 @@ class AppNavigation {
     AppRoute.welcome.path,
     AppRoute.login.path,
     AppRoute.signUp.path,
-    // AppRoute.verifyPhone.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');

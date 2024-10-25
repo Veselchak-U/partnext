@@ -18,20 +18,14 @@ class SignUpSecondPage extends StatefulWidget {
   State<SignUpSecondPage> createState() => _SignUpSecondPageState();
 }
 
-class _SignUpSecondPageState extends State<SignUpSecondPage> with AutomaticKeepAliveClientMixin<SignUpSecondPage> {
+class _SignUpSecondPageState extends State<SignUpSecondPage> {
   final passwordFormatter = MaskTextInputFormatter(mask: '######');
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     final vm = context.read<SignUpScreenVm>();
 
     return MainSimpleLayout(
-      onBackButtonPressed: vm.goPreviousPage,
       body: Form(
         key: vm.secondFormKey,
         child: SingleChildScrollView(
@@ -40,7 +34,7 @@ class _SignUpSecondPageState extends State<SignUpSecondPage> with AutomaticKeepA
             children: [
               SizedBox(height: 9.h),
               Text(
-                context.l10n.registration,
+                context.l10n.phone_validation,
                 style: AppTextStyles.s20w700,
                 textAlign: TextAlign.center,
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up/widgets/sign_up_first_page.dart';
@@ -22,39 +21,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     vm = context.read<SignUpScreenVm>();
   }
 
-  bool _onPopInvokedWithResult(bool didPop, dynamic result) {
-    if (didPop) return false;
-
-    final pageDouble = vm.pageController.page;
-    if (pageDouble == null) return false;
-
-    final page = pageDouble.round();
-    if (page == 1) {
-      vm.goPreviousPage();
-
-      return false;
-    }
-
-    context.pop();
-
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: _onPopInvokedWithResult,
-      child: Scaffold(
-        body: PageView(
-          physics: const NeverScrollableScrollPhysics(),
-          reverse: context.locale.isRtl,
-          controller: vm.pageController,
-          children: const [
-            SignUpFirstPage(),
-            SignUpSecondPage(),
-          ],
-        ),
+    return Scaffold(
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        reverse: context.locale.isRtl,
+        controller: vm.pageController,
+        children: const [
+          SignUpFirstPage(),
+          SignUpSecondPage(),
+        ],
       ),
     );
   }
