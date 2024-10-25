@@ -111,4 +111,115 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get what_am_i => 'What am I';
+
+  @override
+  String get i_have_idea => 'I have an idea';
+
+  @override
+  String get i_own_startup => 'I own a startup';
+
+  @override
+  String get i_own_business => 'I own a business';
+
+  @override
+  String get strategic_partner => 'Strategic partner';
+
+  @override
+  String get active_partner => 'Active partner';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get grow_idea => 'Grow an idea';
+
+  @override
+  String get partnership_on_startup => 'Partnership on a startup';
+
+  @override
+  String get partnership_on_business => 'Partnership on existing business';
+
+  @override
+  String get art_and_entertainment => 'Art & Entertainment';
+
+  @override
+  String get music => 'Music';
+
+  @override
+  String get banking => 'Banking';
+
+  @override
+  String get finance => 'Finance';
+
+  @override
+  String get consulting => 'Consulting';
+
+  @override
+  String get creatives => 'Creatives';
+
+  @override
+  String get fashion => 'Fashion';
+
+  @override
+  String get media_and_journalism => 'Media & Journalism';
+
+  @override
+  String get sales => 'Sales';
+
+  @override
+  String get government_and_politics => 'Government & Politics';
+
+  @override
+  String get vc_and_investment => 'VC & Investment';
+
+  @override
+  String get education => 'Education';
+
+  @override
+  String get medicine => 'Medicine';
+
+  @override
+  String get marketing => 'Marketing';
+
+  @override
+  String get public_relations => 'Public Relations';
+
+  @override
+  String get tech => 'Tech';
+
+  @override
+  String get advertising => 'Advertising';
+
+  @override
+  String get insurance => 'Insurance';
+
+  @override
+  String get real_estate => 'Real Estate';
+
+  @override
+  String get law_and_policy => 'Law & Policy';
+
+  @override
+  String get travel_and_hospitality => 'Travel & Hospitality';
+
+  @override
+  String get police_and_military => 'Police & Military';
+
+  @override
+  String get constructions => 'Constructions';
+
+  @override
+  String get manufacturing => 'Manufacturing';
+
+  @override
+  String get food_and_beverage => 'Food & Beverage';
+
+  @override
+  String get counseling => 'Counseling';
+
+  @override
+  String get plus_other => '+ Other';
+
+  @override
+  String get partnership_type_description => 'To get the interest of others, make sure you have a developed idea in written.\n\nWhat is it? \nWhy to buy/use it?\nWhat problem does it solve? \nAdvantages & Disadvantages and more details you’re willing to share. \n';
 }

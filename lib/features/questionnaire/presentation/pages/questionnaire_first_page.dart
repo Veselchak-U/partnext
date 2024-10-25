@@ -5,7 +5,9 @@ import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/layouts/main_simple_layout.dart';
+import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
+import 'package:partnext/features/questionnaire/presentation/widgets/partnership_type_item.dart';
 import 'package:provider/provider.dart';
 
 class QuestionnaireFirstPage extends StatefulWidget {
@@ -33,10 +35,20 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage> {
             ),
             SizedBox(height: 44.h),
             Expanded(
-              child: ListView(
+              child: ListView.separated(
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
-                children: [],
+                itemCount: PartnershipType.values.length,
+                itemBuilder: (context, index) {
+                  final item = PartnershipType.values[index];
+
+                  return PartnershipTypeItem(
+                    label: PartnershipTypeHelper.getIAmLookingForLabel(item),
+                    selected: index.isEven,
+                    onSelect: (value) {},
+                  );
+                },
+                separatorBuilder: (_, __) => SizedBox(height: 16.h),
               ),
             ),
             Padding(
@@ -53,12 +65,6 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage> {
                 },
               ),
             ),
-            // SizedBox(height: 52.h),
-            // AppTextField(
-            //   label: context.l10n.full_name,
-            //   validator: InputValidators.emptyValidator,
-            //   onChanged: vm.onFullNameChanged,
-            // ),
           ],
         ),
       ),

@@ -53,6 +53,7 @@ class DI {
 
   void _dataSources() {
     _sl.registerLazySingleton<UserLocalDatasource>(() => UserLocalDatasourceImpl(
+          _sl<StorageService>(),
           _sl<SecureStorageService>(),
         ));
     _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(

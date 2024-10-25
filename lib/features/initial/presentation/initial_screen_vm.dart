@@ -50,6 +50,7 @@ class InitialScreenVm {
   void _handleState(InitialControllerState state) {
     final nextScreen = switch (state) {
       const InitialController$Unauthorized() => AppRoute.welcome.name,
+      const InitialController$QuestionnaireRequired() => AppRoute.questionnaire.name,
       const InitialController$Success() => AppRoute.home.name,
       _ => null,
     };

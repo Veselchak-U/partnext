@@ -111,4 +111,115 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get what_am_i => 'מה אני';
+
+  @override
+  String get i_have_idea => 'יש לי רעיון';
+
+  @override
+  String get i_own_startup => 'בבעלותי סטארט-אפ';
+
+  @override
+  String get i_own_business => 'יש לי עסק';
+
+  @override
+  String get strategic_partner => 'שותף אסטרטגי';
+
+  @override
+  String get active_partner => 'שותף פעיל';
+
+  @override
+  String get other => 'אחרים';
+
+  @override
+  String get grow_idea => 'לגדל רעיון';
+
+  @override
+  String get partnership_on_startup => 'שותפות בסטארט-אפ';
+
+  @override
+  String get partnership_on_business => 'שותפות על עסקים קיימים';
+
+  @override
+  String get art_and_entertainment => 'אמנות ובידור';
+
+  @override
+  String get music => 'מוזיקה';
+
+  @override
+  String get banking => 'בנקאות';
+
+  @override
+  String get finance => 'האוצר';
+
+  @override
+  String get consulting => 'ייעוץ';
+
+  @override
+  String get creatives => 'קריאייטיבים';
+
+  @override
+  String get fashion => 'אופנה';
+
+  @override
+  String get media_and_journalism => 'מדיה ועיתונאות';
+
+  @override
+  String get sales => 'מכירות';
+
+  @override
+  String get government_and_politics => 'ממשלה ופוליטיקה';
+
+  @override
+  String get vc_and_investment => 'הון סיכון והשקעות';
+
+  @override
+  String get education => 'חינוך';
+
+  @override
+  String get medicine => 'רפואה';
+
+  @override
+  String get marketing => 'שיווק';
+
+  @override
+  String get public_relations => 'יחסי ציבור';
+
+  @override
+  String get tech => 'טק';
+
+  @override
+  String get advertising => 'פרסום';
+
+  @override
+  String get insurance => 'ביטוח';
+
+  @override
+  String get real_estate => 'נדל ן';
+
+  @override
+  String get law_and_policy => 'חוק ומדיניות';
+
+  @override
+  String get travel_and_hospitality => 'נסיעות ואירוח';
+
+  @override
+  String get police_and_military => 'משטרה וצבא';
+
+  @override
+  String get constructions => 'מבנים';
+
+  @override
+  String get manufacturing => 'ייצור';
+
+  @override
+  String get food_and_beverage => 'מזון ומשקאות';
+
+  @override
+  String get counseling => 'ייעוץ';
+
+  @override
+  String get plus_other => '+ אחר';
+
+  @override
+  String get partnership_type_description => 'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\nמה זה? \nלמה לקנות / להשתמש בו?\nאיזו בעיה זה פותר? \nיתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.';
 }

@@ -298,6 +298,228 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'מה אני'**
   String get what_am_i;
+
+  /// No description provided for @i_have_idea.
+  ///
+  /// In he, this message translates to:
+  /// **'יש לי רעיון'**
+  String get i_have_idea;
+
+  /// No description provided for @i_own_startup.
+  ///
+  /// In he, this message translates to:
+  /// **'בבעלותי סטארט-אפ'**
+  String get i_own_startup;
+
+  /// No description provided for @i_own_business.
+  ///
+  /// In he, this message translates to:
+  /// **'יש לי עסק'**
+  String get i_own_business;
+
+  /// No description provided for @strategic_partner.
+  ///
+  /// In he, this message translates to:
+  /// **'שותף אסטרטגי'**
+  String get strategic_partner;
+
+  /// No description provided for @active_partner.
+  ///
+  /// In he, this message translates to:
+  /// **'שותף פעיל'**
+  String get active_partner;
+
+  /// No description provided for @other.
+  ///
+  /// In he, this message translates to:
+  /// **'אחרים'**
+  String get other;
+
+  /// No description provided for @grow_idea.
+  ///
+  /// In he, this message translates to:
+  /// **'לגדל רעיון'**
+  String get grow_idea;
+
+  /// No description provided for @partnership_on_startup.
+  ///
+  /// In he, this message translates to:
+  /// **'שותפות בסטארט-אפ'**
+  String get partnership_on_startup;
+
+  /// No description provided for @partnership_on_business.
+  ///
+  /// In he, this message translates to:
+  /// **'שותפות על עסקים קיימים'**
+  String get partnership_on_business;
+
+  /// No description provided for @art_and_entertainment.
+  ///
+  /// In he, this message translates to:
+  /// **'אמנות ובידור'**
+  String get art_and_entertainment;
+
+  /// No description provided for @music.
+  ///
+  /// In he, this message translates to:
+  /// **'מוזיקה'**
+  String get music;
+
+  /// No description provided for @banking.
+  ///
+  /// In he, this message translates to:
+  /// **'בנקאות'**
+  String get banking;
+
+  /// No description provided for @finance.
+  ///
+  /// In he, this message translates to:
+  /// **'האוצר'**
+  String get finance;
+
+  /// No description provided for @consulting.
+  ///
+  /// In he, this message translates to:
+  /// **'ייעוץ'**
+  String get consulting;
+
+  /// No description provided for @creatives.
+  ///
+  /// In he, this message translates to:
+  /// **'קריאייטיבים'**
+  String get creatives;
+
+  /// No description provided for @fashion.
+  ///
+  /// In he, this message translates to:
+  /// **'אופנה'**
+  String get fashion;
+
+  /// No description provided for @media_and_journalism.
+  ///
+  /// In he, this message translates to:
+  /// **'מדיה ועיתונאות'**
+  String get media_and_journalism;
+
+  /// No description provided for @sales.
+  ///
+  /// In he, this message translates to:
+  /// **'מכירות'**
+  String get sales;
+
+  /// No description provided for @government_and_politics.
+  ///
+  /// In he, this message translates to:
+  /// **'ממשלה ופוליטיקה'**
+  String get government_and_politics;
+
+  /// No description provided for @vc_and_investment.
+  ///
+  /// In he, this message translates to:
+  /// **'הון סיכון והשקעות'**
+  String get vc_and_investment;
+
+  /// No description provided for @education.
+  ///
+  /// In he, this message translates to:
+  /// **'חינוך'**
+  String get education;
+
+  /// No description provided for @medicine.
+  ///
+  /// In he, this message translates to:
+  /// **'רפואה'**
+  String get medicine;
+
+  /// No description provided for @marketing.
+  ///
+  /// In he, this message translates to:
+  /// **'שיווק'**
+  String get marketing;
+
+  /// No description provided for @public_relations.
+  ///
+  /// In he, this message translates to:
+  /// **'יחסי ציבור'**
+  String get public_relations;
+
+  /// No description provided for @tech.
+  ///
+  /// In he, this message translates to:
+  /// **'טק'**
+  String get tech;
+
+  /// No description provided for @advertising.
+  ///
+  /// In he, this message translates to:
+  /// **'פרסום'**
+  String get advertising;
+
+  /// No description provided for @insurance.
+  ///
+  /// In he, this message translates to:
+  /// **'ביטוח'**
+  String get insurance;
+
+  /// No description provided for @real_estate.
+  ///
+  /// In he, this message translates to:
+  /// **'נדל ן'**
+  String get real_estate;
+
+  /// No description provided for @law_and_policy.
+  ///
+  /// In he, this message translates to:
+  /// **'חוק ומדיניות'**
+  String get law_and_policy;
+
+  /// No description provided for @travel_and_hospitality.
+  ///
+  /// In he, this message translates to:
+  /// **'נסיעות ואירוח'**
+  String get travel_and_hospitality;
+
+  /// No description provided for @police_and_military.
+  ///
+  /// In he, this message translates to:
+  /// **'משטרה וצבא'**
+  String get police_and_military;
+
+  /// No description provided for @constructions.
+  ///
+  /// In he, this message translates to:
+  /// **'מבנים'**
+  String get constructions;
+
+  /// No description provided for @manufacturing.
+  ///
+  /// In he, this message translates to:
+  /// **'ייצור'**
+  String get manufacturing;
+
+  /// No description provided for @food_and_beverage.
+  ///
+  /// In he, this message translates to:
+  /// **'מזון ומשקאות'**
+  String get food_and_beverage;
+
+  /// No description provided for @counseling.
+  ///
+  /// In he, this message translates to:
+  /// **'ייעוץ'**
+  String get counseling;
+
+  /// No description provided for @plus_other.
+  ///
+  /// In he, this message translates to:
+  /// **'+ אחר'**
+  String get plus_other;
+
+  /// No description provided for @partnership_type_description.
+  ///
+  /// In he, this message translates to:
+  /// **'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\nמה זה? \nלמה לקנות / להשתמש בו?\nאיזו בעיה זה פותר? \nיתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.'**
+  String get partnership_type_description;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -16,6 +16,10 @@ final class InitialController$Unauthorized extends InitialControllerState {
   const InitialController$Unauthorized();
 }
 
+final class InitialController$QuestionnaireRequired extends InitialControllerState {
+  const InitialController$QuestionnaireRequired();
+}
+
 final class InitialController$Success extends InitialControllerState {
   const InitialController$Success();
 }
