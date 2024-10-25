@@ -45,5 +45,6 @@
   "enter_validation_code": "Please enter the validation code that we sent you",
   "did_not_get_code": "Didn’t get the code?",
   "resend_code": "Resend Code",
-  "phone_validation": "Phone Validation"
+  "phone_validation": "Phone Validation",
+  "what_am_i": "What am I"
 }

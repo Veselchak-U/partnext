@@ -12,10 +12,32 @@ class QuestionnaireScreenVm {
 
   final loading = ValueNotifier<bool>(false);
 
+  final pageController = PageController();
+
+  final firstFormKey = GlobalKey<FormState>();
+
   void _init() {}
 
   void dispose() {
     loading.dispose();
+
+    pageController.dispose();
+  }
+
+  void onNextPage() {}
+
+  void _goNextPage() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.decelerate,
+    );
+  }
+
+  void goPreviousPage() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.decelerate,
+    );
   }
 
   void _setLoading(bool value) {

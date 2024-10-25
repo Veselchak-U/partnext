@@ -292,6 +292,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אימות טלפון'**
   String get phone_validation;
+
+  /// No description provided for @what_am_i.
+  ///
+  /// In he, this message translates to:
+  /// **'מה אני'**
+  String get what_am_i;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

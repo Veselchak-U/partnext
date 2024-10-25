@@ -108,4 +108,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get phone_validation => 'אימות טלפון';
+
+  @override
+  String get what_am_i => 'מה אני';
 }

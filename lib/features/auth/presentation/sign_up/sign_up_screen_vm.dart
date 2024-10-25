@@ -26,6 +26,7 @@ class SignUpScreenVm {
   final loading = ValueNotifier<bool>(false);
   final termsConfirmed = ValueNotifier<bool>(false);
   final termsMustAccepted = ValueNotifier<bool>(false);
+
   final pageController = PageController();
 
   final firstFormKey = GlobalKey<FormState>();
@@ -41,6 +42,7 @@ class SignUpScreenVm {
     loading.dispose();
     termsConfirmed.dispose();
     termsMustAccepted.dispose();
+
     pageController.dispose();
   }
 

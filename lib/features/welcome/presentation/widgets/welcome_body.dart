@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/assets/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/buttons/change_locale_button.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({super.key});
@@ -36,6 +37,11 @@ class WelcomeBody extends StatelessWidget {
               SizedBox(height: max(145, 145.h)),
             ],
           ),
+        ),
+        Positioned(
+          top: MediaQuery.of(context).viewPadding.top,
+          right: 0,
+          child: ChangeLocaleButton(),
         ),
       ],
     );

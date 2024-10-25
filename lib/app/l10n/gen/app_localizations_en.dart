@@ -108,4 +108,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get phone_validation => 'Phone Validation';
+
+  @override
+  String get what_am_i => 'What am I';
 }
