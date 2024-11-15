@@ -9,6 +9,7 @@ class AppScaffold extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final Color backgroundColor;
   final bool resizeToAvoidBottomInset;
+  final VoidCallback? onTap;
 
   const AppScaffold({
     required this.body,
@@ -17,12 +18,14 @@ class AppScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.backgroundColor = AppColors.background,
     this.resizeToAvoidBottomInset = true,
+    this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return FocusLayout(
+      onTap: onTap,
       child: ColoredBox(
         color: backgroundColor,
         child: SafeArea(

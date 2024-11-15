@@ -19,16 +19,16 @@ class QuestionnaireApiModel {
   final List<String> photos;
 
   QuestionnaireApiModel({
-    required this.myPartnershipTypes,
-    required this.partnerPartnershipTypes,
-    required this.myInterests,
-    required this.partnerInterests,
-    required this.position,
-    required this.partnershipDescription,
-    required this.bio,
-    required this.experience,
-    required this.profileUrl,
-    required this.photos,
+    this.myPartnershipTypes = const [],
+    this.partnerPartnershipTypes = const [],
+    this.myInterests = const [],
+    this.partnerInterests = const [],
+    this.position,
+    this.partnershipDescription,
+    this.bio,
+    this.experience,
+    this.profileUrl,
+    this.photos = const [],
   });
 
   bool get isComplete =>

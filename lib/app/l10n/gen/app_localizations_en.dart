@@ -221,5 +221,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plus_other => '+ Other';
 
   @override
-  String get partnership_type_description => 'To get the interest of others, make sure you have a developed idea in written.\n\nWhat is it? \nWhy to buy/use it?\nWhat problem does it solve? \nAdvantages & Disadvantages and more details you’re willing to share. \n';
+  String get partnership_type_description => 'To get the interest of others, make sure you have a developed idea in written.\n\n · What is it? \n · Why to buy/use it?\n · What problem does it solve? \n · Advantages & Disadvantages and more details you’re willing to share.';
 }

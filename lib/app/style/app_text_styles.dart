@@ -51,4 +51,10 @@ class AppTextStyles {
     // letterSpacing: 0.5,
     color: AppColors.primary,
   );
+  static final s10w400 = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
 }

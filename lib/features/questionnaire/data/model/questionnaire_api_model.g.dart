@@ -9,27 +9,33 @@ part of 'questionnaire_api_model.dart';
 QuestionnaireApiModel _$QuestionnaireApiModelFromJson(
         Map<String, dynamic> json) =>
     QuestionnaireApiModel(
-      myPartnershipTypes: (json['my_partnership_types'] as List<dynamic>)
-          .map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
-          .toList(),
+      myPartnershipTypes: (json['my_partnership_types'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
+              .toList() ??
+          const [],
       partnerPartnershipTypes:
-          (json['partner_partnership_types'] as List<dynamic>)
-              .map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
-              .toList(),
-      myInterests: (json['my_interests'] as List<dynamic>)
-          .map((e) => $enumDecode(_$InterestTypeEnumMap, e))
-          .toList(),
-      partnerInterests: (json['partner_interests'] as List<dynamic>)
-          .map((e) => $enumDecode(_$InterestTypeEnumMap, e))
-          .toList(),
+          (json['partner_partnership_types'] as List<dynamic>?)
+                  ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
+                  .toList() ??
+              const [],
+      myInterests: (json['my_interests'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e))
+              .toList() ??
+          const [],
+      partnerInterests: (json['partner_interests'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e))
+              .toList() ??
+          const [],
       position: json['position'] as String?,
       partnershipDescription: json['partnership_description'] as String?,
       bio: json['bio'] as String?,
       experience:
           $enumDecodeNullable(_$ExperienceDurationEnumMap, json['experience']),
       profileUrl: json['profile_url'] as String?,
-      photos:
-          (json['photos'] as List<dynamic>).map((e) => e as String).toList(),
+      photos: (json['photos'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$QuestionnaireApiModelToJson(

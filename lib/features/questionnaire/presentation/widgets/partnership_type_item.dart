@@ -10,11 +10,13 @@ class PartnershipTypeItem extends StatefulWidget {
   final String label;
   final bool selected;
   final Function(bool) onSelect;
+  final Function(BuildContext) onOpenDescription;
 
   const PartnershipTypeItem({
     required this.label,
     required this.selected,
     required this.onSelect,
+    required this.onOpenDescription,
     super.key,
   });
 
@@ -23,7 +25,6 @@ class PartnershipTypeItem extends StatefulWidget {
 }
 
 class _PartnershipTypeItemState extends State<PartnershipTypeItem> {
-  OverlayEntry _overlayEntry = OverlayEntry(builder: (_) => const SizedBox.shrink());
   bool selected = false;
 
   void _onSelect() {
@@ -31,32 +32,6 @@ class _PartnershipTypeItemState extends State<PartnershipTypeItem> {
       selected = !selected;
       widget.onSelect(selected);
     });
-  }
-
-  void _openDescription() {
-    _overlayEntry = OverlayEntry(
-      builder: (context) {
-        final size = MediaQuery.of(context).size;
-
-        return Positioned(
-          width: 56,
-          height: 56,
-          top: size.height - 72,
-          left: size.width - 72,
-          child: Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: _overlayEntry.remove,
-              child: Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.redAccent),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-
-    Overlay.of(context).insert(_overlayEntry);
   }
 
   @override
@@ -88,7 +63,7 @@ class _PartnershipTypeItemState extends State<PartnershipTypeItem> {
                   ),
                 ),
                 IconButton(
-                  onPressed: _openDescription,
+                  onPressed: () => widget.onOpenDescription(context),
                   icon: SvgPicture.asset(
                     Assets.icons.questionMark.path,
                     width: 24.r,

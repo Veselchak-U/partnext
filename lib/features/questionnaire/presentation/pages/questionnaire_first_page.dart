@@ -23,6 +23,7 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage> {
     final vm = context.read<QuestionnaireScreenVm>();
 
     return MainSimpleLayout(
+      onTap: vm.closeItemDescription,
       body: Form(
         key: vm.firstFormKey,
         child: Column(
@@ -36,7 +37,6 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage> {
             SizedBox(height: 44.h),
             Expanded(
               child: ListView.separated(
-                shrinkWrap: true,
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
                 itemCount: PartnershipType.values.length,
                 itemBuilder: (context, index) {
@@ -45,7 +45,8 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage> {
                   return PartnershipTypeItem(
                     label: PartnershipTypeHelper.getIAmLookingForLabel(item),
                     selected: index.isEven,
-                    onSelect: (value) {},
+                    onSelect: (selected) => vm.onMyPartnershipTypeSelected(item, selected),
+                    onOpenDescription: (context) => vm.openPartnershipTypeDescription(context, item),
                   );
                 },
                 separatorBuilder: (_, __) => SizedBox(height: 16.h),
