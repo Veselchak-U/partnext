@@ -18,11 +18,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
 
+  /// File path: assets/icons/question_mark.svg
+  SvgGenImage get questionMark =>
+      const SvgGenImage('assets/icons/question_mark.svg');
+
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [close, send];
+  List<SvgGenImage> get values => [close, questionMark, send];
 }
 
 class $AssetsImagesGen {

@@ -12,18 +12,21 @@ QuestionnaireApiModel _$QuestionnaireApiModelFromJson(
       myPartnershipTypes: (json['my_partnership_types'] as List<dynamic>)
           .map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
           .toList(),
-      desiredPartnershipTypes:
-          (json['desired_partnership_types'] as List<dynamic>)
+      partnerPartnershipTypes:
+          (json['partner_partnership_types'] as List<dynamic>)
               .map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
               .toList(),
-      interests: (json['interests'] as List<dynamic>)
+      myInterests: (json['my_interests'] as List<dynamic>)
           .map((e) => $enumDecode(_$InterestTypeEnumMap, e))
           .toList(),
-      currentPosition: json['current_position'] as String?,
-      desiredPartnershipDescription:
-          json['desired_partnership_description'] as String?,
+      partnerInterests: (json['partner_interests'] as List<dynamic>)
+          .map((e) => $enumDecode(_$InterestTypeEnumMap, e))
+          .toList(),
+      position: json['position'] as String?,
+      partnershipDescription: json['partnership_description'] as String?,
       bio: json['bio'] as String?,
-      experience: json['experience'] as String?,
+      experience:
+          $enumDecodeNullable(_$ExperienceDurationEnumMap, json['experience']),
       profileUrl: json['profile_url'] as String?,
       photos:
           (json['photos'] as List<dynamic>).map((e) => e as String).toList(),
@@ -35,15 +38,18 @@ Map<String, dynamic> _$QuestionnaireApiModelToJson(
       'my_partnership_types': instance.myPartnershipTypes
           .map((e) => _$PartnershipTypeEnumMap[e]!)
           .toList(),
-      'desired_partnership_types': instance.desiredPartnershipTypes
+      'partner_partnership_types': instance.partnerPartnershipTypes
           .map((e) => _$PartnershipTypeEnumMap[e]!)
           .toList(),
-      'interests':
-          instance.interests.map((e) => _$InterestTypeEnumMap[e]!).toList(),
-      'current_position': instance.currentPosition,
-      'desired_partnership_description': instance.desiredPartnershipDescription,
+      'my_interests':
+          instance.myInterests.map((e) => _$InterestTypeEnumMap[e]!).toList(),
+      'partner_interests': instance.partnerInterests
+          .map((e) => _$InterestTypeEnumMap[e]!)
+          .toList(),
+      'position': instance.position,
+      'partnership_description': instance.partnershipDescription,
       'bio': instance.bio,
-      'experience': instance.experience,
+      'experience': _$ExperienceDurationEnumMap[instance.experience],
       'profile_url': instance.profileUrl,
       'photos': instance.photos,
     };
@@ -85,4 +91,12 @@ const _$InterestTypeEnumMap = {
   InterestType.foodAndBeverage: 'foodAndBeverage',
   InterestType.counseling: 'counseling',
   InterestType.other: 'other',
+};
+
+const _$ExperienceDurationEnumMap = {
+  ExperienceDuration.from0To2: 'from0To2',
+  ExperienceDuration.from3To5: 'from3To5',
+  ExperienceDuration.from6To10: 'from6To10',
+  ExperienceDuration.from10: 'from10',
+  ExperienceDuration.from20: 'from20',
 };

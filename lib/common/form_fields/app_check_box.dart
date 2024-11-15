@@ -7,7 +7,6 @@ class AppCheckBox extends StatelessWidget {
   final Widget? labelWidget;
   final bool? checked;
   final void Function(bool?)? onChanged;
-  final CrossAxisAlignment crossAxisAlignment;
   final Color? color;
 
   const AppCheckBox({
@@ -15,7 +14,6 @@ class AppCheckBox extends StatelessWidget {
     this.labelWidget,
     this.checked,
     this.onChanged,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.color,
     super.key,
   });
@@ -23,23 +21,21 @@ class AppCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = onChanged != null;
-    final foregroundColor = (color ?? AppColors.backgroundDark).withOpacity(enabled ? 1 : 0.5);
+    final borderColor = color ?? AppColors.backgroundDark.withOpacity(enabled ? 1 : 0.5);
+    final foregroundColor = color ?? AppColors.primary.withOpacity(enabled ? 1 : 0.5);
 
     return Row(
-      crossAxisAlignment: crossAxisAlignment,
       children: [
         Checkbox(
           value: checked,
           onChanged: onChanged,
-          side: BorderSide(color: foregroundColor, width: 2),
+          side: BorderSide(color: borderColor, width: 2),
         ),
         Expanded(
           child: labelWidget ??
               Text(
                 label ?? '',
-                style: AppTextStyles.s12w400.copyWith(
-                  color: foregroundColor,
-                ),
+                style: AppTextStyles.s14w400.copyWith(color: foregroundColor),
               ),
         ),
       ],
