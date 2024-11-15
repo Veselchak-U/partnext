@@ -209,6 +209,7 @@ class _AppTextFieldState extends State<AppTextField> {
                                 onTapOutside: widget.readOnly ? null : (_) => focusNode.unfocus,
                                 controller: controller,
                                 readOnly: widget.readOnly || widget.loading,
+                                enabled: widget.enabled,
                                 obscureText: widget.obscureText,
                                 ignorePointers: widget.readOnly,
                                 minLines: widget.minLines,
