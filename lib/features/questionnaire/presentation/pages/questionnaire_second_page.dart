@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/assets/assets.gen.dart';
@@ -12,15 +10,15 @@ import 'package:partnext/features/questionnaire/presentation/questionnaire_scree
 import 'package:partnext/features/questionnaire/presentation/widgets/partnership_type_item.dart';
 import 'package:provider/provider.dart';
 
-class QuestionnaireFirstPage extends StatefulWidget {
-  const QuestionnaireFirstPage({super.key});
+class QuestionnaireSecondPage extends StatefulWidget {
+  const QuestionnaireSecondPage({super.key});
 
   @override
-  State<QuestionnaireFirstPage> createState() => _QuestionnaireFirstPageState();
+  State<QuestionnaireSecondPage> createState() => _QuestionnaireSecondPageState();
 }
 
-class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
-    with AutomaticKeepAliveClientMixin<QuestionnaireFirstPage> {
+class _QuestionnaireSecondPageState extends State<QuestionnaireSecondPage>
+    with AutomaticKeepAliveClientMixin<QuestionnaireSecondPage> {
   @override
   bool get wantKeepAlive => true;
 
@@ -35,7 +33,7 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
         children: [
           SizedBox(height: 9.h),
           Text(
-            context.l10n.what_am_i,
+            context.l10n.i_am_looking_for,
             style: AppTextStyles.s20w700,
             textAlign: TextAlign.center,
           ),
@@ -48,12 +46,12 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
                 final item = PartnershipType.values[index];
 
                 return PartnershipTypeItem(
-                  label: PartnershipTypeHelper.getWhoIAmLabel(item),
+                  label: PartnershipTypeHelper.getIAmLookingForLabel(item),
                   selected: index.isEven,
-                  onSelect: (selected) => vm.onMyPartnershipTypeSelected(item, selected),
+                  onSelect: (selected) => vm.onPartnerPartnershipTypeSelected(item, selected),
                   onOpenDescription: (context) => vm.openOverlay(
                     context,
-                    text: PartnershipTypeHelper.getWhoIAmDescription(item),
+                    text: PartnershipTypeHelper.getIAmLookingForDescription(item),
                   ),
                 );
               },
@@ -75,7 +73,13 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
                     );
                   },
                 ),
-                SizedBox(height: max(56, 56.h) + 16.h),
+                SizedBox(height: 16.h),
+                CommonButton(
+                  type: CommonButtonType.bordered,
+                  label: context.l10n.previous,
+                  iconPath: Assets.icons.send.path,
+                  onTap: vm.onPreviousPage,
+                ),
               ],
             ),
           ),

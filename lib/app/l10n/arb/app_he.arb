@@ -36,6 +36,7 @@
   "full_name": "שם מלא",
   "phone_number": "מספר טלפון",
   "next": "הבא",
+  "previous": "הקודם",
   "i_accept": "אני מקבל",
   "terms_and_conditions": "תנאים והגבלות",
   "and": "ו",
@@ -83,5 +84,19 @@
   "food_and_beverage": "מזון ומשקאות",
   "counseling": "ייעוץ",
   "plus_other": "+ אחר",
-  "partnership_type_description": "כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף."
+  "partnership_type_description": "כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.",
+  "i_am_looking_for": "אני מחפש",
+  "your_interests": "תחומי העניין שלך",
+  "partner_interests": "תחומי העניין של השותף הבא שלך",
+  "tell_us_about_yourself": "ספר לנו על עצמך",
+  "please_do_not_mention_numbers": "*נא לא להזכיר מספרים",
+  "finish_registration": "סיום הרשמה",
+  "your_current_position": "המיקום והארגון הנוכחי שלך",
+  "kind_of_partnership_are_you_looking": "איזה סוג של שותפות אתה מחפש?",
+  "tell_us_about_yourself_first": "ספר לנו על עצמך,",
+  "tell_us_about_yourself_second": "מה אתה נלהב? מה השגת?",
+  "years_of_experience": "שנים של ניסיון",
+  "linkedin_profile_url": "כתובת אתר לפרופיל לינקדאין",
+  "select_at_least_one_item": "בחר פריט אחד לפחות",
+  "specify_amount_of_experience": "ציין את כמות הניסיון"
 }

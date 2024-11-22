@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/features/auth/presentation/sign_up/pages/sign_up_first_page.dart';
 import 'package:partnext/features/auth/presentation/sign_up/pages/sign_up_second_page.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
@@ -26,7 +25,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        reverse: context.locale.isRtl,
         controller: vm.pageController,
         children: const [
           SignUpFirstPage(),

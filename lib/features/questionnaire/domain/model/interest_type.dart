@@ -27,11 +27,12 @@ enum InterestType {
   manufacturing,
   foodAndBeverage,
   counseling,
-  other,
-}
+  other;
 
-class InterestTypeHelper {
-  static String toLabel(InterestType type) => switch (type) {
+  const InterestType();
+
+  @override
+  String toString() => switch (this) {
         InterestType.artAndEntertainment => l10n?.art_and_entertainment ?? '',
         InterestType.music => l10n?.music ?? '',
         InterestType.banking => l10n?.banking ?? '',

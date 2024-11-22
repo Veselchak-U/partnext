@@ -36,23 +36,20 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: AppBar(
-        backgroundColor: backgroundColor,
-        foregroundColor: foregroundColor,
-        shape: shape,
-        title: title ??
-            Text(
-              titleText ?? '',
-              style: titleTextStyle ?? AppTextStyles.s18w500,
-            ),
-        titleSpacing: titleSpacing,
-        centerTitle: true,
-        automaticallyImplyLeading: automaticallyImplyLeading,
-        leading: leading,
-        actions: addChangeLocaleButton ? [const ChangeLocaleButton(), ...actions] : actions,
-      ),
+    return AppBar(
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      shape: shape,
+      title: title ??
+          Text(
+            titleText ?? '',
+            style: titleTextStyle ?? AppTextStyles.s18w500,
+          ),
+      titleSpacing: titleSpacing,
+      centerTitle: true,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      leading: leading,
+      actions: addChangeLocaleButton ? [const ChangeLocaleButton(), ...actions] : actions,
     );
   }
 }

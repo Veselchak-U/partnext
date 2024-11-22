@@ -11,6 +11,7 @@ import 'package:partnext/common/widgets/loading_indicator.dart';
 
 class AppTextField extends StatefulWidget {
   final String? label;
+  final Widget? labelWidget;
   final String? hint;
   final String? prefixIconPath;
   final Color? prefixIconColor;
@@ -39,6 +40,7 @@ class AppTextField extends StatefulWidget {
 
   const AppTextField({
     this.label,
+    this.labelWidget,
     this.hint,
     this.prefixIconPath,
     this.prefixIconColor,
@@ -168,10 +170,11 @@ class _AppTextFieldState extends State<AppTextField> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.label ?? '',
-                  style: AppTextStyles.s14w400, //.copyWith(color: headerTextColor),
-                ),
+                widget.labelWidget ??
+                    Text(
+                      widget.label ?? '',
+                      style: AppTextStyles.s14w400, //.copyWith(color: headerTextColor),
+                    ),
                 SizedBox(height: 12.h),
                 Container(
                   height: innerHeight,

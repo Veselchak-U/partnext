@@ -3,7 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/common/layouts/app_scaffold.dart';
+import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_fifth_page.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_first_page.dart';
+import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_fourth_page.dart';
+import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_second_page.dart';
+import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_sixth_page.dart';
+import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_third_page.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,17 +26,21 @@ class QuestionnaireScreen extends StatelessWidget {
         children: [
           PageView(
             physics: const NeverScrollableScrollPhysics(),
-            reverse: context.locale.isRtl,
             controller: vm.pageController,
             children: const [
               QuestionnaireFirstPage(),
+              QuestionnaireSecondPage(),
+              QuestionnaireThirdPage(),
+              QuestionnaireFourthPage(),
+              QuestionnaireFifthPage(),
+              QuestionnaireSixthPage(),
             ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 117).h,
             child: SmoothPageIndicator(
               controller: vm.pageController,
-              textDirection: TextDirection.ltr,
+              textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
               count: 6,
               effect: SlideEffect(
                 dotWidth: 50.w,

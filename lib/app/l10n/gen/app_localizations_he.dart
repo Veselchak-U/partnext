@@ -80,6 +80,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get next => 'הבא';
 
   @override
+  String get previous => 'הקודם';
+
+  @override
   String get i_accept => 'אני מקבל';
 
   @override
@@ -222,4 +225,46 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get partnership_type_description => 'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.';
+
+  @override
+  String get i_am_looking_for => 'אני מחפש';
+
+  @override
+  String get your_interests => 'תחומי העניין שלך';
+
+  @override
+  String get partner_interests => 'תחומי העניין של השותף הבא שלך';
+
+  @override
+  String get tell_us_about_yourself => 'ספר לנו על עצמך';
+
+  @override
+  String get please_do_not_mention_numbers => '*נא לא להזכיר מספרים';
+
+  @override
+  String get finish_registration => 'סיום הרשמה';
+
+  @override
+  String get your_current_position => 'המיקום והארגון הנוכחי שלך';
+
+  @override
+  String get kind_of_partnership_are_you_looking => 'איזה סוג של שותפות אתה מחפש?';
+
+  @override
+  String get tell_us_about_yourself_first => 'ספר לנו על עצמך,';
+
+  @override
+  String get tell_us_about_yourself_second => 'מה אתה נלהב? מה השגת?';
+
+  @override
+  String get years_of_experience => 'שנים של ניסיון';
+
+  @override
+  String get linkedin_profile_url => 'כתובת אתר לפרופיל לינקדאין';
+
+  @override
+  String get select_at_least_one_item => 'בחר פריט אחד לפחות';
+
+  @override
+  String get specify_amount_of_experience => 'ציין את כמות הניסיון';
 }

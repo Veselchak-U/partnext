@@ -233,6 +233,12 @@ abstract class AppLocalizations {
   /// **'הבא'**
   String get next;
 
+  /// No description provided for @previous.
+  ///
+  /// In he, this message translates to:
+  /// **'הקודם'**
+  String get previous;
+
   /// No description provided for @i_accept.
   ///
   /// In he, this message translates to:
@@ -520,6 +526,90 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.'**
   String get partnership_type_description;
+
+  /// No description provided for @i_am_looking_for.
+  ///
+  /// In he, this message translates to:
+  /// **'אני מחפש'**
+  String get i_am_looking_for;
+
+  /// No description provided for @your_interests.
+  ///
+  /// In he, this message translates to:
+  /// **'תחומי העניין שלך'**
+  String get your_interests;
+
+  /// No description provided for @partner_interests.
+  ///
+  /// In he, this message translates to:
+  /// **'תחומי העניין של השותף הבא שלך'**
+  String get partner_interests;
+
+  /// No description provided for @tell_us_about_yourself.
+  ///
+  /// In he, this message translates to:
+  /// **'ספר לנו על עצמך'**
+  String get tell_us_about_yourself;
+
+  /// No description provided for @please_do_not_mention_numbers.
+  ///
+  /// In he, this message translates to:
+  /// **'*נא לא להזכיר מספרים'**
+  String get please_do_not_mention_numbers;
+
+  /// No description provided for @finish_registration.
+  ///
+  /// In he, this message translates to:
+  /// **'סיום הרשמה'**
+  String get finish_registration;
+
+  /// No description provided for @your_current_position.
+  ///
+  /// In he, this message translates to:
+  /// **'המיקום והארגון הנוכחי שלך'**
+  String get your_current_position;
+
+  /// No description provided for @kind_of_partnership_are_you_looking.
+  ///
+  /// In he, this message translates to:
+  /// **'איזה סוג של שותפות אתה מחפש?'**
+  String get kind_of_partnership_are_you_looking;
+
+  /// No description provided for @tell_us_about_yourself_first.
+  ///
+  /// In he, this message translates to:
+  /// **'ספר לנו על עצמך,'**
+  String get tell_us_about_yourself_first;
+
+  /// No description provided for @tell_us_about_yourself_second.
+  ///
+  /// In he, this message translates to:
+  /// **'מה אתה נלהב? מה השגת?'**
+  String get tell_us_about_yourself_second;
+
+  /// No description provided for @years_of_experience.
+  ///
+  /// In he, this message translates to:
+  /// **'שנים של ניסיון'**
+  String get years_of_experience;
+
+  /// No description provided for @linkedin_profile_url.
+  ///
+  /// In he, this message translates to:
+  /// **'כתובת אתר לפרופיל לינקדאין'**
+  String get linkedin_profile_url;
+
+  /// No description provided for @select_at_least_one_item.
+  ///
+  /// In he, this message translates to:
+  /// **'בחר פריט אחד לפחות'**
+  String get select_at_least_one_item;
+
+  /// No description provided for @specify_amount_of_experience.
+  ///
+  /// In he, this message translates to:
+  /// **'ציין את כמות הניסיון'**
+  String get specify_amount_of_experience;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

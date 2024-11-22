@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/assets/fonts.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
@@ -28,6 +29,7 @@ class AppTheme {
     textSelectionTheme: _textSelectionThemeLight,
     checkboxTheme: _checkboxThemeLight,
     radioTheme: _radioThemeLight,
+    chipTheme: _chipThemeLight,
   );
 
   static const systemOverlayStyleLight = SystemUiOverlayStyle(
@@ -77,6 +79,7 @@ class AppTheme {
               : AppColors.white,
     ),
   );
+
   static final _radioThemeLight = RadioThemeData(
     fillColor: WidgetStateProperty.resolveWith<Color?>(
       (states) => states.contains(WidgetState.disabled)
@@ -85,5 +88,15 @@ class AppTheme {
               ? AppColors.orange
               : AppColors.white,
     ),
+  );
+
+  static final _chipThemeLight = ChipThemeData(
+    side: BorderSide.none,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30.r),
+    ),
+    elevation: 0,
+    backgroundColor: AppColors.white,
+    selectedColor: AppColors.primary,
   );
 }

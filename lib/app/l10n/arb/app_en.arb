@@ -36,6 +36,7 @@
   "full_name": "Full Name",
   "phone_number": "Phone Number",
   "next": "Next",
+  "previous": "Previous",
   "i_accept": "I accept",
   "terms_and_conditions": "Terms & Conditions",
   "and": "and",
@@ -83,5 +84,19 @@
   "food_and_beverage": "Food & Beverage",
   "counseling": "Counseling",
   "plus_other": "+ Other",
-  "partnership_type_description": "To get the interest of others, make sure you have a developed idea in written.\n\n · What is it? \n · Why to buy/use it?\n · What problem does it solve? \n · Advantages & Disadvantages and more details you’re willing to share."
+  "partnership_type_description": "To get the interest of others, make sure you have a developed idea in written.\n\n · What is it? \n · Why to buy/use it?\n · What problem does it solve? \n · Advantages & Disadvantages and more details you’re willing to share.",
+  "i_am_looking_for": "I am Looking for",
+  "your_interests": "Your Interests",
+  "partner_interests": "Interests of Your Next Partner",
+  "tell_us_about_yourself": "Tell Us About Yourself",
+  "please_do_not_mention_numbers": "*Please don't mention numbers",
+  "finish_registration": "Finish Registration",
+  "your_current_position": "Your current position and organization",
+  "kind_of_partnership_are_you_looking": "What kind of partnership are you looking for?",
+  "tell_us_about_yourself_first": "Tell us about yourself, ",
+  "tell_us_about_yourself_second": "what you are passionate about? What have you achieved?",
+  "years_of_experience": "Years of experience",
+  "linkedin_profile_url": "LinkedIn profile URL",
+  "select_at_least_one_item": "Select at least one item",
+  "specify_amount_of_experience": "Specify the amount of experience"
 }

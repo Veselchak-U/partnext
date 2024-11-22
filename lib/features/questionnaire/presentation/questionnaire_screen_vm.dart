@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
-import 'package:partnext/app/style/app_colors.dart';
-import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/common/widgets/row_selector.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
+import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
+import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
+import 'package:partnext/features/questionnaire/presentation/widgets/partnership_description_overlay.dart';
 
 class QuestionnaireScreenVm {
   final BuildContext _context;
@@ -20,7 +21,8 @@ class QuestionnaireScreenVm {
 
   final pageController = PageController();
 
-  final firstFormKey = GlobalKey<FormState>();
+  final fifthFormKey = GlobalKey<FormState>();
+  final experienceKey = GlobalKey<RowSelectorState>();
 
   OverlayEntry? _overlayEntry;
 
@@ -34,60 +36,32 @@ class QuestionnaireScreenVm {
     pageController.dispose();
   }
 
-  void openPartnershipTypeDescription(BuildContext context, PartnershipType item) {
+  void openOverlay(
+    BuildContext context, {
+    required String text,
+  }) {
     if (_overlayEntry != null) {
-      closeItemDescription();
+      closeOverlay();
     }
 
-    final renderBox = context.findRenderObject() as RenderBox?;
-    final hPadding = 52.h;
-    final offset = renderBox?.localToGlobal(Offset(0, hPadding));
-    if (offset == null) return;
-
-    final overlayEntry = OverlayEntry(
-      builder: (context) {
-        final wPadding = 32.r;
-        final width = MediaQuery.of(context).size.width - wPadding * 2;
-
-        return Positioned.directional(
-          textDirection: _context.locale.isLtr ? TextDirection.ltr : TextDirection.rtl,
-          width: width,
-          top: offset.dy,
-          end: offset.dx,
-          child: GestureDetector(
-            onTap: closeItemDescription,
-            child: Material(
-              borderRadius: BorderRadius.circular(8).r,
-              color: AppColors.white.withOpacity(1),
-              shadowColor: AppColors.shadow,
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16).r,
-                child: Text(
-                  PartnershipTypeHelper.getWhoIAmDescription(item),
-                  style: AppTextStyles.s10w400,
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    final overlayEntry = PartnershipDescriptionOverlay(
+      context,
+      text: text,
+      onTap: closeOverlay,
+    ).build();
+    if (overlayEntry == null) return;
 
     Overlay.of(context).insert(overlayEntry);
     _overlayEntry = overlayEntry;
   }
 
-  void closeItemDescription() {
+  void closeOverlay() {
     _overlayEntry?.remove();
     _overlayEntry = null;
   }
 
-  void onMyPartnershipTypeSelected(
-    PartnershipType item,
-    bool selected,
-  ) {
-    closeItemDescription();
+  void onMyPartnershipTypeSelected(PartnershipType item, bool selected) {
+    closeOverlay();
 
     final types = [..._questionnaire.myPartnershipTypes];
     if (selected) {
@@ -99,7 +73,138 @@ class QuestionnaireScreenVm {
     _questionnaire = _questionnaire.copyWith(myPartnershipTypes: types);
   }
 
-  void onNextPage() {}
+  void onPartnerPartnershipTypeSelected(PartnershipType item, bool selected) {
+    closeOverlay();
+
+    final types = [..._questionnaire.partnerPartnershipTypes];
+    if (selected) {
+      types.add(item);
+    } else {
+      types.remove(item);
+    }
+
+    _questionnaire = _questionnaire.copyWith(partnerPartnershipTypes: types);
+  }
+
+  void onSelectMyInterest(InterestType item, bool selected) {
+    final interests = [..._questionnaire.myInterests];
+    if (selected) {
+      interests.add(item);
+    } else {
+      interests.remove(item);
+    }
+
+    _questionnaire = _questionnaire.copyWith(myInterests: interests);
+  }
+
+  void onSelectPartnerInterest(InterestType item, bool selected) {
+    final interests = [..._questionnaire.partnerInterests];
+    if (selected) {
+      interests.add(item);
+    } else {
+      interests.remove(item);
+    }
+
+    _questionnaire = _questionnaire.copyWith(partnerInterests: interests);
+  }
+
+  void onPositionChanged(String value) {
+    _questionnaire = _questionnaire.copyWith(position: value);
+  }
+
+  void onPartnershipDescriptionChanged(String value) {
+    _questionnaire = _questionnaire.copyWith(partnershipDescription: value);
+  }
+
+  void onBioChanged(String value) {
+    _questionnaire = _questionnaire.copyWith(bio: value);
+  }
+
+  void onExperienceSelected(ExperienceDuration value) {
+    _questionnaire = _questionnaire.copyWith(experience: value);
+  }
+
+  void onProfileUrlChanged(String value) {
+    _questionnaire = _questionnaire.copyWith(profileUrl: value);
+  }
+
+  void onNextPage() {
+    final currentPage = pageController.page?.round();
+    if (currentPage == null) return;
+
+    FocusScope.of(_context).unfocus();
+    closeOverlay();
+
+    final bool checkResult = switch (currentPage) {
+      0 => _firstPageCheck(),
+      1 => _secondPageCheck(),
+      2 => _thirdPageCheck(),
+      3 => _fourthPageCheck(),
+      4 => _fifthPageCheck(),
+      _ => false,
+    };
+    if (!checkResult) return;
+
+    _goNextPage();
+  }
+
+  bool _firstPageCheck() {
+    final filled = _questionnaire.myPartnershipTypes.isNotEmpty;
+    if (!filled) {
+      _onError(_context.l10n.select_at_least_one_item);
+    }
+
+    return filled;
+  }
+
+  bool _secondPageCheck() {
+    final filled = _questionnaire.partnerPartnershipTypes.isNotEmpty;
+    if (!filled) {
+      _onError(_context.l10n.select_at_least_one_item);
+    }
+
+    return filled;
+  }
+
+  bool _thirdPageCheck() {
+    final filled = _questionnaire.myInterests.isNotEmpty;
+    if (!filled) {
+      _onError(_context.l10n.select_at_least_one_item);
+    }
+
+    return filled;
+  }
+
+  bool _fourthPageCheck() {
+    final filled = _questionnaire.partnerInterests.isNotEmpty;
+    if (!filled) {
+      _onError(_context.l10n.select_at_least_one_item);
+    }
+
+    return filled;
+  }
+
+  bool _fifthPageCheck() {
+    final invalidFields = fifthFormKey.currentState?.validateGranularly();
+    if (invalidFields != null && invalidFields.isNotEmpty) {
+      Scrollable.ensureVisible(invalidFields.first.context);
+
+      return false;
+    }
+
+    if (_questionnaire.experience == null) {
+      _onError(_context.l10n.specify_amount_of_experience);
+
+      final experienceContext = experienceKey.currentContext;
+      if (experienceContext != null) {
+        Scrollable.ensureVisible(experienceContext);
+      }
+
+      return false;
+    }
+
+    return true;
+  }
 
   void _goNextPage() {
     pageController.nextPage(
@@ -108,7 +213,10 @@ class QuestionnaireScreenVm {
     );
   }
 
-  void goPreviousPage() {
+  void onPreviousPage() {
+    FocusScope.of(_context).unfocus();
+    closeOverlay();
+
     pageController.previousPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
