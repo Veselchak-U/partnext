@@ -55,7 +55,7 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
             SizedBox(height: 24.h),
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8).r,
+                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
                 child: Column(
                   children: [
                     AppTextField(

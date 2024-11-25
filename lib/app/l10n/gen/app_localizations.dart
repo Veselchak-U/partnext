@@ -610,6 +610,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'ציין את כמות הניסיון'**
   String get specify_amount_of_experience;
+
+  /// No description provided for @first_image_will_be.
+  ///
+  /// In he, this message translates to:
+  /// **'התמונה הראשונה תהיה תמונת הפרופיל שלך, בעוד שכל שאר התמונות יכולות להיות שלך או קשורות לעסק שלך.'**
+  String get first_image_will_be;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

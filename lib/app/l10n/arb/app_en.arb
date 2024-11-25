@@ -98,5 +98,6 @@
   "years_of_experience": "Years of experience",
   "linkedin_profile_url": "LinkedIn profile URL",
   "select_at_least_one_item": "Select at least one item",
-  "specify_amount_of_experience": "Specify the amount of experience"
+  "specify_amount_of_experience": "Specify the amount of experience",
+  "first_image_will_be": "The first image will be your profile photo, while all other images can be of you or related to your business."
 }

@@ -38,10 +38,16 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
           ),
           SizedBox(height: 24.h),
           Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8).r,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
               child: Column(
-                children: [],
+                children: [
+                  Text(
+                    context.l10n.first_image_will_be,
+                    style: AppTextStyles.s14w400,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ),

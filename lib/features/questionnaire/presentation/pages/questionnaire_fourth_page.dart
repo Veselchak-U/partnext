@@ -41,7 +41,7 @@ class _QuestionnaireFourthPageState extends State<QuestionnaireFourthPage>
           SizedBox(height: 24.h),
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8).r,
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
               child: ChoiceChips<InterestType>(
                 items: InterestType.values,
                 onTap: vm.onSelectPartnerInterest,

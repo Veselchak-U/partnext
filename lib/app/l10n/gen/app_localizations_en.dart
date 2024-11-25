@@ -267,4 +267,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get specify_amount_of_experience => 'Specify the amount of experience';
+
+  @override
+  String get first_image_will_be => 'The first image will be your profile photo, while all other images can be of you or related to your business.';
 }
