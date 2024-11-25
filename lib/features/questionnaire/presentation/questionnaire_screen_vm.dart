@@ -18,6 +18,8 @@ class QuestionnaireScreenVm {
   }
 
   final loading = ValueNotifier<bool>(false);
+  final isFirstPage = ValueNotifier<bool>(true);
+  final isLastPage = ValueNotifier<bool>(false);
 
   final pageController = PageController();
 
@@ -32,6 +34,8 @@ class QuestionnaireScreenVm {
 
   void dispose() {
     loading.dispose();
+    isFirstPage.dispose();
+    isLastPage.dispose();
 
     pageController.dispose();
   }
@@ -206,21 +210,27 @@ class QuestionnaireScreenVm {
     return true;
   }
 
-  void _goNextPage() {
-    pageController.nextPage(
+  Future<void> _goNextPage() async {
+    await pageController.nextPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
+
+    isFirstPage.value = false;
+    isLastPage.value = pageController.page == 5;
   }
 
-  void onPreviousPage() {
+  Future<void> onPreviousPage() async {
     FocusScope.of(_context).unfocus();
     closeOverlay();
 
-    pageController.previousPage(
+    await pageController.previousPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
+
+    isFirstPage.value = pageController.page == 0;
+    isLastPage.value = false;
   }
 
   void _setLoading(bool value) {

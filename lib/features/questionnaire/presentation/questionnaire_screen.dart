@@ -10,6 +10,7 @@ import 'package:partnext/features/questionnaire/presentation/pages/questionnaire
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_sixth_page.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_third_page.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
+import 'package:partnext/features/questionnaire/presentation/widgets/questionnaire_button_block.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -19,25 +20,34 @@ class QuestionnaireScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<QuestionnaireScreenVm>();
+    final appBarHeight = 56;
+    final titleHeight = 64.h;
 
     return AppScaffold(
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: vm.pageController,
-            children: const [
-              QuestionnaireFirstPage(),
-              QuestionnaireSecondPage(),
-              QuestionnaireThirdPage(),
-              QuestionnaireFourthPage(),
-              QuestionnaireFifthPage(),
-              QuestionnaireSixthPage(),
+          Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: vm.pageController,
+                  children: const [
+                    QuestionnaireFirstPage(),
+                    QuestionnaireSecondPage(),
+                    QuestionnaireThirdPage(),
+                    QuestionnaireFourthPage(),
+                    QuestionnaireFifthPage(),
+                    QuestionnaireSixthPage(),
+                  ],
+                ),
+              ),
+              QuestionnaireButtonBlock(),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 117).h,
+            padding: EdgeInsets.only(top: appBarHeight + titleHeight),
             child: SmoothPageIndicator(
               controller: vm.pageController,
               textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
