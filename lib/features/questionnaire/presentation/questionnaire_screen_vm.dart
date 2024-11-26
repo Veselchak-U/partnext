@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
@@ -29,6 +30,8 @@ class QuestionnaireScreenVm {
   OverlayEntry? _overlayEntry;
 
   QuestionnaireApiModel _questionnaire = QuestionnaireApiModel();
+
+  final _photos = List<String?>.filled(5, null);
 
   void _init() {}
 
@@ -130,6 +133,17 @@ class QuestionnaireScreenVm {
 
   void onProfileUrlChanged(String value) {
     _questionnaire = _questionnaire.copyWith(profileUrl: value);
+  }
+
+  Future<void> addImage(int index) async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+
+    _photos[index] = image.path;
+  }
+
+  void removeImage(int index) {
+    _photos[index] = null;
   }
 
   void onNextPage() {

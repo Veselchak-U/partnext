@@ -616,6 +616,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התמונה הראשונה תהיה תמונת הפרופיל שלך, בעוד שכל שאר התמונות יכולות להיות שלך או קשורות לעסק שלך.'**
   String get first_image_will_be;
+
+  /// No description provided for @add_least_2_photos_to_continue.
+  ///
+  /// In he, this message translates to:
+  /// **'הוסף לפחות 2 תמונות להמשך'**
+  String get add_least_2_photos_to_continue;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

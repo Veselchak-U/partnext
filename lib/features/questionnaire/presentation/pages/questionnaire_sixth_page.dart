@@ -47,6 +47,16 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                     style: AppTextStyles.s14w400,
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [],
+                  ),
+                  SizedBox(height: 21.h),
+                  Text(
+                    context.l10n.add_least_2_photos_to_continue,
+                    style: AppTextStyles.s14w400,
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),

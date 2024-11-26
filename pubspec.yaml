@@ -46,6 +46,7 @@ dependencies:
   flutter_country_selector: 1.0.12
   mask_text_input_formatter: 2.9.0
   smooth_page_indicator: 1.2.0+3
+  image_picker: 1.1.2
 
   # Code generation
   json_annotation: 4.9.0

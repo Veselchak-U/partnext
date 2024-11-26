@@ -270,4 +270,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get first_image_will_be => 'התמונה הראשונה תהיה תמונת הפרופיל שלך, בעוד שכל שאר התמונות יכולות להיות שלך או קשורות לעסק שלך.';
+
+  @override
+  String get add_least_2_photos_to_continue => 'הוסף לפחות 2 תמונות להמשך';
 }
