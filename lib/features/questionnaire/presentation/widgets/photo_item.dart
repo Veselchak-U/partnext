@@ -1,23 +1,49 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:partnext/app/assets/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 
-class PhotoItem extends StatefulWidget {
-  const PhotoItem({super.key});
+class PhotoItem extends StatelessWidget {
+  final String filePath;
+  final VoidCallback onTap;
 
-  @override
-  State<PhotoItem> createState() => _PhotoItemState();
-}
+  const PhotoItem({
+    required this.filePath,
+    required this.onTap,
+    super.key,
+  });
 
-class _PhotoItemState extends State<PhotoItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 64.w,
-      height: 83.h,
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(8).r,
+    final borderRadius = BorderRadius.circular(8).r;
+
+    return Material(
+      color: AppColors.white,
+      borderRadius: borderRadius,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: borderRadius,
+        child: SizedBox(
+          width: 64.w,
+          height: 83.h,
+          child: filePath.isEmpty
+              ? Center(
+                  child: SvgPicture.asset(
+                    Assets.icons.add.path,
+                    width: 24.w,
+                  ),
+                )
+              : ClipRRect(
+                  borderRadius: borderRadius,
+                  child: Image.file(
+                    File(filePath),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+        ),
       ),
     );
   }

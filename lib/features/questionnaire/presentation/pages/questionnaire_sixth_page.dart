@@ -4,6 +4,8 @@ import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/main_simple_layout.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
+import 'package:partnext/features/questionnaire/presentation/widgets/photo_item.dart';
+import 'package:partnext/features/questionnaire/presentation/widgets/photo_item_view.dart';
 import 'package:provider/provider.dart';
 
 class QuestionnaireSixthPage extends StatefulWidget {
@@ -40,24 +42,50 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
-              child: Column(
-                children: [
-                  Text(
-                    context.l10n.first_image_will_be,
-                    style: AppTextStyles.s14w400,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 19.h),
-                  Row(
-                    children: [],
-                  ),
-                  SizedBox(height: 21.h),
-                  Text(
-                    context.l10n.add_least_2_photos_to_continue,
-                    style: AppTextStyles.s14w400,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+              child: ValueListenableBuilder(
+                valueListenable: vm.photos,
+                builder: (context, photos, _) {
+                  return Column(
+                    children: [
+                      Text(
+                        context.l10n.first_image_will_be,
+                        style: AppTextStyles.s14w400,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 19.h),
+                      Expanded(
+                        child: ValueListenableBuilder(
+                          valueListenable: vm.currentPhotoIndex,
+                          builder: (context, currentPhotoIndex, _) {
+                            return PhotoItemView(
+                              filePath: photos[currentPhotoIndex],
+                              onDelete: () => vm.removeImage(currentPhotoIndex),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 21.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(
+                          photos.length,
+                          (index) {
+                            return PhotoItem(
+                              filePath: photos[index],
+                              onTap: () => vm.onTapImage(index),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 21.h),
+                      Text(
+                        context.l10n.add_least_2_photos_to_continue,
+                        style: AppTextStyles.s14w400,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),

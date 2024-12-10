@@ -15,8 +15,15 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/add.svg
+  SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
+
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
+  /// File path: assets/icons/close_filled.svg
+  SvgGenImage get closeFilled =>
+      const SvgGenImage('assets/icons/close_filled.svg');
 
   /// File path: assets/icons/question_mark.svg
   SvgGenImage get questionMark =>
@@ -26,7 +33,7 @@ class $AssetsIconsGen {
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [close, questionMark, send];
+  List<SvgGenImage> get values => [add, close, closeFilled, questionMark, send];
 }
 
 class $AssetsImagesGen {

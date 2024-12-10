@@ -21,6 +21,8 @@ class QuestionnaireScreenVm {
   final loading = ValueNotifier<bool>(false);
   final isFirstPage = ValueNotifier<bool>(true);
   final isLastPage = ValueNotifier<bool>(false);
+  final photos = ValueNotifier<List<String>>(List<String>.filled(4, ''));
+  final currentPhotoIndex = ValueNotifier<int>(0);
 
   final pageController = PageController();
 
@@ -31,14 +33,14 @@ class QuestionnaireScreenVm {
 
   QuestionnaireApiModel _questionnaire = QuestionnaireApiModel();
 
-  final _photos = List<String?>.filled(5, null);
-
   void _init() {}
 
   void dispose() {
     loading.dispose();
     isFirstPage.dispose();
     isLastPage.dispose();
+    photos.dispose();
+    currentPhotoIndex.dispose();
 
     pageController.dispose();
   }
@@ -135,15 +137,34 @@ class QuestionnaireScreenVm {
     _questionnaire = _questionnaire.copyWith(profileUrl: value);
   }
 
+  void onTapImage(int index) {
+    final path = photos.value[index];
+    if (path == '') {
+      addImage(index);
+    } else {
+      setCurrentImage(index);
+    }
+  }
+
   Future<void> addImage(int index) async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image == null) return;
 
-    _photos[index] = image.path;
+    final newList = [...photos.value];
+    newList[index] = image.path;
+    photos.value = newList;
+
+    setCurrentImage(index);
   }
 
   void removeImage(int index) {
-    _photos[index] = null;
+    final newList = [...photos.value];
+    newList[index] = '';
+    photos.value = newList;
+  }
+
+  void setCurrentImage(int index) {
+    currentPhotoIndex.value = index;
   }
 
   void onNextPage() {
@@ -159,6 +180,7 @@ class QuestionnaireScreenVm {
       2 => _thirdPageCheck(),
       3 => _fourthPageCheck(),
       4 => _fifthPageCheck(),
+      5 => _sixthPageCheck(),
       _ => false,
     };
     if (!checkResult) return;
@@ -220,6 +242,19 @@ class QuestionnaireScreenVm {
 
       return false;
     }
+
+    return true;
+  }
+
+  bool _sixthPageCheck() {
+    final notEmptyPhotos = photos.value.where((e) => e != '').toList();
+    if (notEmptyPhotos.length < 2) {
+      _onError(_context.l10n.add_least_2_photos_to_continue);
+
+      return false;
+    }
+
+    _questionnaire.copyWith(photos: notEmptyPhotos);
 
     return true;
   }
