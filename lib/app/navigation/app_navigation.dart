@@ -14,11 +14,13 @@ import 'package:partnext/features/auth/presentation/login/login_screen.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
+import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/initial/presentation/initial_screen.dart';
 import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
+import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
 import 'package:partnext/features/welcome/presentation/welcome_screen.dart';
@@ -119,10 +121,16 @@ class AppNavigation {
           lazy: false,
           create: (context) => QuestionnaireScreenVm(
             context,
+            DI.get<QuestionnaireRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const QuestionnaireScreen(),
         ),
+      ),
+      GoRoute(
+        name: AppRoute.signUpSuccess.name,
+        path: AppRoute.signUpSuccess.path,
+        builder: (context, state) => const SignUpSuccessScreen(),
       ),
       GoRoute(
         name: AppRoute.home.name,

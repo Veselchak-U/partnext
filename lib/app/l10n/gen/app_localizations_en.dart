@@ -273,4 +273,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get add_least_2_photos_to_continue => 'Add at least 2 photos to continue';
+
+  @override
+  String get registration_complete => 'Registration\nComplete';
+
+  @override
+  String get registration_complete_description => 'Slide right to talk business\nIt will be a Match if you both slide right.\nSlide left if you don\'t think the partner shown is a good match.';
+
+  @override
+  String get start_browsing => 'Start Browsing';
 }

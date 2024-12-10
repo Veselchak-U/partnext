@@ -622,6 +622,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'הוסף לפחות 2 תמונות להמשך'**
   String get add_least_2_photos_to_continue;
+
+  /// No description provided for @registration_complete.
+  ///
+  /// In he, this message translates to:
+  /// **'רישום\nשלם'**
+  String get registration_complete;
+
+  /// No description provided for @registration_complete_description.
+  ///
+  /// In he, this message translates to:
+  /// **'להחליק זכות לדבר עסקים\nזה יהיה התאמה אם שניכם להחליק ימינה.\nהחלק שמאלה אם אינך חושב שהשותף המוצג הוא התאמה טובה.'**
+  String get registration_complete_description;
+
+  /// No description provided for @start_browsing.
+  ///
+  /// In he, this message translates to:
+  /// **'התחל לגלוש'**
+  String get start_browsing;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

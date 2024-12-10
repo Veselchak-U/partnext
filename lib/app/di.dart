@@ -15,6 +15,8 @@ import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
+import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';
+import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
 class DI {
   static final _sl = GetIt.instance;
@@ -59,6 +61,9 @@ class DI {
     _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
           _sl<ApiClient>(),
         ));
+    _sl.registerLazySingleton<QuestionnaireDatasource>(() => QuestionnaireDatasourceImpl(
+          _sl<ApiClient>(),
+        ));
   }
 
   void _repositories() {
@@ -67,6 +72,9 @@ class DI {
         ));
     _sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
           _sl<AuthDatasource>(),
+        ));
+    _sl.registerLazySingleton<QuestionnaireRepository>(() => QuestionnaireRepositoryImpl(
+          _sl<QuestionnaireDatasource>(),
         ));
   }
 

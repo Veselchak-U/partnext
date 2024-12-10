@@ -273,4 +273,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get add_least_2_photos_to_continue => 'הוסף לפחות 2 תמונות להמשך';
+
+  @override
+  String get registration_complete => 'רישום\nשלם';
+
+  @override
+  String get registration_complete_description => 'להחליק זכות לדבר עסקים\nזה יהיה התאמה אם שניכם להחליק ימינה.\nהחלק שמאלה אם אינך חושב שהשותף המוצג הוא התאמה טובה.';
+
+  @override
+  String get start_browsing => 'התחל לגלוש';
 }

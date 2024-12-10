@@ -3,6 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/style/app_colors.dart';
 
 class AppTextStyles {
+  static final s36w800 = TextStyle(
+    fontSize: 36.sp,
+    fontWeight: FontWeight.w800,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
   static final s20w700 = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w700,

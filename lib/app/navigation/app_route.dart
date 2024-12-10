@@ -6,7 +6,7 @@ class AppRoute {
   static const login = AppRoute('login', '/login');
   static const signUp = AppRoute('signUp', '/signUp');
   static const questionnaire = AppRoute('questionnaire', '/questionnaire');
-  static const successRegistration = AppRoute('successRegistration', '/successRegistration');
+  static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
 
   static const home = AppRoute('home', '/home');
 

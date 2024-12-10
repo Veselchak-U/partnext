@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:partnext/app/l10n/l10n.dart';
+import 'package:partnext/app/navigation/app_route.dart';
+import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
+import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
 import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
@@ -11,9 +15,11 @@ import 'package:partnext/features/questionnaire/presentation/widgets/partnership
 
 class QuestionnaireScreenVm {
   final BuildContext _context;
+  final QuestionnaireRepository _questionnaireRepository;
 
   QuestionnaireScreenVm(
     this._context,
+    this._questionnaireRepository,
   ) {
     _init();
   }
@@ -260,6 +266,12 @@ class QuestionnaireScreenVm {
   }
 
   Future<void> _goNextPage() async {
+    if (isLastPage.value) {
+      _sendQuestionnaire();
+
+      return;
+    }
+
     await pageController.nextPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
@@ -280,6 +292,23 @@ class QuestionnaireScreenVm {
 
     isFirstPage.value = pageController.page == 0;
     isLastPage.value = false;
+  }
+
+  Future<void> _sendQuestionnaire() async {
+    _setLoading(true);
+    try {
+      await _questionnaireRepository.sendQuestionnaire(_questionnaire);
+      _goToSuccessScreen();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  void _goToSuccessScreen() {
+    if (!_context.mounted) return;
+    _context.goNamed(AppRoute.signUpSuccess.name);
   }
 
   void _setLoading(bool value) {
