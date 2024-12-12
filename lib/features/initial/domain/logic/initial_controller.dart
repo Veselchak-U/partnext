@@ -28,7 +28,7 @@ final class InitialController extends StateController<InitialControllerState> wi
         setState(const InitialController$Loading());
 
         //TODO: remove after connect with backend
-        // await _userRepository.setAccessToken(null);
+        await _userRepository.setAccessToken(null);
 
         final token = await _userRepository.getAccessToken();
         if (token == null) {
