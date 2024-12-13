@@ -8,17 +8,15 @@ import 'package:partnext/common/utils/string_ext.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
-import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_params.dart';
 
 class SignUpScreenVm {
   final BuildContext _context;
   final AuthRepository _authRepository;
-  final UserRepository _userRepository;
 
   SignUpScreenVm(
     this._context,
     this._authRepository,
-    this._userRepository,
   ) {
     _init();
   }
@@ -27,14 +25,10 @@ class SignUpScreenVm {
   final termsConfirmed = ValueNotifier<bool>(false);
   final termsMustAccepted = ValueNotifier<bool>(false);
 
-  final pageController = PageController();
-
-  final firstFormKey = GlobalKey<FormState>();
-  final secondFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String _fullName = '';
   String _phone = '';
-  String _code = '';
 
   void _init() {}
 
@@ -42,8 +36,6 @@ class SignUpScreenVm {
     loading.dispose();
     termsConfirmed.dispose();
     termsMustAccepted.dispose();
-
-    pageController.dispose();
   }
 
   void onFullNameChanged(String value) {
@@ -53,10 +45,6 @@ class SignUpScreenVm {
   void onPhoneChanged(String value) {
     final normalizedPhone = value.removeLeadingSymbols('0');
     _phone = normalizedPhone;
-  }
-
-  void onCodeChanged(String value) {
-    _code = value;
   }
 
   void onTermsConfirmedChanged(bool? value) {
@@ -78,10 +66,10 @@ class SignUpScreenVm {
     _context.goNamed(AppRoute.login.name);
   }
 
-  Future<void> sendOtp() async {
+  Future<void> onNext() async {
     FocusScope.of(_context).unfocus();
 
-    final validForm = firstFormKey.currentState?.validate();
+    final validForm = formKey.currentState?.validate();
     if (validForm == false) return;
 
     if (!termsConfirmed.value) {
@@ -97,7 +85,7 @@ class SignUpScreenVm {
       await _authRepository.requestOtp(_phone);
 
       if (!_context.mounted) return;
-      goNextPage();
+      _goPhoneValidation();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -105,43 +93,10 @@ class SignUpScreenVm {
     _setLoading(false);
   }
 
-  Future<void> resendOtp() async {
-    FocusScope.of(_context).unfocus();
-
-    _setLoading(true);
-    try {
-      await _authRepository.requestOtp(_phone);
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  Future<void> login() async {
-    FocusScope.of(_context).unfocus();
-
-    final validForm = secondFormKey.currentState?.validate();
-    if (validForm == false) return;
-
-    _setLoading(true);
-    try {
-      final user = await _authRepository.login(_phone, _code);
-      await _userRepository.setUser(user);
-
-      if (!_context.mounted) return;
-      _context.goNamed(AppRoute.questionnaire.name);
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  void goNextPage() {
-    pageController.nextPage(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.decelerate,
+  void _goPhoneValidation() {
+    _context.pushNamed(
+      AppRoute.phoneValidation.name,
+      extra: PhoneValidationScreenParams(phone: _phone),
     );
   }
 

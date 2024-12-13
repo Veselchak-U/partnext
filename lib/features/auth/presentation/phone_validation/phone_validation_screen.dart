@@ -8,26 +8,26 @@ import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/form_fields/app_text_field.dart';
 import 'package:partnext/common/layouts/main_simple_layout.dart';
 import 'package:partnext/common/utils/input_validators.dart';
-import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_vm.dart';
 import 'package:provider/provider.dart';
 
-class SignUpSecondPage extends StatefulWidget {
-  const SignUpSecondPage({super.key});
+class PhoneValidationScreen extends StatefulWidget {
+  const PhoneValidationScreen({super.key});
 
   @override
-  State<SignUpSecondPage> createState() => _SignUpSecondPageState();
+  State<PhoneValidationScreen> createState() => _PhoneValidationScreenState();
 }
 
-class _SignUpSecondPageState extends State<SignUpSecondPage> {
+class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
   final passwordFormatter = MaskTextInputFormatter(mask: '######');
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<SignUpScreenVm>();
+    final vm = context.read<PhoneValidationScreenVm>();
 
     return MainSimpleLayout(
       body: Form(
-        key: vm.secondFormKey,
+        key: vm.formKey,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 32).w,
           child: Column(

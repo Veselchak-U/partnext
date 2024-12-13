@@ -2,7 +2,9 @@ import 'package:partnext/features/questionnaire/data/datasource/questionnaire_da
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 
 abstract interface class QuestionnaireRepository {
-  Future<void> sendQuestionnaire(QuestionnaireApiModel questionnaire);
+  Future<QuestionnaireApiModel?> getQuestionnaire();
+
+  Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire);
 }
 
 class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
@@ -13,7 +15,12 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
   );
 
   @override
-  Future<void> sendQuestionnaire(QuestionnaireApiModel questionnaire) {
-    return _questionnaireDatasource.sendQuestionnaire(questionnaire);
+  Future<QuestionnaireApiModel?> getQuestionnaire() {
+    return _questionnaireDatasource.getQuestionnaire();
+  }
+
+  @override
+  Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire) {
+    return _questionnaireDatasource.updateQuestionnaire(questionnaire);
   }
 }

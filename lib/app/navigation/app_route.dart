@@ -4,7 +4,8 @@ class AppRoute {
 
   // Auth
   static const login = AppRoute('login', '/login');
-  static const signUp = AppRoute('signUp', '/signUp');
+  static const signUp = AppRoute('signUp', '/sign_up');
+  static const phoneValidation = AppRoute('phone_validation', '/phone_validation');
   static const questionnaire = AppRoute('questionnaire', '/questionnaire');
   static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
 

@@ -12,6 +12,9 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen_vm.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_params.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
@@ -32,6 +35,7 @@ class AppNavigation {
     AppRoute.welcome.path,
     AppRoute.login.path,
     AppRoute.signUp.path,
+    AppRoute.phoneValidation.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -108,10 +112,25 @@ class AppNavigation {
           create: (context) => SignUpScreenVm(
             context,
             DI.get<AuthRepository>(),
-            DI.get<UserRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const SignUpScreen(),
+        ),
+      ),
+      GoRoute(
+        name: AppRoute.phoneValidation.name,
+        path: AppRoute.phoneValidation.path,
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => PhoneValidationScreenVm(
+            context,
+            DI.get<AuthRepository>(),
+            DI.get<UserRepository>(),
+            DI.get<QuestionnaireRepository>(),
+            params: state.extra as PhoneValidationScreenParams,
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const PhoneValidationScreen(),
         ),
       ),
       GoRoute(
@@ -122,6 +141,7 @@ class AppNavigation {
           create: (context) => QuestionnaireScreenVm(
             context,
             DI.get<QuestionnaireRepository>(),
+            DI.get<UserRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const QuestionnaireScreen(),
