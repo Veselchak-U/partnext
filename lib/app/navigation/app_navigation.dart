@@ -19,6 +19,7 @@ import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart'
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
+import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/initial/presentation/initial_screen.dart';
@@ -154,7 +155,15 @@ class AppNavigation {
       GoRoute(
         name: AppRoute.home.name,
         path: AppRoute.home.path,
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => HomeScreenVm(
+            context,
+            DI.get<UserRepository>(),
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const HomeScreen(),
+        ),
       ),
     ],
   );
