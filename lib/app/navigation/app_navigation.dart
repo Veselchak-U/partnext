@@ -97,8 +97,7 @@ class AppNavigation {
           lazy: false,
           create: (context) => LoginScreenVm(
             context,
-            // DI.get<AuthRepository>(),
-            // DI.get<UserRepository>(),
+            DI.get<AuthRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const LoginScreen(),

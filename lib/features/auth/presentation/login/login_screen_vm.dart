@@ -3,93 +3,64 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_params.dart';
 
 class LoginScreenVm {
   final BuildContext _context;
-  // final AuthRepository _authRepository;
-  // final UserRepository _userRepository;
+  final AuthRepository _authRepository;
 
   LoginScreenVm(
     this._context,
-    // this._authRepository,
-    // this._userRepository,
+    this._authRepository,
   ) {
     _init();
   }
 
   final loading = ValueNotifier<bool>(false);
-  final otpSend = ValueNotifier<bool>(false);
-  final codeFocusNode = FocusNode();
 
   final formKey = GlobalKey<FormState>();
 
   String _phone = '';
-  String _code = '';
 
   void _init() {}
 
   void dispose() {
     loading.dispose();
-    otpSend.dispose();
-    codeFocusNode.dispose();
   }
 
   void onPhoneChanged(String value) {
     _phone = value;
-    _clearCode();
-  }
-
-  void _clearCode() {
-    if (otpSend.value) {
-      otpSend.value = false;
-      _code = '';
-    }
-  }
-
-  void onCodeChanged(String value) {
-    _code = value;
-  }
-
-  Future<void> requestCode() async {
-    final validForm = formKey.currentState?.validate();
-    if (validForm == false) return;
-
-    _setLoading(true);
-    try {
-      // await _authRepository.requestOtp(_phone);
-      //
-      // otpSend.value = true;
-      // codeFocusNode.requestFocus();
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  Future<void> login() async {
-    final validForm = formKey.currentState?.validate();
-    if (validForm == false) return;
-
-    _setLoading(true);
-    try {
-      // final user = await _authRepository.login(_phone, _code);
-      // await _userRepository.setUser(user);
-      //
-      // if (!_context.mounted) return;
-      // final userBaseInfoRequired = user.baseInformation == null;
-      // _context.goNamed(
-      //   userBaseInfoRequired ? AppRoute.userBaseInfoForm.name : AppRoute.home.name,
-      // );
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
   }
 
   void goSignUp() {
     _context.goNamed(AppRoute.signUp.name);
+  }
+
+  Future<void> onNext() async {
+    FocusScope.of(_context).unfocus();
+
+    final validForm = formKey.currentState?.validate();
+    if (validForm == false) return;
+
+    _setLoading(true);
+    try {
+      await _authRepository.requestOtp(_phone);
+
+      if (!_context.mounted) return;
+      _goPhoneValidation();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  void _goPhoneValidation() {
+    _context.pushNamed(
+      AppRoute.phoneValidation.name,
+      extra: PhoneValidationScreenParams(phone: _phone),
+    );
   }
 
   void _setLoading(bool value) {
