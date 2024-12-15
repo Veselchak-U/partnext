@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/change_locale_button.dart';
@@ -24,7 +27,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.addChangeLocaleButton = true,
     this.leading,
-    this.backgroundColor = AppColors.background,
+    this.backgroundColor = AppColors.white,
     this.foregroundColor = AppColors.primary,
     this.actions = const [],
     this.shape,
@@ -32,7 +35,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : assert(titleText == null || title == null, 'Cannot provide both: "titleText" and "title"');
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(max(kToolbarHeight, kToolbarHeight.h));
 
   @override
   Widget build(BuildContext context) {

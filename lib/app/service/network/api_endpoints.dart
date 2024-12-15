@@ -5,6 +5,8 @@ class ApiEndpoints {
   static const checkOtp = 'api/v1/member/auth/check_otp';
 
   // Questionnaire
-  static const getQuestionnaire = 'api/v1/member/get_questionnaire';
-  static const updateQuestionnaire = 'api/v1/member/update_questionnaire';
+  static const questionnaire = 'api/v1/member/questionnaire';
+
+  // Parnters
+  static const recommendations = 'api/v1/member/recommendations';
 }

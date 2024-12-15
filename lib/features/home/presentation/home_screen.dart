@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<HomeScreenVm>();
 
-    return Scaffold(
+    return MainLayout(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

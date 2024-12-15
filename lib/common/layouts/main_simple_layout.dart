@@ -26,6 +26,7 @@ class MainSimpleLayout extends StatelessWidget {
       appBar: AppAppBar(
         titleText: titleText,
         leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
+        backgroundColor: AppColors.background,
       ),
       body: body,
     );

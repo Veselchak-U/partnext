@@ -16,6 +16,8 @@ import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
+import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
+import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
@@ -65,6 +67,9 @@ class DI {
     _sl.registerLazySingleton<QuestionnaireDatasource>(() => QuestionnaireDatasourceImpl(
           _sl<ApiClient>(),
         ));
+    _sl.registerLazySingleton<PartnerDatasource>(() => PartnerDatasourceImpl(
+          _sl<ApiClient>(),
+        ));
   }
 
   void _repositories() {
@@ -76,6 +81,9 @@ class DI {
         ));
     _sl.registerLazySingleton<QuestionnaireRepository>(() => QuestionnaireRepositoryImpl(
           _sl<QuestionnaireDatasource>(),
+        ));
+    _sl.registerLazySingleton<PartnerRepository>(() => PartnerRepositoryImpl(
+          _sl<PartnerDatasource>(),
         ));
   }
 

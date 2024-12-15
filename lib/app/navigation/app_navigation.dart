@@ -27,6 +27,7 @@ import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/initial/presentation/initial_screen.dart';
 import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
+import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
@@ -178,6 +179,7 @@ class AppNavigation {
                   lazy: false,
                   create: (context) => HomeScreenVm(
                     context,
+                    DI.get<PartnerRepository>(),
                     DI.get<UserRepository>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
