@@ -8,6 +8,9 @@ import 'package:partnext/app/navigation/app_navigation_observer.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
+import 'package:partnext/common/nav_bar/domain/provider/nav_bar_index_provider.dart';
+import 'package:partnext/common/nav_bar/presentation/nav_bar_screen.dart';
+import 'package:partnext/common/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
@@ -152,18 +155,38 @@ class AppNavigation {
         path: AppRoute.signUpSuccess.path,
         builder: (context, state) => const SignUpSuccessScreen(),
       ),
-      GoRoute(
-        name: AppRoute.home.name,
-        path: AppRoute.home.path,
-        builder: (context, state) => Provider(
-          lazy: false,
-          create: (context) => HomeScreenVm(
-            context,
-            DI.get<UserRepository>(),
+      StatefulShellRoute.indexedStack(
+        // parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state, navigationShell) {
+          return Provider(
+            lazy: false,
+            create: (context) => NavBarScreenVm(
+              context,
+              DI.get<NavBarIndexProvider>(),
+            ),
+            dispose: (context, vm) => vm.dispose(),
+            child: NavBarScreen(navigationShell),
+          );
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoute.home.name,
+                path: AppRoute.home.path,
+                builder: (context, state) => Provider(
+                  lazy: false,
+                  create: (context) => HomeScreenVm(
+                    context,
+                    DI.get<UserRepository>(),
+                  ),
+                  dispose: (context, vm) => vm.dispose(),
+                  child: const HomeScreen(),
+                ),
+              ),
+            ],
           ),
-          dispose: (context, vm) => vm.dispose(),
-          child: const HomeScreen(),
-        ),
+        ],
       ),
     ],
   );

@@ -10,6 +10,7 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_error_
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
+import 'package:partnext/common/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
@@ -85,9 +86,6 @@ class DI {
   }
 
   void _providers() {
-    // _sl.registerLazySingleton<NavBarIndexProvider>(() => NavBarIndexProviderImpl());
-    // _sl.registerLazySingleton<UserProvider>(() => UserProviderImpl(
-    //       _sl<UserRepository>(),
-    //     ));
+    _sl.registerLazySingleton<NavBarIndexProvider>(() => NavBarIndexProviderImpl());
   }
 }
