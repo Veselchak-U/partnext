@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_country_selector/flutter_country_selector.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:partnext/app/l10n/gen/app_localizations.dart';
+import 'package:partnext/app/generated/app_localizations.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_navigation.dart';
 import 'package:partnext/app/style/app_theme.dart';

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:partnext/app/assets/assets.gen.dart';
+import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';

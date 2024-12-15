@@ -18,6 +18,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add.svg
   SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
 
+  /// File path: assets/icons/chat_nav_bar.svg
+  SvgGenImage get chatNavBar =>
+      const SvgGenImage('assets/icons/chat_nav_bar.svg');
+
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
 
@@ -25,15 +29,37 @@ class $AssetsIconsGen {
   SvgGenImage get closeFilled =>
       const SvgGenImage('assets/icons/close_filled.svg');
 
+  /// File path: assets/icons/handshake_nav_bar.svg
+  SvgGenImage get handshakeNavBar =>
+      const SvgGenImage('assets/icons/handshake_nav_bar.svg');
+
   /// File path: assets/icons/question_mark.svg
   SvgGenImage get questionMark =>
       const SvgGenImage('assets/icons/question_mark.svg');
 
+  /// File path: assets/icons/rocket_nav_bar.svg
+  SvgGenImage get rocketNavBar =>
+      const SvgGenImage('assets/icons/rocket_nav_bar.svg');
+
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
+  /// File path: assets/icons/user_nav_bar.svg
+  SvgGenImage get userNavBar =>
+      const SvgGenImage('assets/icons/user_nav_bar.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [add, close, closeFilled, questionMark, send];
+  List<SvgGenImage> get values => [
+        add,
+        chatNavBar,
+        close,
+        closeFilled,
+        handshakeNavBar,
+        questionMark,
+        rocketNavBar,
+        send,
+        userNavBar
+      ];
 }
 
 class $AssetsImagesGen {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:partnext/app/assets/assets.gen.dart';
+import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_shadows.dart';
 import 'package:partnext/common/form_fields/app_check_box.dart';
