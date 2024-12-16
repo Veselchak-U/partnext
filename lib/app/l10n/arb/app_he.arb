@@ -103,5 +103,10 @@
   "add_least_2_photos_to_continue": "הוסף לפחות 2 תמונות להמשך",
   "registration_complete": "רישום\nשלם",
   "registration_complete_description": "להחליק זכות לדבר עסקים\nזה יהיה התאמה אם שניכם להחליק ימינה.\nהחלק שמאלה אם אינך חושב שהשותף המוצג הוא התאמה טובה.",
-  "start_browsing": "התחל לגלוש"
+  "start_browsing": "התחל לגלוש",
+  "lot_of_swipes_today": "וואו, זה הרבה החלקות היום!",
+  "no_recommendations_today": "אין המלצות להיום.",
+  "check_back_soon": "בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך",
+  "about_yourself": "על עצמך",
+  "what_partnership_are_you_looking": "איזה סוג של שותפות אתה מחפש?"
 }

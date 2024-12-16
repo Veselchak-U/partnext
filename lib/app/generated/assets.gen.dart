@@ -33,6 +33,9 @@ class $AssetsIconsGen {
   SvgGenImage get handshakeNavBar =>
       const SvgGenImage('assets/icons/handshake_nav_bar.svg');
 
+  /// File path: assets/icons/linkedin.svg
+  SvgGenImage get linkedin => const SvgGenImage('assets/icons/linkedin.svg');
+
   /// File path: assets/icons/question_mark.svg
   SvgGenImage get questionMark =>
       const SvgGenImage('assets/icons/question_mark.svg');
@@ -43,6 +46,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
+
+  /// File path: assets/icons/swipe.svg
+  SvgGenImage get swipe => const SvgGenImage('assets/icons/swipe.svg');
 
   /// File path: assets/icons/user_nav_bar.svg
   SvgGenImage get userNavBar =>
@@ -55,9 +61,11 @@ class $AssetsIconsGen {
         close,
         closeFilled,
         handshakeNavBar,
+        linkedin,
         questionMark,
         rocketNavBar,
         send,
+        swipe,
         userNavBar
       ];
 }

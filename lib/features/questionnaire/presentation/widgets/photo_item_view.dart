@@ -45,7 +45,7 @@ class PhotoItemView extends StatelessWidget {
                       icon: SvgPicture.asset(Assets.icons.closeFilled.path),
                       onPressed: onDelete,
                     ),
-                  )
+                  ),
                 ],
               ),
       ),

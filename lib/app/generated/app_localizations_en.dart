@@ -282,4 +282,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get start_browsing => 'Start Browsing';
+
+  @override
+  String get lot_of_swipes_today => 'Wow, That\'s a lot of swipes today!';
+
+  @override
+  String get no_recommendations_today => 'There are no recommendations for today.';
+
+  @override
+  String get check_back_soon => 'Check back soon,\\nwe\'ll have new profiles to show you';
+
+  @override
+  String get about_yourself => 'About yourself';
+
+  @override
+  String get what_partnership_are_you_looking => 'What kind of partnership are you looking for?';
 }

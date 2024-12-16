@@ -640,6 +640,36 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התחל לגלוש'**
   String get start_browsing;
+
+  /// No description provided for @lot_of_swipes_today.
+  ///
+  /// In he, this message translates to:
+  /// **'וואו, זה הרבה החלקות היום!'**
+  String get lot_of_swipes_today;
+
+  /// No description provided for @no_recommendations_today.
+  ///
+  /// In he, this message translates to:
+  /// **'אין המלצות להיום.'**
+  String get no_recommendations_today;
+
+  /// No description provided for @check_back_soon.
+  ///
+  /// In he, this message translates to:
+  /// **'בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך'**
+  String get check_back_soon;
+
+  /// No description provided for @about_yourself.
+  ///
+  /// In he, this message translates to:
+  /// **'על עצמך'**
+  String get about_yourself;
+
+  /// No description provided for @what_partnership_are_you_looking.
+  ///
+  /// In he, this message translates to:
+  /// **'איזה סוג של שותפות אתה מחפש?'**
+  String get what_partnership_are_you_looking;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

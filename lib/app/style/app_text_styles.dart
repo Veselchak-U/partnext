@@ -9,6 +9,18 @@ class AppTextStyles {
     // letterSpacing: 0.5,
     color: AppColors.primary,
   );
+  static final s30w700 = TextStyle(
+    fontSize: 30.sp,
+    fontWeight: FontWeight.w700,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
+  static final s24w700 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
   static final s20w700 = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w700,

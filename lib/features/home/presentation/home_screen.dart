@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
+import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
+import 'package:partnext/features/partner/presentation/widgets/no_recommendations_widget.dart';
+import 'package:partnext/features/partner/presentation/widgets/recommendation_item_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:swipable_stack/swipable_stack.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,15 +15,40 @@ class HomeScreen extends StatelessWidget {
     final vm = context.read<HomeScreenVm>();
 
     return MainLayout(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(child: Text('HomeScreen')),
-          SizedBox(height: 24.h),
-          TextButton(
-            onPressed: vm.logOut,
-            child: Text('Log out'),
-          )
+          ValueListenableBuilder(
+            valueListenable: vm.recommendations,
+            builder: (context, recommendations, _) {
+              if (recommendations == null) return SizedBox.shrink();
+
+              if (recommendations.isEmpty) {
+                return NoRecommendationsWidget(
+                  isTooManySwipes: vm.isTooManySwipes,
+                  onRefresh: () async => vm.onRefresh(),
+                );
+              }
+
+              return SwipableStack(
+                allowVerticalSwipe: false,
+                swipeAnchor: SwipeAnchor.bottom,
+                // controller: vm.swipableController,
+                itemCount: recommendations.length,
+                builder: (context, properties) {
+                  final item = recommendations[properties.index];
+
+                  return RecommendationItemWidget(item);
+                },
+                onSwipeCompleted: vm.onSwipeCompleted,
+              );
+            },
+          ),
+          ValueListenableBuilder(
+            valueListenable: vm.loading,
+            builder: (context, loading, _) {
+              return LoadingContainerIndicator(loading: loading);
+            },
+          ),
         ],
       ),
     );

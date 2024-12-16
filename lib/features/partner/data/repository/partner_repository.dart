@@ -3,6 +3,8 @@ import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
 abstract interface class PartnerRepository {
   Future<List<PartnerApiModel>> getRecommendations();
+
+  Future<void> handleRecommendation(int id, {required bool confirm});
 }
 
 class PartnerRepositoryImpl implements PartnerRepository {
@@ -15,5 +17,10 @@ class PartnerRepositoryImpl implements PartnerRepository {
   @override
   Future<List<PartnerApiModel>> getRecommendations() {
     return _partnerDatasource.getRecommendations();
+  }
+
+  @override
+  Future<void> handleRecommendation(int id, {required bool confirm}) {
+    return _partnerDatasource.handleRecommendation(id, confirm: confirm);
   }
 }

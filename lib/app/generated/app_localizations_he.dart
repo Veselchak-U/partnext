@@ -282,4 +282,19 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get start_browsing => 'התחל לגלוש';
+
+  @override
+  String get lot_of_swipes_today => 'וואו, זה הרבה החלקות היום!';
+
+  @override
+  String get no_recommendations_today => 'אין המלצות להיום.';
+
+  @override
+  String get check_back_soon => 'בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך';
+
+  @override
+  String get about_yourself => 'על עצמך';
+
+  @override
+  String get what_partnership_are_you_looking => 'איזה סוג של שותפות אתה מחפש?';
 }

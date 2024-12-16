@@ -103,5 +103,10 @@
   "add_least_2_photos_to_continue": "Add at least 2 photos to continue",
   "registration_complete": "Registration\nComplete",
   "registration_complete_description": "Slide right to talk business\nIt will be a Match if you both slide right.\nSlide left if you don't think the partner shown is a good match.",
-  "start_browsing": "Start Browsing"
+  "start_browsing": "Start Browsing",
+  "lot_of_swipes_today": "Wow, That's a lot of swipes today!",
+  "no_recommendations_today": "There are no recommendations for today.",
+  "check_back_soon": "Check back soon,\\nwe'll have new profiles to show you",
+  "about_yourself": "About yourself",
+  "what_partnership_are_you_looking": "What kind of partnership are you looking for?"
 }
