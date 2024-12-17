@@ -25,6 +25,7 @@ class NoRecommendationsWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50).w,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (isTooManySwipes)
                     Padding(

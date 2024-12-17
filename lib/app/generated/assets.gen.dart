@@ -18,6 +18,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add.svg
   SvgGenImage get add => const SvgGenImage('assets/icons/add.svg');
 
+  /// File path: assets/icons/approve.svg
+  SvgGenImage get approve => const SvgGenImage('assets/icons/approve.svg');
+
+  /// File path: assets/icons/approve_92.svg
+  SvgGenImage get approve92 => const SvgGenImage('assets/icons/approve_92.svg');
+
   /// File path: assets/icons/chat_nav_bar.svg
   SvgGenImage get chatNavBar =>
       const SvgGenImage('assets/icons/chat_nav_bar.svg');
@@ -40,6 +46,12 @@ class $AssetsIconsGen {
   SvgGenImage get questionMark =>
       const SvgGenImage('assets/icons/question_mark.svg');
 
+  /// File path: assets/icons/reject.svg
+  SvgGenImage get reject => const SvgGenImage('assets/icons/reject.svg');
+
+  /// File path: assets/icons/reject_92.svg
+  SvgGenImage get reject92 => const SvgGenImage('assets/icons/reject_92.svg');
+
   /// File path: assets/icons/rocket_nav_bar.svg
   SvgGenImage get rocketNavBar =>
       const SvgGenImage('assets/icons/rocket_nav_bar.svg');
@@ -57,12 +69,16 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         add,
+        approve,
+        approve92,
         chatNavBar,
         close,
         closeFilled,
         handshakeNavBar,
         linkedin,
         questionMark,
+        reject,
+        reject92,
         rocketNavBar,
         send,
         swipe,

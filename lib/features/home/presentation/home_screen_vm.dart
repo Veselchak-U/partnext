@@ -49,6 +49,7 @@ class HomeScreenVm {
 
       if (!_context.mounted) return;
       recommendations.value = result;
+      swipableController.currentIndex = 0;
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -61,7 +62,7 @@ class HomeScreenVm {
   }
 
   Future<void> onSwipeCompleted(int index, SwipeDirection direction) async {
-    await _handleRecommendation(
+    _handleRecommendation(
       index,
       confirm: direction == SwipeDirection.right,
     );
@@ -78,20 +79,28 @@ class HomeScreenVm {
     final recommendation = recommendations.value?[index];
     if (recommendation == null) return;
 
-    _setLoading(true);
+    // _setLoading(true);
     try {
       await _partnerRepository.handleRecommendation(recommendation.id, confirm: confirm);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
     }
-    _setLoading(false);
+    // _setLoading(false);
   }
 
   void openLink(String? profileUrl) {
     if (profileUrl == null) return;
 
     UrlLauncher.launchURL(profileUrl);
+  }
+
+  void onReject() {
+    swipableController.next(swipeDirection: SwipeDirection.left);
+  }
+
+  void onApprove() {
+    swipableController.next(swipeDirection: SwipeDirection.right);
   }
 
   Future<void> logOut() async {

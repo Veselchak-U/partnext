@@ -290,7 +290,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_recommendations_today => 'There are no recommendations for today.';
 
   @override
-  String get check_back_soon => 'Check back soon,\\nwe\'ll have new profiles to show you';
+  String get check_back_soon => 'Check back soon,\nwe\'ll have new profiles to show you';
 
   @override
   String get about_yourself => 'About yourself';

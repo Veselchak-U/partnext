@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
+import 'package:partnext/features/partner/presentation/widgets/recommendation_action_button.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_photos_widget.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_profile_url_widget.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +65,23 @@ class RecommendationItemWidget extends StatelessWidget {
             Text(
               item.questionnaire.partnershipDescription ?? '',
               style: AppTextStyles.s14w400,
+            ),
+            SizedBox(height: 25.h),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RecommendationActionButton(
+                    asset: Assets.icons.reject.path,
+                    onTap: vm.onReject,
+                  ),
+                  RecommendationActionButton(
+                    asset: Assets.icons.approve.path,
+                    onTap: vm.onApprove,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
