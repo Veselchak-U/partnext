@@ -68,7 +68,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     final bottomPadding = MediaQuery.of(context).viewPadding.bottom;
     final navBarHeight = max(72, 72.h) + bottomPadding;
     final navBarRadius = 25.h;
-    final navBarOverlap = navBarHeight - navBarRadius;
+    final navBarOverlap = navBarHeight - navBarRadius - bottomPadding;
 
     final borderRadius = BorderRadius.vertical(top: Radius.circular(navBarRadius));
 

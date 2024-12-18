@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
@@ -17,7 +18,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<HomeScreenVm>();
 
+    // Properties from MainLayout
+    final appBarBorderRadius = const Radius.circular(16).r;
+    final toolbarHeight = max(kToolbarHeight, kToolbarHeight.h);
+    final topBodyPadding = toolbarHeight - appBarBorderRadius.y;
+
     return MainLayout(
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           ValueListenableBuilder(
@@ -40,7 +47,10 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, properties) {
                   final item = recommendations[properties.index];
 
-                  return RecommendationItemWidget(item);
+                  return Padding(
+                    padding: EdgeInsets.only(top: topBodyPadding),
+                    child: RecommendationItemWidget(item),
+                  );
                 },
                 overlayBuilder: (context, swipeProperty) {
                   final opacity = min(swipeProperty.swipeProgress, 1.0);

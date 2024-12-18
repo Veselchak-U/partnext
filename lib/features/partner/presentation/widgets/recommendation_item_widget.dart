@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
+import 'package:partnext/app/style/app_shadows.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/widgets/choice_chips.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
@@ -25,8 +26,12 @@ class RecommendationItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<HomeScreenVm>();
 
-    return ColoredBox(
-      color: AppColors.background,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        boxShadow: [AppShadows.questionnaireItem],
+        borderRadius: BorderRadius.circular(8).r,
+      ),
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 48.h),
         child: Column(
