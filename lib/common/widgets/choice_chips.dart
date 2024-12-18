@@ -5,12 +5,12 @@ import 'package:partnext/app/style/app_text_styles.dart';
 
 class ChoiceChips<T> extends StatefulWidget {
   final List<T> items;
-  final Function(T, bool) onTap;
+  final Function(T, bool)? onTap;
   final List<T> selectedItems;
 
   const ChoiceChips({
     required this.items,
-    required this.onTap,
+    this.onTap,
     this.selectedItems = const [],
     super.key,
   });
@@ -29,6 +29,8 @@ class _ChoiceChipsState<T> extends State<ChoiceChips<T>> {
   }
 
   void onSelected(T item, bool selected) {
+    if (widget.onTap == null) return;
+
     setState(() {
       if (selected) {
         selectedItems.add(item);
@@ -37,7 +39,7 @@ class _ChoiceChipsState<T> extends State<ChoiceChips<T>> {
       }
     });
 
-    widget.onTap(item, selected);
+    widget.onTap?.call(item, selected);
   }
 
   @override
@@ -53,14 +55,20 @@ class _ChoiceChipsState<T> extends State<ChoiceChips<T>> {
           final item = widget.items[index];
           final selected = selectedItems.contains(item);
 
-          return ChoiceChip(
-            label: Text('$item'),
-            labelStyle: selected ? AppTextStyles.s12w600.copyWith(color: AppColors.white) : AppTextStyles.s12w400,
-            labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
-            showCheckmark: false,
-            selected: selected,
-            onSelected: (selected) => onSelected(item, selected),
-          );
+          return widget.onTap == null
+              ? Chip(
+                  label: Text('$item'),
+                  labelStyle: selected ? AppTextStyles.s12w600.copyWith(color: AppColors.white) : AppTextStyles.s12w400,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+                )
+              : ChoiceChip(
+                  label: Text('$item'),
+                  labelStyle: selected ? AppTextStyles.s12w600.copyWith(color: AppColors.white) : AppTextStyles.s12w400,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+                  showCheckmark: false,
+                  selected: selected,
+                  onSelected: (selected) => onSelected(item, selected),
+                );
         },
       ),
     );

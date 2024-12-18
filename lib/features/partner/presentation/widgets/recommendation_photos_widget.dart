@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
@@ -21,9 +22,32 @@ class _RecommendationPhotosWidgetState extends State<RecommendationPhotosWidget>
   final pageController = PageController();
 
   @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) => _precacheImages(),
+    );
+  }
+
+  @override
   void dispose() {
     pageController.dispose();
     super.dispose();
+  }
+
+  void _precacheImages() {
+    final count = widget.urls.length;
+    if (count < 2) return;
+
+    Future.wait(
+      List.generate(
+        count - 1,
+        (index) => precacheImage(
+          CachedNetworkImageProvider(widget.urls[index + 1]),
+          context,
+        ),
+      ),
+    );
   }
 
   void _onPressLeft() {

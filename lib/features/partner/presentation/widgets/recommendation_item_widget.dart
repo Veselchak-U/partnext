@@ -4,11 +4,13 @@ import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/widgets/choice_chips.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_action_button.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_photos_widget.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_profile_url_widget.dart';
+import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:provider/provider.dart';
 
 class RecommendationItemWidget extends StatelessWidget {
@@ -45,6 +47,10 @@ class RecommendationItemWidget extends StatelessWidget {
             Text(
               item.questionnaire.position ?? '',
               style: AppTextStyles.s14w400,
+            ),
+            SizedBox(height: 18.h),
+            ChoiceChips<InterestType>(
+              items: item.questionnaire.myInterests,
             ),
             SizedBox(height: 23.h),
             Text(
