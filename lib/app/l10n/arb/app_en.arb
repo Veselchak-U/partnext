@@ -108,5 +108,10 @@
   "no_recommendations_today": "There are no recommendations for today.",
   "check_back_soon": "Check back soon,\nwe'll have new profiles to show you",
   "about_yourself": "About yourself",
-  "what_partnership_are_you_looking": "What kind of partnership are you looking for?"
+  "what_partnership_are_you_looking": "What kind of partnership are you looking for?",
+  "share": "Share",
+  "upgrade": "Upgrade",
+  "send_feedback": "Send Feedback",
+  "edit_profile": "Edit Profile",
+  "logout": "Logout"
 }

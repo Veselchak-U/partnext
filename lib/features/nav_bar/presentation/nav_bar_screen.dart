@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_shadows.dart';
-import 'package:partnext/common/nav_bar/presentation/nav_bar_screen_vm.dart';
+import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:provider/provider.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -55,7 +55,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   }
 
   void _onTabSelected(int index) {
-    if (index != 0) return;
+    if (index > 2) return;
 
     _goNavigationBranch(index);
     vm.onPageSelectedInside(index);
@@ -115,18 +115,18 @@ class _NavBarScreenState extends State<NavBarScreen> {
                         ),
                         _NavigationBarItem(
                           iconPath: Assets.icons.chatNavBar.path,
-                          selected: currentIndex == 1,
-                          onTap: () => _onTabSelected(1),
+                          selected: currentIndex == 11,
+                          onTap: () => _onTabSelected(11),
                         ),
                         _NavigationBarItem(
                           iconPath: Assets.icons.rocketNavBar.path,
-                          selected: currentIndex == 2,
-                          onTap: () => _onTabSelected(2),
+                          selected: currentIndex == 22,
+                          onTap: () => _onTabSelected(22),
                         ),
                         _NavigationBarItem(
                           iconPath: Assets.icons.userNavBar.path,
-                          selected: currentIndex == 3,
-                          onTap: () => _onTabSelected(3),
+                          selected: currentIndex == 1,
+                          onTap: () => _onTabSelected(1),
                         ),
                       ],
                     ),

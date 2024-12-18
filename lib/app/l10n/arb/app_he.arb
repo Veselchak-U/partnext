@@ -108,5 +108,10 @@
   "no_recommendations_today": "אין המלצות להיום.",
   "check_back_soon": "בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך",
   "about_yourself": "על עצמך",
-  "what_partnership_are_you_looking": "איזה סוג של שותפות אתה מחפש?"
+  "what_partnership_are_you_looking": "איזה סוג של שותפות אתה מחפש?",
+  "share": "שיתוף",
+  "upgrade": "שדרוג",
+  "send_feedback": "שלח משוב",
+  "edit_profile": "עריכת פרופיל",
+  "logout": "התנתקות"
 }

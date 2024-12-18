@@ -7,6 +7,7 @@ class MainSimpleLayout extends StatelessWidget {
   final Widget body;
   final String? titleText;
   final VoidCallback? onBackButtonPressed;
+  final List<Widget> actions;
   final Color backgroundColor;
   final VoidCallback? onTap;
 
@@ -14,6 +15,7 @@ class MainSimpleLayout extends StatelessWidget {
     required this.body,
     this.titleText,
     this.onBackButtonPressed,
+    this.actions = const [],
     this.backgroundColor = AppColors.background,
     this.onTap,
     super.key,
@@ -26,6 +28,7 @@ class MainSimpleLayout extends StatelessWidget {
       appBar: AppAppBar(
         titleText: titleText,
         leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
+        actions: actions,
         backgroundColor: AppColors.background,
       ),
       body: body,

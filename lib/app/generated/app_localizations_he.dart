@@ -297,4 +297,19 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get what_partnership_are_you_looking => 'איזה סוג של שותפות אתה מחפש?';
+
+  @override
+  String get share => 'שיתוף';
+
+  @override
+  String get upgrade => 'שדרוג';
+
+  @override
+  String get send_feedback => 'שלח משוב';
+
+  @override
+  String get edit_profile => 'עריכת פרופיל';
+
+  @override
+  String get logout => 'התנתקות';
 }

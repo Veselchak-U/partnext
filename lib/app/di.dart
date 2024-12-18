@@ -10,12 +10,12 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_error_
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
-import 'package:partnext/common/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
+import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';

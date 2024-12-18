@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
@@ -30,12 +28,10 @@ class HomeScreenVm {
   bool isTooManySwipes = false;
 
   void _init() {
-    swipableController.addListener(_swipableControllerListener);
     getRecommendations();
   }
 
   void dispose() {
-    swipableController.removeListener(_swipableControllerListener);
     swipableController.dispose();
 
     loading.dispose();
@@ -101,28 +97,6 @@ class HomeScreenVm {
 
   void onApprove() {
     swipableController.next(swipeDirection: SwipeDirection.right);
-  }
-
-  Future<void> logOut() async {
-    _setLoading(true);
-    try {
-      await _userRepository.setUser(null);
-
-      _goInitialScreen();
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  void _goInitialScreen() {
-    if (!_context.mounted) return;
-    _context.goNamed(AppRoute.initial.name);
-  }
-
-  void _swipableControllerListener() {
-    print('!!! currentIndex = ${swipableController.currentIndex}');
   }
 
   void _setLoading(bool value) {

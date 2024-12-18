@@ -32,6 +32,7 @@ class LoginScreen extends StatelessWidget {
               const Spacer(flex: 1),
               AppPhoneField(
                 label: context.l10n.phone_number,
+                autofocus: true,
                 onChanged: vm.onPhoneChanged,
               ),
               const Spacer(flex: 4),

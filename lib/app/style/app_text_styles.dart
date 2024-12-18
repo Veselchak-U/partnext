@@ -15,6 +15,12 @@ class AppTextStyles {
     // letterSpacing: 0.5,
     color: AppColors.primary,
   );
+  static final s28w700 = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: FontWeight.w700,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
   static final s24w700 = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
@@ -66,6 +72,12 @@ class AppTextStyles {
   static final s14w400 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
+    // letterSpacing: 0.5,
+    color: AppColors.primary,
+  );
+  static final s12w700 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
     // letterSpacing: 0.5,
     color: AppColors.primary,
   );

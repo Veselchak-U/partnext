@@ -33,6 +33,7 @@ class AppTextField extends StatefulWidget {
   final int minLines;
   final int maxLines;
   final FocusNode? focusNode;
+  final bool autofocus;
   final bool obscureText;
   final Color? background;
   final String? description;
@@ -62,6 +63,7 @@ class AppTextField extends StatefulWidget {
     this.minLines = 1,
     this.maxLines = 1,
     this.focusNode,
+    this.autofocus = false,
     this.obscureText = false,
     this.background,
     this.description,
@@ -209,6 +211,7 @@ class _AppTextFieldState extends State<AppTextField> {
                             children: [
                               TextField(
                                 focusNode: widget.readOnly ? null : focusNode,
+                                autofocus: widget.autofocus,
                                 onTapOutside: widget.readOnly ? null : (_) => focusNode.unfocus,
                                 controller: controller,
                                 readOnly: widget.readOnly || widget.loading,

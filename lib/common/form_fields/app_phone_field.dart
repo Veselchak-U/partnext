@@ -7,10 +7,12 @@ import 'package:phone_form_field/phone_form_field.dart';
 
 class AppPhoneField extends StatefulWidget {
   final String label;
+  final bool autofocus;
   final void Function(String)? onChanged;
 
   const AppPhoneField({
     required this.label,
+    this.autofocus = false,
     this.onChanged,
     super.key,
   });
@@ -125,6 +127,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
                 ),
                 errorStyle: AppTextStyles.s14w400.copyWith(color: AppColors.red),
               ),
+              autofocus: widget.autofocus,
             ),
             ValueListenableBuilder(
               valueListenable: _showClearButton,

@@ -50,6 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 52.h),
               AppTextField(
                 label: context.l10n.full_name,
+                autofocus: true,
                 validator: InputValidators.emptyValidator,
                 onChanged: vm.onFullNameChanged,
               ),

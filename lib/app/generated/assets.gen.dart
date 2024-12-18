@@ -24,6 +24,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/approve_92.svg
   SvgGenImage get approve92 => const SvgGenImage('assets/icons/approve_92.svg');
 
+  /// File path: assets/icons/camera.svg
+  SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
+
   /// File path: assets/icons/chat_nav_bar.svg
   SvgGenImage get chatNavBar =>
       const SvgGenImage('assets/icons/chat_nav_bar.svg');
@@ -41,6 +44,23 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/linkedin.svg
   SvgGenImage get linkedin => const SvgGenImage('assets/icons/linkedin.svg');
+
+  /// File path: assets/icons/nav_edit.svg
+  SvgGenImage get navEdit => const SvgGenImage('assets/icons/nav_edit.svg');
+
+  /// File path: assets/icons/nav_feedback.svg
+  SvgGenImage get navFeedback =>
+      const SvgGenImage('assets/icons/nav_feedback.svg');
+
+  /// File path: assets/icons/nav_logout.svg
+  SvgGenImage get navLogout => const SvgGenImage('assets/icons/nav_logout.svg');
+
+  /// File path: assets/icons/nav_share.svg
+  SvgGenImage get navShare => const SvgGenImage('assets/icons/nav_share.svg');
+
+  /// File path: assets/icons/nav_upgrade.svg
+  SvgGenImage get navUpgrade =>
+      const SvgGenImage('assets/icons/nav_upgrade.svg');
 
   /// File path: assets/icons/question_mark.svg
   SvgGenImage get questionMark =>
@@ -71,11 +91,17 @@ class $AssetsIconsGen {
         add,
         approve,
         approve92,
+        camera,
         chatNavBar,
         close,
         closeFilled,
         handshakeNavBar,
         linkedin,
+        navEdit,
+        navFeedback,
+        navLogout,
+        navShare,
+        navUpgrade,
         questionMark,
         reject,
         reject92,

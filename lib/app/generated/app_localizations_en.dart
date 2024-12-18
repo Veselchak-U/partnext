@@ -297,4 +297,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get what_partnership_are_you_looking => 'What kind of partnership are you looking for?';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get upgrade => 'Upgrade';
+
+  @override
+  String get send_feedback => 'Send Feedback';
+
+  @override
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get logout => 'Logout';
 }

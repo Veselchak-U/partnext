@@ -8,9 +8,6 @@ import 'package:partnext/app/navigation/app_navigation_observer.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
-import 'package:partnext/common/nav_bar/domain/provider/nav_bar_index_provider.dart';
-import 'package:partnext/common/nav_bar/presentation/nav_bar_screen.dart';
-import 'package:partnext/common/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
@@ -27,7 +24,12 @@ import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/initial/presentation/initial_screen.dart';
 import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
+import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
+import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
+import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
+import 'package:partnext/features/profile/presentation/profile_screen.dart';
+import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
@@ -184,6 +186,23 @@ class AppNavigation {
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const HomeScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoute.profile.name,
+                path: AppRoute.profile.path,
+                builder: (context, state) => Provider(
+                  lazy: false,
+                  create: (context) => ProfileScreenVm(
+                    context,
+                    DI.get<UserRepository>(),
+                  ),
+                  dispose: (context, vm) => vm.dispose(),
+                  child: const ProfileScreen(),
                 ),
               ),
             ],

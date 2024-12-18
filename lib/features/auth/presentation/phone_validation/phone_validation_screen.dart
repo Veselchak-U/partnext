@@ -42,6 +42,7 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
               AppTextField(
                 label: context.l10n.enter_validation_code,
                 hint: 'XXXXXX',
+                autofocus: true,
                 inputFormatters: [passwordFormatter],
                 validator: InputValidators.passwordLengthValidator,
                 keyboardType: TextInputType.number,

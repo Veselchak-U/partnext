@@ -670,6 +670,36 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'איזה סוג של שותפות אתה מחפש?'**
   String get what_partnership_are_you_looking;
+
+  /// No description provided for @share.
+  ///
+  /// In he, this message translates to:
+  /// **'שיתוף'**
+  String get share;
+
+  /// No description provided for @upgrade.
+  ///
+  /// In he, this message translates to:
+  /// **'שדרוג'**
+  String get upgrade;
+
+  /// No description provided for @send_feedback.
+  ///
+  /// In he, this message translates to:
+  /// **'שלח משוב'**
+  String get send_feedback;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In he, this message translates to:
+  /// **'עריכת פרופיל'**
+  String get edit_profile;
+
+  /// No description provided for @logout.
+  ///
+  /// In he, this message translates to:
+  /// **'התנתקות'**
+  String get logout;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

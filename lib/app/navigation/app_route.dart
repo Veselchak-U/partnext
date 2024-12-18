@@ -10,6 +10,7 @@ class AppRoute {
   static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
 
   static const home = AppRoute('home', '/home');
+  static const profile = AppRoute('profile', '/profile');
 
   final String name;
   final String path;
