@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:partnext/app/service/network/api_client/api_client.dart';
-import 'package:partnext/app/service/network/api_endpoints.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
-import 'package:partnext/config.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 
 abstract interface class QuestionnaireDatasource {
@@ -71,12 +69,12 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
     required List<File> files,
     Function(int count, int total)? onSendProgress,
   }) {
-    // return Future.delayed(const Duration(seconds: 1));
+    return Future.delayed(const Duration(seconds: 1));
 
-    return _dioApiClient.uploadFiles(
-      Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.allPhotos}'),
-      files,
-      onSendProgress: onSendProgress,
-    );
+    // return _dioApiClient.uploadFiles(
+    //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.allPhotos}'),
+    //   files,
+    //   onSendProgress: onSendProgress,
+    // );
   }
 }
