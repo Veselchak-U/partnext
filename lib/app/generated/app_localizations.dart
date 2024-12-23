@@ -700,6 +700,42 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התנתקות'**
   String get logout;
+
+  /// No description provided for @ok.
+  ///
+  /// In he, this message translates to:
+  /// **'בסדר'**
+  String get ok;
+
+  /// No description provided for @cancel.
+  ///
+  /// In he, this message translates to:
+  /// **'ביטול'**
+  String get cancel;
+
+  /// No description provided for @yes.
+  ///
+  /// In he, this message translates to:
+  /// **'כן'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In he, this message translates to:
+  /// **'לא'**
+  String get no;
+
+  /// No description provided for @sing_out.
+  ///
+  /// In he, this message translates to:
+  /// **'יציאה'**
+  String get sing_out;
+
+  /// No description provided for @sure_to_logout.
+  ///
+  /// In he, this message translates to:
+  /// **'האם אתה בטוח שברצונך לצאת?'**
+  String get sure_to_logout;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

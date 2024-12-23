@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
+import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -54,6 +56,13 @@ class ProfileScreenVm {
   void changePhoto() {}
 
   Future<void> logOut() async {
+    final dialogResult = await AppDialogs.showConfirmationDialog(
+      context: _context,
+      title: _context.l10n.sing_out,
+      description: _context.l10n.sure_to_logout,
+    );
+    if (dialogResult != true) return;
+
     _setLoading(true);
     try {
       await _userRepository.setUser(null);

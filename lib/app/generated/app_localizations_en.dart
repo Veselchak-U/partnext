@@ -312,4 +312,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logout => 'Logout';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get sing_out => 'Sign out';
+
+  @override
+  String get sure_to_logout => 'Are you sure you want to logout?';
 }

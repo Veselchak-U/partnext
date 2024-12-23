@@ -113,5 +113,11 @@
   "upgrade": "Upgrade",
   "send_feedback": "Send Feedback",
   "edit_profile": "Edit Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "yes": "Yes",
+  "no": "No",
+  "sing_out": "Sign out",
+  "sure_to_logout": "Are you sure you want to logout?"
 }
