@@ -13,19 +13,23 @@ import 'package:partnext/features/questionnaire/data/repository/questionnaire_re
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
 import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
+import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 import 'package:partnext/features/questionnaire/presentation/widgets/partnership_description_overlay.dart';
 
 class QuestionnaireScreenVm {
   final BuildContext _context;
   final QuestionnaireRepository _questionnaireRepository;
+  final QuestionnaireScreenParams? params;
 
   QuestionnaireScreenVm(
     this._context,
-    this._questionnaireRepository,
-  ) {
+    this._questionnaireRepository, {
+    this.params,
+  }) {
     _init();
   }
 
+  final initializing = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
   final isFirstPage = ValueNotifier<bool>(true);
   final isLastPage = ValueNotifier<bool>(false);
@@ -41,9 +45,14 @@ class QuestionnaireScreenVm {
 
   QuestionnaireApiModel _questionnaire = QuestionnaireApiModel();
 
-  void _init() {}
+  bool get isEditMode => params?.isEdit == true;
+
+  void _init() {
+    _initQuestionnaire();
+  }
 
   void dispose() {
+    initializing.dispose();
     loading.dispose();
     isFirstPage.dispose();
     isLastPage.dispose();
@@ -51,6 +60,28 @@ class QuestionnaireScreenVm {
     currentPhotoIndex.dispose();
 
     pageController.dispose();
+  }
+
+  Future<void> _initQuestionnaire() async {
+    if (!isEditMode) return;
+
+    _setInitializing(true);
+    try {
+      final result = await _questionnaireRepository.getQuestionnaire();
+      if (!_context.mounted) return;
+
+      if (result == null) {
+        _onError(_context.l10n.questionnaire_init_error);
+
+        return;
+      }
+
+      _questionnaire = result;
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setInitializing(false);
   }
 
   void openOverlay(
@@ -315,6 +346,11 @@ class QuestionnaireScreenVm {
   void _goToSuccessScreen() {
     if (!_context.mounted) return;
     _context.goNamed(AppRoute.signUpSuccess.name);
+  }
+
+  void _setInitializing(bool value) {
+    if (!_context.mounted) return;
+    initializing.value = value;
   }
 
   void _setLoading(bool value) {

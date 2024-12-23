@@ -736,6 +736,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'האם אתה בטוח שברצונך לצאת?'**
   String get sure_to_logout;
+
+  /// No description provided for @profile.
+  ///
+  /// In he, this message translates to:
+  /// **'פרופיל'**
+  String get profile;
+
+  /// No description provided for @questionnaire_init_error.
+  ///
+  /// In he, this message translates to:
+  /// **'שגיאת אתחול שאלון'**
+  String get questionnaire_init_error;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

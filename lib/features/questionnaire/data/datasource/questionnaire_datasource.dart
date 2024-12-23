@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:partnext/app/service/network/api_client/api_client.dart';
@@ -24,12 +25,16 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
     this._dioApiClient,
   );
 
+  String _lastQuestionnare = '';
+
   @override
-  Future<QuestionnaireApiModel?> getQuestionnaire() {
-    return Future.delayed(
-      Duration(seconds: 1),
-      () => null,
-    );
+  Future<QuestionnaireApiModel?> getQuestionnaire() async {
+    await Future.delayed(Duration(seconds: 1));
+    try {
+      return QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
+    } catch (_) {
+      return null;
+    }
 
     // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.getQuestionnaire}');
     //
@@ -48,8 +53,11 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
   }
 
   @override
-  Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire) {
-    return Future.delayed(Duration(seconds: 1));
+  Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire) async {
+    await Future.delayed(Duration(seconds: 1));
+    _lastQuestionnare = jsonEncode(questionnaire.toJson());
+
+    return;
 
     // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.updateQuestionnaire}');
     //

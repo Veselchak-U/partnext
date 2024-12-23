@@ -330,4 +330,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get sure_to_logout => 'האם אתה בטוח שברצונך לצאת?';
+
+  @override
+  String get profile => 'פרופיל';
+
+  @override
+  String get questionnaire_init_error => 'שגיאת אתחול שאלון';
 }

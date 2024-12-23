@@ -119,5 +119,7 @@
   "yes": "Yes",
   "no": "No",
   "sing_out": "Sign out",
-  "sure_to_logout": "Are you sure you want to logout?"
+  "sure_to_logout": "Are you sure you want to logout?",
+  "profile": "Profile",
+  "questionnaire_init_error": "Questionnaire initialization error"
 }

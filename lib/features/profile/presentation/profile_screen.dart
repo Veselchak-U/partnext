@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/common/layouts/main_simple_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
@@ -17,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
     final vm = context.read<ProfileScreenVm>();
 
     return MainSimpleLayout(
-      titleText: 'Profile',
+      titleText: context.l10n.profile,
       actions: [
         Padding(
           padding: EdgeInsetsDirectional.only(end: 8.w),

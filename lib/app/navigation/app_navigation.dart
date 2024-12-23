@@ -33,6 +33,7 @@ import 'package:partnext/features/profile/presentation/profile_screen.dart';
 import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
+import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
 import 'package:partnext/features/welcome/presentation/welcome_screen.dart';
 import 'package:provider/provider.dart';
@@ -148,6 +149,7 @@ class AppNavigation {
           create: (context) => QuestionnaireScreenVm(
             context,
             DI.get<QuestionnaireRepository>(),
+            params: state.extra as QuestionnaireScreenParams?,
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const QuestionnaireScreen(),

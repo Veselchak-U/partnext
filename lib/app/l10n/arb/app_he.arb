@@ -119,5 +119,7 @@
   "yes": "כן",
   "no": "לא",
   "sing_out": "יציאה",
-  "sure_to_logout": "האם אתה בטוח שברצונך לצאת?"
+  "sure_to_logout": "האם אתה בטוח שברצונך לצאת?",
+  "profile": "פרופיל",
+  "questionnaire_init_error": "שגיאת אתחול שאלון"
 }

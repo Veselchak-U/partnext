@@ -45,7 +45,7 @@ class ProfileActionsSection extends StatelessWidget {
           NavigationItemWidget(
             iconAsset: Assets.icons.navEdit.path,
             label: context.l10n.edit_profile,
-            // onTap: () {},
+            onTap: vm.editProfile,
           ),
           NavigationItemWidget(
             iconAsset: Assets.icons.navLogout.path,

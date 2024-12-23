@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/common/layouts/app_scaffold.dart';
+import 'package:partnext/common/widgets/loading_indicator.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_fifth_page.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_first_page.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_fourth_page.dart';
@@ -24,44 +25,51 @@ class QuestionnaireScreen extends StatelessWidget {
     final titleHeight = 64.h;
 
     return AppScaffold(
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Column(
+      body: ValueListenableBuilder(
+        valueListenable: vm.initializing,
+        builder: (context, initializing, _) {
+          if (initializing) return Center(child: const LoadingIndicator());
+
+          return Stack(
+            alignment: Alignment.topCenter,
             children: [
-              Expanded(
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
+              Column(
+                children: [
+                  Expanded(
+                    child: PageView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: vm.pageController,
+                      children: const [
+                        QuestionnaireFirstPage(),
+                        QuestionnaireSecondPage(),
+                        QuestionnaireThirdPage(),
+                        QuestionnaireFourthPage(),
+                        QuestionnaireFifthPage(),
+                        QuestionnaireSixthPage(),
+                      ],
+                    ),
+                  ),
+                  QuestionnaireButtonBlock(),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: appBarHeight + titleHeight),
+                child: SmoothPageIndicator(
                   controller: vm.pageController,
-                  children: const [
-                    QuestionnaireFirstPage(),
-                    QuestionnaireSecondPage(),
-                    QuestionnaireThirdPage(),
-                    QuestionnaireFourthPage(),
-                    QuestionnaireFifthPage(),
-                    QuestionnaireSixthPage(),
-                  ],
+                  textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
+                  count: 6,
+                  effect: SlideEffect(
+                    dotWidth: 50.w,
+                    dotHeight: 4.h,
+                    spacing: 5.w,
+                    activeDotColor: AppColors.primary,
+                    dotColor: AppColors.backgroundDark,
+                  ),
                 ),
               ),
-              QuestionnaireButtonBlock(),
             ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: appBarHeight + titleHeight),
-            child: SmoothPageIndicator(
-              controller: vm.pageController,
-              textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
-              count: 6,
-              effect: SlideEffect(
-                dotWidth: 50.w,
-                dotHeight: 4.h,
-                spacing: 5.w,
-                activeDotColor: AppColors.primary,
-                dotColor: AppColors.backgroundDark,
-              ),
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

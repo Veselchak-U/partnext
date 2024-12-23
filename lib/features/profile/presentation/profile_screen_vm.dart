@@ -11,6 +11,7 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 
 class ProfileScreenVm {
   final BuildContext _context;
@@ -74,6 +75,13 @@ class ProfileScreenVm {
       _onError('$e');
     }
     _setLoading(false);
+  }
+
+  void editProfile() {
+    _context.pushNamed(
+      AppRoute.questionnaire.name,
+      extra: QuestionnaireScreenParams(isEdit: true),
+    );
   }
 
   Future<void> logOut() async {
