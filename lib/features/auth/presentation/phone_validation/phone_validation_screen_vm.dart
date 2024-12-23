@@ -77,8 +77,6 @@ class PhoneValidationScreenVm {
     _setLoading(true);
     try {
       final questionnaire = await _questionnaireRepository.getQuestionnaire();
-      await _userRepository.setQuestionnaire(questionnaire);
-
       if (questionnaire?.isComplete == true) {
         _goHome();
       } else {

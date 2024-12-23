@@ -8,6 +8,7 @@ import 'package:partnext/app/service/network/api_client/api_client.dart';
 import 'package:partnext/app/service/network/api_client/interceptors/http_auth_interceptor.dart';
 import 'package:partnext/app/service/network/api_client/interceptors/http_error_interceptor.dart';
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
+import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
@@ -18,6 +19,8 @@ import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
+import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
+import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
@@ -54,6 +57,10 @@ class DI {
         const HttpErrorInterceptor(),
       ],
     ));
+
+    _sl.registerSingleton<DioApiClient>(DioApiClient(
+      getAccessToken: () => _sl<UserLocalDatasource>().getAccessToken(),
+    ));
   }
 
   void _dataSources() {
@@ -66,9 +73,13 @@ class DI {
         ));
     _sl.registerLazySingleton<QuestionnaireDatasource>(() => QuestionnaireDatasourceImpl(
           _sl<ApiClient>(),
+          _sl<DioApiClient>(),
         ));
     _sl.registerLazySingleton<PartnerDatasource>(() => PartnerDatasourceImpl(
           _sl<ApiClient>(),
+        ));
+    _sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceImpl(
+          _sl<DioApiClient>(),
         ));
   }
 
@@ -85,11 +96,15 @@ class DI {
     _sl.registerLazySingleton<PartnerRepository>(() => PartnerRepositoryImpl(
           _sl<PartnerDatasource>(),
         ));
+    _sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(
+          _sl<ProfileDatasource>(),
+        ));
   }
 
   void _businessLogic() {
     _sl.registerFactory(() => InitialController(
           _sl<UserRepository>(),
+          _sl<QuestionnaireRepository>(),
         ));
   }
 

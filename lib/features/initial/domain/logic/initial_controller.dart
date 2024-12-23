@@ -2,14 +2,17 @@ import 'dart:async';
 
 import 'package:control/control.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
 part 'initial_controller_state.dart';
 
 final class InitialController extends StateController<InitialControllerState> with SequentialControllerHandler {
   final UserRepository _userRepository;
+  final QuestionnaireRepository _questionnaireRepository;
 
   InitialController(
-    this._userRepository, {
+    this._userRepository,
+    this._questionnaireRepository, {
     super.initialState = const InitialController$Idle(),
   }) {
     _init();
@@ -34,7 +37,7 @@ final class InitialController extends StateController<InitialControllerState> wi
           return;
         }
 
-        final questionnaire = await _userRepository.getQuestionnaire();
+        final questionnaire = await _questionnaireRepository.getQuestionnaire();
         if (questionnaire == null || !questionnaire.isComplete) {
           setState(const InitialController$QuestionnaireRequired());
 

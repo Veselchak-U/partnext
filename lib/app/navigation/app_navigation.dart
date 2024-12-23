@@ -28,6 +28,7 @@ import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
+import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/profile/presentation/profile_screen.dart';
 import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
@@ -147,7 +148,6 @@ class AppNavigation {
           create: (context) => QuestionnaireScreenVm(
             context,
             DI.get<QuestionnaireRepository>(),
-            DI.get<UserRepository>(),
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const QuestionnaireScreen(),
@@ -200,6 +200,7 @@ class AppNavigation {
                   create: (context) => ProfileScreenVm(
                     context,
                     DI.get<UserRepository>(),
+                    DI.get<ProfileRepository>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const ProfileScreen(),

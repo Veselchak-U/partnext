@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
               Assets.icons.camera.path,
               width: 24.h,
             ),
-            onPressed: vm.changePhoto,
+            onPressed: vm.changeUserAvatar,
           ),
         ),
       ],

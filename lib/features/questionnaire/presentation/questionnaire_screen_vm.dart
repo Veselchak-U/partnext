@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,7 +8,6 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
-import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
@@ -17,12 +18,10 @@ import 'package:partnext/features/questionnaire/presentation/widgets/partnership
 class QuestionnaireScreenVm {
   final BuildContext _context;
   final QuestionnaireRepository _questionnaireRepository;
-  final UserRepository _userRepository;
 
   QuestionnaireScreenVm(
     this._context,
     this._questionnaireRepository,
-    this._userRepository,
   ) {
     _init();
   }
@@ -263,8 +262,6 @@ class QuestionnaireScreenVm {
       return false;
     }
 
-    _questionnaire = _questionnaire.copyWith(photos: notEmptyPhotos);
-
     return true;
   }
 
@@ -300,8 +297,12 @@ class QuestionnaireScreenVm {
   Future<void> _sendQuestionnaire() async {
     _setLoading(true);
     try {
+      final notEmptyPhotos = photos.value.where((e) => e != '').toList();
+      await _questionnaireRepository.uploadAllPhotos(
+        files: notEmptyPhotos.map((e) => File(e)).toList(),
+      );
+
       await _questionnaireRepository.updateQuestionnaire(_questionnaire);
-      await _userRepository.setQuestionnaire(_questionnaire);
 
       _goToSuccessScreen();
     } on Object catch (e, st) {
