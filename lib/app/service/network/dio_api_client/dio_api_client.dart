@@ -18,21 +18,17 @@ class DioApiClient {
     _getAccessToken = getAccessToken;
   }
 
-  Future<void> uploadFiles(
+  Future<String> uploadImage(
     Uri uri,
-    Iterable<File> files, {
+    String filePath, {
     Map<String, dynamic> formDataMap = const {},
     Function(int count, int total)? onSendProgress,
   }) async {
-    final multipartFiles = <MultipartFile>[];
-    for (final file in files) {
-      final f = await MultipartFile.fromFile(file.path);
-      multipartFiles.add(f);
-    }
+    final multipartFile = await MultipartFile.fromFile(filePath);
 
     final formData = FormData.fromMap({
       ...formDataMap,
-      'files': multipartFiles,
+      'file': multipartFile,
     });
 
     final token = await _getAccessToken();
@@ -51,7 +47,11 @@ class DioApiClient {
         onSendProgress: onSendProgress,
       );
 
-      if (response.statusCode == HttpStatus.ok) return;
+      if (response.statusCode == HttpStatus.ok) {
+        final data = response.data as Map<String, dynamic>;
+
+        return data['url'] as String;
+      }
 
       throw ApiException(
         ResponseData(

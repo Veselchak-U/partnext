@@ -121,5 +121,6 @@
   "sing_out": "Sign out",
   "sure_to_logout": "Are you sure you want to logout?",
   "profile": "Profile",
-  "questionnaire_init_error": "Questionnaire initialization error"
+  "questionnaire_init_error": "Questionnaire initialization error",
+  "save": "Save"
 }

@@ -121,5 +121,6 @@
   "sing_out": "יציאה",
   "sure_to_logout": "האם אתה בטוח שברצונך לצאת?",
   "profile": "פרופיל",
-  "questionnaire_init_error": "שגיאת אתחול שאלון"
+  "questionnaire_init_error": "שגיאת אתחול שאלון",
+  "save": "שמור"
 }

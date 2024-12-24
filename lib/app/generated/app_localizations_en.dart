@@ -336,4 +336,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get questionnaire_init_error => 'Questionnaire initialization error';
+
+  @override
+  String get save => 'Save';
 }

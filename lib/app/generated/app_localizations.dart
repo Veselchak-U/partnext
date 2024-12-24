@@ -748,6 +748,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שגיאת אתחול שאלון'**
   String get questionnaire_init_error;
+
+  /// No description provided for @save.
+  ///
+  /// In he, this message translates to:
+  /// **'שמור'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,6 +29,7 @@ class QuestionnaireScreenVm {
 
   final initializing = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
+  final loadingPhoto = ValueNotifier<bool>(false);
   final isFirstPage = ValueNotifier<bool>(true);
   final isLastPage = ValueNotifier<bool>(false);
   final photos = ValueNotifier<List<String>>(List<String>.filled(4, ''));
@@ -54,6 +53,7 @@ class QuestionnaireScreenVm {
   void dispose() {
     initializing.dispose();
     loading.dispose();
+    loadingPhoto.dispose();
     isFirstPage.dispose();
     isLastPage.dispose();
     photos.dispose();
@@ -77,6 +77,9 @@ class QuestionnaireScreenVm {
       }
 
       questionnaire = result;
+      for (int i = 0; i < questionnaire.photos.length; i++) {
+        photos.value[i] = questionnaire.photos[i];
+      }
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -176,30 +179,40 @@ class QuestionnaireScreenVm {
     questionnaire = questionnaire.copyWith(profileUrl: value);
   }
 
-  String? getPhotoImageUrl(int index) {
-    final photos = questionnaire.photos;
-
-    return index > photos.length - 1 ? null : photos[index];
-  }
-
   void onTapImage(int index) {
-    final path = photos.value[index];
-    if (path == '') {
+    final imageUrl = photos.value[index];
+    if (imageUrl.isEmpty) {
       addImage(index);
     } else {
-      setCurrentImage(index);
+      setCurrentPhotoIndex(index);
     }
   }
 
   Future<void> addImage(int index) async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) return;
+    setCurrentPhotoIndex(index);
 
-    final newList = [...photos.value];
-    newList[index] = image.path;
-    photos.value = newList;
+    _setLoadingPhoto(true);
+    try {
+      final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (file == null) {
+        _setLoadingPhoto(false);
 
-    setCurrentImage(index);
+        return;
+      }
+
+      final imageUrl = await _questionnaireRepository.uploadImage(filePath: file.path);
+      if (!_context.mounted) return;
+
+      final newList = [...photos.value];
+      newList[index] = imageUrl;
+      photos.value = newList;
+
+      setCurrentPhotoIndex(index);
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoadingPhoto(false);
   }
 
   void removeImage(int index) {
@@ -208,7 +221,7 @@ class QuestionnaireScreenVm {
     photos.value = newList;
   }
 
-  void setCurrentImage(int index) {
+  void setCurrentPhotoIndex(int index) {
     currentPhotoIndex.value = index;
   }
 
@@ -335,13 +348,10 @@ class QuestionnaireScreenVm {
     _setLoading(true);
     try {
       final notEmptyPhotos = photos.value.where((e) => e != '').toList();
-      await _questionnaireRepository.uploadAllPhotos(
-        files: notEmptyPhotos.map((e) => File(e)).toList(),
-      );
-
+      questionnaire = questionnaire.copyWith(photos: notEmptyPhotos);
       await _questionnaireRepository.updateQuestionnaire(questionnaire);
 
-      _goToSuccessScreen();
+      _goToNextScreen();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -349,14 +359,24 @@ class QuestionnaireScreenVm {
     _setLoading(false);
   }
 
-  void _goToSuccessScreen() {
+  void _goToNextScreen() {
     if (!_context.mounted) return;
-    _context.goNamed(AppRoute.signUpSuccess.name);
+
+    if (isEditMode) {
+      _context.pop();
+    } else {
+      _context.goNamed(AppRoute.signUpSuccess.name);
+    }
   }
 
   void _setInitializing(bool value) {
     if (!_context.mounted) return;
     initializing.value = value;
+  }
+
+  void _setLoadingPhoto(bool value) {
+    if (!_context.mounted) return;
+    loadingPhoto.value = value;
   }
 
   void _setLoading(bool value) {

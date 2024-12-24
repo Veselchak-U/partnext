@@ -57,6 +57,7 @@ Map<String, dynamic> _$QuestionnaireApiModelToJson(
       'bio': instance.bio,
       'experience': _$ExperienceDurationEnumMap[instance.experience],
       'profile_url': instance.profileUrl,
+      'photos': instance.photos,
     };
 
 const _$PartnershipTypeEnumMap = {

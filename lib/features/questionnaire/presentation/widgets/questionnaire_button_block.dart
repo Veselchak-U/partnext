@@ -35,7 +35,7 @@ class QuestionnaireButtonBlock extends StatelessWidget {
                             child: isLastPage
                                 ? CommonButton(
                                     key: ValueKey(true),
-                                    label: context.l10n.finish_registration,
+                                    label: vm.isEditMode ? context.l10n.save : context.l10n.finish_registration,
                                     iconPath: Assets.icons.send.path,
                                     onTap: vm.onNextPage,
                                     loading: loading,

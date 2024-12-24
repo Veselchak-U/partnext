@@ -16,7 +16,6 @@ class QuestionnaireApiModel {
   final String? bio;
   final ExperienceDuration? experience;
   final String? profileUrl;
-  @JsonKey(includeToJson: false)
   final List<String> photos;
 
   QuestionnaireApiModel({
