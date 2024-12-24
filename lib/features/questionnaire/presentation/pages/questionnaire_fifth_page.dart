@@ -60,6 +60,7 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
                   children: [
                     AppTextField(
                       label: context.l10n.your_current_position,
+                      initialValue: vm.questionnaire.position,
                       minLines: 2,
                       maxLines: 2,
                       validator: InputValidators.emptyValidator,
@@ -68,6 +69,7 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
                     SizedBox(height: 16.h),
                     AppTextField(
                       label: context.l10n.kind_of_partnership_are_you_looking,
+                      initialValue: vm.questionnaire.partnershipDescription,
                       minLines: 2,
                       maxLines: 2,
                       validator: InputValidators.emptyValidator,
@@ -87,6 +89,7 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
                           ],
                         ),
                       ),
+                      initialValue: vm.questionnaire.bio,
                       minLines: 3,
                       maxLines: 3,
                       validator: InputValidators.emptyValidator,
@@ -97,11 +100,13 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
                       key: vm.experienceKey,
                       label: context.l10n.years_of_experience,
                       items: ExperienceDuration.values,
+                      selectedItem: vm.questionnaire.experience,
                       onSelect: vm.onExperienceSelected,
                     ),
                     SizedBox(height: 16.h),
                     AppTextField(
                       label: context.l10n.linkedin_profile_url,
+                      initialValue: vm.questionnaire.profileUrl,
                       validator: InputValidators.emptyValidator,
                       onChanged: vm.onProfileUrlChanged,
                     ),

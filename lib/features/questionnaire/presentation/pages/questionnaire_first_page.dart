@@ -48,7 +48,7 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
 
                 return PartnershipTypeItem(
                   label: PartnershipTypeHelper.getWhoIAmLabel(item),
-                  selected: index.isEven,
+                  selected: vm.questionnaire.myPartnershipTypes.contains(item),
                   onSelect: (selected) => vm.onMyPartnershipTypeSelected(item, selected),
                   onOpenDescription: (context) => vm.openOverlay(
                     context,

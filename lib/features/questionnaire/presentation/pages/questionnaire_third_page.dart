@@ -44,6 +44,7 @@ class _QuestionnaireThirdPageState extends State<QuestionnaireThirdPage>
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8).r,
               child: ChoiceChips<InterestType>(
                 items: InterestType.values,
+                selectedItems: vm.questionnaire.myInterests,
                 onTap: vm.onSelectMyInterest,
               ),
             ),

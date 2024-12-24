@@ -43,7 +43,7 @@ class QuestionnaireScreenVm {
 
   OverlayEntry? _overlayEntry;
 
-  QuestionnaireApiModel _questionnaire = QuestionnaireApiModel();
+  QuestionnaireApiModel questionnaire = QuestionnaireApiModel();
 
   bool get isEditMode => params?.isEdit == true;
 
@@ -76,7 +76,7 @@ class QuestionnaireScreenVm {
         return;
       }
 
-      _questionnaire = result;
+      questionnaire = result;
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -111,69 +111,75 @@ class QuestionnaireScreenVm {
   void onMyPartnershipTypeSelected(PartnershipType item, bool selected) {
     closeOverlay();
 
-    final types = [..._questionnaire.myPartnershipTypes];
+    final types = [...questionnaire.myPartnershipTypes];
     if (selected) {
       types.add(item);
     } else {
       types.remove(item);
     }
 
-    _questionnaire = _questionnaire.copyWith(myPartnershipTypes: types);
+    questionnaire = questionnaire.copyWith(myPartnershipTypes: types);
   }
 
   void onPartnerPartnershipTypeSelected(PartnershipType item, bool selected) {
     closeOverlay();
 
-    final types = [..._questionnaire.partnerPartnershipTypes];
+    final types = [...questionnaire.partnerPartnershipTypes];
     if (selected) {
       types.add(item);
     } else {
       types.remove(item);
     }
 
-    _questionnaire = _questionnaire.copyWith(partnerPartnershipTypes: types);
+    questionnaire = questionnaire.copyWith(partnerPartnershipTypes: types);
   }
 
   void onSelectMyInterest(InterestType item, bool selected) {
-    final interests = [..._questionnaire.myInterests];
+    final interests = [...questionnaire.myInterests];
     if (selected) {
       interests.add(item);
     } else {
       interests.remove(item);
     }
 
-    _questionnaire = _questionnaire.copyWith(myInterests: interests);
+    questionnaire = questionnaire.copyWith(myInterests: interests);
   }
 
   void onSelectPartnerInterest(InterestType item, bool selected) {
-    final interests = [..._questionnaire.partnerInterests];
+    final interests = [...questionnaire.partnerInterests];
     if (selected) {
       interests.add(item);
     } else {
       interests.remove(item);
     }
 
-    _questionnaire = _questionnaire.copyWith(partnerInterests: interests);
+    questionnaire = questionnaire.copyWith(partnerInterests: interests);
   }
 
   void onPositionChanged(String value) {
-    _questionnaire = _questionnaire.copyWith(position: value);
+    questionnaire = questionnaire.copyWith(position: value);
   }
 
   void onPartnershipDescriptionChanged(String value) {
-    _questionnaire = _questionnaire.copyWith(partnershipDescription: value);
+    questionnaire = questionnaire.copyWith(partnershipDescription: value);
   }
 
   void onBioChanged(String value) {
-    _questionnaire = _questionnaire.copyWith(bio: value);
+    questionnaire = questionnaire.copyWith(bio: value);
   }
 
   void onExperienceSelected(ExperienceDuration value) {
-    _questionnaire = _questionnaire.copyWith(experience: value);
+    questionnaire = questionnaire.copyWith(experience: value);
   }
 
   void onProfileUrlChanged(String value) {
-    _questionnaire = _questionnaire.copyWith(profileUrl: value);
+    questionnaire = questionnaire.copyWith(profileUrl: value);
+  }
+
+  String? getPhotoImageUrl(int index) {
+    final photos = questionnaire.photos;
+
+    return index > photos.length - 1 ? null : photos[index];
   }
 
   void onTapImage(int index) {
@@ -228,7 +234,7 @@ class QuestionnaireScreenVm {
   }
 
   bool _firstPageCheck() {
-    final filled = _questionnaire.myPartnershipTypes.isNotEmpty;
+    final filled = questionnaire.myPartnershipTypes.isNotEmpty;
     if (!filled) {
       _onError(_context.l10n.select_at_least_one_item);
     }
@@ -237,7 +243,7 @@ class QuestionnaireScreenVm {
   }
 
   bool _secondPageCheck() {
-    final filled = _questionnaire.partnerPartnershipTypes.isNotEmpty;
+    final filled = questionnaire.partnerPartnershipTypes.isNotEmpty;
     if (!filled) {
       _onError(_context.l10n.select_at_least_one_item);
     }
@@ -246,7 +252,7 @@ class QuestionnaireScreenVm {
   }
 
   bool _thirdPageCheck() {
-    final filled = _questionnaire.myInterests.isNotEmpty;
+    final filled = questionnaire.myInterests.isNotEmpty;
     if (!filled) {
       _onError(_context.l10n.select_at_least_one_item);
     }
@@ -255,7 +261,7 @@ class QuestionnaireScreenVm {
   }
 
   bool _fourthPageCheck() {
-    final filled = _questionnaire.partnerInterests.isNotEmpty;
+    final filled = questionnaire.partnerInterests.isNotEmpty;
     if (!filled) {
       _onError(_context.l10n.select_at_least_one_item);
     }
@@ -271,7 +277,7 @@ class QuestionnaireScreenVm {
       return false;
     }
 
-    if (_questionnaire.experience == null) {
+    if (questionnaire.experience == null) {
       _onError(_context.l10n.specify_amount_of_experience);
 
       final experienceContext = experienceKey.currentContext;
@@ -333,7 +339,7 @@ class QuestionnaireScreenVm {
         files: notEmptyPhotos.map((e) => File(e)).toList(),
       );
 
-      await _questionnaireRepository.updateQuestionnaire(_questionnaire);
+      await _questionnaireRepository.updateQuestionnaire(questionnaire);
 
       _goToSuccessScreen();
     } on Object catch (e, st) {

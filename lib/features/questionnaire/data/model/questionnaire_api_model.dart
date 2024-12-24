@@ -60,6 +60,7 @@ class QuestionnaireApiModel {
     String? bio,
     ExperienceDuration? experience,
     String? profileUrl,
+    List<String>? photos,
   }) {
     return QuestionnaireApiModel(
       myPartnershipTypes: myPartnershipTypes ?? this.myPartnershipTypes,
@@ -71,7 +72,7 @@ class QuestionnaireApiModel {
       bio: bio ?? this.bio,
       experience: experience ?? this.experience,
       profileUrl: profileUrl ?? this.profileUrl,
-      photos: photos,
+      photos: photos ?? this.photos,
     );
   }
 }

@@ -27,6 +27,12 @@ class PartnershipTypeItem extends StatefulWidget {
 class _PartnershipTypeItemState extends State<PartnershipTypeItem> {
   bool selected = false;
 
+  @override
+  void initState() {
+    super.initState();
+    selected = widget.selected;
+  }
+
   void _onSelect() {
     setState(() {
       selected = !selected;

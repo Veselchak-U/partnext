@@ -7,11 +7,13 @@ class RowSelector<T> extends StatefulWidget {
   final String label;
   final List<T> items;
   final Function(T) onSelect;
+  final T? selectedItem;
 
   const RowSelector({
     required this.label,
     required this.items,
     required this.onSelect,
+    this.selectedItem,
     super.key,
   });
 
@@ -21,6 +23,16 @@ class RowSelector<T> extends StatefulWidget {
 
 class RowSelectorState<T> extends State<RowSelector<T>> {
   final _selectedIndex = ValueNotifier<int>(-1);
+
+  @override
+  void initState() {
+    super.initState();
+
+    final selectedItem = widget.selectedItem;
+    if (selectedItem != null) {
+      _selectedIndex.value = widget.items.indexOf(selectedItem);
+    }
+  }
 
   void _onSelect(T item, int index) {
     _selectedIndex.value = index;

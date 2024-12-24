@@ -48,7 +48,7 @@ class _QuestionnaireSecondPageState extends State<QuestionnaireSecondPage>
 
                 return PartnershipTypeItem(
                   label: PartnershipTypeHelper.getIAmLookingForLabel(item),
-                  selected: index.isEven,
+                  selected: vm.questionnaire.partnerPartnershipTypes.contains(item),
                   onSelect: (selected) => vm.onPartnerPartnershipTypeSelected(item, selected),
                   onOpenDescription: (context) => vm.openOverlay(
                     context,

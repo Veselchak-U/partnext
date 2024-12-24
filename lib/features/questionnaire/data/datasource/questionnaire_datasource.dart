@@ -31,7 +31,17 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
   Future<QuestionnaireApiModel?> getQuestionnaire() async {
     await Future.delayed(Duration(seconds: 1));
     try {
-      return QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
+      var model = QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
+      model = model.copyWith(
+        photos: [
+          'https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?t=st=1734279139~exp=1734282739~hmac=e8745deace0d4a83784c82efcc52bf3870c91ab4c8658026541141d517af3e9a&w=1380',
+          'https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?t=st=1734279350~exp=1734282950~hmac=2a095adb5a495534e7d0005b47acee5e0892b1c3f1c2fce7acec887d24c12839&w=740',
+          'https://img.freepik.com/free-photo/copy-space-smiley-friends-mock-up_23-2148342071.jpg?t=st=1734279365~exp=1734282965~hmac=50153a3c41ef38c88bed4e355094b9090d3f81f73cf58b3a9fff645381928551&w=826',
+          'https://img.freepik.com/free-photo/community-young-people-posing-together_23-2148431391.jpg?t=st=1734279366~exp=1734282966~hmac=c846cbf70b9319ec12118bce4db8437f7ce2abdf01a0411321f45b8f55a3e26b&w=1380',
+        ],
+      );
+
+      return model;
     } catch (_) {
       return null;
     }

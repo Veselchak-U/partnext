@@ -60,6 +60,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                             return PhotoItemView(
                               filePath: photos[currentPhotoIndex],
                               onDelete: () => vm.removeImage(currentPhotoIndex),
+                              imageUrl: vm.getPhotoImageUrl(currentPhotoIndex),
                             );
                           },
                         ),
@@ -73,6 +74,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                             return PhotoItem(
                               filePath: photos[index],
                               onTap: () => vm.onTapImage(index),
+                              imageUrl: vm.getPhotoImageUrl(index),
                             );
                           },
                         ),
