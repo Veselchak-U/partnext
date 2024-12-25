@@ -5,7 +5,7 @@ import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/form_fields/app_phone_field.dart';
-import 'package:partnext/common/layouts/main_simple_layout.dart';
+import 'package:partnext/common/layouts/gradient_layout.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen_vm.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<LoginScreenVm>();
 
-    return MainSimpleLayout(
+    return GradientLayout(
       body: Form(
         key: vm.formKey,
         child: Padding(

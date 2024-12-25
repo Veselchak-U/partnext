@@ -10,6 +10,8 @@ class AppScaffold extends StatelessWidget {
   final Color backgroundColor;
   final bool resizeToAvoidBottomInset;
   final VoidCallback? onTap;
+  final bool safeAreaBottom;
+  final bool extendBodyBehindAppBar;
 
   const AppScaffold({
     required this.body,
@@ -19,6 +21,8 @@ class AppScaffold extends StatelessWidget {
     this.backgroundColor = AppColors.background,
     this.resizeToAvoidBottomInset = true,
     this.onTap,
+    this.safeAreaBottom = true,
+    this.extendBodyBehindAppBar = false,
     super.key,
   });
 
@@ -29,9 +33,11 @@ class AppScaffold extends StatelessWidget {
       child: ColoredBox(
         color: backgroundColor,
         child: SafeArea(
+          bottom: safeAreaBottom,
           child: Scaffold(
             backgroundColor: backgroundColor,
             resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+            extendBodyBehindAppBar: extendBodyBehindAppBar,
             appBar: appBar,
             drawer: drawer,
             body: body,

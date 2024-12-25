@@ -6,7 +6,7 @@ import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/form_fields/app_text_field.dart';
-import 'package:partnext/common/layouts/main_simple_layout.dart';
+import 'package:partnext/common/layouts/gradient_layout.dart';
 import 'package:partnext/common/utils/input_validators.dart';
 import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_vm.dart';
 import 'package:provider/provider.dart';
@@ -25,10 +25,10 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
   Widget build(BuildContext context) {
     final vm = context.read<PhoneValidationScreenVm>();
 
-    return MainSimpleLayout(
+    return GradientLayout(
       body: Form(
         key: vm.formKey,
-        child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32).w,
           child: Column(
             children: [

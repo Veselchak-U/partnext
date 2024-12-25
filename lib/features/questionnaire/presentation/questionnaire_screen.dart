@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
-import 'package:partnext/common/layouts/app_scaffold.dart';
+import 'package:partnext/common/layouts/gradient_layout.dart';
 import 'package:partnext/common/widgets/loading_indicator.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_fifth_page.dart';
 import 'package:partnext/features/questionnaire/presentation/pages/questionnaire_first_page.dart';
@@ -21,10 +21,10 @@ class QuestionnaireScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<QuestionnaireScreenVm>();
-    final appBarHeight = 56;
     final titleHeight = 64.h;
 
-    return AppScaffold(
+    return GradientLayout(
+      onTap: vm.closeOverlay,
       body: ValueListenableBuilder(
         valueListenable: vm.initializing,
         builder: (context, initializing, _) {
@@ -53,7 +53,7 @@ class QuestionnaireScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: appBarHeight + titleHeight),
+                padding: EdgeInsets.only(top: titleHeight),
                 child: SmoothPageIndicator(
                   controller: vm.pageController,
                   textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
