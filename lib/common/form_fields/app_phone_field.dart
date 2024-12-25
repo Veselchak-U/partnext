@@ -114,7 +114,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
                 fillColor: AppColors.white,
                 border: inputBorder,
                 enabledBorder: inputBorder.copyWith(
-                  borderSide: BorderSide(width: 1, color: AppColors.white),
+                  borderSide: BorderSide(width: 1, color: AppColors.border),
                 ),
                 focusedBorder: inputBorder.copyWith(
                   borderSide: BorderSide(width: 1, color: AppColors.primary),

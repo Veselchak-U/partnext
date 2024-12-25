@@ -139,7 +139,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 ? AppColors.red
                 : hasFocus
                     ? AppColors.primary
-                    : AppColors.white;
+                    : AppColors.border;
 
             final errorText = hasError ? formState.errorText : null;
             // final headerTextColor = hasError ? AppColors.red : AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5);
