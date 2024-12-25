@@ -58,13 +58,19 @@ class _ChoiceChipsState<T> extends State<ChoiceChips<T>> {
           return widget.onTap == null
               ? Chip(
                   label: Text('$item'),
-                  labelStyle: selected ? AppTextStyles.s12w600.copyWith(color: AppColors.white) : AppTextStyles.s12w400,
+                  labelStyle: selected
+                      ? AppTextStyles.s12w600.copyWith(color: AppColors.white)
+                      : AppTextStyles.s12w400.copyWith(letterSpacing: AppTextStyles.s12w400.letterSpacing ?? 0 + 0.3),
                   labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+                  side: BorderSide(color: selected ? AppColors.primary : AppColors.background),
                 )
               : ChoiceChip(
                   label: Text('$item'),
-                  labelStyle: selected ? AppTextStyles.s12w600.copyWith(color: AppColors.white) : AppTextStyles.s12w400,
+                  labelStyle: selected
+                      ? AppTextStyles.s12w600.copyWith(color: AppColors.white)
+                      : AppTextStyles.s12w400.copyWith(letterSpacing: AppTextStyles.s12w600.letterSpacing ?? 0 + 0.3),
                   labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+                  side: BorderSide(color: selected ? AppColors.primary : AppColors.background),
                   showCheckmark: false,
                   selected: selected,
                   onSelected: (selected) => onSelected(item, selected),

@@ -51,6 +51,7 @@ class _PartnershipTypeItemState extends State<PartnershipTypeItem> {
         height: 48.h,
         decoration: BoxDecoration(
           color: AppColors.white,
+          border: Border.all(color: AppColors.border),
           borderRadius: borderRadius,
           boxShadow: selected ? [AppShadows.questionnaireItem] : null,
         ),
