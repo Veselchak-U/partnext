@@ -9,12 +9,16 @@ import 'package:partnext/common/layouts/focus_layout.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget body;
+  final String? titleText;
+  final List<Widget> actions;
   final VoidCallback? onBackButtonPressed;
   final bool extendBodyBehindAppBar;
   final Color backgroundColor;
 
   const MainLayout({
     required this.body,
+    this.titleText,
+    this.actions = const [],
     this.onBackButtonPressed,
     this.extendBodyBehindAppBar = false,
     this.backgroundColor = AppColors.background,
@@ -30,12 +34,15 @@ class MainLayout extends StatelessWidget {
     return FocusLayout(
       child: Scaffold(
         appBar: AppAppBar(
-          title: Image.asset(
-            Assets.images.appLogo.path,
-            height: 34.h,
-          ),
+          titleText: titleText,
+          title: titleText != null
+              ? null
+              : Image.asset(
+                  Assets.images.appLogo.path,
+                  height: 34.h,
+                ),
           leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
-          actions: [],
+          actions: actions,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: appBarBorderRadius),
           ),

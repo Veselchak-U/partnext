@@ -12,6 +12,7 @@ import 'package:partnext/features/partner/presentation/widgets/recommendation_ac
 import 'package:partnext/features/partner/presentation/widgets/recommendation_photos_widget.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_profile_url_widget.dart';
 import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
+import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
 import 'package:provider/provider.dart';
 
 class RecommendationItemWidget extends StatelessWidget {
@@ -71,6 +72,10 @@ class RecommendationItemWidget extends StatelessWidget {
             Text(
               context.l10n.what_partnership_are_you_looking,
               style: AppTextStyles.s20w700,
+            ),
+            SizedBox(height: 18.h),
+            ChoiceChips<PartnershipType>(
+              items: item.questionnaire.partnerPartnershipTypes,
             ),
             SizedBox(height: 25.h),
             Directionality(

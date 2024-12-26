@@ -6,7 +6,10 @@ enum PartnershipType {
   businessOwner,
   strategicPartner,
   activePartner,
-  other,
+  other;
+
+  @override
+  String toString() => PartnershipTypeHelper.getIAmLookingForLabel(this);
 }
 
 class PartnershipTypeHelper {

@@ -77,7 +77,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
         myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
         partnerPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
         myInterests: [InterestType.insurance, InterestType.realEstate],
-        partnerInterests: [InterestType.insurance, InterestType.realEstate],
+        partnerInterests: [InterestType.fashion, InterestType.creatives],
         position: 'Co- Funder and CEO of Unnamed',
         bio:
             'Hey Im Eli, i have profound background in Cybersecurity and Information Technology is combined with multidisciplinary technological strengths. My hands-on approach, unique expertise and passion for innovation and disruption lend themselves to real value to his customers, partners and investors a like.',
@@ -96,7 +96,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
       fullName: 'John Kirby',
       questionnaire: QuestionnaireApiModel(
         myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
-        partnerPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
+        partnerPartnershipTypes: [PartnershipType.businessOwner, PartnershipType.ideaHolder],
         myInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
         partnerInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
         position: 'Co- Funder and CEO of Unnamed',
