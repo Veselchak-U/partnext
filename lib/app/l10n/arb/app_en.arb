@@ -126,5 +126,7 @@
   "date_of_birth": "Date of birth",
   "search": "Search",
   "no_result_found": "No result found",
-  "add_photos": "Add photos"
+  "add_photos": "Add photos",
+  "confirmation": "Confirmation",
+  "all_unsaved_data_will_be_lost": "Do you really want to get out? All unsaved data will be lost."
 }

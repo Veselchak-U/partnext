@@ -126,5 +126,7 @@
   "date_of_birth": "תאריך לידה",
   "search": "חיפוש",
   "no_result_found": "לא נמצאה תוצאה",
-  "add_photos": "הוסף תמונות"
+  "add_photos": "הוסף תמונות",
+  "confirmation": "אישור",
+  "all_unsaved_data_will_be_lost": "אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו."
 }

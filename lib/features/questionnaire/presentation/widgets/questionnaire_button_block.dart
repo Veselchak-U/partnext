@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
@@ -20,49 +18,32 @@ class QuestionnaireButtonBlock extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16).r,
           child: ValueListenableBuilder(
-            valueListenable: vm.isFirstPage,
-            builder: (context, isFirstPage, _) {
+            valueListenable: vm.isLastPage,
+            builder: (context, isLastPage, _) {
               return ValueListenableBuilder(
-                valueListenable: vm.isLastPage,
-                builder: (context, isLastPage, _) {
-                  return ValueListenableBuilder(
-                    valueListenable: vm.loading,
-                    builder: (context, loading, _) {
-                      return Column(
-                        children: [
-                          AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 250),
-                            child: isLastPage
-                                ? CommonButton(
-                                    key: ValueKey(true),
-                                    label: vm.isEditMode ? context.l10n.save : context.l10n.finish_registration,
-                                    iconPath: Assets.icons.send.path,
-                                    onTap: vm.onNextPage,
-                                    loading: loading,
-                                  )
-                                : CommonButton(
-                                    key: ValueKey(false),
-                                    label: context.l10n.next,
-                                    iconPath: Assets.icons.send.path,
-                                    onTap: vm.onNextPage,
-                                    loading: loading,
-                                  ),
-                          ),
-                          SizedBox(height: 16.h),
-                          AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 250),
-                            child: isFirstPage
-                                ? SizedBox(height: max(56, 56.h))
-                                : CommonButton(
-                                    type: CommonButtonType.bordered,
-                                    label: context.l10n.previous,
-                                    iconPath: Assets.icons.send.path,
-                                    onTap: vm.onPreviousPage,
-                                  ),
-                          ),
-                        ],
-                      );
-                    },
+                valueListenable: vm.loading,
+                builder: (context, loading, _) {
+                  return Column(
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 150),
+                        child: isLastPage
+                            ? CommonButton(
+                                key: ValueKey(true),
+                                label: vm.isEditMode ? context.l10n.save : context.l10n.finish_registration,
+                                iconPath: Assets.icons.send.path,
+                                onTap: vm.onNextPage,
+                                loading: loading,
+                              )
+                            : CommonButton(
+                                key: ValueKey(false),
+                                label: context.l10n.next,
+                                iconPath: Assets.icons.send.path,
+                                onTap: vm.onNextPage,
+                                loading: loading,
+                              ),
+                      ),
+                    ],
                   );
                 },
               );

@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
+import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
@@ -45,6 +46,8 @@ class QuestionnaireScreenVm {
   QuestionnaireApiModel questionnaire = QuestionnaireApiModel();
 
   bool get isEditMode => params?.isEdit == true;
+
+  bool _hasChanges = false;
 
   void _init() {
     _initQuestionnaire();
@@ -122,6 +125,7 @@ class QuestionnaireScreenVm {
     }
 
     questionnaire = questionnaire.copyWith(myPartnershipTypes: types);
+    _hasChanges = true;
   }
 
   void onPartnerPartnershipTypeSelected(PartnershipType item, bool selected) {
@@ -135,6 +139,7 @@ class QuestionnaireScreenVm {
     }
 
     questionnaire = questionnaire.copyWith(partnerPartnershipTypes: types);
+    _hasChanges = true;
   }
 
   void onSelectMyInterest(InterestType item, bool selected) {
@@ -146,6 +151,7 @@ class QuestionnaireScreenVm {
     }
 
     questionnaire = questionnaire.copyWith(myInterests: interests);
+    _hasChanges = true;
   }
 
   void onSelectPartnerInterest(InterestType item, bool selected) {
@@ -157,26 +163,32 @@ class QuestionnaireScreenVm {
     }
 
     questionnaire = questionnaire.copyWith(partnerInterests: interests);
+    _hasChanges = true;
   }
 
   void onDateOfBirthChanged(DateTime? value) {
     questionnaire = questionnaire.copyWith(dateOfBirth: value);
+    _hasChanges = true;
   }
 
   void onPositionChanged(String value) {
     questionnaire = questionnaire.copyWith(position: value);
+    _hasChanges = true;
   }
 
   void onBioChanged(String value) {
     questionnaire = questionnaire.copyWith(bio: value);
+    _hasChanges = true;
   }
 
   void onExperienceSelected(ExperienceDuration? value) {
     questionnaire = questionnaire.copyWith(experience: value);
+    _hasChanges = true;
   }
 
   void onProfileUrlChanged(String value) {
     questionnaire = questionnaire.copyWith(profileUrl: value);
+    _hasChanges = true;
   }
 
   void onTapImage(int index) {
@@ -206,6 +218,7 @@ class QuestionnaireScreenVm {
       final newList = [...photos.value];
       newList[index] = imageUrl;
       photos.value = newList;
+      _hasChanges = true;
 
       setCurrentPhotoIndex(index);
     } on Object catch (e, st) {
@@ -219,6 +232,7 @@ class QuestionnaireScreenVm {
     final newList = [...photos.value];
     newList[index] = '';
     photos.value = newList;
+    _hasChanges = true;
   }
 
   void setCurrentPhotoIndex(int index) {
@@ -342,6 +356,33 @@ class QuestionnaireScreenVm {
 
     isFirstPage.value = pageController.page == 0;
     isLastPage.value = false;
+  }
+
+  void onBackButtonPressed(BuildContext context) {
+    if (isFirstPage.value && isEditMode) {
+      _confirmLostChanges(context);
+    } else {
+      onPreviousPage();
+    }
+  }
+
+  Future<void> _confirmLostChanges(BuildContext context) async {
+    if (!_hasChanges) {
+      _context.pop();
+
+      return;
+    }
+
+    final confirm = await AppDialogs.showConfirmationDialog(
+      context: _context,
+      title: _context.l10n.confirmation,
+      description: _context.l10n.all_unsaved_data_will_be_lost,
+      confirmLabel: _context.l10n.yes,
+    );
+    if (confirm != true) return;
+
+    if (!_context.mounted) return;
+    _context.pop();
   }
 
   Future<void> _sendQuestionnaire() async {

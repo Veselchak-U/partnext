@@ -24,6 +24,7 @@ class QuestionnaireScreen extends StatelessWidget {
     final titleHeight = 64.h;
 
     return GradientLayout(
+      onBackButtonPressed: () => vm.onBackButtonPressed(context),
       onTap: vm.closeOverlay,
       body: ValueListenableBuilder(
         valueListenable: vm.initializing,

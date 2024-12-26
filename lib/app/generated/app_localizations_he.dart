@@ -351,4 +351,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get add_photos => 'הוסף תמונות';
+
+  @override
+  String get confirmation => 'אישור';
+
+  @override
+  String get all_unsaved_data_will_be_lost => 'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.';
 }

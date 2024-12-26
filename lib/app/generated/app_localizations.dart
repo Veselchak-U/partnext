@@ -778,6 +778,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'הוסף תמונות'**
   String get add_photos;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In he, this message translates to:
+  /// **'אישור'**
+  String get confirmation;
+
+  /// No description provided for @all_unsaved_data_will_be_lost.
+  ///
+  /// In he, this message translates to:
+  /// **'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.'**
+  String get all_unsaved_data_will_be_lost;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
