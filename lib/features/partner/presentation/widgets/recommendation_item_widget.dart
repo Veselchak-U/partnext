@@ -72,11 +72,6 @@ class RecommendationItemWidget extends StatelessWidget {
               context.l10n.what_partnership_are_you_looking,
               style: AppTextStyles.s20w700,
             ),
-            SizedBox(height: 8.h),
-            Text(
-              item.questionnaire.partnershipDescription ?? '',
-              style: AppTextStyles.s14w400,
-            ),
             SizedBox(height: 25.h),
             Directionality(
               textDirection: TextDirection.ltr,

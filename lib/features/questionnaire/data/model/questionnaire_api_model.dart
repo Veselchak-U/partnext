@@ -11,8 +11,8 @@ class QuestionnaireApiModel {
   final List<PartnershipType> partnerPartnershipTypes;
   final List<InterestType> myInterests;
   final List<InterestType> partnerInterests;
+  final DateTime? dateOfBirth;
   final String? position;
-  final String? partnershipDescription;
   final String? bio;
   final ExperienceDuration? experience;
   final String? profileUrl;
@@ -23,8 +23,8 @@ class QuestionnaireApiModel {
     this.partnerPartnershipTypes = const [],
     this.myInterests = const [],
     this.partnerInterests = const [],
+    this.dateOfBirth,
     this.position,
-    this.partnershipDescription,
     this.bio,
     this.experience,
     this.profileUrl,
@@ -36,8 +36,8 @@ class QuestionnaireApiModel {
       partnerPartnershipTypes.isNotEmpty &&
       myInterests.isNotEmpty &&
       partnerInterests.isNotEmpty &&
+      dateOfBirth != null &&
       position != null &&
-      partnershipDescription != null &&
       bio != null &&
       experience != null &&
       profileUrl != null &&
@@ -54,8 +54,8 @@ class QuestionnaireApiModel {
     List<PartnershipType>? partnerPartnershipTypes,
     List<InterestType>? myInterests,
     List<InterestType>? partnerInterests,
+    DateTime? dateOfBirth,
     String? position,
-    String? partnershipDescription,
     String? bio,
     ExperienceDuration? experience,
     String? profileUrl,
@@ -66,8 +66,8 @@ class QuestionnaireApiModel {
       partnerPartnershipTypes: partnerPartnershipTypes ?? this.partnerPartnershipTypes,
       myInterests: myInterests ?? this.myInterests,
       partnerInterests: partnerInterests ?? this.partnerInterests,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       position: position ?? this.position,
-      partnershipDescription: partnershipDescription ?? this.partnershipDescription,
       bio: bio ?? this.bio,
       experience: experience ?? this.experience,
       profileUrl: profileUrl ?? this.profileUrl,

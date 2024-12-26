@@ -159,19 +159,19 @@ class QuestionnaireScreenVm {
     questionnaire = questionnaire.copyWith(partnerInterests: interests);
   }
 
-  void onPositionChanged(String value) {
-    questionnaire = questionnaire.copyWith(position: value);
+  void onDateOfBirthChanged(DateTime? value) {
+    questionnaire = questionnaire.copyWith(dateOfBirth: value);
   }
 
-  void onPartnershipDescriptionChanged(String value) {
-    questionnaire = questionnaire.copyWith(partnershipDescription: value);
+  void onPositionChanged(String value) {
+    questionnaire = questionnaire.copyWith(position: value);
   }
 
   void onBioChanged(String value) {
     questionnaire = questionnaire.copyWith(bio: value);
   }
 
-  void onExperienceSelected(ExperienceDuration value) {
+  void onExperienceSelected(ExperienceDuration? value) {
     questionnaire = questionnaire.copyWith(experience: value);
   }
 

@@ -79,8 +79,6 @@ class PartnerDatasourceImpl implements PartnerDatasource {
         myInterests: [InterestType.insurance, InterestType.realEstate],
         partnerInterests: [InterestType.insurance, InterestType.realEstate],
         position: 'Co- Funder and CEO of Unnamed',
-        partnershipDescription:
-            'I have achieved seed round and i have some angel investors too. I an looking for partnership with someone that will help me with marketing.',
         bio:
             'Hey Im Eli, i have profound background in Cybersecurity and Information Technology is combined with multidisciplinary technological strengths. My hands-on approach, unique expertise and passion for innovation and disruption lend themselves to real value to his customers, partners and investors a like.',
         experience: ExperienceDuration.from0To2,
@@ -102,8 +100,6 @@ class PartnerDatasourceImpl implements PartnerDatasource {
         myInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
         partnerInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
         position: 'Co- Funder and CEO of Unnamed',
-        partnershipDescription:
-            'I have achieved seed round and i have some angel investors too. I an looking for partnership with someone that will help me with marketing.',
         bio:
             'Hey Im Eli, i have profound background in Cybersecurity and Information Technology is combined with multidisciplinary technological strengths. My hands-on approach, unique expertise and passion for innovation and disruption lend themselves to real value to his customers, partners and investors a like.',
         experience: ExperienceDuration.from0To2,

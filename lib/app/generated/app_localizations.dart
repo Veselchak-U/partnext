@@ -299,11 +299,11 @@ abstract class AppLocalizations {
   /// **'אימות טלפון'**
   String get phone_validation;
 
-  /// No description provided for @what_am_i.
+  /// No description provided for @who_am_i.
   ///
   /// In he, this message translates to:
-  /// **'מה אני'**
-  String get what_am_i;
+  /// **'מי אני'**
+  String get who_am_i;
 
   /// No description provided for @i_have_idea.
   ///
@@ -754,6 +754,30 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שמור'**
   String get save;
+
+  /// No description provided for @date_of_birth.
+  ///
+  /// In he, this message translates to:
+  /// **'תאריך לידה'**
+  String get date_of_birth;
+
+  /// No description provided for @search.
+  ///
+  /// In he, this message translates to:
+  /// **'חיפוש'**
+  String get search;
+
+  /// No description provided for @no_result_found.
+  ///
+  /// In he, this message translates to:
+  /// **'לא נמצאה תוצאה'**
+  String get no_result_found;
+
+  /// No description provided for @add_photos.
+  ///
+  /// In he, this message translates to:
+  /// **'הוסף תמונות'**
+  String get add_photos;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

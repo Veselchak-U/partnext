@@ -30,7 +30,7 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
           height: 64.h,
           alignment: Alignment.center,
           child: Text(
-            context.l10n.what_am_i,
+            context.l10n.who_am_i,
             style: AppTextStyles.s20w700,
             textAlign: TextAlign.center,
           ),

@@ -20,4 +20,7 @@ class AppColors {
   static const green = Color.fromRGBO(40, 216, 203, 1);
   static const greenDark = Color.fromRGBO(0, 139, 72, 1);
   static const orange = Color.fromRGBO(255, 171, 74, 1);
+
+  static const error = red;
+  static const text = primary;
 }

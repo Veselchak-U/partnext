@@ -113,7 +113,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phone_validation => 'Phone Validation';
 
   @override
-  String get what_am_i => 'What am I';
+  String get who_am_i => 'Who am I';
 
   @override
   String get i_have_idea => 'I have an idea';
@@ -254,7 +254,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tell_us_about_yourself_first => 'Tell us about yourself, ';
 
   @override
-  String get tell_us_about_yourself_second => 'what you are passionate about? What have you achieved?';
+  String get tell_us_about_yourself_second => 'What you are passionate about? What have you achieved?';
 
   @override
   String get years_of_experience => 'Years of experience';
@@ -339,4 +339,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get date_of_birth => 'Date of birth';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get no_result_found => 'No result found';
+
+  @override
+  String get add_photos => 'Add photos';
 }

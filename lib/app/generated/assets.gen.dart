@@ -24,6 +24,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/approve_92.svg
   SvgGenImage get approve92 => const SvgGenImage('assets/icons/approve_92.svg');
 
+  /// File path: assets/icons/calendar.svg
+  SvgGenImage get calendar => const SvgGenImage('assets/icons/calendar.svg');
+
   /// File path: assets/icons/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
 
@@ -37,6 +40,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close_filled.svg
   SvgGenImage get closeFilled =>
       const SvgGenImage('assets/icons/close_filled.svg');
+
+  /// File path: assets/icons/dropdown_closed.svg
+  SvgGenImage get dropdownClosed =>
+      const SvgGenImage('assets/icons/dropdown_closed.svg');
+
+  /// File path: assets/icons/dropdown_expanded.svg
+  SvgGenImage get dropdownExpanded =>
+      const SvgGenImage('assets/icons/dropdown_expanded.svg');
 
   /// File path: assets/icons/handshake_nav_bar.svg
   SvgGenImage get handshakeNavBar =>
@@ -91,10 +102,13 @@ class $AssetsIconsGen {
         add,
         approve,
         approve92,
+        calendar,
         camera,
         chatNavBar,
         close,
         closeFilled,
+        dropdownClosed,
+        dropdownExpanded,
         handshakeNavBar,
         linkedin,
         navEdit,

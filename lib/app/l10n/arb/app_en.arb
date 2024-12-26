@@ -47,7 +47,7 @@
   "did_not_get_code": "Didn’t get the code?",
   "resend_code": "Resend Code",
   "phone_validation": "Phone Validation",
-  "what_am_i": "What am I",
+  "who_am_i": "Who am I",
   "i_have_idea": "I have an idea",
   "i_own_startup": "I own a startup",
   "i_own_business": "I own a business",
@@ -94,7 +94,7 @@
   "your_current_position": "Your current position and organization",
   "kind_of_partnership_are_you_looking": "What kind of partnership are you looking for?",
   "tell_us_about_yourself_first": "Tell us about yourself, ",
-  "tell_us_about_yourself_second": "what you are passionate about? What have you achieved?",
+  "tell_us_about_yourself_second": "What you are passionate about? What have you achieved?",
   "years_of_experience": "Years of experience",
   "linkedin_profile_url": "LinkedIn profile URL",
   "select_at_least_one_item": "Select at least one item",
@@ -122,5 +122,9 @@
   "sure_to_logout": "Are you sure you want to logout?",
   "profile": "Profile",
   "questionnaire_init_error": "Questionnaire initialization error",
-  "save": "Save"
+  "save": "Save",
+  "date_of_birth": "Date of birth",
+  "search": "Search",
+  "no_result_found": "No result found",
+  "add_photos": "Add photos"
 }

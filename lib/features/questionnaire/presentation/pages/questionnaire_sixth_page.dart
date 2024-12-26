@@ -30,7 +30,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
           height: 64.h,
           alignment: Alignment.center,
           child: Text(
-            context.l10n.tell_us_about_yourself,
+            context.l10n.add_photos,
             style: AppTextStyles.s20w700,
             textAlign: TextAlign.center,
           ),

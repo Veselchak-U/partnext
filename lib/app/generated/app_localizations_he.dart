@@ -113,7 +113,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get phone_validation => 'אימות טלפון';
 
   @override
-  String get what_am_i => 'מה אני';
+  String get who_am_i => 'מי אני';
 
   @override
   String get i_have_idea => 'יש לי רעיון';
@@ -339,4 +339,16 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get save => 'שמור';
+
+  @override
+  String get date_of_birth => 'תאריך לידה';
+
+  @override
+  String get search => 'חיפוש';
+
+  @override
+  String get no_result_found => 'לא נמצאה תוצאה';
+
+  @override
+  String get add_photos => 'הוסף תמונות';
 }
