@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
+import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
 abstract interface class ProfileRepository {
   Future<void> uploadUserAvatar({
@@ -9,6 +10,8 @@ abstract interface class ProfileRepository {
   });
 
   Future<void> sendFeedback(String message);
+
+  Future<List<PricingPlanApiModel>> getPricingPlans();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -32,5 +35,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> sendFeedback(String message) {
     return _profileDatasource.sendFeedback(message);
+  }
+
+  @override
+  Future<List<PricingPlanApiModel>> getPricingPlans() {
+    return _profileDatasource.getPricingPlans();
   }
 }

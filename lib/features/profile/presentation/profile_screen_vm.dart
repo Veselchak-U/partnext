@@ -77,11 +77,15 @@ class ProfileScreenVm {
     _setLoading(false);
   }
 
-  void sendFeedback() {
+  void goUpgrade() {
+    _context.pushNamed(AppRoute.upgrade.name);
+  }
+
+  void goSendFeedback() {
     _context.pushNamed(AppRoute.sendFeedback.name);
   }
 
-  void editProfile() {
+  void goEditProfile() {
     _context.pushNamed(
       AppRoute.questionnaire.name,
       extra: QuestionnaireScreenParams(isEdit: true),

@@ -134,5 +134,6 @@
   "send": "Send",
   "feedback_accepted": "Feedback\nAccepted",
   "thank_you_for_taking_time": "Thank you for taking the time\nto send us feedback",
-  "continue_browsing": "Continue Browsing"
+  "continue_browsing": "Continue Browsing",
+  "continue_label": "Continue"
 }

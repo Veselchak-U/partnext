@@ -134,5 +134,6 @@
   "send": "שלח",
   "feedback_accepted": "משוב\nהתקבל",
   "thank_you_for_taking_time": "תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב",
-  "continue_browsing": "המשך גלישה"
+  "continue_browsing": "המשך גלישה",
+  "continue_label": "המשך"
 }

@@ -13,6 +13,7 @@ class AppRoute {
   static const profile = AppRoute('profile', '/profile');
   static const sendFeedback = AppRoute('sendFeedback', 'sendFeedback');
   static const feedbackAccepted = AppRoute('feedbackAccepted', '/feedbackAccepted');
+  static const upgrade = AppRoute('upgrade', 'upgrade');
 
   final String name;
   final String path;

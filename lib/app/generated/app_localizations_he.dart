@@ -375,4 +375,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get continue_browsing => 'המשך גלישה';
+
+  @override
+  String get continue_label => 'המשך';
 }

@@ -24,7 +24,7 @@ class SimpleLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: backgroundColor,
       extendBodyBehindAppBar: true,
       safeAreaBottom: false,
       onTap: onTap,

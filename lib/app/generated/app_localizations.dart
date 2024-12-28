@@ -826,6 +826,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'המשך גלישה'**
   String get continue_browsing;
+
+  /// No description provided for @continue_label.
+  ///
+  /// In he, this message translates to:
+  /// **'המשך'**
+  String get continue_label;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

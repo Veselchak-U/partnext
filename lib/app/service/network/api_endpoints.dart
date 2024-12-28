@@ -14,4 +14,5 @@ class ApiEndpoints {
   // Profile
   static const user = 'api/v1/member/user';
   static const sendFeedback = 'api/v1/member/send_feedback';
+  static const pricingPlans = 'api/v1/member/pricing_plans';
 }
