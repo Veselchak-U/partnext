@@ -808,6 +808,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שלח'**
   String get send;
+
+  /// No description provided for @feedback_accepted.
+  ///
+  /// In he, this message translates to:
+  /// **'משוב\nהתקבל'**
+  String get feedback_accepted;
+
+  /// No description provided for @thank_you_for_taking_time.
+  ///
+  /// In he, this message translates to:
+  /// **'תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב'**
+  String get thank_you_for_taking_time;
+
+  /// No description provided for @continue_browsing.
+  ///
+  /// In he, this message translates to:
+  /// **'המשך גלישה'**
+  String get continue_browsing;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

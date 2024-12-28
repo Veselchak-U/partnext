@@ -366,4 +366,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get send => 'Send';
+
+  @override
+  String get feedback_accepted => 'Feedback\nAccepted';
+
+  @override
+  String get thank_you_for_taking_time => 'Thank you for taking the time\nto send us feedback';
+
+  @override
+  String get continue_browsing => 'Continue Browsing';
 }

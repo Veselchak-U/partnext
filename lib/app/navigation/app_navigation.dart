@@ -229,7 +229,9 @@ class AppNavigation {
               GoRoute(
                 name: AppRoute.feedbackAccepted.name,
                 path: AppRoute.feedbackAccepted.path,
-                builder: (context, state) => const FeedbackAcceptedScreen(),
+                builder: (context, state) => FeedbackAcceptedScreen(
+                  navBarIndexProvider: DI.get<NavBarIndexProvider>(),
+                ),
               ),
             ],
           ),

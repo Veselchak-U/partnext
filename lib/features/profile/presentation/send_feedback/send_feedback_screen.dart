@@ -18,41 +18,44 @@ class SendFeedbackScreen extends StatelessWidget {
     final vm = context.read<SendFeedbackScreenVm>();
 
     return SimpleLayout(
-      titleText: context.l10n.send_feedback,
-      body: Form(
-        key: vm.formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32).w,
-          child: Column(
-            children: [
-              SizedBox(height: 9.h),
-              Text(
-                context.l10n.send_feedback,
-                style: AppTextStyles.s20w700,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 48.h),
-              AppTextField(
-                label: context.l10n.your_opinion_is_important,
-                autofocus: true,
-                minLines: 6,
-                maxLines: 6,
-                validator: InputValidators.feedbackLengthValidator,
-                onChanged: (value) => vm.message = value,
-              ),
-              SizedBox(height: 32.h),
-              ValueListenableBuilder(
-                valueListenable: vm.loading,
-                builder: (context, loading, _) {
-                  return CommonButton(
-                    label: context.l10n.send,
-                    iconPath: Assets.icons.send.path,
-                    onTap: vm.sendFeedback,
-                    loading: loading,
-                  );
-                },
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Form(
+          key: vm.formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32).w,
+            child: Column(
+              children: [
+                SizedBox(height: 9.h),
+                Text(
+                  context.l10n.send_feedback,
+                  style: AppTextStyles.s20w700,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 48.h),
+                AppTextField(
+                  label: context.l10n.your_opinion_is_important,
+                  autofocus: true,
+                  minLines: 6,
+                  maxLines: 6,
+                  validator: InputValidators.feedbackLengthValidator,
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
+                  onChanged: (value) => vm.message = value,
+                ),
+                SizedBox(height: 32.h),
+                ValueListenableBuilder(
+                  valueListenable: vm.loading,
+                  builder: (context, loading, _) {
+                    return CommonButton(
+                      label: context.l10n.send,
+                      iconPath: Assets.icons.send.path,
+                      onTap: vm.sendFeedback,
+                      loading: loading,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

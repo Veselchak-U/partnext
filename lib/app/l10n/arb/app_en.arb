@@ -131,5 +131,8 @@
   "all_unsaved_data_will_be_lost": "Do you really want to get out? All unsaved data will be lost.",
   "message_is_too_short": "The message is too short.",
   "your_opinion_is_important": "Your opinion is important to us! We will be happy to receive feedback from you.",
-  "send": "Send"
+  "send": "Send",
+  "feedback_accepted": "Feedback\nAccepted",
+  "thank_you_for_taking_time": "Thank you for taking the time\nto send us feedback",
+  "continue_browsing": "Continue Browsing"
 }

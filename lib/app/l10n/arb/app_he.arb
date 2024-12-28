@@ -131,5 +131,8 @@
   "all_unsaved_data_will_be_lost": "אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.",
   "message_is_too_short": "ההודעה קצרה מדי.",
   "your_opinion_is_important": "דעתך חשובה לנו! נשמח לקבל משוב ממך.",
-  "send": "שלח"
+  "send": "שלח",
+  "feedback_accepted": "משוב\nהתקבל",
+  "thank_you_for_taking_time": "תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב",
+  "continue_browsing": "המשך גלישה"
 }

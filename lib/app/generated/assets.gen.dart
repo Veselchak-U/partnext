@@ -145,6 +145,9 @@ class $AssetsImagesGen {
   AssetGenImage get appLogo =>
       const AssetGenImage('assets/images/app_logo.png');
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/main_gradient.png
   AssetGenImage get mainGradient =>
       const AssetGenImage('assets/images/main_gradient.png');
@@ -162,6 +165,7 @@ class $AssetsImagesGen {
         appIconBackground,
         appIconForeground,
         appLogo,
+        logo,
         mainGradient,
         successRegistration,
         welcome
