@@ -7,6 +7,8 @@ abstract interface class ProfileRepository {
     required File file,
     Function(int count, int total)? onSendProgress,
   });
+
+  Future<void> sendFeedback(String message);
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -25,5 +27,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
       file: file,
       onSendProgress: onSendProgress,
     );
+  }
+
+  @override
+  Future<void> sendFeedback(String message) {
+    return _profileDatasource.sendFeedback(message);
   }
 }

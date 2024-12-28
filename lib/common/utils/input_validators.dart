@@ -24,4 +24,10 @@ class InputValidators {
 
     return null;
   }
+
+  static String? feedbackLengthValidator(String? value) {
+    if (value == null || value.length < 10) return l10n?.message_is_too_short;
+
+    return null;
+  }
 }

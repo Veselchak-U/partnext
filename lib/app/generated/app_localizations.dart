@@ -790,6 +790,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.'**
   String get all_unsaved_data_will_be_lost;
+
+  /// No description provided for @message_is_too_short.
+  ///
+  /// In he, this message translates to:
+  /// **'ההודעה קצרה מדי.'**
+  String get message_is_too_short;
+
+  /// No description provided for @your_opinion_is_important.
+  ///
+  /// In he, this message translates to:
+  /// **'דעתך חשובה לנו! נשמח לקבל משוב ממך.'**
+  String get your_opinion_is_important;
+
+  /// No description provided for @send.
+  ///
+  /// In he, this message translates to:
+  /// **'שלח'**
+  String get send;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -29,8 +29,11 @@ import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/presentation/feedback_accepted/feedback_accepted_screen.dart';
 import 'package:partnext/features/profile/presentation/profile_screen.dart';
 import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
+import 'package:partnext/features/profile/presentation/send_feedback/send_feedback_screen.dart';
+import 'package:partnext/features/profile/presentation/send_feedback/send_feedback_screen_vm.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
@@ -207,6 +210,26 @@ class AppNavigation {
                   dispose: (context, vm) => vm.dispose(),
                   child: const ProfileScreen(),
                 ),
+                routes: [
+                  GoRoute(
+                    name: AppRoute.sendFeedback.name,
+                    path: AppRoute.sendFeedback.path,
+                    builder: (context, state) => Provider(
+                      lazy: false,
+                      create: (context) => SendFeedbackScreenVm(
+                        context,
+                        DI.get<ProfileRepository>(),
+                      ),
+                      dispose: (context, vm) => vm.dispose(),
+                      child: const SendFeedbackScreen(),
+                    ),
+                  ),
+                ],
+              ),
+              GoRoute(
+                name: AppRoute.feedbackAccepted.name,
+                path: AppRoute.feedbackAccepted.path,
+                builder: (context, state) => const FeedbackAcceptedScreen(),
               ),
             ],
           ),

@@ -357,4 +357,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get all_unsaved_data_will_be_lost => 'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.';
+
+  @override
+  String get message_is_too_short => 'ההודעה קצרה מדי.';
+
+  @override
+  String get your_opinion_is_important => 'דעתך חשובה לנו! נשמח לקבל משוב ממך.';
+
+  @override
+  String get send => 'שלח';
 }

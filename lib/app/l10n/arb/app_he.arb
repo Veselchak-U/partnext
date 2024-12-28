@@ -128,5 +128,8 @@
   "no_result_found": "לא נמצאה תוצאה",
   "add_photos": "הוסף תמונות",
   "confirmation": "אישור",
-  "all_unsaved_data_will_be_lost": "אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו."
+  "all_unsaved_data_will_be_lost": "אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.",
+  "message_is_too_short": "ההודעה קצרה מדי.",
+  "your_opinion_is_important": "דעתך חשובה לנו! נשמח לקבל משוב ממך.",
+  "send": "שלח"
 }

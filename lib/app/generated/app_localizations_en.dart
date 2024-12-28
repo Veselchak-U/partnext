@@ -357,4 +357,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get all_unsaved_data_will_be_lost => 'Do you really want to get out? All unsaved data will be lost.';
+
+  @override
+  String get message_is_too_short => 'The message is too short.';
+
+  @override
+  String get your_opinion_is_important => 'Your opinion is important to us! We will be happy to receive feedback from you.';
+
+  @override
+  String get send => 'Send';
 }

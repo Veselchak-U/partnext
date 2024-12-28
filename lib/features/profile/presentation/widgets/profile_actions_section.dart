@@ -36,7 +36,7 @@ class ProfileActionsSection extends StatelessWidget {
           NavigationItemWidget(
             iconAsset: Assets.icons.navFeedback.path,
             label: context.l10n.send_feedback,
-            // onTap: () {},
+            onTap: vm.sendFeedback,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 8.h),

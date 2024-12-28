@@ -79,6 +79,7 @@ class DI {
           _sl<ApiClient>(),
         ));
     _sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceImpl(
+          _sl<ApiClient>(),
           _sl<DioApiClient>(),
         ));
   }

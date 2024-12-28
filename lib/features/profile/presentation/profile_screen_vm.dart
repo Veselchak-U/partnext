@@ -77,6 +77,10 @@ class ProfileScreenVm {
     _setLoading(false);
   }
 
+  void sendFeedback() {
+    _context.pushNamed(AppRoute.sendFeedback.name);
+  }
+
   void editProfile() {
     _context.pushNamed(
       AppRoute.questionnaire.name,
