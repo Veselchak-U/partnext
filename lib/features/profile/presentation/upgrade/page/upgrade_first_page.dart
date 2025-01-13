@@ -4,6 +4,7 @@ import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/simple_layout.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
+import 'package:partnext/features/profile/presentation/upgrade/widget/current_plan_section.dart';
 import 'package:provider/provider.dart';
 
 class UpgradeFirstPage extends StatelessWidget {
@@ -23,11 +24,12 @@ class UpgradeFirstPage extends StatelessWidget {
             children: [
               SizedBox(height: 9.h),
               Text(
-                'Partnext Premium', //context.l10n.send_feedback,
+                'Partnext Premium',
                 style: AppTextStyles.s20w700,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 24.h),
+              SizedBox(height: 28.h),
+              const CurrentPlanSection(),
             ],
           ),
         ),

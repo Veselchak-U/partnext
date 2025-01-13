@@ -11,6 +11,7 @@ PricingPlanApiModel _$PricingPlanApiModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       price: (json['price'] as num).toInt(),
+      priceTotal: (json['price_total'] as num).toInt(),
       discount: (json['discount'] as num?)?.toInt(),
     );
 
@@ -20,5 +21,6 @@ Map<String, dynamic> _$PricingPlanApiModelToJson(
       'id': instance.id,
       'name': instance.name,
       'price': instance.price,
+      'price_total': instance.priceTotal,
       'discount': instance.discount,
     };

@@ -12,7 +12,10 @@ UserApiModel _$UserApiModelFromJson(Map<String, dynamic> json) => UserApiModel(
       position: json['position'] as String,
       phone: json['phone'] as String,
       imageUrl: json['image_url'] as String,
-      isPro: json['is_pro'] as bool,
+      pricingPlan: json['pricing_plan'] == null
+          ? null
+          : PricingPlanApiModel.fromJson(
+              json['pricing_plan'] as Map<String, dynamic>),
       token: json['token'] as String,
     );
 
@@ -23,6 +26,6 @@ Map<String, dynamic> _$UserApiModelToJson(UserApiModel instance) =>
       'position': instance.position,
       'phone': instance.phone,
       'image_url': instance.imageUrl,
-      'is_pro': instance.isPro,
+      'pricing_plan': instance.pricingPlan,
       'token': instance.token,
     };

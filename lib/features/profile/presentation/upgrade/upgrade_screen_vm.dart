@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/features/auth/data/model/user_api_model.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 
 class UpgradeScreenVm {
   final BuildContext _context;
+  final UserRepository _userRepository;
   final ProfileRepository _profileRepository;
 
   UpgradeScreenVm(
     this._context,
+    this._userRepository,
     this._profileRepository,
   ) {
     _init();
@@ -20,10 +24,11 @@ class UpgradeScreenVm {
 
   final pageController = PageController();
 
+  PricingPlanApiModel? currentPlan;
   List<PricingPlanApiModel> pricingPlans = [];
 
   void _init() {
-    _initPaymentPlans();
+    _initPricingPlans();
   }
 
   void dispose() {
@@ -33,13 +38,17 @@ class UpgradeScreenVm {
     pageController.dispose();
   }
 
-  Future<void> _initPaymentPlans() async {
+  Future<void> _initPricingPlans() async {
     _setInitializing(true);
     try {
-      final result = await _profileRepository.getPricingPlans();
+      final results = await Future.wait([
+        _userRepository.getUser(),
+        _profileRepository.getPricingPlans(),
+      ]);
 
       if (!_context.mounted) return;
-      pricingPlans = result;
+      currentPlan = (results.first as UserApiModel?)?.pricingPlan;
+      pricingPlans = results[1] as List<PricingPlanApiModel>;
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -68,6 +77,8 @@ class UpgradeScreenVm {
   //   _context.goNamed(AppRoute.feedbackAccepted.name);
   // }
   // }
+
+  void onCancelCurrentPlan() {}
 
   void onContinue() {}
 

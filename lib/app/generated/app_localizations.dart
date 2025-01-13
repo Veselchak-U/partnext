@@ -832,6 +832,42 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'המשך'**
   String get continue_label;
+
+  /// No description provided for @who_wanted_create_business_with_you.
+  ///
+  /// In he, this message translates to:
+  /// **'ראה מי רצה ליצור איתך הזדמנות עסקית'**
+  String get who_wanted_create_business_with_you;
+
+  /// No description provided for @start_conversation_with_partners.
+  ///
+  /// In he, this message translates to:
+  /// **'התחל שיחה עם שותפים עסקיים פוטנציאליים'**
+  String get start_conversation_with_partners;
+
+  /// No description provided for @unlimited_business_collaborations.
+  ///
+  /// In he, this message translates to:
+  /// **'שיתופי פעולה עסקיים ללא הגבלה'**
+  String get unlimited_business_collaborations;
+
+  /// No description provided for @total.
+  ///
+  /// In he, this message translates to:
+  /// **'סך הכל: {total}₪'**
+  String total(int total);
+
+  /// No description provided for @cancel_this_plan.
+  ///
+  /// In he, this message translates to:
+  /// **'בטל תוכנית זו'**
+  String get cancel_this_plan;
+
+  /// No description provided for @our_plans.
+  ///
+  /// In he, this message translates to:
+  /// **'התוכניות שלנו'**
+  String get our_plans;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

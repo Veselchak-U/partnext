@@ -135,5 +135,18 @@
   "feedback_accepted": "Feedback\nAccepted",
   "thank_you_for_taking_time": "Thank you for taking the time\nto send us feedback",
   "continue_browsing": "Continue Browsing",
-  "continue_label": "Continue"
+  "continue_label": "Continue",
+  "who_wanted_create_business_with_you": "See who wanted to create a business opportunity with you",
+  "start_conversation_with_partners": "Start conversation with potential business partners",
+  "unlimited_business_collaborations": "Unlimited business collaborations",
+  "total": "Total: {total}₪",
+  "@total": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel_this_plan": "Cancel This Plan",
+  "our_plans": "Our plans"
 }

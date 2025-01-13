@@ -86,22 +86,26 @@ class ProfileDatasourceImpl implements ProfileDatasource {
       id: 0,
       name: '1 Week',
       price: 29,
+      priceTotal: 29,
     ),
     PricingPlanApiModel(
       id: 1,
       name: '1 Month',
       price: 99,
+      priceTotal: 99,
     ),
     PricingPlanApiModel(
       id: 2,
       name: '3 Month',
       price: 69,
+      priceTotal: 207,
       discount: 30,
     ),
     PricingPlanApiModel(
       id: 2,
       name: '6 Month',
       price: 49,
+      priceTotal: 294,
       discount: 50,
     ),
   ];

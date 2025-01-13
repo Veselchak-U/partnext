@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
 part 'user_api_model.g.dart';
 
@@ -9,7 +10,7 @@ class UserApiModel {
   final String position;
   final String phone;
   final String imageUrl;
-  final bool isPro;
+  final PricingPlanApiModel? pricingPlan;
   final String token;
 
   UserApiModel({
@@ -18,25 +19,15 @@ class UserApiModel {
     required this.position,
     required this.phone,
     required this.imageUrl,
-    required this.isPro,
+    required this.pricingPlan,
     required this.token,
   });
+
+  bool get isPro => pricingPlan != null;
 
   factory UserApiModel.fromJson(Map<String, dynamic> json) {
     return _$UserApiModelFromJson(json);
   }
 
   Map<String, dynamic> toJson() => _$UserApiModelToJson(this);
-
-  UserApiModel copyWith() {
-    return UserApiModel(
-      id: id,
-      fullName: fullName,
-      position: position,
-      phone: phone,
-      imageUrl: imageUrl,
-      isPro: isPro,
-      token: token,
-    );
-  }
 }

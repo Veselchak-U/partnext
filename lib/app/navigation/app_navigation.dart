@@ -233,6 +233,7 @@ class AppNavigation {
                       lazy: false,
                       create: (context) => UpgradeScreenVm(
                         context,
+                        DI.get<UserRepository>(),
                         DI.get<ProfileRepository>(),
                       ),
                       dispose: (context, vm) => vm.dispose(),

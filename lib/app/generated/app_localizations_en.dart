@@ -378,4 +378,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continue_label => 'Continue';
+
+  @override
+  String get who_wanted_create_business_with_you => 'See who wanted to create a business opportunity with you';
+
+  @override
+  String get start_conversation_with_partners => 'Start conversation with potential business partners';
+
+  @override
+  String get unlimited_business_collaborations => 'Unlimited business collaborations';
+
+  @override
+  String total(int total) {
+    return 'Total: $total₪';
+  }
+
+  @override
+  String get cancel_this_plan => 'Cancel This Plan';
+
+  @override
+  String get our_plans => 'Our plans';
 }

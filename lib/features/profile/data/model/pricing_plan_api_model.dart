@@ -7,12 +7,14 @@ class PricingPlanApiModel {
   final int id;
   final String name;
   final int price;
+  final int priceTotal;
   final int? discount;
 
   PricingPlanApiModel({
     required this.id,
     required this.name,
     required this.price,
+    required this.priceTotal,
     this.discount,
   });
 

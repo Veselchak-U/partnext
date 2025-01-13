@@ -135,5 +135,18 @@
   "feedback_accepted": "משוב\nהתקבל",
   "thank_you_for_taking_time": "תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב",
   "continue_browsing": "המשך גלישה",
-  "continue_label": "המשך"
+  "continue_label": "המשך",
+  "who_wanted_create_business_with_you": "ראה מי רצה ליצור איתך הזדמנות עסקית",
+  "start_conversation_with_partners": "התחל שיחה עם שותפים עסקיים פוטנציאליים",
+  "unlimited_business_collaborations": "שיתופי פעולה עסקיים ללא הגבלה",
+  "total": "סך הכל: {total}₪",
+  "@total": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel_this_plan": "בטל תוכנית זו",
+  "our_plans": "התוכניות שלנו"
 }

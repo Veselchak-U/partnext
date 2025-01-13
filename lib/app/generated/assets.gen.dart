@@ -30,6 +30,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
 
+  /// File path: assets/icons/chat_40.svg
+  SvgGenImage get chat40 => const SvgGenImage('assets/icons/chat_40.svg');
+
   /// File path: assets/icons/chat_nav_bar.svg
   SvgGenImage get chatNavBar =>
       const SvgGenImage('assets/icons/chat_nav_bar.svg');
@@ -48,6 +51,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/dropdown_expanded.svg
   SvgGenImage get dropdownExpanded =>
       const SvgGenImage('assets/icons/dropdown_expanded.svg');
+
+  /// File path: assets/icons/handshake_40.svg
+  SvgGenImage get handshake40 =>
+      const SvgGenImage('assets/icons/handshake_40.svg');
 
   /// File path: assets/icons/handshake_nav_bar.svg
   SvgGenImage get handshakeNavBar =>
@@ -90,6 +97,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
+  /// File path: assets/icons/star_40.svg
+  SvgGenImage get star40 => const SvgGenImage('assets/icons/star_40.svg');
+
   /// File path: assets/icons/swipe.svg
   SvgGenImage get swipe => const SvgGenImage('assets/icons/swipe.svg');
 
@@ -104,11 +114,13 @@ class $AssetsIconsGen {
         approve92,
         calendar,
         camera,
+        chat40,
         chatNavBar,
         close,
         closeFilled,
         dropdownClosed,
         dropdownExpanded,
+        handshake40,
         handshakeNavBar,
         linkedin,
         navEdit,
@@ -121,6 +133,7 @@ class $AssetsIconsGen {
         reject92,
         rocketNavBar,
         send,
+        star40,
         swipe,
         userNavBar
       ];
