@@ -12,6 +12,11 @@ class AppColors {
   static const shadow = Color.fromRGBO(156, 199, 236, 1);
   static const border = Color.fromRGBO(223, 232, 241, 1);
 
+  static const border0 = Color.fromRGBO(220, 220, 253, 1);
+  static const border1 = Color.fromRGBO(164, 240, 235, 1);
+  static const border2 = Color.fromRGBO(169, 239, 206, 1);
+  static const border3 = Color.fromRGBO(191, 224, 254, 1);
+
   static const white = Color.fromRGBO(255, 255, 255, 1);
   static const black = Color.fromRGBO(0, 0, 0, 1);
   static const gray = Color.fromRGBO(138, 138, 138, 1);

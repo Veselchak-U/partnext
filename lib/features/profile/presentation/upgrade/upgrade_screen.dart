@@ -5,7 +5,7 @@ import 'package:partnext/common/layouts/app_scaffold.dart';
 import 'package:partnext/common/widgets/loading_indicator.dart';
 import 'package:partnext/features/profile/presentation/upgrade/page/upgrade_first_page.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
-import 'package:partnext/features/profile/presentation/upgrade/widget/upgrade_button_block.dart';
+import 'package:partnext/features/profile/presentation/upgrade/widget/upgrade_button.dart';
 import 'package:provider/provider.dart';
 
 class UpgradeScreen extends StatelessWidget {
@@ -36,7 +36,7 @@ class UpgradeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  UpgradeButtonBlock(),
+                  UpgradeButton(),
                   SizedBox(height: 25.h),
                 ],
               ),

@@ -165,6 +165,18 @@ class $AssetsImagesGen {
   AssetGenImage get mainGradient =>
       const AssetGenImage('assets/images/main_gradient.png');
 
+  /// File path: assets/images/mask_0.png
+  AssetGenImage get mask0 => const AssetGenImage('assets/images/mask_0.png');
+
+  /// File path: assets/images/mask_1.png
+  AssetGenImage get mask1 => const AssetGenImage('assets/images/mask_1.png');
+
+  /// File path: assets/images/mask_2.png
+  AssetGenImage get mask2 => const AssetGenImage('assets/images/mask_2.png');
+
+  /// File path: assets/images/mask_3.png
+  AssetGenImage get mask3 => const AssetGenImage('assets/images/mask_3.png');
+
   /// File path: assets/images/success_registration.png
   AssetGenImage get successRegistration =>
       const AssetGenImage('assets/images/success_registration.png');
@@ -180,6 +192,10 @@ class $AssetsImagesGen {
         appLogo,
         logo,
         mainGradient,
+        mask0,
+        mask1,
+        mask2,
+        mask3,
         successRegistration,
         welcome
       ];

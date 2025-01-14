@@ -39,6 +39,7 @@ dependencies:
   path_provider:
   path:
   url_launcher: 6.3.1
+  collection:
 
   # UI
   cupertino_icons: 1.0.8

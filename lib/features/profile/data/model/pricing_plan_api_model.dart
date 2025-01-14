@@ -9,6 +9,7 @@ class PricingPlanApiModel {
   final int price;
   final int priceTotal;
   final int? discount;
+  final bool? isDefault;
 
   PricingPlanApiModel({
     required this.id,
@@ -16,6 +17,7 @@ class PricingPlanApiModel {
     required this.price,
     required this.priceTotal,
     this.discount,
+    this.isDefault,
   });
 
   factory PricingPlanApiModel.fromJson(Map<String, dynamic> json) {

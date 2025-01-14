@@ -6,8 +6,8 @@ import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
 import 'package:provider/provider.dart';
 
-class UpgradeButtonBlock extends StatelessWidget {
-  const UpgradeButtonBlock({super.key});
+class UpgradeButton extends StatelessWidget {
+  const UpgradeButton({super.key});
 
   @override
   Widget build(BuildContext context) {

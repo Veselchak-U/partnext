@@ -56,27 +56,7 @@ class UpgradeScreenVm {
     _setInitializing(false);
   }
 
-  // Future<void> sendFeedback() async {
-  //   FocusScope.of(_context).unfocus();
-  //
-  //   final validForm = formKey.currentState?.validate();
-  //   if (validForm == false) return;
-  //
-  //   _setLoading(true);
-  //   try {
-  //     await _profileRepository.sendFeedback(message);
-  //
-  //     _goFeedbackAccepted();
-  //   } on Object catch (e, st) {
-  //     LoggerService().e(error: e, stackTrace: st);
-  //     _onError('$e');
-  //   }
-  //   _setLoading(false);
-  // void _goFeedbackAccepted() {
-  //   if (!_context.mounted) return;
-  //   _context.goNamed(AppRoute.feedbackAccepted.name);
-  // }
-  // }
+  void onSelectPlan(PricingPlanApiModel plan) {}
 
   void onCancelCurrentPlan() {}
 

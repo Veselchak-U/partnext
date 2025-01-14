@@ -8,8 +8,8 @@ import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm
 import 'package:partnext/features/profile/presentation/upgrade/widget/upgrade_option.dart';
 import 'package:provider/provider.dart';
 
-class CurrentPlanSection extends StatelessWidget {
-  const CurrentPlanSection({super.key});
+class CurrentPlan extends StatelessWidget {
+  const CurrentPlan({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,8 @@ import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/simple_layout.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
-import 'package:partnext/features/profile/presentation/upgrade/widget/current_plan_section.dart';
+import 'package:partnext/features/profile/presentation/upgrade/widget/current_plan.dart';
+import 'package:partnext/features/profile/presentation/upgrade/widget/plan_grid.dart';
 import 'package:provider/provider.dart';
 
 class UpgradeFirstPage extends StatelessWidget {
@@ -29,7 +30,9 @@ class UpgradeFirstPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 28.h),
-              const CurrentPlanSection(),
+              const CurrentPlan(),
+              const PlanGrid(),
+              SizedBox(height: 24.h),
             ],
           ),
         ),
