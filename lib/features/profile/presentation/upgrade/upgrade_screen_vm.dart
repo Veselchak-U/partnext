@@ -29,6 +29,7 @@ class UpgradeScreenVm {
 
   PricingPlanApiModel? currentPlan;
   List<PricingPlanApiModel> pricingPlans = [];
+  String purchaseUrl = '';
 
   void _init() {
     _initPricingPlans();
@@ -83,24 +84,46 @@ class UpgradeScreenVm {
 
   void onCancelCurrentPlan() {}
 
-  void onContinue() {
-    final currentPage = pageController.page?.round();
-    if (currentPage == null) return;
+  Future<void> onContinue() async {
+    final newPlan = selectedPlan.value;
+    if (newPlan == null) {
+      _onError('Please select a pricing plan.', isError: false);
 
-    final bool checkResult = switch (currentPage) {
-      0 => _firstPageCheck(),
-      _ => false,
-    };
-    if (!checkResult) return;
+      return;
+    }
 
     _goNextPage();
   }
 
-  bool _firstPageCheck() {
-    return selectedPlan.value != null;
+  Future<void> onConfirmPurchase() async {
+    final newPlan = selectedPlan.value;
+    if (newPlan == null) {
+      _onError('Please select a pricing plan.', isError: false);
+
+      return;
+    }
+
+    _setLoading(true);
+    try {
+      purchaseUrl = await _profileRepository.updatePricingPlan(newPlan.id);
+      _goNextPage();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  void onPurchaseSuccess() {}
+
+  void onPurchaseTimeout() {
+    _onError('Purchase timeout');
+
+    _goPreviousPage();
   }
 
   Future<void> _goNextPage() async {
+    if (!_context.mounted) return;
     await pageController.nextPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,

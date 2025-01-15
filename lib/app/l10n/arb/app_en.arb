@@ -150,5 +150,8 @@
   "cancel_this_plan": "Cancel This Plan",
   "our_plans": "Our plans",
   "payment": "Payment",
-  "payment_desc": "Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price."
+  "payment_desc": "Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price.",
+  "confirm_purchase": "Confirm Purchase",
+  "payment_timeout": "Payment timeout",
+  "payment_timeout_in": "Payment timeout in"
 }

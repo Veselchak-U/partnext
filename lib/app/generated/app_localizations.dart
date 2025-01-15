@@ -880,6 +880,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.'**
   String get payment_desc;
+
+  /// No description provided for @confirm_purchase.
+  ///
+  /// In he, this message translates to:
+  /// **'אשר רכישה'**
+  String get confirm_purchase;
+
+  /// No description provided for @payment_timeout.
+  ///
+  /// In he, this message translates to:
+  /// **'פסק זמן תשלום'**
+  String get payment_timeout;
+
+  /// No description provided for @payment_timeout_in.
+  ///
+  /// In he, this message translates to:
+  /// **'פסק זמן תשלום ב'**
+  String get payment_timeout_in;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

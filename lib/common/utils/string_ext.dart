@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-first
+
 import 'package:flutter/material.dart';
 
 extension StringExt on String? {

@@ -44,3 +44,14 @@ class ConvertDateTime implements JsonConverter<DateTime?, String?> {
     return DateFormat('dd.MM.yyyy').format(value);
   }
 }
+
+extension DurationExt on Duration? {
+  String toCountDown() {
+    final duration = this;
+    if (duration == null) return '';
+
+    final date = DateTime(0).add(duration);
+
+    return DateFormat('mm:ss').format(date).toString();
+  }
+}

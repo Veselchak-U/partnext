@@ -404,4 +404,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get payment_desc => 'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.';
+
+  @override
+  String get confirm_purchase => 'אשר רכישה';
+
+  @override
+  String get payment_timeout => 'פסק זמן תשלום';
+
+  @override
+  String get payment_timeout_in => 'פסק זמן תשלום ב';
 }

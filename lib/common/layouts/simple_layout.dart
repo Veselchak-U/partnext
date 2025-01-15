@@ -6,6 +6,7 @@ import 'package:partnext/common/layouts/app_scaffold.dart';
 class SimpleLayout extends StatelessWidget {
   final Widget body;
   final String? titleText;
+  final Widget? title;
   final VoidCallback? onBackButtonPressed;
   final List<Widget> actions;
   final Color backgroundColor;
@@ -14,6 +15,7 @@ class SimpleLayout extends StatelessWidget {
   const SimpleLayout({
     required this.body,
     this.titleText,
+    this.title,
     this.onBackButtonPressed,
     this.actions = const [],
     this.backgroundColor = AppColors.background,
@@ -30,6 +32,7 @@ class SimpleLayout extends StatelessWidget {
       onTap: onTap,
       appBar: AppAppBar(
         titleText: titleText,
+        title: title,
         leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
         actions: actions,
         backgroundColor: Colors.transparent,

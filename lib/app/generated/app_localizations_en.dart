@@ -404,4 +404,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get payment_desc => 'Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price.';
+
+  @override
+  String get confirm_purchase => 'Confirm Purchase';
+
+  @override
+  String get payment_timeout => 'Payment timeout';
+
+  @override
+  String get payment_timeout_in => 'Payment timeout in';
 }

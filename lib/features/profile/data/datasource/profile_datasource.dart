@@ -13,6 +13,8 @@ abstract interface class ProfileDatasource {
   Future<void> sendFeedback(String message);
 
   Future<List<PricingPlanApiModel>> getPricingPlans();
+
+  Future<String> updatePricingPlan(int planId);
 }
 
 class ProfileDatasourceImpl implements ProfileDatasource {
@@ -74,6 +76,33 @@ class ProfileDatasourceImpl implements ProfileDatasource {
     //       final result = body.map((e) => PaymentPlanApiModel.fromJson(e)).toList();
     //
     //       return result;
+    //     }
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
+  }
+
+  @override
+  Future<String> updatePricingPlan(int planId) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    return 'https://www.google.com';
+
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.updatePlan}');
+    //
+    // return _apiClient.post(
+    //   uri,
+    //   body: {
+    //     "plan_id": planId,
+    //   },
+    //   parser: (response) {
+    //     if (response.body case final Map<String, dynamic> body) {
+    //       final iframeUrl = body['iframe_url'] as String?;
+    //
+    //       if (iframeUrl == null) throw ApiException(response);
+    //
+    //       return iframeUrl;
     //     }
     //
     //     throw ApiException(response);

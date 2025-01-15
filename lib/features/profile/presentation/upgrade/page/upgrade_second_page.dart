@@ -22,56 +22,40 @@ class UpgradeSecondPage extends StatelessWidget {
     return SimpleLayout(
       backgroundColor: AppColors.white,
       onBackButtonPressed: vm.onBackButtonPressed,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32).w,
-          child: Column(
-            children: [
-              SizedBox(height: 9.h),
-              Text(
-                context.l10n.payment,
-                style: AppTextStyles.s20w700,
-                textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32).w,
+        child: Column(
+          children: [
+            SizedBox(height: 9.h),
+            Text(
+              context.l10n.payment,
+              style: AppTextStyles.s20w700,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 28.h),
+            PlanLabel(vm.selectedPlan.value),
+            SizedBox(height: 24.h),
+            Text(
+              context.l10n.payment_desc,
+              style: AppTextStyles.s14w400,
+              textAlign: TextAlign.center,
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24).h,
+              child: ValueListenableBuilder(
+                valueListenable: vm.loading,
+                builder: (context, loading, _) {
+                  return CommonButton(
+                    label: context.l10n.confirm_purchase,
+                    iconPath: Assets.icons.send.path,
+                    onTap: vm.onConfirmPurchase,
+                    loading: loading,
+                  );
+                },
               ),
-              SizedBox(height: 28.h),
-              PlanLabel(vm.selectedPlan.value),
-              SizedBox(height: 24.h),
-              Container(
-                width: iframeSize,
-                height: iframeSize,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12).r,
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Center(
-                  child: Text(
-                    'iframe',
-                    style: AppTextStyles.s16w700,
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              Text(
-                context.l10n.payment_desc,
-                style: AppTextStyles.s14w400,
-                textAlign: TextAlign.center,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24).h,
-                child: ValueListenableBuilder(
-                  valueListenable: vm.loading,
-                  builder: (context, loading, _) {
-                    return CommonButton(
-                      label: context.l10n.continue_label,
-                      iconPath: Assets.icons.send.path,
-                      onTap: vm.onContinue,
-                      loading: loading,
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
