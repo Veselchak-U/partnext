@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
+import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
 import 'package:partnext/features/profile/presentation/upgrade/widget/plan_card.dart';
+import 'package:provider/provider.dart';
 
 class PlanColumn extends StatelessWidget {
   final List<PricingPlanApiModel> items;
@@ -19,6 +21,8 @@ class PlanColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.read<UpgradeScreenVm>();
+
     return Column(
       spacing: 24.r,
       children: List.generate(
@@ -29,12 +33,18 @@ class PlanColumn extends StatelessWidget {
           final borderColor = _getBorderColor(isFirstColumn, index);
           final backgroundImage = _getBackgroundImage(isFirstColumn, index);
 
-          return PlanCard(
-            item: item,
-            height: height,
-            borderColor: borderColor,
-            backgroundImage: backgroundImage,
-            onTap: () => onTap(item),
+          return ValueListenableBuilder(
+            valueListenable: vm.selectedPlan,
+            builder: (context, selectedPlan, _) {
+              return PlanCard(
+                item: item,
+                isSelected: item == selectedPlan,
+                height: height,
+                borderColor: borderColor,
+                backgroundImage: backgroundImage,
+                onTap: () => onTap(item),
+              );
+            },
           );
         },
       ),

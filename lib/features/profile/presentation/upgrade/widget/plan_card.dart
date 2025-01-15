@@ -7,6 +7,7 @@ import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart
 
 class PlanCard extends StatelessWidget {
   final PricingPlanApiModel item;
+  final bool isSelected;
   final double height;
   final Color borderColor;
   final ImageProvider backgroundImage;
@@ -14,6 +15,7 @@ class PlanCard extends StatelessWidget {
 
   const PlanCard({
     required this.item,
+    required this.isSelected,
     required this.height,
     required this.borderColor,
     required this.backgroundImage,
@@ -24,6 +26,15 @@ class PlanCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(8.r);
+    final actualBorder = isSelected ? null : Border.all(color: borderColor);
+    final actualBackgroundImage = isSelected
+        ? null
+        : DecorationImage(
+            image: backgroundImage,
+            fit: BoxFit.cover,
+          );
+    final actualBackgroundColor = isSelected ? AppColors.orange : null;
+    final actualTextColor = isSelected ? AppColors.white : AppColors.primary;
 
     return Stack(
       children: [
@@ -31,11 +42,9 @@ class PlanCard extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             borderRadius: borderRadius,
-            image: DecorationImage(
-              image: backgroundImage,
-              fit: BoxFit.cover,
-            ),
-            border: Border.all(color: borderColor),
+            image: actualBackgroundImage,
+            border: actualBorder,
+            color: actualBackgroundColor,
           ),
           child: InkWell(
             borderRadius: borderRadius,
@@ -47,7 +56,7 @@ class PlanCard extends StatelessWidget {
                 children: [
                   Text(
                     item.name,
-                    style: AppTextStyles.s20w700,
+                    style: AppTextStyles.s20w700.copyWith(color: actualTextColor),
                   ),
                   Row(
                     children: [
@@ -56,7 +65,7 @@ class PlanCard extends StatelessWidget {
                   ),
                   Text(
                     '${item.price}₪',
-                    style: AppTextStyles.s20w400,
+                    style: AppTextStyles.s20w400.copyWith(color: actualTextColor),
                   ),
                 ],
               ),

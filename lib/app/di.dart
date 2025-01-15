@@ -93,6 +93,7 @@ class DI {
         ));
     _sl.registerLazySingleton<QuestionnaireRepository>(() => QuestionnaireRepositoryImpl(
           _sl<QuestionnaireDatasource>(),
+          _sl<UserLocalDatasource>(),
         ));
     _sl.registerLazySingleton<PartnerRepository>(() => PartnerRepositoryImpl(
           _sl<PartnerDatasource>(),

@@ -25,4 +25,14 @@ class PricingPlanApiModel {
   }
 
   Map<String, dynamic> toJson() => _$PricingPlanApiModelToJson(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is PricingPlanApiModel && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }

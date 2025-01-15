@@ -93,6 +93,7 @@ class ProfileDatasourceImpl implements ProfileDatasource {
       name: '1 Month',
       price: 99,
       priceTotal: 99,
+      isDefault: true,
     ),
     PricingPlanApiModel(
       id: 2,
@@ -102,7 +103,7 @@ class ProfileDatasourceImpl implements ProfileDatasource {
       discount: 30,
     ),
     PricingPlanApiModel(
-      id: 2,
+      id: 3,
       name: '6 Month',
       price: 49,
       priceTotal: 294,

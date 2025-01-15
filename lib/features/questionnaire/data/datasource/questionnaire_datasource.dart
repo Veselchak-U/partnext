@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:partnext/app/service/network/api_client/api_client.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
@@ -24,19 +22,21 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
     this._dioApiClient,
   );
 
-  String _lastQuestionnare = '';
+  // String _lastQuestionnare = '';
   int _mockedPhotosIndex = 0;
 
   @override
   Future<QuestionnaireApiModel?> getQuestionnaire() async {
     await Future.delayed(Duration(seconds: 1));
-    try {
-      var model = QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
+    return null;
 
-      return model;
-    } catch (_) {
-      return null;
-    }
+    // try {
+    //   var model = QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
+    //
+    //   return model;
+    // } catch (_) {
+    //   return null;
+    // }
 
     // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.getQuestionnaire}');
     //
@@ -57,7 +57,7 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
   @override
   Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire) async {
     await Future.delayed(Duration(seconds: 1));
-    _lastQuestionnare = jsonEncode(questionnaire.toJson());
+    // _lastQuestionnare = jsonEncode(questionnaire.toJson());
 
     return;
 
