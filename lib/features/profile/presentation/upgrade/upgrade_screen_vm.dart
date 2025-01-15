@@ -105,7 +105,6 @@ class UpgradeScreenVm {
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
-    // isLastPage.value = pageController.page == 5;
   }
 
   Future<void> _goPreviousPage() async {
@@ -113,7 +112,6 @@ class UpgradeScreenVm {
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
-    // isLastPage.value = false;
   }
 
   void _setInitializing(bool value) {

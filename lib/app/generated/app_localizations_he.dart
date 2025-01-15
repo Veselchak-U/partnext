@@ -398,4 +398,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get our_plans => 'התוכניות שלנו';
+
+  @override
+  String get payment => 'תשלום';
+
+  @override
+  String get payment_desc => 'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.';
 }

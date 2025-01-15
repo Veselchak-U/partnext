@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:partnext/app/generated/assets.gen.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/layouts/simple_layout.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
 import 'package:partnext/features/profile/presentation/upgrade/widget/current_plan.dart';
@@ -22,7 +25,6 @@ class UpgradeFirstPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32).w,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: 9.h),
               Text(
@@ -33,7 +35,20 @@ class UpgradeFirstPage extends StatelessWidget {
               SizedBox(height: 28.h),
               const CurrentPlan(),
               const PlanGrid(),
-              SizedBox(height: 24.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24).h,
+                child: ValueListenableBuilder(
+                  valueListenable: vm.loading,
+                  builder: (context, loading, _) {
+                    return CommonButton(
+                      label: context.l10n.continue_label,
+                      iconPath: Assets.icons.send.path,
+                      onTap: vm.onContinue,
+                      loading: loading,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

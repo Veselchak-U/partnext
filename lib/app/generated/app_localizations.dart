@@ -868,6 +868,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התוכניות שלנו'**
   String get our_plans;
+
+  /// No description provided for @payment.
+  ///
+  /// In he, this message translates to:
+  /// **'תשלום'**
+  String get payment;
+
+  /// No description provided for @payment_desc.
+  ///
+  /// In he, this message translates to:
+  /// **'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.'**
+  String get payment_desc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

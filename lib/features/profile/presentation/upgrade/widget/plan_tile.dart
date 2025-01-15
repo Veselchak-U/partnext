@@ -5,7 +5,7 @@ import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
-class PlanCard extends StatelessWidget {
+class PlanTile extends StatelessWidget {
   final PricingPlanApiModel item;
   final bool isSelected;
   final double height;
@@ -13,7 +13,7 @@ class PlanCard extends StatelessWidget {
   final ImageProvider backgroundImage;
   final VoidCallback onTap;
 
-  const PlanCard({
+  const PlanTile({
     required this.item,
     required this.isSelected,
     required this.height,

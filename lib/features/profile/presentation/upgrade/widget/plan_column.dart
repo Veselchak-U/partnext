@@ -4,7 +4,7 @@ import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
-import 'package:partnext/features/profile/presentation/upgrade/widget/plan_card.dart';
+import 'package:partnext/features/profile/presentation/upgrade/widget/plan_tile.dart';
 import 'package:provider/provider.dart';
 
 class PlanColumn extends StatelessWidget {
@@ -36,7 +36,7 @@ class PlanColumn extends StatelessWidget {
           return ValueListenableBuilder(
             valueListenable: vm.selectedPlan,
             builder: (context, selectedPlan, _) {
-              return PlanCard(
+              return PlanTile(
                 item: item,
                 isSelected: item == selectedPlan,
                 height: height,
