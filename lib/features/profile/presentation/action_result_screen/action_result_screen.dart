@@ -4,24 +4,28 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
+import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/layouts/simple_layout.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
+import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
 
-class FeedbackAcceptedScreen extends StatefulWidget {
+class ActionResultScreen extends StatefulWidget {
   final NavBarIndexProvider navBarIndexProvider;
+  final ActionResultScreenParams params;
 
-  const FeedbackAcceptedScreen({
+  const ActionResultScreen({
     required this.navBarIndexProvider,
+    required this.params,
     super.key,
   });
 
   @override
-  State<FeedbackAcceptedScreen> createState() => _FeedbackAcceptedScreenState();
+  State<ActionResultScreen> createState() => _ActionResultScreenState();
 }
 
-class _FeedbackAcceptedScreenState extends State<FeedbackAcceptedScreen> {
+class _ActionResultScreenState extends State<ActionResultScreen> {
   final _loading = ValueNotifier<bool>(false);
 
   @override
@@ -42,6 +46,7 @@ class _FeedbackAcceptedScreenState extends State<FeedbackAcceptedScreen> {
   @override
   Widget build(BuildContext context) {
     return SimpleLayout(
+      sysAppBarBackgroundColor: AppColors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32).w,
         child: Column(
@@ -50,13 +55,13 @@ class _FeedbackAcceptedScreenState extends State<FeedbackAcceptedScreen> {
             Assets.images.logo.image(width: 174.w),
             SizedBox(height: 39.h),
             Text(
-              context.l10n.feedback_accepted,
+              widget.params.title,
               style: AppTextStyles.s24w700,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 16.h),
             Text(
-              context.l10n.thank_you_for_taking_time,
+              widget.params.description,
               style: AppTextStyles.s14w400,
               textAlign: TextAlign.center,
             ),

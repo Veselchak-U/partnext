@@ -10,6 +10,7 @@ class SimpleLayout extends StatelessWidget {
   final VoidCallback? onBackButtonPressed;
   final List<Widget> actions;
   final Color backgroundColor;
+  final Color? sysAppBarBackgroundColor;
   final VoidCallback? onTap;
 
   const SimpleLayout({
@@ -19,6 +20,7 @@ class SimpleLayout extends StatelessWidget {
     this.onBackButtonPressed,
     this.actions = const [],
     this.backgroundColor = AppColors.background,
+    this.sysAppBarBackgroundColor,
     this.onTap,
     super.key,
   });
@@ -27,6 +29,7 @@ class SimpleLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       backgroundColor: backgroundColor,
+      sysAppBarBackgroundColor: sysAppBarBackgroundColor,
       extendBodyBehindAppBar: true,
       safeAreaBottom: false,
       onTap: onTap,

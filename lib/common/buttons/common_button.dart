@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-match-file-name
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -77,7 +79,7 @@ class CommonButton extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 56.w),
+                    SizedBox(width: iconPath != null ? 56.w : 0),
                     Expanded(
                       child: Text(
                         label,
@@ -101,7 +103,7 @@ class CommonButton extends StatelessWidget {
                               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
                             ),
                           )
-                        : SizedBox(width: 56.w),
+                        : SizedBox(width: 0),
                   ],
                 ),
               ),

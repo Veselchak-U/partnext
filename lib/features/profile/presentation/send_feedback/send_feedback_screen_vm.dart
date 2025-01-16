@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
 
 class SendFeedbackScreenVm {
   final BuildContext _context;
@@ -48,7 +50,13 @@ class SendFeedbackScreenVm {
 
   void _goFeedbackAccepted() {
     if (!_context.mounted) return;
-    _context.goNamed(AppRoute.feedbackAccepted.name);
+    _context.goNamed(
+      AppRoute.actionResult.name,
+      extra: ActionResultScreenParams(
+        title: _context.l10n.feedback_accepted,
+        description: _context.l10n.thank_you_for_taking_time,
+      ),
+    );
   }
 
   void _setLoading(bool value) {

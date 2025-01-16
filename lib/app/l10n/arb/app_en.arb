@@ -153,5 +153,14 @@
   "payment_desc": "Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price.",
   "confirm_purchase": "Confirm Purchase",
   "payment_timeout": "Payment timeout",
-  "payment_timeout_in": "Payment timeout in"
+  "payment_timeout_in": "Payment timeout in",
+  "thank_you": "Thank You!",
+  "lets_find_out_your_opportunities": "Lets find out your opportunities :)",
+  "purchase_timeout": "Purchase timeout",
+  "please_select_pricing_plan": "Please select a pricing plan.",
+  "cancel_upgrade": "Cancel the upgrade",
+  "cancel_upgrade_desc": "Are you sure you want to cancel the upgrade? Upon expiration of the upgrade period, the upgrade will not automatically renew.",
+  "keep_upgrading": "Keep upgrading",
+  "upgrade_was_canceled": "The upgrade was canceled!",
+  "upgrade_was_canceled_desc": "You will not be automatically charged again once your upgrade expires."
 }

@@ -10,7 +10,7 @@ class Config {
   static const termsAndConditionsUrl = 'https://clublab.bitango.co.il/page/termsOfUse';
   static const privacyPolicyUrl = 'https://clublab.bitango.co.il/page/termsOfUse';
 
-  static const paymentTimeoutDuration = Duration(minutes: 1);
+  static const paymentTimeoutDuration = Duration(minutes: 10);
 
   static late final Env environment;
 

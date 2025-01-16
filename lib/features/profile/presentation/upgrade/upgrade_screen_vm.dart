@@ -1,12 +1,16 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:partnext/app/l10n/l10n.dart';
+import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
+import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
 
 class UpgradeScreenVm {
   final BuildContext _context;
@@ -82,12 +86,43 @@ class UpgradeScreenVm {
     selectedPlan.value = plan;
   }
 
-  void onCancelCurrentPlan() {}
+  Future<void> onCancelCurrentPlan() async {
+    final dialogResult = await AppDialogs.showSecondaryDialog(
+      context: _context,
+      title: _context.l10n.cancel_upgrade,
+      description: _context.l10n.cancel_upgrade_desc,
+      confirmLabel: _context.l10n.cancel_upgrade,
+      cancelLabel: _context.l10n.keep_upgrading,
+    );
+    if (dialogResult != true) return;
+
+    _setLoading(true);
+    try {
+      await _profileRepository.cancelPricingPlan();
+
+      _onCancelSuccess();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  void _onCancelSuccess() {
+    if (!_context.mounted) return;
+    _context.goNamed(
+      AppRoute.actionResult.name,
+      extra: ActionResultScreenParams(
+        title: _context.l10n.upgrade_was_canceled,
+        description: _context.l10n.upgrade_was_canceled_desc,
+      ),
+    );
+  }
 
   Future<void> onContinue() async {
     final newPlan = selectedPlan.value;
     if (newPlan == null) {
-      _onError('Please select a pricing plan.', isError: false);
+      _onError(_context.l10n.please_select_pricing_plan);
 
       return;
     }
@@ -98,7 +133,7 @@ class UpgradeScreenVm {
   Future<void> onConfirmPurchase() async {
     final newPlan = selectedPlan.value;
     if (newPlan == null) {
-      _onError('Please select a pricing plan.', isError: false);
+      _onError(_context.l10n.please_select_pricing_plan);
 
       return;
     }
@@ -114,10 +149,19 @@ class UpgradeScreenVm {
     _setLoading(false);
   }
 
-  void onPurchaseSuccess() {}
+  void onPurchaseSuccess() {
+    if (!_context.mounted) return;
+    _context.goNamed(
+      AppRoute.actionResult.name,
+      extra: ActionResultScreenParams(
+        title: _context.l10n.thank_you,
+        description: _context.l10n.lets_find_out_your_opportunities,
+      ),
+    );
+  }
 
   void onPurchaseTimeout() {
-    _onError('Purchase timeout');
+    _onError(_context.l10n.purchase_timeout);
 
     _goPreviousPage();
   }

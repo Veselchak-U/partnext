@@ -11,8 +11,8 @@ class AppRoute {
 
   static const home = AppRoute('home', '/home');
   static const profile = AppRoute('profile', '/profile');
-  static const sendFeedback = AppRoute('sendFeedback', 'sendFeedback');
-  static const feedbackAccepted = AppRoute('feedbackAccepted', '/feedbackAccepted');
+  static const sendFeedback = AppRoute('send_feedback', 'send_feedback');
+  static const actionResult = AppRoute('action_result', '/action_result');
   static const upgrade = AppRoute('upgrade', 'upgrade');
 
   final String name;

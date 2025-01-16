@@ -8,6 +8,7 @@ class AppScaffold extends StatelessWidget {
   final Widget? drawer;
   final Widget? bottomNavigationBar;
   final Color backgroundColor;
+  final Color? sysAppBarBackgroundColor;
   final bool resizeToAvoidBottomInset;
   final VoidCallback? onTap;
   final bool safeAreaBottom;
@@ -19,6 +20,7 @@ class AppScaffold extends StatelessWidget {
     this.drawer,
     this.bottomNavigationBar,
     this.backgroundColor = AppColors.background,
+    this.sysAppBarBackgroundColor,
     this.resizeToAvoidBottomInset = true,
     this.onTap,
     this.safeAreaBottom = true,
@@ -31,7 +33,7 @@ class AppScaffold extends StatelessWidget {
     return FocusLayout(
       onTap: onTap,
       child: ColoredBox(
-        color: backgroundColor,
+        color: sysAppBarBackgroundColor ?? backgroundColor,
         child: SafeArea(
           bottom: safeAreaBottom,
           child: Scaffold(

@@ -14,6 +14,8 @@ abstract interface class ProfileRepository {
   Future<List<PricingPlanApiModel>> getPricingPlans();
 
   Future<String> updatePricingPlan(int planId);
+
+  Future<void> cancelPricingPlan();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -47,5 +49,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<String> updatePricingPlan(int planId) {
     return _profileDatasource.updatePricingPlan(planId);
+  }
+
+  @override
+  Future<void> cancelPricingPlan() {
+    return _profileDatasource.cancelPricingPlan();
   }
 }

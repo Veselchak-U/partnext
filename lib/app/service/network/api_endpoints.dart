@@ -16,4 +16,5 @@ class ApiEndpoints {
   static const sendFeedback = 'api/v1/member/send_feedback';
   static const pricingPlans = 'api/v1/member/pricing_plans';
   static const updatePlan = 'api/v1/member/update_plan';
+  static const cancelPlan = 'api/v1/member/cancel_plan';
 }

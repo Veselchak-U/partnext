@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/buttons/common_button.dart';
 
 class AppDialogs {
   static Future<bool?> showConfirmationDialog({
@@ -60,6 +61,42 @@ class AppDialogs {
     );
   }
 
+  static Future<bool?> showSecondaryDialog({
+    required BuildContext context,
+    required String title,
+    required String description,
+    String? confirmLabel,
+    bool showCancelButton = true,
+    String? cancelLabel,
+    bool? isDismissible,
+  }) {
+    return showSecondaryAppDialog<bool>(
+      context: context,
+      isDismissible: isDismissible,
+      title: title,
+      description: description,
+      body: Column(
+        children: [
+          CommonButton(
+            label: confirmLabel ?? context.l10n.ok,
+            onTap: () => GoRouter.of(context).pop(true),
+          ),
+          Visibility(
+            visible: showCancelButton,
+            child: Padding(
+              padding: EdgeInsets.only(top: 8.r),
+              child: CommonButton(
+                type: CommonButtonType.bordered,
+                label: cancelLabel ?? context.l10n.cancel,
+                onTap: () => GoRouter.of(context).pop(false),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   static Future<T?> showAppDialog<T>({
     required BuildContext context,
     String? title,
@@ -75,7 +112,6 @@ class AppDialogs {
       barrierDismissible: isDismissible ?? true,
       builder: (context) {
         return Dialog(
-          backgroundColor: AppColors.primaryLight,
           child: Material(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.all(Radius.circular(20.r)),
@@ -100,6 +136,53 @@ class AppDialogs {
                       ),
                     ),
                   SizedBox(height: 32.r),
+                  body,
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static Future<T?> showSecondaryAppDialog<T>({
+    required BuildContext context,
+    String? title,
+    String? description,
+    required Widget body,
+    bool? isDismissible,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return showDialog<T>(
+      context: context,
+      barrierDismissible: isDismissible ?? true,
+      builder: (context) {
+        return Dialog(
+          child: Material(
+            color: AppColors.white,
+            borderRadius: BorderRadius.all(Radius.circular(8.r)),
+            child: Padding(
+              padding: padding ?? const EdgeInsets.fromLTRB(24, 39, 24, 32).r,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (title?.isNotEmpty == true)
+                    Text(
+                      title ?? '',
+                      style: AppTextStyles.s20w700,
+                      textAlign: TextAlign.center,
+                    ),
+                  if (description?.isNotEmpty == true)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8).r,
+                      child: Text(
+                        description ?? '',
+                        style: AppTextStyles.s14w400,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  SizedBox(height: 24.r),
                   body,
                 ],
               ),

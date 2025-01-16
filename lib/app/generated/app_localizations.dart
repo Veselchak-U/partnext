@@ -898,6 +898,60 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'פסק זמן תשלום ב'**
   String get payment_timeout_in;
+
+  /// No description provided for @thank_you.
+  ///
+  /// In he, this message translates to:
+  /// **'תודה!'**
+  String get thank_you;
+
+  /// No description provided for @lets_find_out_your_opportunities.
+  ///
+  /// In he, this message translates to:
+  /// **'בואו לגלות את ההזדמנויות שלך :)'**
+  String get lets_find_out_your_opportunities;
+
+  /// No description provided for @purchase_timeout.
+  ///
+  /// In he, this message translates to:
+  /// **'פסק זמן לרכישה'**
+  String get purchase_timeout;
+
+  /// No description provided for @please_select_pricing_plan.
+  ///
+  /// In he, this message translates to:
+  /// **'אנא בחר תוכנית תמחור.'**
+  String get please_select_pricing_plan;
+
+  /// No description provided for @cancel_upgrade.
+  ///
+  /// In he, this message translates to:
+  /// **'בטל את השדרוג'**
+  String get cancel_upgrade;
+
+  /// No description provided for @cancel_upgrade_desc.
+  ///
+  /// In he, this message translates to:
+  /// **'האם אתה בטוח שברצונך לבטל את השדרוג? עם תום תקופת השדרוג, השדרוג לא יתחדש אוטומטית.'**
+  String get cancel_upgrade_desc;
+
+  /// No description provided for @keep_upgrading.
+  ///
+  /// In he, this message translates to:
+  /// **'המשך לשדרג'**
+  String get keep_upgrading;
+
+  /// No description provided for @upgrade_was_canceled.
+  ///
+  /// In he, this message translates to:
+  /// **'השדרוג בוטל!'**
+  String get upgrade_was_canceled;
+
+  /// No description provided for @upgrade_was_canceled_desc.
+  ///
+  /// In he, this message translates to:
+  /// **'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.'**
+  String get upgrade_was_canceled_desc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

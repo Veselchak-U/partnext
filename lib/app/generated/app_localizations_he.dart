@@ -413,4 +413,31 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get payment_timeout_in => 'פסק זמן תשלום ב';
+
+  @override
+  String get thank_you => 'תודה!';
+
+  @override
+  String get lets_find_out_your_opportunities => 'בואו לגלות את ההזדמנויות שלך :)';
+
+  @override
+  String get purchase_timeout => 'פסק זמן לרכישה';
+
+  @override
+  String get please_select_pricing_plan => 'אנא בחר תוכנית תמחור.';
+
+  @override
+  String get cancel_upgrade => 'בטל את השדרוג';
+
+  @override
+  String get cancel_upgrade_desc => 'האם אתה בטוח שברצונך לבטל את השדרוג? עם תום תקופת השדרוג, השדרוג לא יתחדש אוטומטית.';
+
+  @override
+  String get keep_upgrading => 'המשך לשדרג';
+
+  @override
+  String get upgrade_was_canceled => 'השדרוג בוטל!';
+
+  @override
+  String get upgrade_was_canceled_desc => 'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.';
 }

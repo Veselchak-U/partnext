@@ -29,9 +29,10 @@ import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen.dart';
+import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
 import 'package:partnext/features/profile/presentation/profile_screen.dart';
 import 'package:partnext/features/profile/presentation/profile_screen_vm.dart';
-import 'package:partnext/features/profile/presentation/send_feedback/feedback_accepted_screen.dart';
 import 'package:partnext/features/profile/presentation/send_feedback/send_feedback_screen.dart';
 import 'package:partnext/features/profile/presentation/send_feedback/send_feedback_screen_vm.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen.dart';
@@ -243,10 +244,11 @@ class AppNavigation {
                 ],
               ),
               GoRoute(
-                name: AppRoute.feedbackAccepted.name,
-                path: AppRoute.feedbackAccepted.path,
-                builder: (context, state) => FeedbackAcceptedScreen(
+                name: AppRoute.actionResult.name,
+                path: AppRoute.actionResult.path,
+                builder: (context, state) => ActionResultScreen(
                   navBarIndexProvider: DI.get<NavBarIndexProvider>(),
+                  params: state.extra as ActionResultScreenParams,
                 ),
               ),
             ],

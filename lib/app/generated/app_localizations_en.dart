@@ -413,4 +413,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get payment_timeout_in => 'Payment timeout in';
+
+  @override
+  String get thank_you => 'Thank You!';
+
+  @override
+  String get lets_find_out_your_opportunities => 'Lets find out your opportunities :)';
+
+  @override
+  String get purchase_timeout => 'Purchase timeout';
+
+  @override
+  String get please_select_pricing_plan => 'Please select a pricing plan.';
+
+  @override
+  String get cancel_upgrade => 'Cancel the upgrade';
+
+  @override
+  String get cancel_upgrade_desc => 'Are you sure you want to cancel the upgrade? Upon expiration of the upgrade period, the upgrade will not automatically renew.';
+
+  @override
+  String get keep_upgrading => 'Keep upgrading';
+
+  @override
+  String get upgrade_was_canceled => 'The upgrade was canceled!';
+
+  @override
+  String get upgrade_was_canceled_desc => 'You will not be automatically charged again once your upgrade expires.';
 }

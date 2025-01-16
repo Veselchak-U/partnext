@@ -15,6 +15,8 @@ abstract interface class ProfileDatasource {
   Future<List<PricingPlanApiModel>> getPricingPlans();
 
   Future<String> updatePricingPlan(int planId);
+
+  Future<void> cancelPricingPlan();
 }
 
 class ProfileDatasourceImpl implements ProfileDatasource {
@@ -104,6 +106,24 @@ class ProfileDatasourceImpl implements ProfileDatasource {
     //
     //       return iframeUrl;
     //     }
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
+  }
+
+  @override
+  Future<void> cancelPricingPlan() async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    return;
+
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.cancelPlan}');
+    //
+    // return _apiClient.post(
+    //   uri,
+    //   parser: (response) {
+    //     if (response.statusCode == HttpStatus.ok) return;
     //
     //     throw ApiException(response);
     //   },
