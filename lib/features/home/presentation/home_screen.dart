@@ -47,9 +47,12 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, properties) {
                   final item = recommendations[properties.index];
 
-                  return Padding(
+                  return RecommendationItemWidget(
+                    item,
+                    onOpenLink: vm.onOpenLink,
+                    onApprove: vm.onApprove,
+                    onReject: vm.onReject,
                     padding: EdgeInsets.only(top: topBodyPadding),
-                    child: RecommendationItemWidget(item),
                   );
                 },
                 overlayBuilder: (context, swipeProperty) {

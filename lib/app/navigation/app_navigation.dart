@@ -18,6 +18,8 @@ import 'package:partnext/features/auth/presentation/phone_validation/phone_valid
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
+import 'package:partnext/features/grow/presentation/grow_screen.dart';
+import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -192,6 +194,23 @@ class AppNavigation {
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const HomeScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoute.grow.name,
+                path: AppRoute.grow.path,
+                builder: (context, state) => Provider(
+                  lazy: false,
+                  create: (context) => GrowScreenVm(
+                    context,
+                    DI.get<PartnerRepository>(),
+                  ),
+                  dispose: (context, vm) => vm.dispose(),
+                  child: const GrowScreen(),
                 ),
               ),
             ],

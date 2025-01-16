@@ -120,13 +120,13 @@ class _NavBarScreenState extends State<NavBarScreen> {
                         ),
                         _NavigationBarItem(
                           iconPath: Assets.icons.rocketNavBar.path,
-                          selected: currentIndex == 22,
-                          onTap: () => _onTabSelected(22),
+                          selected: currentIndex == 1,
+                          onTap: () => _onTabSelected(1),
                         ),
                         _NavigationBarItem(
                           iconPath: Assets.icons.userNavBar.path,
-                          selected: currentIndex == 1,
-                          onTap: () => _onTabSelected(1),
+                          selected: currentIndex == 2,
+                          onTap: () => _onTabSelected(2),
                         ),
                       ],
                     ),

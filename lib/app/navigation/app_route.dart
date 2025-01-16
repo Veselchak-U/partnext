@@ -10,10 +10,14 @@ class AppRoute {
   static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
 
   static const home = AppRoute('home', '/home');
+
+  static const grow = AppRoute('grow', '/grow');
+
   static const profile = AppRoute('profile', '/profile');
-  static const sendFeedback = AppRoute('send_feedback', 'send_feedback');
-  static const actionResult = AppRoute('action_result', '/action_result');
   static const upgrade = AppRoute('upgrade', 'upgrade');
+  static const sendFeedback = AppRoute('send_feedback', 'send_feedback');
+
+  static const actionResult = AppRoute('action_result', '/action_result');
 
   final String name;
   final String path;

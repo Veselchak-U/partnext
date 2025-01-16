@@ -54,6 +54,14 @@ class HomeScreenVm {
     getRecommendations();
   }
 
+  void onReject() {
+    swipableController.next(swipeDirection: SwipeDirection.left);
+  }
+
+  void onApprove() {
+    swipableController.next(swipeDirection: SwipeDirection.right);
+  }
+
   Future<void> onSwipeCompleted(int index, SwipeDirection direction) async {
     _handleRecommendation(
       index,
@@ -82,18 +90,10 @@ class HomeScreenVm {
     // _setLoading(false);
   }
 
-  void openLink(String? profileUrl) {
-    if (profileUrl == null) return;
+  void onOpenLink(String? url) {
+    if (url == null) return;
 
-    UrlLauncher.launchURL(profileUrl);
-  }
-
-  void onReject() {
-    swipableController.next(swipeDirection: SwipeDirection.left);
-  }
-
-  void onApprove() {
-    swipableController.next(swipeDirection: SwipeDirection.right);
+    UrlLauncher.launchURL(url);
   }
 
   void _setLoading(bool value) {

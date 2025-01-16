@@ -12,6 +12,8 @@ abstract interface class PartnerDatasource {
     int id, {
     required bool confirm,
   });
+
+  Future<List<PartnerApiModel>> getPartners();
 }
 
 class PartnerDatasourceImpl implements PartnerDatasource {
@@ -63,6 +65,31 @@ class PartnerDatasourceImpl implements PartnerDatasource {
     //   },
     //   parser: (response) {
     //     if (response.statusCode == HttpStatus.ok) return;
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
+  }
+
+  @override
+  Future<List<PartnerApiModel>> getPartners() {
+    return Future.delayed(
+      Duration(seconds: 1),
+      () => _mockedPartners,
+    );
+
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.partners}');
+    //
+    // return _apiClient.get(
+    //   uri,
+    //   parser: (response) {
+    //     if (response.body case final List? body) {
+    //       if (body == null || body.isEmpty) return [];
+    //
+    //       final result = body.map((e) => PartnerApiModel.fromJson(e)).toList();
+    //
+    //       return result;
+    //     }
     //
     //     throw ApiException(response);
     //   },
