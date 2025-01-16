@@ -33,7 +33,7 @@ class PhotoItemView extends StatelessWidget {
                   ClipRRect(
                     borderRadius: borderRadius,
                     child: CachedNetworkImage(
-                      imageUrl: imageUrl ?? '',
+                      imageUrl: imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),

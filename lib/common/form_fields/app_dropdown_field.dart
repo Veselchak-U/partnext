@@ -94,13 +94,13 @@ class _AppDropdownFieldState<T> extends State<AppDropdownField<T>> {
           ),
           searchFieldDecoration: SearchFieldDecoration(
             textStyle: AppTextStyles.s14w400,
-            hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withOpacity(0.5)),
+            hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withValues(alpha: 255 * 0.5)),
           ),
         );
 
         final disabledDecoration = CustomDropdownDisabledDecoration(
-          hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withOpacity(0.5)),
-          headerStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withOpacity(0.5)),
+          hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withValues(alpha: 255 * 0.5)),
+          headerStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray.withValues(alpha: 255 * 0.5)),
           suffixIcon: const SizedBox.shrink(),
         );
 
@@ -184,7 +184,7 @@ class _AppDropdownFieldState<T> extends State<AppDropdownField<T>> {
                     start: 34.w,
                     child: AppFieldHeader(
                       text: headerText,
-                      color: headerTextColor.withOpacity(widget.enabled ? 1 : 0.5),
+                      color: headerTextColor.withValues(alpha: widget.enabled ? 255 : 255 * 0.5),
                     ),
                   ),
                 ],
@@ -206,7 +206,7 @@ class _AppDropdownFieldState<T> extends State<AppDropdownField<T>> {
       alignment: AlignmentDirectional.centerStart,
       child: Text(
         widget.hint ?? '',
-        style: AppTextStyles.s14w400.copyWith(color: AppColors.disabled.withOpacity(enabled ? 1 : 0.5)),
+        style: AppTextStyles.s14w400.copyWith(color: AppColors.disabled.withValues(alpha: enabled ? 1 : 0.5)),
       ),
     );
   }
@@ -216,7 +216,7 @@ class _AppDropdownFieldState<T> extends State<AppDropdownField<T>> {
       alignment: AlignmentDirectional.centerStart,
       child: Text(
         '$item',
-        style: AppTextStyles.s14w400.copyWith(color: AppColors.text.withOpacity(enabled ? 1 : 0.5)),
+        style: AppTextStyles.s14w400.copyWith(color: AppColors.text.withValues(alpha: enabled ? 1 : 0.5)),
       ),
     );
   }

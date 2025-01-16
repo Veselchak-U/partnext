@@ -19,7 +19,7 @@ class NavigationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = AppColors.primary.withOpacity(onTap == null ? 0.3 : 1.0);
+    final foregroundColor = AppColors.primary.withValues(alpha: onTap == null ? 0.3 : 1);
 
     return Material(
       child: InkWell(

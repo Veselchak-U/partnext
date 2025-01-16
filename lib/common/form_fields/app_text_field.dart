@@ -145,9 +145,9 @@ class _AppTextFieldState extends State<AppTextField> {
             // final headerTextColor = hasError ? AppColors.red : AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5);
 
             final prefixIconPath = widget.prefixIconPath;
-            final prefixIconColor = widget.prefixIconColor?.withOpacity(widget.enabled ? 1 : 0.5);
+            final prefixIconColor = widget.prefixIconColor?.withValues(alpha: widget.enabled ? 1 : 0.5);
             final suffixIconPath = widget.suffixIconPath;
-            final suffixIconColor = widget.suffixIconColor?.withOpacity(widget.enabled ? 1 : 0.5);
+            final suffixIconColor = widget.suffixIconColor?.withValues(alpha: widget.enabled ? 1 : 0.5);
 
             Widget suffixIcon = SizedBox(width: max(24, 24.r));
 
@@ -224,7 +224,7 @@ class _AppTextFieldState extends State<AppTextField> {
                                 keyboardType: widget.keyboardType,
                                 textInputAction: widget.textInputAction ?? TextInputAction.next,
                                 style: AppTextStyles.s14w400.copyWith(
-                                  color: AppColors.primary.withOpacity(widget.enabled ? 1 : 0.5),
+                                  color: AppColors.primary.withValues(alpha: widget.enabled ? 1 : 0.5),
                                 ),
                                 decoration: InputDecoration(
                                   // labelText: labelText,

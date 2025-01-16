@@ -3,11 +3,9 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 
 class NavBarScreenVm {
-  final BuildContext _context;
   final NavBarIndexProvider _navBarIndexProvider;
 
   NavBarScreenVm(
-    this._context,
     this._navBarIndexProvider,
   ) {
     _init();

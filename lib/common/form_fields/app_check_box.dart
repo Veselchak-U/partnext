@@ -21,8 +21,8 @@ class AppCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = onChanged != null;
-    final borderColor = color ?? AppColors.backgroundDark.withOpacity(enabled ? 1 : 0.5);
-    final foregroundColor = color ?? AppColors.primary.withOpacity(enabled ? 1 : 0.5);
+    final borderColor = color ?? AppColors.backgroundDark.withValues(alpha: enabled ? 1 : 0.5);
+    final foregroundColor = color ?? AppColors.primary.withValues(alpha: enabled ? 1 : 0.5);
 
     return Row(
       children: [

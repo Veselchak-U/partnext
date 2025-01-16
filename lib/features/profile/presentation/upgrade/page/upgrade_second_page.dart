@@ -16,8 +16,6 @@ class UpgradeSecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<UpgradeScreenVm>();
-    final screenWidth = MediaQuery.of(context).size.width;
-    final iframeSize = screenWidth - (32.w * 2);
 
     return SimpleLayout(
       backgroundColor: AppColors.white,

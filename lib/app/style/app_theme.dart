@@ -67,7 +67,7 @@ class AppTheme {
   static final _textSelectionThemeLight = TextSelectionThemeData(
     cursorColor: AppColors.primary,
     selectionHandleColor: AppColors.primary,
-    selectionColor: AppColors.primary.withOpacity(0.3),
+    selectionColor: AppColors.primary.withValues(alpha: 0.3),
   );
 
   static final _checkboxThemeLight = CheckboxThemeData(

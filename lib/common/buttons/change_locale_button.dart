@@ -15,7 +15,7 @@ class ChangeLocaleButton extends StatelessWidget {
             icon: const Icon(Icons.translate),
             iconSize: 24.r,
             style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll<Color?>(Colors.grey.withOpacity(0.3)),
+              backgroundColor: WidgetStatePropertyAll<Color?>(Colors.grey.withValues(alpha: 0.3)),
               foregroundColor: const WidgetStatePropertyAll<Color?>(Colors.white),
               fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
             ),

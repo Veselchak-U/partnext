@@ -172,7 +172,6 @@ class AppNavigation {
           return Provider(
             lazy: false,
             create: (context) => NavBarScreenVm(
-              context,
               DI.get<NavBarIndexProvider>(),
             ),
             dispose: (context, vm) => vm.dispose(),
@@ -190,7 +189,6 @@ class AppNavigation {
                   create: (context) => HomeScreenVm(
                     context,
                     DI.get<PartnerRepository>(),
-                    DI.get<UserRepository>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const HomeScreen(),

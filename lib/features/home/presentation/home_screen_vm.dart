@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
-import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:swipable_stack/swipable_stack.dart';
@@ -10,12 +9,10 @@ import 'package:swipable_stack/swipable_stack.dart';
 class HomeScreenVm {
   final BuildContext _context;
   final PartnerRepository _partnerRepository;
-  final UserRepository _userRepository;
 
   HomeScreenVm(
     this._context,
     this._partnerRepository,
-    this._userRepository,
   ) {
     _init();
   }

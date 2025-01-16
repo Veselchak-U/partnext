@@ -35,7 +35,7 @@ class PartnershipDescriptionOverlay {
             onTap: onTap,
             child: Material(
               borderRadius: BorderRadius.circular(8).r,
-              color: AppColors.white.withOpacity(1),
+              color: AppColors.white,
               shadowColor: AppColors.shadow,
               elevation: 4,
               child: Padding(

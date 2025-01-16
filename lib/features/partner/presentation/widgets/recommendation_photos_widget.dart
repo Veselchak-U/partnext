@@ -120,7 +120,7 @@ class _RecommendationPhotosWidgetState extends State<RecommendationPhotosWidget>
                     iconSize: 24.r,
                     alignment: Alignment.centerLeft,
                     style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withOpacity(0.4)),
+                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
                       foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
                       fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
                     ),
@@ -130,7 +130,7 @@ class _RecommendationPhotosWidgetState extends State<RecommendationPhotosWidget>
                     icon: Icon(Icons.arrow_forward_ios),
                     iconSize: 24.r,
                     style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withOpacity(0.4)),
+                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
                       foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
                       fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
                     ),
