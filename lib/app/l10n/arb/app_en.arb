@@ -162,5 +162,7 @@
   "cancel_upgrade_desc": "Are you sure you want to cancel the upgrade? Upon expiration of the upgrade period, the upgrade will not automatically renew.",
   "keep_upgrading": "Keep upgrading",
   "upgrade_was_canceled": "The upgrade was canceled!",
-  "upgrade_was_canceled_desc": "You will not be automatically charged again once your upgrade expires."
+  "upgrade_was_canceled_desc": "You will not be automatically charged again once your upgrade expires.",
+  "partnext_grow": "Partnext Grow",
+  "your_growth_can_accelerate": "Your growth can accelerate with the connections you achieve here!\nSee who wants to connect with you."
 }

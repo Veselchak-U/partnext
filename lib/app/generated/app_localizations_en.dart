@@ -440,4 +440,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get upgrade_was_canceled_desc => 'You will not be automatically charged again once your upgrade expires.';
+
+  @override
+  String get partnext_grow => 'Partnext Grow';
+
+  @override
+  String get your_growth_can_accelerate => 'Your growth can accelerate with the connections you achieve here!\nSee who wants to connect with you.';
 }

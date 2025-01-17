@@ -13,6 +13,7 @@ import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
@@ -112,5 +113,8 @@ class DI {
 
   void _providers() {
     _sl.registerLazySingleton<NavBarIndexProvider>(() => NavBarIndexProviderImpl());
+    _sl.registerLazySingleton<PartnersProvider>(() => PartnersProviderImpl(
+          _sl<PartnerRepository>(),
+        ));
   }
 }

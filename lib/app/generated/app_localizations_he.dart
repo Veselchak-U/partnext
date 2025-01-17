@@ -440,4 +440,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get upgrade_was_canceled_desc => 'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.';
+
+  @override
+  String get partnext_grow => 'לגדול Partnext';
+
+  @override
+  String get your_growth_can_accelerate => 'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.';
 }

@@ -952,6 +952,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.'**
   String get upgrade_was_canceled_desc;
+
+  /// No description provided for @partnext_grow.
+  ///
+  /// In he, this message translates to:
+  /// **'לגדול Partnext'**
+  String get partnext_grow;
+
+  /// No description provided for @your_growth_can_accelerate.
+  ///
+  /// In he, this message translates to:
+  /// **'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.'**
+  String get your_growth_can_accelerate;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

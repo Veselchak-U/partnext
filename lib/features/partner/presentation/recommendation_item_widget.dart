@@ -44,7 +44,10 @@ class RecommendationItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RecommendationPhotosWidget(item.questionnaire.photos),
+              Hero(
+                tag: item.questionnaire.photos.first,
+                child: RecommendationPhotosWidget(item.questionnaire.photos),
+              ),
               SizedBox(height: 22.h),
               RecommendationProfileUrlWidget(
                 item.questionnaire.profileUrl,

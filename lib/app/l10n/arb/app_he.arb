@@ -162,5 +162,7 @@
   "cancel_upgrade_desc": "האם אתה בטוח שברצונך לבטל את השדרוג? עם תום תקופת השדרוג, השדרוג לא יתחדש אוטומטית.",
   "keep_upgrading": "המשך לשדרג",
   "upgrade_was_canceled": "השדרוג בוטל!",
-  "upgrade_was_canceled_desc": "לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג."
+  "upgrade_was_canceled_desc": "לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.",
+  "partnext_grow": "לגדול Partnext",
+  "your_growth_can_accelerate": "הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך."
 }

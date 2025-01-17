@@ -10,7 +10,9 @@ class ApiEndpoints {
 
   // Parnters
   static const recommendations = 'api/v1/member/recommendations';
+  static const handleRecommendation = 'api/v1/member/handle_recommendation';
   static const partners = 'api/v1/member/partners';
+  static const handlePartner = 'api/v1/member/handle_partner';
 
   // Profile
   static const user = 'api/v1/member/user';

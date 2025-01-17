@@ -41,17 +41,20 @@ class PartnerItemWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 112.r,
-                    height: 112.r,
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      borderRadius: BorderRadius.circular(8).r,
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          item.questionnaire.photos.first,
+                  Hero(
+                    tag: item.questionnaire.photos.first,
+                    child: Container(
+                      width: 112.r,
+                      height: 112.r,
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        borderRadius: BorderRadius.circular(8).r,
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            item.questionnaire.photos.first,
+                          ),
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

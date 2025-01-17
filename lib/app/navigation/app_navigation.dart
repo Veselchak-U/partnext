@@ -18,9 +18,11 @@ import 'package:partnext/features/auth/presentation/phone_validation/phone_valid
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
+import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/grow/presentation/grow_screen.dart';
 import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
 import 'package:partnext/features/grow/presentation/partner_details/partner_details_screen.dart';
+import 'package:partnext/features/grow/presentation/partner_details/partner_details_screen_vm.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -209,7 +211,7 @@ class AppNavigation {
                   lazy: false,
                   create: (context) => GrowScreenVm(
                     context,
-                    DI.get<PartnerRepository>(),
+                    DI.get<PartnersProvider>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const GrowScreen(),
@@ -218,8 +220,15 @@ class AppNavigation {
                   GoRoute(
                     name: AppRoute.partnerDetails.name,
                     path: AppRoute.partnerDetails.path,
-                    builder: (context, state) => PartnerDetailsScreen(
-                      item: state.extra as PartnerApiModel,
+                    builder: (context, state) => Provider(
+                      lazy: false,
+                      create: (context) => PartnerDetailsScreenVm(
+                        context,
+                        DI.get<PartnersProvider>(),
+                        partner: state.extra as PartnerApiModel,
+                      ),
+                      dispose: (context, vm) => vm.dispose(),
+                      child: const PartnerDetailsScreen(),
                     ),
                   ),
                 ],

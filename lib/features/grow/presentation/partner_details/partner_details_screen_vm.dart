@@ -1,51 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
-class GrowScreenVm {
+class PartnerDetailsScreenVm {
   final BuildContext _context;
   final PartnersProvider _partnersProvider;
+  final PartnerApiModel partner;
 
-  GrowScreenVm(
+  PartnerDetailsScreenVm(
     this._context,
-    this._partnersProvider,
-  ) {
+    this._partnersProvider, {
+    required this.partner,
+  }) {
     _init();
   }
 
   final loading = ValueNotifier<bool>(false);
-  final partners = ValueNotifier<List<PartnerApiModel>?>(null);
 
-  void _init() {
-    _partnersProvider.addListener(_partnersProviderListener);
-    _refreshPartners();
-  }
+  void _init() {}
 
   void dispose() {
-    _partnersProvider.removeListener(_partnersProviderListener);
-
     loading.dispose();
-    partners.dispose();
-  }
-
-  Future<void> _refreshPartners() async {
-    _setLoading(true);
-    try {
-      await _partnersProvider.refreshPartners();
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  void onRefresh() {
-    _refreshPartners();
   }
 
   void openLink(String? profileUrl) {
@@ -54,17 +33,11 @@ class GrowScreenVm {
     UrlLauncher.launchURL(profileUrl);
   }
 
-  void onOpenPartnerDetails(PartnerApiModel item) {
-    _context.pushNamed(
-      AppRoute.partnerDetails.name,
-      extra: item,
-    );
-  }
-
-  Future<void> onApprove(PartnerApiModel partner) async {
+  Future<void> onApprove() async {
     _setLoading(true);
     try {
       await _partnersProvider.approve(partner);
+      _goBack();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -72,10 +45,11 @@ class GrowScreenVm {
     _setLoading(false);
   }
 
-  Future<void> onReject(PartnerApiModel partner) async {
+  Future<void> onReject() async {
     _setLoading(true);
     try {
       await _partnersProvider.reject(partner);
+      _goBack();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -83,9 +57,9 @@ class GrowScreenVm {
     _setLoading(false);
   }
 
-  void _partnersProviderListener() {
+  void _goBack() {
     if (!_context.mounted) return;
-    partners.value = _partnersProvider.partners;
+    _context.pop();
   }
 
   void _setLoading(bool value) {
