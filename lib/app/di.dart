@@ -13,6 +13,8 @@ import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
+import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -83,6 +85,9 @@ class DI {
           _sl<ApiClient>(),
           _sl<DioApiClient>(),
         ));
+    _sl.registerLazySingleton<ChatDatasource>(() => ChatDatasourceImpl(
+          _sl<ApiClient>(),
+        ));
   }
 
   void _repositories() {
@@ -101,6 +106,9 @@ class DI {
         ));
     _sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(
           _sl<ProfileDatasource>(),
+        ));
+    _sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImpl(
+          _sl<ChatDatasource>(),
         ));
   }
 

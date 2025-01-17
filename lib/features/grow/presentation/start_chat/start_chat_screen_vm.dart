@@ -3,18 +3,17 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
-import 'package:partnext/common/utils/url_launcher.dart';
-import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
+import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
-class PartnerDetailsScreenVm {
+class StartChatScreenVm {
   final BuildContext _context;
-  final PartnersProvider _partnersProvider;
+  final ChatRepository _chatRepository;
   final PartnerApiModel partner;
 
-  PartnerDetailsScreenVm(
+  StartChatScreenVm(
     this._context,
-    this._partnersProvider, {
+    this._chatRepository, {
     required this.partner,
   }) {
     _init();
@@ -28,17 +27,13 @@ class PartnerDetailsScreenVm {
     loading.dispose();
   }
 
-  void openLink(String? profileUrl) {
-    if (profileUrl == null) return;
-
-    UrlLauncher.launchURL(profileUrl);
-  }
-
-  Future<void> onApprove() async {
+  Future<void> onStartConversation() async {
     _setLoading(true);
     try {
-      await _partnersProvider.approve(partner);
-      _startChat();
+      final chat = await _chatRepository.createChat(partner.id);
+      await _chatRepository.createChat(partner.id);
+
+      _goChatScreen(chat.id);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -46,29 +41,12 @@ class PartnerDetailsScreenVm {
     _setLoading(false);
   }
 
-  Future<void> onReject() async {
-    _setLoading(true);
-    try {
-      await _partnersProvider.reject(partner);
-      _goBack();
-    } on Object catch (e, st) {
-      LoggerService().e(error: e, stackTrace: st);
-      _onError('$e');
-    }
-    _setLoading(false);
-  }
-
-  void _startChat() {
+  void _goChatScreen(int chatId) {
     if (!_context.mounted) return;
-    _context.goNamed(
-      AppRoute.startChat.name,
-      extra: partner,
+    _context.pushNamed(
+      AppRoute.chat.name,
+      extra: chatId,
     );
-  }
-
-  void _goBack() {
-    if (!_context.mounted) return;
-    _context.pop();
   }
 
   void _setLoading(bool value) {

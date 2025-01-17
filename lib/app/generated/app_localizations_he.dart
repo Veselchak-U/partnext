@@ -446,4 +446,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get your_growth_can_accelerate => 'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.';
+
+  @override
+  String get lets_talk_business => 'בואו נדבר על עסקים';
 }

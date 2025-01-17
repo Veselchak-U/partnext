@@ -65,6 +65,7 @@ class GrowScreenVm {
     _setLoading(true);
     try {
       await _partnersProvider.approve(partner);
+      _startChat(partner);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -81,6 +82,14 @@ class GrowScreenVm {
       _onError('$e');
     }
     _setLoading(false);
+  }
+
+  void _startChat(PartnerApiModel partner) {
+    if (!_context.mounted) return;
+    _context.goNamed(
+      AppRoute.startChat.name,
+      extra: partner,
+    );
   }
 
   void _partnersProviderListener() {

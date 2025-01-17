@@ -446,4 +446,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get your_growth_can_accelerate => 'Your growth can accelerate with the connections you achieve here!\nSee who wants to connect with you.';
+
+  @override
+  String get lets_talk_business => 'Let\'s Talk Business';
 }

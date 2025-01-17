@@ -964,6 +964,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.'**
   String get your_growth_can_accelerate;
+
+  /// No description provided for @lets_talk_business.
+  ///
+  /// In he, this message translates to:
+  /// **'בואו נדבר על עסקים'**
+  String get lets_talk_business;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

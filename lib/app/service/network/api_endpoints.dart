@@ -14,6 +14,10 @@ class ApiEndpoints {
   static const partners = 'api/v1/member/partners';
   static const handlePartner = 'api/v1/member/handle_partner';
 
+  // Chats
+  static const createChat = 'api/v1/member/create_chat';
+  static const sendMessage = 'api/v1/member/send_message';
+
   // Profile
   static const user = 'api/v1/member/user';
   static const sendFeedback = 'api/v1/member/send_feedback';
