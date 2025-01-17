@@ -101,8 +101,8 @@ class PartnerDatasourceImpl implements PartnerDatasource {
       id: 1,
       fullName: 'Eli Lavi',
       questionnaire: QuestionnaireApiModel(
-        myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
-        partnerPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
+        myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner, PartnershipType.other],
+        partnerPartnershipTypes: [PartnershipType.ideaHolder],
         myInterests: [InterestType.insurance, InterestType.realEstate],
         partnerInterests: [InterestType.fashion, InterestType.creatives],
         position: 'Co- Funder and CEO of Unnamed',
@@ -122,11 +122,11 @@ class PartnerDatasourceImpl implements PartnerDatasource {
       id: 2,
       fullName: 'John Kirby',
       questionnaire: QuestionnaireApiModel(
-        myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
-        partnerPartnershipTypes: [PartnershipType.businessOwner, PartnershipType.ideaHolder],
+        myPartnershipTypes: [PartnershipType.businessOwner, PartnershipType.startupOwner, PartnershipType.other],
+        partnerPartnershipTypes: [PartnershipType.ideaHolder],
         myInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
-        partnerInterests: [InterestType.artAndEntertainment, InterestType.creatives, InterestType.fashion],
-        position: 'Co- Funder and CEO of Unnamed',
+        partnerInterests: [InterestType.education, InterestType.insurance, InterestType.foodAndBeverage],
+        position: 'Startup holder',
         bio:
             'Hey Im Eli, i have profound background in Cybersecurity and Information Technology is combined with multidisciplinary technological strengths. My hands-on approach, unique expertise and passion for innovation and disruption lend themselves to real value to his customers, partners and investors a like.',
         experience: ExperienceDuration.from0To2,

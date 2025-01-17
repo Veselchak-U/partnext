@@ -55,6 +55,7 @@ class GrowScreen extends StatelessWidget {
                             padding: EdgeInsets.only(bottom: 16.h),
                             child: PartnerItemWidget(
                               item,
+                              onTap: () => vm.onOpenPartnerDetails(item),
                               onApprove: () => vm.onApprove(item),
                               onReject: () => vm.onReject(item),
                             ),

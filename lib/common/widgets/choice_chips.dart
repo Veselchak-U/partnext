@@ -7,11 +7,13 @@ class ChoiceChips<T> extends StatefulWidget {
   final List<T> items;
   final Function(T, bool)? onTap;
   final List<T> selectedItems;
+  final Color? borderColor;
 
   const ChoiceChips({
     required this.items,
     this.onTap,
     this.selectedItems = const [],
+    this.borderColor,
     super.key,
   });
 
@@ -62,13 +64,13 @@ class _ChoiceChipsState<T> extends State<ChoiceChips<T>> {
                       ? AppTextStyles.s12w600.copyWith(color: AppColors.white)
                       : AppTextStyles.s12w400.copyWith(letterSpacing: AppTextStyles.s12w400.letterSpacing ?? 0 + 0.3),
                   labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
-                  side: BorderSide(color: selected ? AppColors.primary : AppColors.background),
+                  side: BorderSide(color: widget.borderColor ?? (selected ? AppColors.primary : AppColors.background)),
                 )
               : ChoiceChip(
                   label: Text('$item'),
                   labelStyle: selected
                       ? AppTextStyles.s12w600.copyWith(color: AppColors.white)
-                      : AppTextStyles.s12w400.copyWith(letterSpacing: AppTextStyles.s12w600.letterSpacing ?? 0 + 0.3),
+                      : AppTextStyles.s12w400.copyWith(letterSpacing: (AppTextStyles.s12w600.letterSpacing ?? 0) + 0.3),
                   labelPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
                   side: BorderSide(color: selected ? AppColors.primary : AppColors.background),
                   showCheckmark: false,

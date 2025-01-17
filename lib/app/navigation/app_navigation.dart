@@ -20,6 +20,7 @@ import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.da
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
 import 'package:partnext/features/grow/presentation/grow_screen.dart';
 import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
+import 'package:partnext/features/grow/presentation/partner_details/partner_details_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen.dart';
 import 'package:partnext/features/home/presentation/home_screen_vm.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -29,6 +30,7 @@ import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
+import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen.dart';
@@ -212,6 +214,15 @@ class AppNavigation {
                   dispose: (context, vm) => vm.dispose(),
                   child: const GrowScreen(),
                 ),
+                routes: [
+                  GoRoute(
+                    name: AppRoute.partnerDetails.name,
+                    path: AppRoute.partnerDetails.path,
+                    builder: (context, state) => PartnerDetailsScreen(
+                      item: state.extra as PartnerApiModel,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

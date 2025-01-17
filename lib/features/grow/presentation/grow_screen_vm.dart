@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
@@ -50,6 +52,13 @@ class GrowScreenVm {
     if (profileUrl == null) return;
 
     UrlLauncher.launchURL(profileUrl);
+  }
+
+  void onOpenPartnerDetails(PartnerApiModel item) {
+    _context.pushNamed(
+      AppRoute.partnerDetails.name,
+      extra: item,
+    );
   }
 
   void onApprove(PartnerApiModel item) {}
