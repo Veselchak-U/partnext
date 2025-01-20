@@ -80,6 +80,10 @@ class $AssetsIconsGen {
   SvgGenImage get navUpgrade =>
       const SvgGenImage('assets/icons/nav_upgrade.svg');
 
+  /// File path: assets/icons/positive_mark.svg
+  SvgGenImage get positiveMark =>
+      const SvgGenImage('assets/icons/positive_mark.svg');
+
   /// File path: assets/icons/question_mark.svg
   SvgGenImage get questionMark =>
       const SvgGenImage('assets/icons/question_mark.svg');
@@ -128,6 +132,7 @@ class $AssetsIconsGen {
         navLogout,
         navShare,
         navUpgrade,
+        positiveMark,
         questionMark,
         reject,
         reject92,
@@ -161,6 +166,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/logo_white.png
+  AssetGenImage get logoWhite =>
+      const AssetGenImage('assets/images/logo_white.png');
+
   /// File path: assets/images/main_gradient.png
   AssetGenImage get mainGradient =>
       const AssetGenImage('assets/images/main_gradient.png');
@@ -191,6 +200,7 @@ class $AssetsImagesGen {
         appIconForeground,
         appLogo,
         logo,
+        logoWhite,
         mainGradient,
         mask0,
         mask1,

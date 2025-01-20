@@ -449,4 +449,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lets_talk_business => 'Let\'s Talk Business';
+
+  @override
+  String get leave_your_ego_aside => 'Leave your\nego aside';
+
+  @override
+  String get keep_positive_attitude => 'Keep a positive\nattitude';
+
+  @override
+  String get keep_it_simple => 'Keep it\nsimple';
 }

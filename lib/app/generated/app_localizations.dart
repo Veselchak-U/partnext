@@ -970,6 +970,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'בואו נדבר על עסקים'**
   String get lets_talk_business;
+
+  /// No description provided for @leave_your_ego_aside.
+  ///
+  /// In he, this message translates to:
+  /// **'עזוב את שלך\nאגו בצד'**
+  String get leave_your_ego_aside;
+
+  /// No description provided for @keep_positive_attitude.
+  ///
+  /// In he, this message translates to:
+  /// **'שמור על חיובי\nגישה'**
+  String get keep_positive_attitude;
+
+  /// No description provided for @keep_it_simple.
+  ///
+  /// In he, this message translates to:
+  /// **'שמור את זה\nפשוט'**
+  String get keep_it_simple;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

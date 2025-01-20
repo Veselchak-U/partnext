@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:partnext/app/service/network/api_client/api_client.dart';
 import 'package:partnext/app/service/network/api_client/entities/api_exception.dart';
 import 'package:partnext/app/service/network/api_endpoints.dart';
@@ -8,7 +10,11 @@ import 'package:partnext/features/chat/data/model/message_api_model.dart';
 abstract interface class ChatDatasource {
   Future<ChatApiModel> createChat(int userId);
 
-  Future<void> sendMessage(int chatId, String text);
+  Future<void> sendMessage(
+    int chatId,
+    String text, {
+    List<File> attachments = const [],
+  });
 }
 
 class ChatDatasourceImpl implements ChatDatasource {
@@ -42,7 +48,11 @@ class ChatDatasourceImpl implements ChatDatasource {
   }
 
   @override
-  Future<MessageApiModel> sendMessage(int chatId, String text) {
+  Future<MessageApiModel> sendMessage(
+    int chatId,
+    String text, {
+    List<File> attachments = const [],
+  }) {
     // await Future.delayed(Duration(seconds: 1));
     //
     // return -1;

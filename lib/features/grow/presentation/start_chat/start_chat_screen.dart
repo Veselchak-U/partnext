@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/form_fields/app_message_field.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/grow/presentation/start_chat/start_chat_screen_vm.dart';
+import 'package:partnext/features/grow/presentation/start_chat/widgets/start_chat_advice_block.dart';
+import 'package:partnext/features/grow/presentation/start_chat/widgets/start_chat_photo_block.dart';
 import 'package:provider/provider.dart';
 
 class StartChatScreen extends StatelessWidget {
@@ -17,17 +20,38 @@ class StartChatScreen extends StatelessWidget {
     return MainLayout(
       body: Stack(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-            child: Column(
-              children: [
-                Text(
-                  context.l10n.lets_talk_business,
-                  style: AppTextStyles.s20w700,
-                  textAlign: TextAlign.center,
+          ValueListenableBuilder(
+            valueListenable: vm.initializing,
+            builder: (context, initializing, _) {
+              if (initializing) return const SizedBox.shrink();
+
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16).w,
+                child: Column(
+                  children: [
+                    SizedBox(height: 16.h),
+                    Text(
+                      context.l10n.lets_talk_business,
+                      style: AppTextStyles.s20w700,
+                      textAlign: TextAlign.center,
+                    ),
+                    Spacer(flex: 3),
+                    StartChatPhotoBlock(
+                      myImageUrl: vm.myImageUrl,
+                      partnerImageUrl: vm.partner.questionnaire.photos.first,
+                    ),
+                    Spacer(flex: 3),
+                    const StartChatAdviceBlock(),
+                    Spacer(flex: 1),
+                    AppMessageField(
+                      onSend: vm.onStartConversation,
+                    ),
+                    SizedBox(height: 10.h),
+                    SizedBox(height: 25.h),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
           ValueListenableBuilder(
             valueListenable: vm.loading,

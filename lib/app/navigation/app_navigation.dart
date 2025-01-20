@@ -242,6 +242,7 @@ class AppNavigation {
                       create: (context) => StartChatScreenVm(
                         context,
                         DI.get<ChatRepository>(),
+                        DI.get<UserRepository>(),
                         partner: state.extra as PartnerApiModel,
                       ),
                       dispose: (context, vm) => vm.dispose(),

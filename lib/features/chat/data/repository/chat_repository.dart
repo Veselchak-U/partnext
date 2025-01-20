@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 
 abstract interface class ChatRepository {
   Future<ChatApiModel> createChat(int userId);
 
-  Future<void> sendMessage(int chatId, String text);
+  Future<void> sendMessage(
+    int chatId,
+    String text, {
+    List<File> attachments = const [],
+  });
 }
 
 class ChatRepositoryImpl implements ChatRepository {
@@ -18,7 +24,15 @@ class ChatRepositoryImpl implements ChatRepository {
   }
 
   @override
-  Future<void> sendMessage(int chatId, String text) {
-    return _chatDatasource.sendMessage(chatId, text);
+  Future<void> sendMessage(
+    int chatId,
+    String text, {
+    List<File> attachments = const [],
+  }) {
+    return _chatDatasource.sendMessage(
+      chatId,
+      text,
+      attachments: attachments,
+    );
   }
 }
