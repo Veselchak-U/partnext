@@ -458,4 +458,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get keep_it_simple => 'שמור את זה\nפשוט';
+
+  @override
+  String get upgrade_to_premium => 'שדרג לפרמיום';
 }

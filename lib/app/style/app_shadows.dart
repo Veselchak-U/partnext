@@ -15,4 +15,11 @@ class AppShadows {
     spreadRadius: 0,
     offset: Offset(0, -2),
   );
+
+  static const container = BoxShadow(
+    color: Color.fromRGBO(126, 126, 126, 0.33),
+    blurRadius: 10.1,
+    spreadRadius: 0,
+    offset: Offset(0, 3),
+  );
 }

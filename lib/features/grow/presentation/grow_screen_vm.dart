@@ -5,32 +5,56 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
 class GrowScreenVm {
   final BuildContext _context;
   final PartnersProvider _partnersProvider;
+  final UserRepository _userRepository;
+  final NavBarIndexProvider _navBarIndexProvider;
 
   GrowScreenVm(
     this._context,
     this._partnersProvider,
+    this._userRepository,
+    this._navBarIndexProvider,
   ) {
     _init();
   }
 
   final loading = ValueNotifier<bool>(false);
+  final hasPremium = ValueNotifier<bool>(false);
   final partners = ValueNotifier<List<PartnerApiModel>?>(null);
 
+  final _growTabIndex = 1;
+  final _profileTabIndex = 2;
+
   void _init() {
+    _navBarIndexProvider.addListener(_navBarIndexProviderListener);
     _partnersProvider.addListener(_partnersProviderListener);
+    _initUser();
     _refreshPartners();
   }
 
   void dispose() {
+    _navBarIndexProvider.removeListener(_navBarIndexProviderListener);
     _partnersProvider.removeListener(_partnersProviderListener);
 
     loading.dispose();
+    hasPremium.dispose();
     partners.dispose();
+  }
+
+  Future<void> _initUser() async {
+    try {
+      final user = await _userRepository.getUser();
+      hasPremium.value = user?.isPremium ?? false;
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
   }
 
   Future<void> _refreshPartners() async {
@@ -92,9 +116,24 @@ class GrowScreenVm {
     );
   }
 
+  void goUpgradeScreen() {
+    _navBarIndexProvider.navBarIndex = _profileTabIndex;
+
+    Future.delayed(Duration(milliseconds: 50)).then(
+      (_) => _context.goNamed(AppRoute.upgrade.name),
+    );
+  }
+
   void _partnersProviderListener() {
     if (!_context.mounted) return;
     partners.value = _partnersProvider.partners;
+  }
+
+  void _navBarIndexProviderListener() {
+    final navBarIndex = _navBarIndexProvider.navBarIndex;
+    if (navBarIndex == _growTabIndex) {
+      _initUser();
+    }
   }
 
   void _setLoading(bool value) {

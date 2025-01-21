@@ -458,4 +458,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get keep_it_simple => 'Keep it\nsimple';
+
+  @override
+  String get upgrade_to_premium => 'Upgrade to Premium';
 }

@@ -988,6 +988,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שמור את זה\nפשוט'**
   String get keep_it_simple;
+
+  /// No description provided for @upgrade_to_premium.
+  ///
+  /// In he, this message translates to:
+  /// **'שדרג לפרמיום'**
+  String get upgrade_to_premium;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

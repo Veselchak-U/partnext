@@ -19,7 +19,7 @@ class ApiEndpoints {
   static const sendMessage = 'api/v1/member/send_message';
 
   // Profile
-  static const user = 'api/v1/member/user';
+  static const userProfile = 'api/v1/member/user_profile';
   static const sendFeedback = 'api/v1/member/send_feedback';
   static const pricingPlans = 'api/v1/member/pricing_plans';
   static const updatePlan = 'api/v1/member/update_plan';

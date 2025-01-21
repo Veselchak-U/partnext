@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
@@ -16,6 +17,8 @@ abstract interface class ProfileRepository {
   Future<String> updatePricingPlan(int planId);
 
   Future<void> cancelPricingPlan();
+
+  Future<UserApiModel> getUserProfile();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -54,5 +57,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> cancelPricingPlan() {
     return _profileDatasource.cancelPricingPlan();
+  }
+
+  @override
+  Future<UserApiModel> getUserProfile() {
+    return _profileDatasource.getUserProfile();
   }
 }

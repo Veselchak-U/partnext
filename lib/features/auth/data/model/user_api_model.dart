@@ -23,7 +23,7 @@ class UserApiModel {
     required this.token,
   });
 
-  bool get isPro => pricingPlan != null;
+  bool get isPremium => pricingPlan != null;
 
   factory UserApiModel.fromJson(Map<String, dynamic> json) {
     return _$UserApiModelFromJson(json);

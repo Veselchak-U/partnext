@@ -10,17 +10,20 @@ import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
 
 class UpgradeScreenVm {
   final BuildContext _context;
   final UserRepository _userRepository;
   final ProfileRepository _profileRepository;
+  final RefreshUserProfileUseCase _refreshUserProfileUseCase;
 
   UpgradeScreenVm(
     this._context,
     this._userRepository,
     this._profileRepository,
+    this._refreshUserProfileUseCase,
   ) {
     _init();
   }
@@ -140,6 +143,10 @@ class UpgradeScreenVm {
 
     _setLoading(true);
     try {
+      //TODO: remove after test
+      await _refreshUserProfileUseCase.call();
+      //
+
       purchaseUrl = await _profileRepository.updatePricingPlan(newPlan.id);
       _goNextPage();
     } on Object catch (e, st) {
@@ -149,15 +156,24 @@ class UpgradeScreenVm {
     _setLoading(false);
   }
 
-  void onPurchaseSuccess() {
-    if (!_context.mounted) return;
-    _context.goNamed(
-      AppRoute.actionResult.name,
-      extra: ActionResultScreenParams(
-        title: _context.l10n.thank_you,
-        description: _context.l10n.lets_find_out_your_opportunities,
-      ),
-    );
+  Future<void> onPurchaseSuccess() async {
+    _setLoading(true);
+    try {
+      await _refreshUserProfileUseCase.call();
+
+      if (!_context.mounted) return;
+      _context.goNamed(
+        AppRoute.actionResult.name,
+        extra: ActionResultScreenParams(
+          title: _context.l10n.thank_you,
+          description: _context.l10n.lets_find_out_your_opportunities,
+        ),
+      );
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
   }
 
   void onPurchaseTimeout() {

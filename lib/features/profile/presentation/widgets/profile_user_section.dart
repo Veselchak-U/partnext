@@ -35,7 +35,7 @@ class ProfileUserSection extends StatelessWidget {
                               backgroundImage: CachedNetworkImageProvider(user.imageUrl),
                             ),
                           ),
-                          if (user.isPro)
+                          if (user.isPremium)
                             Container(
                               width: 56.r,
                               height: 24.r,

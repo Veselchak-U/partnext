@@ -115,6 +115,9 @@ class ProfileScreenVm {
   void _goInitialScreen() {
     if (!_context.mounted) return;
     _context.goNamed(AppRoute.initial.name);
+
+    //TODO: reset nav bar index after logout
+    // _navBarIndexProvider.reset();
   }
 
   void _setLoading(bool value) {

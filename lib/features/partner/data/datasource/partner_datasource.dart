@@ -124,7 +124,7 @@ final _mockedPartners = [
     id: 1,
     fullName: 'Eli Lavi',
     questionnaire: QuestionnaireApiModel(
-      myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner, PartnershipType.other],
+      myPartnershipTypes: [PartnershipType.activePartner, PartnershipType.strategicPartner],
       partnerPartnershipTypes: [PartnershipType.ideaHolder],
       myInterests: [InterestType.insurance, InterestType.realEstate],
       partnerInterests: [InterestType.fashion, InterestType.creatives],

@@ -24,6 +24,7 @@ import 'package:partnext/features/partner/data/datasource/partner_datasource.dar
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
@@ -116,6 +117,10 @@ class DI {
     _sl.registerFactory(() => InitialController(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+        ));
+    _sl.registerFactory(() => RefreshUserProfileUseCase(
+          _sl<ProfileRepository>(),
+          _sl<UserRepository>(),
         ));
   }
 
