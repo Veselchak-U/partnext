@@ -73,9 +73,9 @@ class ApiClient {
       }
 
       return parser.call(responseData);
-    } on Exception catch (exception) {
-      _onException(exception, requestData);
-      rethrow;
+    } on Exception catch (exception, stackTrace) {
+      final details = _detailException(exception, requestData);
+      Error.throwWithStackTrace(details, stackTrace);
     }
   }
 
@@ -116,9 +116,9 @@ class ApiClient {
       }
 
       return parser.call(responseData);
-    } on Exception catch (exception) {
-      _onException(exception, requestData);
-      rethrow;
+    } on Exception catch (exception, stackTrace) {
+      final details = _detailException(exception, requestData);
+      Error.throwWithStackTrace(details, stackTrace);
     }
   }
 
@@ -159,9 +159,9 @@ class ApiClient {
       }
 
       return parser.call(responseData);
-    } on Exception catch (exception) {
-      _onException(exception, requestData);
-      rethrow;
+    } on Exception catch (exception, stackTrace) {
+      final details = _detailException(exception, requestData);
+      Error.throwWithStackTrace(details, stackTrace);
     }
   }
 
@@ -202,9 +202,9 @@ class ApiClient {
       }
 
       return parser.call(responseData);
-    } on Exception catch (exception) {
-      _onException(exception, requestData);
-      rethrow;
+    } on Exception catch (exception, stackTrace) {
+      final details = _detailException(exception, requestData);
+      Error.throwWithStackTrace(details, stackTrace);
     }
   }
 
@@ -276,29 +276,30 @@ class ApiClient {
       }
 
       return parser.call(responseData);
-    } on Exception catch (exception) {
-      _onException(exception, requestData);
-      rethrow;
+    } on Exception catch (exception, stackTrace) {
+      final details = _detailException(exception, requestData);
+      Error.throwWithStackTrace(details, stackTrace);
     }
   }
 
-  void _onException(Object exception, RequestData requestData) {
-    switch (exception) {
-      case SocketException():
-        throw NoConnectApiException(ResponseData(
-          HttpStatus.networkConnectTimeoutError,
-          exception.message,
-          request: requestData,
-        ));
-      case TimeoutException():
-        throw TimeoutApiException(ResponseData(
-          HttpStatus.requestTimeout,
-          exception.message,
-          request: requestData,
-        ));
-      default:
-        break;
-    }
+  Object _detailException(Object exception, RequestData requestData) {
+    return switch (exception) {
+      SocketException() => NoConnectApiException(
+          ResponseData(
+            HttpStatus.networkConnectTimeoutError,
+            exception.message,
+            request: requestData,
+          ),
+        ),
+      TimeoutException() => TimeoutApiException(
+          ResponseData(
+            HttpStatus.requestTimeout,
+            exception.message,
+            request: requestData,
+          ),
+        ),
+      _ => exception,
+    };
   }
 
   Future<Object?> _decodeBody(List<int> response) {
