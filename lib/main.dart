@@ -11,13 +11,12 @@ import 'package:partnext/app/style/app_theme.dart';
 import 'package:partnext/config.dart';
 
 void main() {
-  runZoned(
-    () => runZonedGuarded(
-      _initializeApp,
-      (e, st) {
-        LoggerService().e(message: 'main.runZonedGuarded()', error: e, stackTrace: st);
-      },
-    ),
+  runZonedGuarded(
+    _initializeApp,
+    (e, st) {
+      LoggerService().e(message: 'main.runZonedGuarded()', error: e, stackTrace: st);
+      // if (!kDebugMode) FirebaseCrashlytics.instance.recordError(e, st, fatal: true);
+    },
   );
 }
 
