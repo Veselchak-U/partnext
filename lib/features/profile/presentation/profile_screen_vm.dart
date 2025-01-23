@@ -11,17 +11,20 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 
 class ProfileScreenVm {
   final BuildContext _context;
   final UserRepository _userRepository;
   final ProfileRepository _profileRepository;
+  final LogoutUseCase _logoutUseCase;
 
   ProfileScreenVm(
     this._context,
     this._userRepository,
     this._profileRepository,
+    this._logoutUseCase,
   ) {
     _init();
   }
@@ -102,7 +105,7 @@ class ProfileScreenVm {
 
     _setLoading(true);
     try {
-      await _userRepository.setUser(null);
+      await _logoutUseCase();
 
       _goInitialScreen();
     } on Object catch (e, st) {

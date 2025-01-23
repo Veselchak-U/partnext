@@ -38,6 +38,7 @@ import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen.dart';
 import 'package:partnext/features/profile/presentation/action_result_screen/action_result_screen_params.dart';
@@ -267,6 +268,7 @@ class AppNavigation {
                     context,
                     DI.get<UserRepository>(),
                     DI.get<ProfileRepository>(),
+                    DI.get<LogoutUseCase>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const ProfileScreen(),

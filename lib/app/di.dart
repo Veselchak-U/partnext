@@ -24,8 +24,10 @@ import 'package:partnext/features/partner/data/datasource/partner_datasource.dar
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
+import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
-import 'package:partnext/features/questionnaire/data/datasource/questionnaire_datasource.dart';
+import 'package:partnext/features/questionnaire/data/datasource/questionnaire_local_datasource.dart';
+import 'package:partnext/features/questionnaire/data/datasource/questionnaire_remote_datasource.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
 class DI {
@@ -69,13 +71,12 @@ class DI {
 
   void _dataSources() {
     _sl.registerLazySingleton<UserLocalDatasource>(() => UserLocalDatasourceImpl(
-          _sl<StorageService>(),
           _sl<SecureStorageService>(),
         ));
     _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
           _sl<ApiClient>(),
         ));
-    _sl.registerLazySingleton<QuestionnaireDatasource>(() => QuestionnaireDatasourceImpl(
+    _sl.registerLazySingleton<QuestionnaireRemoteDatasource>(() => QuestionnaireRemoteDatasourceImpl(
           _sl<ApiClient>(),
           _sl<DioApiClient>(),
         ));
@@ -99,8 +100,8 @@ class DI {
           _sl<AuthDatasource>(),
         ));
     _sl.registerLazySingleton<QuestionnaireRepository>(() => QuestionnaireRepositoryImpl(
-          _sl<QuestionnaireDatasource>(),
-          _sl<UserLocalDatasource>(),
+          _sl<QuestionnaireRemoteDatasource>(),
+          _sl<QuestionnaireLocalDatasource>(),
         ));
     _sl.registerLazySingleton<PartnerRepository>(() => PartnerRepositoryImpl(
           _sl<PartnerDatasource>(),
@@ -114,13 +115,18 @@ class DI {
   }
 
   void _businessLogic() {
-    _sl.registerFactory(() => InitialController(
-          _sl<UserRepository>(),
-          _sl<QuestionnaireRepository>(),
-        ));
     _sl.registerFactory(() => RefreshUserProfileUseCase(
           _sl<ProfileRepository>(),
           _sl<UserRepository>(),
+        ));
+    _sl.registerFactory(() => LogoutUseCase(
+          _sl<UserRepository>(),
+          _sl<QuestionnaireRepository>(),
+        ));
+
+    _sl.registerFactory(() => InitialController(
+          _sl<UserRepository>(),
+          _sl<QuestionnaireRepository>(),
         ));
   }
 

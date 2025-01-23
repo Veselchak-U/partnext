@@ -2,8 +2,8 @@ import 'package:partnext/app/service/network/api_client/api_client.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 
-abstract interface class QuestionnaireDatasource {
-  Future<QuestionnaireApiModel?> getQuestionnaire();
+abstract interface class QuestionnaireRemoteDatasource {
+  Future<QuestionnaireApiModel?> fetchQuestionnaire();
 
   Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire);
 
@@ -13,11 +13,11 @@ abstract interface class QuestionnaireDatasource {
   });
 }
 
-class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
+class QuestionnaireRemoteDatasourceImpl implements QuestionnaireRemoteDatasource {
   final ApiClient _apiClient;
   final DioApiClient _dioApiClient;
 
-  QuestionnaireDatasourceImpl(
+  QuestionnaireRemoteDatasourceImpl(
     this._apiClient,
     this._dioApiClient,
   );
@@ -26,7 +26,7 @@ class QuestionnaireDatasourceImpl implements QuestionnaireDatasource {
   int _mockedPhotosIndex = 0;
 
   @override
-  Future<QuestionnaireApiModel?> getQuestionnaire() async {
+  Future<QuestionnaireApiModel?> fetchQuestionnaire() async {
     await Future.delayed(Duration(seconds: 1));
 
     return null;
