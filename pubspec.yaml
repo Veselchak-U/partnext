@@ -54,6 +54,7 @@ dependencies:
   swipable_stack: 2.0.0
   cached_network_image: 3.4.1
   animated_custom_dropdown: 3.1.1
+  flutter_keyboard_visibility: 6.0.0
 
   # Code generation
   json_annotation: 4.9.0

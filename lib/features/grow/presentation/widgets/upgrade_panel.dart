@@ -28,10 +28,11 @@ class UpgradePanel extends StatelessWidget {
         boxShadow: [AppShadows.container],
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 56.w, vertical: 48.h),
+        padding: EdgeInsets.symmetric(horizontal: 56.w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Spacer(flex: 2),
+            SizedBox(height: 9.h),
             Text(
               context.l10n.partnext_grow,
               style: AppTextStyles.s20w700,
@@ -41,11 +42,12 @@ class UpgradePanel extends StatelessWidget {
               style: AppTextStyles.s14w400,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 24.h),
+            Spacer(flex: 1),
             CommonButton(
               label: context.l10n.upgrade_to_premium,
               onTap: onTap,
             ),
+            Spacer(flex: 2),
           ],
         ),
       ),

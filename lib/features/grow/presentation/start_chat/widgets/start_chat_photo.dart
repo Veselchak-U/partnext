@@ -13,22 +13,21 @@ class StartChatPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 190.w,
-          height: 255.h,
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(10).r,
-            border: Border.all(color: AppColors.white, width: 3),
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(imageUrl),
-              fit: BoxFit.cover,
-            ),
+    return Hero(
+      tag: imageUrl,
+      child: Container(
+        width: 190.w,
+        height: 255.h,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10).r,
+          border: Border.all(color: AppColors.white, width: 3),
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(imageUrl),
+            fit: BoxFit.cover,
           ),
         ),
-      ],
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
@@ -16,6 +17,7 @@ class StartChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<StartChatScreenVm>();
+    final navBarRadius = 25.h;
 
     return MainLayout(
       body: Stack(
@@ -35,19 +37,28 @@ class StartChatScreen extends StatelessWidget {
                       style: AppTextStyles.s20w700,
                       textAlign: TextAlign.center,
                     ),
-                    Spacer(flex: 3),
-                    StartChatPhotoBlock(
-                      myImageUrl: vm.myImageUrl,
-                      partnerImageUrl: vm.partner.questionnaire.photos.first,
+                    SizedBox(height: 8.h),
+                    Expanded(
+                      child: StartChatPhotoBlock(
+                        myImageUrl: vm.myImageUrl,
+                        partnerImageUrl: vm.partner.questionnaire.photos.first,
+                        partnerFullName: vm.partner.fullName,
+                        partnerPosition: vm.partner.questionnaire.position ?? '',
+                      ),
                     ),
-                    Spacer(flex: 3),
+                    SizedBox(height: 16.h),
                     const StartChatAdviceBlock(),
-                    Spacer(flex: 1),
+                    SizedBox(height: 16.h),
                     AppMessageField(
                       onSend: vm.onStartConversation,
                     ),
-                    SizedBox(height: 10.h),
-                    SizedBox(height: 25.h),
+                    KeyboardVisibilityBuilder(
+                      builder: (context, isKeyboardVisible) {
+                        final bottomPadding = isKeyboardVisible ? 16.h : 16.h + navBarRadius;
+
+                        return SizedBox(height: bottomPadding);
+                      },
+                    ),
                   ],
                 ),
               );

@@ -80,6 +80,10 @@ class $AssetsIconsGen {
   SvgGenImage get navUpgrade =>
       const SvgGenImage('assets/icons/nav_upgrade.svg');
 
+  /// File path: assets/icons/paper_clip_32.svg
+  SvgGenImage get paperClip32 =>
+      const SvgGenImage('assets/icons/paper_clip_32.svg');
+
   /// File path: assets/icons/positive_mark.svg
   SvgGenImage get positiveMark =>
       const SvgGenImage('assets/icons/positive_mark.svg');
@@ -132,6 +136,7 @@ class $AssetsIconsGen {
         navLogout,
         navShare,
         navUpgrade,
+        paperClip32,
         positiveMark,
         questionMark,
         reject,

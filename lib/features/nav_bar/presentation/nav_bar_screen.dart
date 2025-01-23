@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -79,63 +80,69 @@ class _NavBarScreenState extends State<NavBarScreen> {
 
         return child ?? const SizedBox.shrink();
       },
-      child: Scaffold(
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Column(
+      child: KeyboardVisibilityBuilder(
+        builder: (context, isKeyboardVisible) {
+          return Scaffold(
+            body: Stack(
+              alignment: Alignment.bottomCenter,
               children: [
-                Expanded(
-                  child: widget.navigationShell,
+                Column(
+                  children: [
+                    Expanded(
+                      child: widget.navigationShell,
+                    ),
+                    SizedBox(height: isKeyboardVisible ? 0 : navBarOverlap),
+                  ],
                 ),
-                SizedBox(height: navBarOverlap),
+                isKeyboardVisible
+                    ? SizedBox.shrink()
+                    : Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Container(
+                          height: navBarHeight,
+                          decoration: BoxDecoration(
+                            borderRadius: borderRadius,
+                            boxShadow: const [AppShadows.bottomNavBar],
+                          ),
+                          child: Material(
+                            color: AppColors.white,
+                            borderRadius: borderRadius,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 16).h,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _NavigationBarItem(
+                                    iconPath: Assets.icons.handshakeNavBar.path,
+                                    selected: currentIndex == 0,
+                                    onTap: () => _onTabSelected(0),
+                                  ),
+                                  _NavigationBarItem(
+                                    iconPath: Assets.icons.chatNavBar.path,
+                                    selected: currentIndex == 11,
+                                    onTap: () => _onTabSelected(11),
+                                  ),
+                                  _NavigationBarItem(
+                                    iconPath: Assets.icons.rocketNavBar.path,
+                                    selected: currentIndex == 1,
+                                    onTap: () => _onTabSelected(1),
+                                  ),
+                                  _NavigationBarItem(
+                                    iconPath: Assets.icons.userNavBar.path,
+                                    selected: currentIndex == 2,
+                                    onTap: () => _onTabSelected(2),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
               ],
             ),
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: Container(
-                height: navBarHeight,
-                decoration: BoxDecoration(
-                  borderRadius: borderRadius,
-                  boxShadow: const [AppShadows.bottomNavBar],
-                ),
-                child: Material(
-                  color: AppColors.white,
-                  borderRadius: borderRadius,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16).h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _NavigationBarItem(
-                          iconPath: Assets.icons.handshakeNavBar.path,
-                          selected: currentIndex == 0,
-                          onTap: () => _onTabSelected(0),
-                        ),
-                        _NavigationBarItem(
-                          iconPath: Assets.icons.chatNavBar.path,
-                          selected: currentIndex == 11,
-                          onTap: () => _onTabSelected(11),
-                        ),
-                        _NavigationBarItem(
-                          iconPath: Assets.icons.rocketNavBar.path,
-                          selected: currentIndex == 1,
-                          onTap: () => _onTabSelected(1),
-                        ),
-                        _NavigationBarItem(
-                          iconPath: Assets.icons.userNavBar.path,
-                          selected: currentIndex == 2,
-                          onTap: () => _onTabSelected(2),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
