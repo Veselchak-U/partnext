@@ -19,6 +19,7 @@ class RecommendationItemWidget extends StatelessWidget {
   final VoidCallback onApprove;
   final VoidCallback onReject;
   final EdgeInsetsGeometry padding;
+  final bool withHeroEffect;
 
   const RecommendationItemWidget(
     this.item, {
@@ -26,6 +27,7 @@ class RecommendationItemWidget extends StatelessWidget {
     required this.onApprove,
     required this.onReject,
     this.padding = EdgeInsets.zero,
+    this.withHeroEffect = false,
     super.key,
   });
 
@@ -45,7 +47,7 @@ class RecommendationItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: item.questionnaire.photos.first,
+                tag: withHeroEffect ? item.questionnaire.photos.first : UniqueKey(),
                 child: RecommendationPhotosWidget(item.questionnaire.photos),
               ),
               SizedBox(height: 22.h),

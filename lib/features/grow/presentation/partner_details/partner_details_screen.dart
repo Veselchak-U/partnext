@@ -24,6 +24,7 @@ class PartnerDetailsScreen extends StatelessWidget {
               onOpenLink: vm.openLink,
               onApprove: vm.onApprove,
               onReject: vm.onReject,
+              withHeroEffect: true,
             ),
           ),
           ValueListenableBuilder(
