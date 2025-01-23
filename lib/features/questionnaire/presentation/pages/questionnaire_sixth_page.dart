@@ -73,7 +73,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                               return PhotoItem(
                                 imageUrl: photos[index],
                                 onTap: () => vm.onTapImage(index),
-                                loading: loadingPhoto && index == vm.currentPhotoIndex.value,
+                                loading: loadingPhoto[index],
                               );
                             },
                           );

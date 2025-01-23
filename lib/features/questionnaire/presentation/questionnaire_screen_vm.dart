@@ -30,7 +30,7 @@ class QuestionnaireScreenVm {
 
   final initializing = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
-  final loadingPhoto = ValueNotifier<bool>(false);
+  final loadingPhoto = ValueNotifier<List<bool>>(List<bool>.filled(4, false));
   final isFirstPage = ValueNotifier<bool>(true);
   final isLastPage = ValueNotifier<bool>(false);
   final photos = ValueNotifier<List<String>>(List<String>.filled(4, ''));
@@ -203,11 +203,11 @@ class QuestionnaireScreenVm {
   Future<void> addImage(int index) async {
     setCurrentPhotoIndex(index);
 
-    _setLoadingPhoto(true);
+    _setLoadingPhoto(index, true);
     try {
       final file = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (file == null) {
-        _setLoadingPhoto(false);
+        _setLoadingPhoto(index, false);
 
         return;
       }
@@ -225,7 +225,7 @@ class QuestionnaireScreenVm {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
     }
-    _setLoadingPhoto(false);
+    _setLoadingPhoto(index, false);
   }
 
   void removeImage(int index) {
@@ -415,9 +415,12 @@ class QuestionnaireScreenVm {
     initializing.value = value;
   }
 
-  void _setLoadingPhoto(bool value) {
+  void _setLoadingPhoto(int index, bool value) {
     if (!_context.mounted) return;
-    loadingPhoto.value = value;
+    final newList = [...loadingPhoto.value];
+    newList[index] = value;
+
+    loadingPhoto.value = newList;
   }
 
   void _setLoading(bool value) {

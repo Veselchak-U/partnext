@@ -19,12 +19,12 @@ class PhotoItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(8).r;
 
-    return Material(
-      color: AppColors.white,
-      borderRadius: borderRadius,
-      child: SizedBox(
-        width: 248.w,
-        height: 284.h,
+    return SizedBox(
+      width: 248.w,
+      height: 284.h,
+      child: Material(
+        color: AppColors.white,
+        borderRadius: borderRadius,
         child: imageUrl.isEmpty
             ? const SizedBox.shrink()
             : Stack(
