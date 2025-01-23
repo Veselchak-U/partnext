@@ -80,6 +80,9 @@ class DI {
           _sl<ApiClient>(),
           _sl<DioApiClient>(),
         ));
+    _sl.registerLazySingleton<QuestionnaireLocalDatasource>(() => QuestionnaireLocalDatasourceImpl(
+          _sl<StorageService>(),
+        ));
     _sl.registerLazySingleton<PartnerDatasource>(() => PartnerDatasourceImpl(
           _sl<ApiClient>(),
         ));
