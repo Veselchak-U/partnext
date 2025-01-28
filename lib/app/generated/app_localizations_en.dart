@@ -461,4 +461,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get upgrade_to_premium => 'Upgrade to Premium';
+
+  @override
+  String get write_message => 'Write a message...';
 }

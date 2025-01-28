@@ -461,4 +461,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get upgrade_to_premium => 'שדרג לפרמיום';
+
+  @override
+  String get write_message => 'כתוב הודעה...';
 }

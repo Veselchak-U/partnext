@@ -994,6 +994,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'שדרג לפרמיום'**
   String get upgrade_to_premium;
+
+  /// No description provided for @write_message.
+  ///
+  /// In he, this message translates to:
+  /// **'כתוב הודעה...'**
+  String get write_message;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

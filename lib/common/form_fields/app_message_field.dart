@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 
@@ -24,6 +25,8 @@ class AppMessageField extends StatefulWidget {
 }
 
 class _AppMessageFieldState extends State<AppMessageField> {
+  String _text = '';
+
   @override
   void initState() {
     super.initState();
@@ -34,9 +37,15 @@ class _AppMessageFieldState extends State<AppMessageField> {
     super.dispose();
   }
 
+  void _onTextChanged(String value) {
+    _text = value;
+  }
+
   Future<void> _addAttachment() async {}
 
   Future<void> _sendMessage() async {}
+
+  final menuList = ['Photo', 'File'];
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +57,37 @@ class _AppMessageFieldState extends State<AppMessageField> {
       ),
       child: Row(
         children: [
-          IconButton(
-            icon: SvgPicture.asset(
+          PopupMenuButton<String>(
+            elevation: 1,
+            // position: PopupMenuPosition.over,
+            offset: Offset(0, -115.h),
+            itemBuilder: (context) => menuList
+                .map<PopupMenuItem<String>>(
+                  (e) => PopupMenuItem<String>(value: e, child: Text(e)),
+                )
+                .toList(),
+            // padding: const EdgeInsets.all(0),
+            child: SvgPicture.asset(
               Assets.icons.paperClip32.path,
               height: 32.h,
             ),
-            padding: EdgeInsets.zero,
-            onPressed: _addAttachment,
           ),
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     Assets.icons.paperClip32.path,
+          //     height: 32.h,
+          //   ),
+          //   padding: EdgeInsets.zero,
+          //   onPressed: _addAttachment,
+          // ),
           SizedBox(width: 12.w),
           Expanded(
             child: TextFormField(
               decoration: InputDecoration.collapsed(
-                hintText: 'Write a message...',
+                hintText: context.l10n.write_message,
                 hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray),
               ),
+              onChanged: _onTextChanged,
             ),
           ),
           SizedBox(width: 12.w),
