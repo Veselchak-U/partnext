@@ -20,6 +20,7 @@ class StartChatScreen extends StatelessWidget {
     final navBarRadius = 25.h;
 
     return MainLayout(
+      extendBodyBehindAppBar: false,
       body: Stack(
         children: [
           ValueListenableBuilder(

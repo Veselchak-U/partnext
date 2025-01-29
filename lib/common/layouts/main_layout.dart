@@ -20,16 +20,17 @@ class MainLayout extends StatelessWidget {
     this.titleText,
     this.actions = const [],
     this.onBackButtonPressed,
-    this.extendBodyBehindAppBar = false,
+    this.extendBodyBehindAppBar = true,
     this.backgroundColor = AppColors.background,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final appBarBorderRadius = const Radius.circular(16).r;
+    final notchHeight = MediaQuery.of(context).padding.top;
     final toolbarHeight = max(kToolbarHeight, kToolbarHeight.h);
-    final topBodyPadding = extendBodyBehindAppBar ? toolbarHeight - appBarBorderRadius.y : 0.0;
+    final appBarRadius = const Radius.circular(16).r;
+    final topBodyPadding = extendBodyBehindAppBar ? notchHeight + toolbarHeight - appBarRadius.y : 0.0;
 
     return FocusLayout(
       child: Scaffold(
@@ -44,7 +45,7 @@ class MainLayout extends StatelessWidget {
           leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
           actions: actions,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: appBarBorderRadius),
+            borderRadius: BorderRadius.vertical(bottom: appBarRadius),
           ),
         ),
         backgroundColor: backgroundColor,

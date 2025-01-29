@@ -16,11 +16,10 @@ class GrowScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<GrowScreenVm>();
-    final topRadius = 16.r;
-    final upgradePanelHeight = 273.h + topRadius;
+    final appBarRadius = 16.r;
+    final upgradePanelHeight = 273.h + appBarRadius;
 
     return MainLayout(
-      extendBodyBehindAppBar: true,
       body: ValueListenableBuilder(
         valueListenable: vm.hasPremium,
         builder: (context, hasPremium, _) {

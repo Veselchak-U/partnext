@@ -14,7 +14,6 @@ class PartnerDetailsScreen extends StatelessWidget {
     final vm = context.read<PartnerDetailsScreenVm>();
 
     return MainLayout(
-      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           SingleChildScrollView(

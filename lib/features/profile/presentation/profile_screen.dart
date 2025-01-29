@@ -32,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ],
+      extendBodyBehindAppBar: false,
       body: Stack(
         children: [
           SingleChildScrollView(
