@@ -8,15 +8,18 @@ import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/form_fields/app_message_field_attach_button.dart';
 
 class AppMessageField extends StatefulWidget {
   final void Function(
     String message,
     List<File> attachments,
   ) onSend;
+  final bool? tappedBackground;
 
   const AppMessageField({
     required this.onSend,
+    required this.tappedBackground,
     super.key,
   });
 
@@ -25,6 +28,7 @@ class AppMessageField extends StatefulWidget {
 }
 
 class _AppMessageFieldState extends State<AppMessageField> {
+  final _tappedBackground = ValueNotifier<bool?>(null);
   String _text = '';
 
   @override
@@ -34,7 +38,16 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   @override
   void dispose() {
+    _tappedBackground.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(AppMessageField oldWidget) {
+    if (oldWidget.tappedBackground != widget.tappedBackground) {
+      _tappedBackground.value = widget.tappedBackground;
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   void _onTextChanged(String value) {
@@ -44,8 +57,6 @@ class _AppMessageFieldState extends State<AppMessageField> {
   Future<void> _addAttachment() async {}
 
   Future<void> _sendMessage() async {}
-
-  final menuList = ['Photo', 'File'];
 
   @override
   Widget build(BuildContext context) {
@@ -57,29 +68,27 @@ class _AppMessageFieldState extends State<AppMessageField> {
       ),
       child: Row(
         children: [
-          PopupMenuButton<String>(
-            elevation: 1,
-            // position: PopupMenuPosition.over,
-            offset: Offset(0, -115.h),
-            itemBuilder: (context) => menuList
-                .map<PopupMenuItem<String>>(
-                  (e) => PopupMenuItem<String>(value: e, child: Text(e)),
-                )
-                .toList(),
-            // padding: const EdgeInsets.all(0),
-            child: SvgPicture.asset(
-              Assets.icons.paperClip32.path,
-              height: 32.h,
-            ),
-          ),
-          // IconButton(
-          //   icon: SvgPicture.asset(
+          // PopupMenuButton<String>(
+          //   elevation: 1,
+          //   // position: PopupMenuPosition.over,
+          //   offset: Offset(0, -115.h),
+          //   itemBuilder: (context) => menuList
+          //       .map<PopupMenuItem<String>>(
+          //         (e) => PopupMenuItem<String>(value: e, child: Text(e)),
+          //       )
+          //       .toList(),
+          //   // padding: const EdgeInsets.all(0),
+          //   child: SvgPicture.asset(
           //     Assets.icons.paperClip32.path,
           //     height: 32.h,
           //   ),
-          //   padding: EdgeInsets.zero,
-          //   onPressed: _addAttachment,
           // ),
+          ValueListenableBuilder(
+            valueListenable: _tappedBackground,
+            builder: (context, tappedBackground, _) {
+              return AppMessageFieldAttachButton(tappedBackground: tappedBackground);
+            },
+          ),
           SizedBox(width: 12.w),
           Expanded(
             child: TextFormField(

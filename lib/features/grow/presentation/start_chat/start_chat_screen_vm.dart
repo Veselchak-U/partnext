@@ -26,6 +26,7 @@ class StartChatScreenVm {
 
   final initializing = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
+  final tappedBackground = ValueNotifier<bool?>(null);
 
   String myImageUrl = '';
 
@@ -36,6 +37,7 @@ class StartChatScreenVm {
   void dispose() {
     initializing.dispose();
     loading.dispose();
+    tappedBackground.dispose();
   }
 
   Future<void> _initMyImage() async {
@@ -92,5 +94,9 @@ class StartChatScreenVm {
   void _onError(String message) {
     if (!_context.mounted) return;
     AppOverlays.showErrorBanner(message);
+  }
+
+  void onTapBackground() {
+    tappedBackground.value = !(tappedBackground.value ?? false);
   }
 }

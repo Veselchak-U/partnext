@@ -21,6 +21,7 @@ class StartChatScreen extends StatelessWidget {
 
     return MainLayout(
       extendBodyBehindAppBar: false,
+      onTapBackground: vm.onTapBackground,
       body: Stack(
         children: [
           ValueListenableBuilder(
@@ -50,8 +51,14 @@ class StartChatScreen extends StatelessWidget {
                     SizedBox(height: 16.h),
                     const StartChatAdviceBlock(),
                     SizedBox(height: 16.h),
-                    AppMessageField(
-                      onSend: vm.onStartConversation,
+                    ValueListenableBuilder(
+                      valueListenable: vm.tappedBackground,
+                      builder: (context, tappedBackground, _) {
+                        return AppMessageField(
+                          onSend: vm.onStartConversation,
+                          tappedBackground: tappedBackground,
+                        );
+                      },
                     ),
                     KeyboardVisibilityBuilder(
                       builder: (context, isKeyboardVisible) {
