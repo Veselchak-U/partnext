@@ -31,7 +31,6 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FocusLayout(
-      onTap: onTap,
       child: ColoredBox(
         color: sysAppBarBackgroundColor ?? backgroundColor,
         child: SafeArea(

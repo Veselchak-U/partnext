@@ -14,7 +14,6 @@ class MainLayout extends StatelessWidget {
   final VoidCallback? onBackButtonPressed;
   final bool extendBodyBehindAppBar;
   final Color backgroundColor;
-  final VoidCallback? onTapBackground;
 
   const MainLayout({
     required this.body,
@@ -23,7 +22,6 @@ class MainLayout extends StatelessWidget {
     this.onBackButtonPressed,
     this.extendBodyBehindAppBar = true,
     this.backgroundColor = AppColors.background,
-    this.onTapBackground,
     super.key,
   });
 
@@ -35,7 +33,6 @@ class MainLayout extends StatelessWidget {
     final topBodyPadding = extendBodyBehindAppBar ? notchHeight + toolbarHeight - appBarRadius.y : 0.0;
 
     return FocusLayout(
-      onTap: onTapBackground,
       child: Scaffold(
         appBar: AppAppBar(
           titleText: titleText,
