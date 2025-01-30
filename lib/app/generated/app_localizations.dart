@@ -1000,6 +1000,30 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'כתוב הודעה...'**
   String get write_message;
+
+  /// No description provided for @photo.
+  ///
+  /// In he, this message translates to:
+  /// **'תמונה'**
+  String get photo;
+
+  /// No description provided for @document.
+  ///
+  /// In he, this message translates to:
+  /// **'מסמך'**
+  String get document;
+
+  /// No description provided for @no_chats.
+  ///
+  /// In he, this message translates to:
+  /// **'עדיין אין לך צ \' אטים.'**
+  String get no_chats;
+
+  /// No description provided for @chats.
+  ///
+  /// In he, this message translates to:
+  /// **'צ \' אטים'**
+  String get chats;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

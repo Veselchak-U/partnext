@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:partnext/features/chat/domain/message_status.dart';
+import 'package:partnext/features/chat/domain/entity/message_status.dart';
 
 part 'message_api_model.g.dart';
 

@@ -44,6 +44,9 @@ class $AssetsIconsGen {
   SvgGenImage get closeFilled =>
       const SvgGenImage('assets/icons/close_filled.svg');
 
+  /// File path: assets/icons/document.svg
+  SvgGenImage get document => const SvgGenImage('assets/icons/document.svg');
+
   /// File path: assets/icons/dropdown_closed.svg
   SvgGenImage get dropdownClosed =>
       const SvgGenImage('assets/icons/dropdown_closed.svg');
@@ -59,6 +62,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/handshake_nav_bar.svg
   SvgGenImage get handshakeNavBar =>
       const SvgGenImage('assets/icons/handshake_nav_bar.svg');
+
+  /// File path: assets/icons/image.svg
+  SvgGenImage get image => const SvgGenImage('assets/icons/image.svg');
 
   /// File path: assets/icons/linkedin.svg
   SvgGenImage get linkedin => const SvgGenImage('assets/icons/linkedin.svg');
@@ -126,10 +132,12 @@ class $AssetsIconsGen {
         chatNavBar,
         close,
         closeFilled,
+        document,
         dropdownClosed,
         dropdownExpanded,
         handshake40,
         handshakeNavBar,
+        image,
         linkedin,
         navEdit,
         navFeedback,

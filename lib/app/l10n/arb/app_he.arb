@@ -170,5 +170,9 @@
   "keep_positive_attitude": "שמור על חיובי\nגישה",
   "keep_it_simple": "שמור את זה\nפשוט",
   "upgrade_to_premium": "שדרג לפרמיום",
-  "write_message": "כתוב הודעה..."
+  "write_message": "כתוב הודעה...",
+  "photo": "תמונה",
+  "document": "מסמך",
+  "no_chats": "עדיין אין לך צ ' אטים.",
+  "chats": "צ ' אטים"
 }

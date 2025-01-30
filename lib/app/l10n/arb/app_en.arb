@@ -170,5 +170,9 @@
   "keep_positive_attitude": "Keep a positive\nattitude",
   "keep_it_simple": "Keep it\nsimple",
   "upgrade_to_premium": "Upgrade to Premium",
-  "write_message": "Write a message..."
+  "write_message": "Write a message...",
+  "photo": "Photo",
+  "document": "Document",
+  "no_chats": "You don't have any chats yet.",
+  "chats": "Chats"
 }

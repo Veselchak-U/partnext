@@ -18,7 +18,9 @@ import 'package:partnext/features/auth/presentation/phone_validation/phone_valid
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
-import 'package:partnext/features/chat/data/repository/chat_repository.dart';
+import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
+import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
+import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/grow/presentation/grow_screen.dart';
 import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
@@ -225,6 +227,19 @@ class AppNavigation {
                 ),
                 routes: [
                   GoRoute(
+                    name: AppRoute.chats.name,
+                    path: AppRoute.chats.path,
+                    builder: (context, state) => Provider(
+                      lazy: false,
+                      create: (context) => ChatListScreenVm(
+                        context,
+                        DI.get<ChatProvider>(),
+                      ),
+                      dispose: (context, vm) => vm.dispose(),
+                      child: const ChatListScreen(),
+                    ),
+                  ),
+                  GoRoute(
                     name: AppRoute.partnerDetails.name,
                     path: AppRoute.partnerDetails.path,
                     builder: (context, state) => Provider(
@@ -245,7 +260,7 @@ class AppNavigation {
                       lazy: false,
                       create: (context) => StartChatScreenVm(
                         context,
-                        DI.get<ChatRepository>(),
+                        DI.get<ChatProvider>(),
                         DI.get<UserRepository>(),
                         partner: state.extra as PartnerApiModel,
                       ),

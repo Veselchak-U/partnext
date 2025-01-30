@@ -13,27 +13,28 @@ class FocusLayout extends StatefulWidget {
 }
 
 class _FocusLayoutState extends State<FocusLayout> {
-  final _isTapDown = ValueNotifier<bool>(false);
+  final _isTapped = ValueNotifier<bool>(false);
 
-  void _onTapDown() {
-    FocusScope.of(context).unfocus();
-    _isTapDown.value = true;
+  @override
+  void dispose() {
+    _isTapped.dispose();
+    super.dispose();
   }
 
-  void _onTapUp() {
-    _isTapDown.value = false;
+  void _onTap() {
+    FocusScope.of(context).unfocus();
+    _isTapped.value = !_isTapped.value;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => _onTapDown(),
-      onTapUp: (_) => _onTapUp(),
+      onTap: _onTap,
       child: ValueListenableBuilder(
-        valueListenable: _isTapDown,
-        builder: (context, isTapDown, child) {
+        valueListenable: _isTapped,
+        builder: (context, isTapped, child) {
           return FocusLayoutData(
-            isTapDown: isTapDown,
+            isTapped: isTapped,
             child: child ?? const SizedBox.shrink(),
           );
         },
@@ -44,11 +45,11 @@ class _FocusLayoutState extends State<FocusLayout> {
 }
 
 class FocusLayoutData extends InheritedWidget {
-  final bool? isTapDown;
+  final bool isTapped;
 
   const FocusLayoutData({
     required super.child,
-    this.isTapDown,
+    required this.isTapped,
     super.key,
   });
 
@@ -58,6 +59,6 @@ class FocusLayoutData extends InheritedWidget {
 
   @override
   bool updateShouldNotify(FocusLayoutData oldWidget) {
-    return oldWidget.isTapDown != isTapDown;
+    return oldWidget.isTapped != isTapped;
   }
 }

@@ -5,19 +5,19 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
-import 'package:partnext/features/chat/data/repository/chat_repository.dart';
+import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
 class StartChatScreenVm {
   final BuildContext _context;
-  final ChatRepository _chatRepository;
+  final ChatProvider _chatProvider;
   final UserRepository _userRepository;
   final PartnerApiModel partner;
 
   StartChatScreenVm(
     this._context,
-    this._chatRepository,
+    this._chatProvider,
     this._userRepository, {
     required this.partner,
   }) {
@@ -51,18 +51,16 @@ class StartChatScreenVm {
   }
 
   Future<void> onStartConversation(
-    String message,
+    String text,
     List<File> attachments,
   ) async {
     _setLoading(true);
     try {
-      final chat = await _chatRepository.createChat(partner.id);
-      await _chatRepository.sendMessage(
-        chat.id,
-        message,
-        attachments: attachments,
+      final chat = await _chatProvider.startConversation(
+        partner.id,
+        text,
+        attachments,
       );
-
       _goChatScreen(chat.id);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
@@ -74,7 +72,7 @@ class StartChatScreenVm {
   void _goChatScreen(int chatId) {
     if (!_context.mounted) return;
     _context.pushNamed(
-      AppRoute.chat.name,
+      AppRoute.chats.name,
       extra: chatId,
     );
   }

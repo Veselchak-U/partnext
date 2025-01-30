@@ -464,4 +464,16 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get write_message => 'כתוב הודעה...';
+
+  @override
+  String get photo => 'תמונה';
+
+  @override
+  String get document => 'מסמך';
+
+  @override
+  String get no_chats => 'עדיין אין לך צ \' אטים.';
+
+  @override
+  String get chats => 'צ \' אטים';
 }
