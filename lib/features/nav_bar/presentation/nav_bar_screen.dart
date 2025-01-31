@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_shadows.dart';
+import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:provider/provider.dart';
 
@@ -56,8 +57,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
   }
 
   void _onTabSelected(int index) {
-    if (index > 2) return;
-
     _goNavigationBranch(index);
     vm.onPageSelectedInside(index);
   }
@@ -115,23 +114,23 @@ class _NavBarScreenState extends State<NavBarScreen> {
                                 children: [
                                   _NavigationBarItem(
                                     iconPath: Assets.icons.handshakeNavBar.path,
-                                    selected: currentIndex == 0,
-                                    onTap: () => _onTabSelected(0),
+                                    selected: currentIndex == NavBarTab.home.index,
+                                    onTap: () => _onTabSelected(NavBarTab.home.index),
                                   ),
                                   _NavigationBarItem(
                                     iconPath: Assets.icons.chatNavBar.path,
-                                    selected: currentIndex == 11,
-                                    onTap: () => _onTabSelected(11),
+                                    selected: currentIndex == NavBarTab.chats.index,
+                                    onTap: () => _onTabSelected(NavBarTab.chats.index),
                                   ),
                                   _NavigationBarItem(
                                     iconPath: Assets.icons.rocketNavBar.path,
-                                    selected: currentIndex == 1,
-                                    onTap: () => _onTabSelected(1),
+                                    selected: currentIndex == NavBarTab.grow.index,
+                                    onTap: () => _onTabSelected(NavBarTab.grow.index),
                                   ),
                                   _NavigationBarItem(
                                     iconPath: Assets.icons.userNavBar.path,
-                                    selected: currentIndex == 2,
-                                    onTap: () => _onTabSelected(2),
+                                    selected: currentIndex == NavBarTab.profile.index,
+                                    onTap: () => _onTabSelected(NavBarTab.profile.index),
                                   ),
                                 ],
                               ),

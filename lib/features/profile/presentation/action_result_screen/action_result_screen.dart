@@ -34,7 +34,7 @@ class _ActionResultScreenState extends State<ActionResultScreen> {
     super.dispose();
   }
 
-  void _goToHome() {
+  void _goHomeTab() {
     _loading.value = true;
 
     context.goNamed(AppRoute.profile.name);
@@ -72,7 +72,7 @@ class _ActionResultScreenState extends State<ActionResultScreen> {
                 return CommonButton(
                   label: context.l10n.continue_browsing,
                   iconPath: Assets.icons.send.path,
-                  onTap: _goToHome,
+                  onTap: _goHomeTab,
                   loading: loading,
                 );
               },

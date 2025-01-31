@@ -11,7 +11,7 @@ class AppRoute {
 
   static const home = AppRoute('home', '/home');
 
-  static const chats = AppRoute('chats', 'chats');
+  static const chats = AppRoute('chats', '/chats');
 
   static const grow = AppRoute('grow', '/grow');
   static const partnerDetails = AppRoute('partner_details', 'partner_details');

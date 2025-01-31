@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 
 class NavBarScreenVm {
@@ -12,7 +13,7 @@ class NavBarScreenVm {
   }
 
   final loading = ValueNotifier<bool>(false);
-  final pageIndex = ValueNotifier<int>(0);
+  final pageIndex = ValueNotifier<int>(NavBarTab.home.index);
 
   void _init() {
     _navBarIndexProvider.addListener(_onPageSelectedOutside);

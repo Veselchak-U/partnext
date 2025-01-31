@@ -41,6 +41,8 @@ dependencies:
   url_launcher: 6.3.1
   collection:
   webview_flutter: 4.10.0
+  image_picker: 1.1.2
+  file_picker: 8.3.1
 
   # UI
   cupertino_icons: 1.0.8
@@ -50,7 +52,6 @@ dependencies:
   flutter_country_selector: 1.0.12
   mask_text_input_formatter: 2.9.0
   smooth_page_indicator: 1.2.0+3
-  image_picker: 1.1.2
   swipable_stack: 2.0.0
   cached_network_image: 3.4.1
   animated_custom_dropdown: 3.1.1

@@ -212,6 +212,23 @@ class AppNavigation {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                name: AppRoute.chats.name,
+                path: AppRoute.chats.path,
+                builder: (context, state) => Provider(
+                  lazy: false,
+                  create: (context) => ChatListScreenVm(
+                    context,
+                    DI.get<ChatProvider>(),
+                  ),
+                  dispose: (context, vm) => vm.dispose(),
+                  child: const ChatListScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
                 name: AppRoute.grow.name,
                 path: AppRoute.grow.path,
                 builder: (context, state) => Provider(
@@ -226,19 +243,6 @@ class AppNavigation {
                   child: const GrowScreen(),
                 ),
                 routes: [
-                  GoRoute(
-                    name: AppRoute.chats.name,
-                    path: AppRoute.chats.path,
-                    builder: (context, state) => Provider(
-                      lazy: false,
-                      create: (context) => ChatListScreenVm(
-                        context,
-                        DI.get<ChatProvider>(),
-                      ),
-                      dispose: (context, vm) => vm.dispose(),
-                      child: const ChatListScreen(),
-                    ),
-                  ),
                   GoRoute(
                     name: AppRoute.partnerDetails.name,
                     path: AppRoute.partnerDetails.path,
@@ -262,6 +266,7 @@ class AppNavigation {
                         context,
                         DI.get<ChatProvider>(),
                         DI.get<UserRepository>(),
+                        DI.get<NavBarIndexProvider>(),
                         partner: state.extra as PartnerApiModel,
                       ),
                       dispose: (context, vm) => vm.dispose(),

@@ -62,7 +62,10 @@ class ProfileScreenVm {
   }
 
   Future<void> changeUserAvatar() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      requestFullMetadata: false,
+    );
     if (image == null) return;
 
     _setLoading(true);

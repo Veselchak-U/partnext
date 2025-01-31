@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 
 abstract interface class NavBarIndexProvider with ChangeNotifier {
-  int navBarIndex = 0;
+  int navBarIndex = NavBarTab.home.index;
 
   void reset();
 }
 
 class NavBarIndexProviderImpl with ChangeNotifier implements NavBarIndexProvider {
-  static const _initialIndex = 0; // "/home"
+  static final _initialIndex = NavBarTab.home.index;
 
   int _navBarIndex = _initialIndex;
 

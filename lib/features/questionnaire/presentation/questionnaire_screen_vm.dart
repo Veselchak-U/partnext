@@ -205,7 +205,10 @@ class QuestionnaireScreenVm {
 
     _setLoadingPhoto(index, true);
     try {
-      final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final file = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        requestFullMetadata: false,
+      );
       if (file == null) {
         _setLoadingPhoto(index, false);
 

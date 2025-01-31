@@ -6,6 +6,7 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
@@ -27,9 +28,6 @@ class GrowScreenVm {
   final loading = ValueNotifier<bool>(false);
   final hasPremium = ValueNotifier<bool>(false);
   final partners = ValueNotifier<List<PartnerApiModel>?>(null);
-
-  final _growTabIndex = 1;
-  final _profileTabIndex = 2;
 
   void _init() {
     _navBarIndexProvider.addListener(_navBarIndexProviderListener);
@@ -117,7 +115,7 @@ class GrowScreenVm {
   }
 
   void goUpgradeScreen() {
-    _navBarIndexProvider.navBarIndex = _profileTabIndex;
+    _navBarIndexProvider.navBarIndex = NavBarTab.profile.index;
 
     Future.delayed(Duration(milliseconds: 50)).then(
       (_) => _context.goNamed(AppRoute.upgrade.name),
@@ -131,7 +129,7 @@ class GrowScreenVm {
 
   void _navBarIndexProviderListener() {
     final navBarIndex = _navBarIndexProvider.navBarIndex;
-    if (navBarIndex == _growTabIndex) {
+    if (navBarIndex == NavBarTab.grow.index) {
       _initUser();
     }
   }
