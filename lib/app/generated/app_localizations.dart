@@ -1024,6 +1024,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'צ \' אטים'**
   String get chats;
+
+  /// No description provided for @attachment_max_size.
+  ///
+  /// In he, this message translates to:
+  /// **'הגודל הכולל של הקבצים לא יעלה על {size} מגה בייט.'**
+  String attachment_max_size(int size);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

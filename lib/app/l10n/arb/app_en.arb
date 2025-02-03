@@ -174,5 +174,13 @@
   "photo": "Photo",
   "document": "Document",
   "no_chats": "You don't have any chats yet.",
-  "chats": "Chats"
+  "chats": "Chats",
+  "attachment_max_size": "The total size of the files should not exceed {size} MB.",
+  "@attachment_max_size": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  }
 }

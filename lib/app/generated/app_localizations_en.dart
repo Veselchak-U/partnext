@@ -476,4 +476,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chats => 'Chats';
+
+  @override
+  String attachment_max_size(int size) {
+    return 'The total size of the files should not exceed $size MB.';
+  }
 }

@@ -12,7 +12,7 @@ class Config {
 
   static const paymentTimeoutDuration = Duration(minutes: 10);
 
-  static const attachmentMaxSize = 1; //In Megabytes
+  static const attachmentMaxSize = 3; //In megabytes
   static const attachmentAllowedFileExtensions = ['pdf'];
 
   static late final Env environment;

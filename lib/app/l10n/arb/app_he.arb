@@ -174,5 +174,13 @@
   "photo": "תמונה",
   "document": "מסמך",
   "no_chats": "עדיין אין לך צ ' אטים.",
-  "chats": "צ ' אטים"
+  "chats": "צ ' אטים",
+  "attachment_max_size": "הגודל הכולל של הקבצים לא יעלה על {size} מגה בייט.",
+  "@attachment_max_size": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  }
 }
