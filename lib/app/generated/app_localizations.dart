@@ -1042,6 +1042,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'התחל איתם שיחה עסקית עכשיו!'**
   String get chats_ad_desc;
+
+  /// No description provided for @no_messages.
+  ///
+  /// In he, this message translates to:
+  /// **'עדיין אין לך הודעות.'**
+  String get no_messages;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

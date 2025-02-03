@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
+import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
 
-class ChatListScreenVm {
+class MessageListScreenVm {
   final BuildContext _context;
   final ChatProvider _chatProvider;
+  final ChatApiModel item;
 
-  ChatListScreenVm(
+  MessageListScreenVm(
     this._context,
-    this._chatProvider,
-  ) {
+    this._chatProvider, {
+    required this.item,
+  }) {
     _init();
   }
 
   final loading = ValueNotifier<bool>(false);
-  final chats = ValueNotifier<List<ChatApiModel>?>(null);
+  final messages = ValueNotifier<List<MessageApiModel>?>(null);
 
   void _init() {
     _chatProvider.addListener(_chatProviderListener);
-    _refreshChats();
+    _refreshMessages();
   }
 
   void dispose() {
     _chatProvider.removeListener(_chatProviderListener);
 
     loading.dispose();
-    chats.dispose();
+    messages.dispose();
   }
 
-  Future<void> _refreshChats() async {
+  Future<void> _refreshMessages() async {
     _setLoading(true);
-    await _chatProvider.refreshChats().onError(_handleError);
+    // await _chatProvider.refreshChats().onError(_handleError);
+
+    await Future.delayed(
+      Duration(seconds: 1),
+      () => messages.value = [],
+    );
+
     _setLoading(false);
   }
 
@@ -44,19 +51,14 @@ class ChatListScreenVm {
   }
 
   void onRefresh() {
-    _refreshChats();
+    _refreshMessages();
   }
 
-  void openChat(ChatApiModel chat) {
-    _context.pushNamed(
-      AppRoute.chatDetails.name,
-      extra: chat,
-    );
-  }
+  void onMessageTap(MessageApiModel message) {}
 
   void _chatProviderListener() {
     if (!_context.mounted) return;
-    chats.value = _chatProvider.chats;
+    // messages.value = _chatProvider.chats;
   }
 
   void _setLoading(bool value) {

@@ -487,4 +487,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get chats_ad_desc => 'התחל איתם שיחה עסקית עכשיו!';
+
+  @override
+  String get no_messages => 'עדיין אין לך הודעות.';
 }

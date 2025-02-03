@@ -18,9 +18,12 @@ import 'package:partnext/features/auth/presentation/phone_validation/phone_valid
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
+import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
+import 'package:partnext/features/chat/presentation/message_list/message_list_screen.dart';
+import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/grow/presentation/grow_screen.dart';
 import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
@@ -223,6 +226,22 @@ class AppNavigation {
                   dispose: (context, vm) => vm.dispose(),
                   child: const ChatListScreen(),
                 ),
+                routes: [
+                  GoRoute(
+                    name: AppRoute.chatDetails.name,
+                    path: AppRoute.chatDetails.path,
+                    builder: (context, state) => Provider(
+                      lazy: false,
+                      create: (context) => MessageListScreenVm(
+                        context,
+                        DI.get<ChatProvider>(),
+                        item: state.extra as ChatApiModel,
+                      ),
+                      dispose: (context, vm) => vm.dispose(),
+                      child: const MessageListScreen(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
