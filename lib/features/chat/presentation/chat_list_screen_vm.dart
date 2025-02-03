@@ -45,6 +45,8 @@ class ChatListScreenVm {
     _refreshChats();
   }
 
+  void openChat(int chatId) {}
+
   void _chatProviderListener() {
     if (!_context.mounted) return;
     chats.value = _chatProvider.chats;

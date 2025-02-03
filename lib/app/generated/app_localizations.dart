@@ -1030,6 +1030,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'הגודל הכולל של הקבצים לא יעלה על {size} מגה בייט.'**
   String attachment_max_size(int size);
+
+  /// No description provided for @chats_ad_title.
+  ///
+  /// In he, this message translates to:
+  /// **'99+ הזדמנויות עסקיות פוטנציאליות'**
+  String get chats_ad_title;
+
+  /// No description provided for @chats_ad_desc.
+  ///
+  /// In he, this message translates to:
+  /// **'התחל איתם שיחה עסקית עכשיו!'**
+  String get chats_ad_desc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

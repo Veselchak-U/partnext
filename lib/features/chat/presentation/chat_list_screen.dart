@@ -6,6 +6,8 @@ import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/common/widgets/no_items_widget.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
+import 'package:partnext/features/chat/presentation/widgets/chat_list_item.dart';
+import 'package:partnext/features/chat/presentation/widgets/chats_ad_plate.dart';
 import 'package:provider/provider.dart';
 
 class ChatListScreen extends StatelessWidget {
@@ -16,21 +18,12 @@ class ChatListScreen extends StatelessWidget {
     final vm = context.read<ChatListScreenVm>();
 
     return MainLayout(
-      body: Stack(
-        children: [
-          ValueListenableBuilder(
-            valueListenable: vm.chats,
-            builder: (context, chats, _) {
-              if (chats == null) return SizedBox.shrink();
-
-              if (chats.isEmpty) {
-                return NoItemsWidget(
-                  message: context.l10n.no_chats,
-                  onRefresh: () async => vm.onRefresh(),
-                );
-              }
-
-              return RefreshIndicator(
+      body: ValueListenableBuilder(
+        valueListenable: vm.chats,
+        builder: (context, chats, _) {
+          return Stack(
+            children: [
+              RefreshIndicator(
                 onRefresh: () async => vm.onRefresh(),
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
@@ -46,33 +39,46 @@ class ChatListScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 13.h),
-                        ...List.generate(
-                          chats.length,
-                          (index) {
-                            final item = chats[index];
+                        const ChatsAdPlate(),
+                        SizedBox(height: 16.h),
+                        if (chats != null)
+                          ...List.generate(
+                            chats.length,
+                            (index) {
+                              final item = chats[index];
 
-                            return Padding(
+                              return Padding(
                                 padding: EdgeInsets.only(bottom: 16.h),
                                 child: SizedBox(
                                   height: 80.h,
-                                  child: const Placeholder(),
-                                ));
-                          },
-                        ),
+                                  child: ChatListItem(
+                                    item,
+                                    onTap: () => vm.openChat(item.id),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        SizedBox(height: 50.h),
                       ],
                     ),
                   ),
                 ),
-              );
-            },
-          ),
-          ValueListenableBuilder(
-            valueListenable: vm.loading,
-            builder: (context, loading, _) {
-              return LoadingContainerIndicator(loading: loading);
-            },
-          ),
-        ],
+              ),
+              if (chats?.isEmpty == true)
+                NoItemsWidget(
+                  message: context.l10n.no_chats,
+                  onRefresh: () async => vm.onRefresh(),
+                ),
+              ValueListenableBuilder(
+                valueListenable: vm.loading,
+                builder: (context, loading, _) {
+                  return LoadingContainerIndicator(loading: loading);
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

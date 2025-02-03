@@ -109,23 +109,23 @@ final _mockedChats = [
     id: 1,
     member: MemberApiModel(
       id: 1,
-      fullName: 'User 1',
+      fullName: 'Eli Lavi',
       photoUrl:
           'https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?t=st=1734279139~exp=1734282739~hmac=e8745deace0d4a83784c82efcc52bf3870c91ab4c8658026541141d517af3e9a&w=1380',
     ),
     unreadCount: 1,
-    lastMessage: 'Chat 1 Message 1',
+    lastMessage: 'Great! So.. You have your own business?....',
   ),
   ChatApiModel(
     id: 2,
     member: MemberApiModel(
       id: 2,
-      fullName: 'User 2',
+      fullName: 'John Kirby',
       photoUrl:
           'https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?t=st=1734279350~exp=1734282950~hmac=2a095adb5a495534e7d0005b47acee5e0892b1c3f1c2fce7acec887d24c12839&w=740',
     ),
-    unreadCount: 2,
-    lastMessage: 'Chat 2 Message 1',
+    unreadCount: 10,
+    lastMessage: 'Great! So.. You have your own business?....',
   ),
 ];
 

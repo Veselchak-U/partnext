@@ -481,4 +481,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String attachment_max_size(int size) {
     return 'הגודל הכולל של הקבצים לא יעלה על $size מגה בייט.';
   }
+
+  @override
+  String get chats_ad_title => '99+ הזדמנויות עסקיות פוטנציאליות';
+
+  @override
+  String get chats_ad_desc => 'התחל איתם שיחה עסקית עכשיו!';
 }
