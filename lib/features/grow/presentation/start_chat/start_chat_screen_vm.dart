@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
-import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
+import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
@@ -13,14 +13,14 @@ import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
 class StartChatScreenVm {
   final BuildContext _context;
-  final ChatProvider _chatProvider;
+  final ChatListProvider _chatListProvider;
   final UserRepository _userRepository;
   final NavBarIndexProvider _navBarIndexProvider;
   final PartnerApiModel partner;
 
   StartChatScreenVm(
     this._context,
-    this._chatProvider,
+    this._chatListProvider,
     this._userRepository,
     this._navBarIndexProvider, {
     required this.partner,
@@ -60,7 +60,7 @@ class StartChatScreenVm {
   ) async {
     _setLoading(true);
     try {
-      final chat = await _chatProvider.startConversation(
+      final chat = await _chatListProvider.startConversation(
         partner.id,
         text,
         attachments,

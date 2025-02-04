@@ -15,6 +15,8 @@ class Config {
   static const attachmentMaxSize = 3; //In megabytes
   static const attachmentAllowedFileExtensions = ['pdf'];
 
+  static const checkChatsPeriod = Duration(minutes: 1);
+
   static late final Env environment;
 
   static late final String? appDocFolder;

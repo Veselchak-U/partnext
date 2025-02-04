@@ -3,16 +3,16 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
-import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
+import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 
 class MessageListScreenVm {
   final BuildContext _context;
-  final ChatProvider _chatProvider;
+  final ChatListProvider _chatListProvider;
   final ChatApiModel item;
 
   MessageListScreenVm(
     this._context,
-    this._chatProvider, {
+    this._chatListProvider, {
     required this.item,
   }) {
     _init();
@@ -22,12 +22,12 @@ class MessageListScreenVm {
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
 
   void _init() {
-    _chatProvider.addListener(_chatProviderListener);
+    _chatListProvider.addListener(_chatProviderListener);
     _refreshMessages();
   }
 
   void dispose() {
-    _chatProvider.removeListener(_chatProviderListener);
+    _chatListProvider.removeListener(_chatProviderListener);
 
     loading.dispose();
     messages.dispose();

@@ -18,6 +18,7 @@ class ApiEndpoints {
   static const chats = 'api/v1/member/chats';
   static const createChat = 'api/v1/member/create_chat';
   static const sendMessage = 'api/v1/member/send_message';
+  static const chatPage = 'api/v1/member/chat_page';
 
   // Profile
   static const userProfile = 'api/v1/member/user_profile';

@@ -4,15 +4,15 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
-import 'package:partnext/features/chat/domain/provider/chat_provider.dart';
+import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 
 class ChatListScreenVm {
   final BuildContext _context;
-  final ChatProvider _chatProvider;
+  final ChatListProvider _chatListProvider;
 
   ChatListScreenVm(
     this._context,
-    this._chatProvider,
+    this._chatListProvider,
   ) {
     _init();
   }
@@ -21,12 +21,12 @@ class ChatListScreenVm {
   final chats = ValueNotifier<List<ChatApiModel>?>(null);
 
   void _init() {
-    _chatProvider.addListener(_chatProviderListener);
+    _chatListProvider.addListener(_chatProviderListener);
     _refreshChats();
   }
 
   void dispose() {
-    _chatProvider.removeListener(_chatProviderListener);
+    _chatListProvider.removeListener(_chatProviderListener);
 
     loading.dispose();
     chats.dispose();
@@ -34,7 +34,7 @@ class ChatListScreenVm {
 
   Future<void> _refreshChats() async {
     _setLoading(true);
-    await _chatProvider.refreshChats().onError(_handleError);
+    await _chatListProvider.startChecking(onError: _handleError);
     _setLoading(false);
   }
 
@@ -56,7 +56,7 @@ class ChatListScreenVm {
 
   void _chatProviderListener() {
     if (!_context.mounted) return;
-    chats.value = _chatProvider.chats;
+    chats.value = _chatListProvider.chats;
   }
 
   void _setLoading(bool value) {
