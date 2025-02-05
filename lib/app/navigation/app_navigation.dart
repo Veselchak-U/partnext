@@ -189,6 +189,7 @@ class AppNavigation {
             lazy: false,
             create: (context) => NavBarScreenVm(
               DI.get<NavBarIndexProvider>(),
+              DI.get<ChatListProvider>(),
             ),
             dispose: (context, vm) => vm.dispose(),
             child: NavBarScreen(navigationShell),

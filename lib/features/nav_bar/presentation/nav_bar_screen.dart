@@ -6,8 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_shadows.dart';
+import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
 import 'package:provider/provider.dart';
@@ -117,10 +119,16 @@ class _NavBarScreenState extends State<NavBarScreen> {
                                     selected: currentIndex == NavBarTab.home.index,
                                     onTap: () => _onTabSelected(NavBarTab.home.index),
                                   ),
-                                  _NavigationBarItem(
-                                    iconPath: Assets.icons.chatNavBar.path,
-                                    selected: currentIndex == NavBarTab.chats.index,
-                                    onTap: () => _onTabSelected(NavBarTab.chats.index),
+                                  ValueListenableBuilder(
+                                    valueListenable: vm.unreadChatCount,
+                                    builder: (context, unreadChatCount, _) {
+                                      return _NavigationBarItem(
+                                        iconPath: Assets.icons.chatNavBar.path,
+                                        selected: currentIndex == NavBarTab.chats.index,
+                                        onTap: () => _onTabSelected(NavBarTab.chats.index),
+                                        counter: unreadChatCount,
+                                      );
+                                    },
                                   ),
                                   _NavigationBarItem(
                                     iconPath: Assets.icons.rocketNavBar.path,
@@ -151,17 +159,21 @@ class _NavigationBarItem extends StatelessWidget {
   final String iconPath;
   final bool selected;
   final VoidCallback onTap;
+  final int counter;
 
   const _NavigationBarItem({
     required this.iconPath,
     required this.selected,
     required this.onTap,
+    this.counter = 0,
   });
 
   @override
   Widget build(BuildContext context) {
     final backgroundColor = selected ? AppColors.primary : Colors.transparent;
     final iconColor = selected ? AppColors.white : AppColors.primary;
+    final isLtr = context.locale.isLtr;
+    final counterText = counter < 10 ? '$counter' : '9+';
 
     return InkResponse(
       onTap: onTap,
@@ -169,21 +181,51 @@ class _NavigationBarItem extends StatelessWidget {
       splashColor: Colors.transparent,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 250),
-        child: Container(
-          key: ValueKey(selected),
-          width: max(48, 48.r),
-          height: max(48, 48.r),
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(8).r,
-          ),
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            iconPath,
-            width: max(48, 48.r),
-            height: max(48, 48.r),
-            colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-          ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              key: ValueKey(selected),
+              width: max(48, 48.r),
+              height: max(48, 48.r),
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.circular(8).r,
+              ),
+              alignment: Alignment.center,
+              child: SvgPicture.asset(
+                iconPath,
+                width: max(48, 48.r),
+                height: max(48, 48.r),
+                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+              ),
+            ),
+            Positioned(
+              top: -8.h,
+              right: isLtr ? -8.w : null,
+              left: !isLtr ? -8.w : null,
+              child: AnimatedSize(
+                duration: Duration(milliseconds: 250),
+                child: counter == 0
+                    ? const SizedBox.shrink()
+                    : IgnorePointer(
+                        child: Container(
+                          width: 20.h,
+                          height: 20.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.backgroundBright,
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            counterText,
+                            style: AppTextStyles.s12w700.copyWith(color: AppColors.white),
+                          ),
+                        ),
+                      ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -490,4 +490,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get no_messages => 'עדיין אין לך הודעות.';
+
+  @override
+  String get you => 'אתה';
 }

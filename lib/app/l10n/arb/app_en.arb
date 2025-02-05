@@ -185,5 +185,6 @@
   },
   "chats_ad_title": "+99 Potential business opportunities",
   "chats_ad_desc": "Start a business conversation with them now!",
-  "no_messages": "You don't have any messages yet."
+  "no_messages": "You don't have any messages yet.",
+  "you": "You"
 }

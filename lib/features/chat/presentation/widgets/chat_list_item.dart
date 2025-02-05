@@ -25,6 +25,8 @@ class ChatListItem extends StatelessWidget {
         : isLtr
             ? '9+'
             : '+9';
+    final messageTitleStyle = AppTextStyles.s12w600.copyWith(height: 15 / 12);
+    final messageDescStyle = AppTextStyles.s12w400.copyWith(height: 15 / 12);
 
     return Stack(
       children: [
@@ -60,16 +62,26 @@ class ChatListItem extends StatelessWidget {
                       children: [
                         Text(
                           item.member.fullName,
-                          style: AppTextStyles.s12w600.copyWith(height: 15 / 12),
+                          style: messageTitleStyle,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 4.h),
-                        Text(
-                          item.lastMessageDescription,
-                          style: AppTextStyles.s12w400.copyWith(height: 15 / 12),
+                        Text.rich(
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: item.lastMessageCreator,
+                                style: messageDescStyle.copyWith(color: AppColors.primarySecond),
+                              ),
+                              TextSpan(
+                                text: item.lastMessageDescription,
+                                style: messageDescStyle,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

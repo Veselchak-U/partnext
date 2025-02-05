@@ -1048,6 +1048,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'עדיין אין לך הודעות.'**
   String get no_messages;
+
+  /// No description provided for @you.
+  ///
+  /// In he, this message translates to:
+  /// **'אתה'**
+  String get you;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

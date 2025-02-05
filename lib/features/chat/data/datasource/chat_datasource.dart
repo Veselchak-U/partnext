@@ -213,7 +213,7 @@ final _mockedMessagesOne = [
     id: 4,
     index: 3,
     createdAt: DateTime.now(),
-    creator: _mockedMembers[1],
+    creator: _mockedMembers[0],
     status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,

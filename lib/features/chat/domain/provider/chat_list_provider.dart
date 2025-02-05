@@ -9,6 +9,8 @@ import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 abstract interface class ChatListProvider with ChangeNotifier {
   List<ChatApiModel> get chats;
 
+  int get unreadChatCount;
+
   Future<void> startChecking({
     Function(Object, StackTrace)? onError,
   });
@@ -34,6 +36,9 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
 
   @override
   List<ChatApiModel> get chats => List.unmodifiable(_chats);
+
+  @override
+  int get unreadChatCount => _chats.where((e) => e.unreadCount != 0).length;
 
   @override
   Future<void> startChecking({

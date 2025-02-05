@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/features/chat/data/model/member_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 
@@ -14,8 +15,8 @@ class ChatApiModel {
   ChatApiModel({
     required this.id,
     required this.member,
-    required this.unreadMessage,
-    required this.lastMessage,
+    this.unreadMessage,
+    this.lastMessage,
   });
 
   factory ChatApiModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +31,10 @@ class ChatApiModel {
     if (lastIndex == null || unreadIndex == null) return 0;
 
     return lastIndex - unreadIndex + 1;
+  }
+
+  String get lastMessageCreator {
+    return (lastMessage?.creator.isCurrentUser ?? false) ? '${l10n?.you}: ' : '';
   }
 
   String get lastMessageDescription {
