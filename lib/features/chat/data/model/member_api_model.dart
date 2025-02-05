@@ -7,11 +7,13 @@ class MemberApiModel {
   final int id;
   final String fullName;
   final String photoUrl;
+  final bool? isCurrentUser;
 
   MemberApiModel({
     required this.id,
     required this.fullName,
     required this.photoUrl,
+    this.isCurrentUser,
   });
 
   factory MemberApiModel.fromJson(Map<String, dynamic> json) {

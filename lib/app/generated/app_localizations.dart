@@ -1001,11 +1001,11 @@ abstract class AppLocalizations {
   /// **'כתוב הודעה...'**
   String get write_message;
 
-  /// No description provided for @photo.
+  /// No description provided for @image.
   ///
   /// In he, this message translates to:
   /// **'תמונה'**
-  String get photo;
+  String get image;
 
   /// No description provided for @document.
   ///

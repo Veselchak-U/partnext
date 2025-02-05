@@ -15,8 +15,9 @@ import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/focus_layout.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/config.dart';
+import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
 
-typedef MenuItem = ({String icon, String label});
+typedef MenuItem = ({AttachmentType type, String icon, String label});
 
 class AppMessageField extends StatefulWidget {
   final void Function(
@@ -36,8 +37,8 @@ class AppMessageField extends StatefulWidget {
 class _AppMessageFieldState extends State<AppMessageField> {
   final _isMenuOpened = ValueNotifier<bool>(false);
   final _menuList = <MenuItem>[
-    (icon: Assets.icons.image.path, label: l10n?.photo ?? ''),
-    (icon: Assets.icons.document.path, label: l10n?.document ?? ''),
+    (type: AttachmentType.image, icon: Assets.icons.image.path, label: l10n?.image ?? ''),
+    (type: AttachmentType.document, icon: Assets.icons.document.path, label: l10n?.document ?? ''),
   ];
   final _textFieldFocusNode = FocusNode();
 
@@ -81,17 +82,15 @@ class _AppMessageFieldState extends State<AppMessageField> {
     }
   }
 
-  void _onMenuSelected(int index) {
+  void _onMenuSelected(MenuItem item) {
     _hideMenu();
 
-    switch (index) {
-      case 0:
+    switch (item.type) {
+      case AttachmentType.image:
         _pickImages();
         break;
-      case 1:
+      case AttachmentType.document:
         _pickDocuments();
-        break;
-      default:
         break;
     }
   }
@@ -229,7 +228,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
 class _Menu extends StatelessWidget {
   final List<MenuItem> items;
-  final Function(int) onTap;
+  final Function(MenuItem) onTap;
 
   const _Menu({
     required this.items,
@@ -249,10 +248,14 @@ class _Menu extends StatelessWidget {
       child: Column(
         children: List.generate(
           items.length,
-          (index) => _MenuItem(
-            item: items[index],
-            onTap: () => onTap(index),
-          ),
+          (index) {
+            final item = items[index];
+
+            return _MenuItem(
+              item: item,
+              onTap: () => onTap(item),
+            );
+          },
         ),
       ),
     );

@@ -66,7 +66,7 @@ class ChatListItem extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          item.lastMessage ?? '',
+                          item.lastMessageDescription,
                           style: AppTextStyles.s12w400.copyWith(height: 15 / 12),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,

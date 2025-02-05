@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:partnext/features/chat/data/model/attachment_api_model.dart';
+import 'package:partnext/features/chat/data/model/member_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/message_status.dart';
 
 part 'message_api_model.g.dart';
@@ -6,13 +8,21 @@ part 'message_api_model.g.dart';
 @JsonSerializable()
 class MessageApiModel {
   final int id;
+  final int index;
+  final DateTime createdAt;
+  final MemberApiModel creator;
   final MessageStatus status;
-  final String text;
+  final String? text;
+  final AttachmentApiModel? attachment;
 
   MessageApiModel({
     required this.id,
+    required this.index,
+    required this.createdAt,
+    required this.creator,
     required this.status,
-    required this.text,
+    this.text,
+    this.attachment,
   });
 
   @override
@@ -30,4 +40,14 @@ class MessageApiModel {
   }
 
   Map<String, dynamic> toJson() => _$MessageApiModelToJson(this);
+
+  bool get isUnread => status != MessageStatus.seen;
+
+  String get description {
+    if (text != null) {
+      return text ?? '';
+    }
+
+    return '$attachment';
+  }
 }

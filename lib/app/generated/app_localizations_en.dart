@@ -466,7 +466,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get write_message => 'Write a message...';
 
   @override
-  String get photo => 'Photo';
+  String get image => 'Image';
 
   @override
   String get document => 'Document';
