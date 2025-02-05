@@ -4,14 +4,17 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
+import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 
 class MessageListScreenVm {
   final BuildContext _context;
+  final MessageListProvider _messageListProvider;
   final ChatListProvider _chatListProvider;
   final ChatApiModel item;
 
   MessageListScreenVm(
     this._context,
+    this._messageListProvider,
     this._chatListProvider, {
     required this.item,
   }) {
@@ -22,12 +25,13 @@ class MessageListScreenVm {
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
 
   void _init() {
-    _chatListProvider.addListener(_chatProviderListener);
+    _messageListProvider.addListener(__messageListListener);
     _refreshMessages();
   }
 
   void dispose() {
-    _chatListProvider.removeListener(_chatProviderListener);
+    _messageListProvider.removeListener(__messageListListener);
+    _messageListProvider.stopChecking();
 
     loading.dispose();
     messages.dispose();
@@ -35,13 +39,10 @@ class MessageListScreenVm {
 
   Future<void> _refreshMessages() async {
     _setLoading(true);
-    // await _chatProvider.refreshChats().onError(_handleError);
-
-    await Future.delayed(
-      Duration(seconds: 1),
-      () => messages.value = [],
+    await _messageListProvider.startChecking(
+      chatId: item.id,
+      onError: _handleError,
     );
-
     _setLoading(false);
   }
 
@@ -56,9 +57,11 @@ class MessageListScreenVm {
 
   void onMessageTap(MessageApiModel message) {}
 
-  void _chatProviderListener() {
+  void openContextMenu() {}
+
+  void __messageListListener() {
     if (!_context.mounted) return;
-    // messages.value = _chatProvider.chats;
+    messages.value = _messageListProvider.messages;
   }
 
   void _setLoading(bool value) {

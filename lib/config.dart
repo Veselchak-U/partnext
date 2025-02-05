@@ -16,6 +16,7 @@ class Config {
   static const attachmentAllowedFileExtensions = ['pdf'];
 
   static const checkChatsPeriod = Duration(minutes: 1);
+  static const checkMessagesPeriod = Duration(seconds: 15);
 
   static late final Env environment;
 

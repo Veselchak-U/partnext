@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
+import 'package:partnext/app/style/app_colors.dart';
+import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/common/widgets/no_items_widget.dart';
@@ -16,6 +19,35 @@ class MessageListScreen extends StatelessWidget {
     final vm = context.read<MessageListScreenVm>();
 
     return MainLayout(
+      title: Row(
+        children: [
+          Container(
+            width: 32.h,
+            height: 32.h,
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(vm.item.member.photoUrl),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(width: 20.w),
+          Text(
+            vm.item.member.fullName,
+            style: AppTextStyles.s18w500,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.more_vert),
+          onPressed: vm.openContextMenu,
+        ),
+      ],
       body: ValueListenableBuilder(
         valueListenable: vm.messages,
         builder: (context, messages, _) {
@@ -25,7 +57,7 @@ class MessageListScreen extends StatelessWidget {
                 onRefresh: () async => vm.onRefresh(),
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(horizontal: 32).w,
+                  padding: EdgeInsets.symmetric(horizontal: 16).w,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Column(
@@ -39,12 +71,9 @@ class MessageListScreen extends StatelessWidget {
 
                               return Padding(
                                 padding: EdgeInsets.only(bottom: 16.h),
-                                child: SizedBox(
-                                  height: 80.h,
-                                  child: MessagesListItem(
-                                    item,
-                                    onTap: () => vm.onMessageTap(item),
-                                  ),
+                                child: MessagesListItem(
+                                  item,
+                                  onTap: () => vm.onMessageTap(item),
                                 ),
                               );
                             },

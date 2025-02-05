@@ -21,12 +21,12 @@ class ChatListScreenVm {
   final chats = ValueNotifier<List<ChatApiModel>?>(null);
 
   void _init() {
-    _chatListProvider.addListener(_chatProviderListener);
+    _chatListProvider.addListener(_chatListListener);
     _refreshChats();
   }
 
   void dispose() {
-    _chatListProvider.removeListener(_chatProviderListener);
+    _chatListProvider.removeListener(_chatListListener);
 
     loading.dispose();
     chats.dispose();
@@ -54,7 +54,7 @@ class ChatListScreenVm {
     );
   }
 
-  void _chatProviderListener() {
+  void _chatListListener() {
     if (!_context.mounted) return;
     chats.value = _chatListProvider.chats;
   }

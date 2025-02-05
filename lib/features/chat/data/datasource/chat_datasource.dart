@@ -119,10 +119,19 @@ class ChatDatasourceImpl implements ChatDatasource {
     int chatId, {
     int? index,
   }) {
-    // return Future.delayed(
-    //   Duration(seconds: 1),
-    //       () => [..._mockedChats],
-    // );
+    return Future.delayed(
+      Duration(seconds: 1),
+      () => ChatPageApiModel(
+        chatId: chatId,
+        pageIndex: index ?? 0,
+        lastPageIndex: index ?? 0,
+        messages: chatId == 1
+            ? [..._mockedMessagesOne]
+            : chatId == 2
+                ? [..._mockedMessagesTwo]
+                : [],
+      ),
+    );
 
     final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.chatPage}').replace(
       queryParameters: {
@@ -251,9 +260,10 @@ final _mockedMessagesTwo = [
     status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
-      type: AttachmentType.document,
-      name: 'file.word',
-      url: '',
+      type: AttachmentType.image,
+      name: 'project_map.png',
+      url:
+          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
     ),
   ),
   MessageApiModel(

@@ -42,7 +42,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
     _checkTimer?.cancel();
     _checkTimer = Timer.periodic(
-      Config.checkChatsPeriod,
+      Config.checkMessagesPeriod,
       (_) => _refreshMessages(),
     );
 

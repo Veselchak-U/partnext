@@ -16,6 +16,7 @@ import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
+import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -140,6 +141,9 @@ class DI {
           _sl<PartnerRepository>(),
         ));
     _sl.registerLazySingleton<ChatListProvider>(() => ChatListProviderImpl(
+          _sl<ChatRepository>(),
+        ));
+    _sl.registerLazySingleton<MessageListProvider>(() => MessageListProviderImpl(
           _sl<ChatRepository>(),
         ));
   }

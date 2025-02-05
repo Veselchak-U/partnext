@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:partnext/features/chat/data/model/attachment_api_model.dart';
 import 'package:partnext/features/chat/data/model/member_api_model.dart';
+import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
 import 'package:partnext/features/chat/domain/entity/message_status.dart';
 
 part 'message_api_model.g.dart';
@@ -42,6 +43,8 @@ class MessageApiModel {
   Map<String, dynamic> toJson() => _$MessageApiModelToJson(this);
 
   bool get isUnread => status != MessageStatus.seen;
+
+  bool get isImage => attachment?.type == AttachmentType.image;
 
   String get description {
     if (text != null) {

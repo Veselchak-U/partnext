@@ -10,6 +10,7 @@ import 'package:partnext/common/layouts/focus_layout.dart';
 class MainLayout extends StatelessWidget {
   final Widget body;
   final String? titleText;
+  final Widget? title;
   final List<Widget> actions;
   final VoidCallback? onBackButtonPressed;
   final bool extendBodyBehindAppBar;
@@ -18,6 +19,7 @@ class MainLayout extends StatelessWidget {
   const MainLayout({
     required this.body,
     this.titleText,
+    this.title,
     this.actions = const [],
     this.onBackButtonPressed,
     this.extendBodyBehindAppBar = true,
@@ -38,10 +40,11 @@ class MainLayout extends StatelessWidget {
           titleText: titleText,
           title: titleText != null
               ? null
-              : Image.asset(
-                  Assets.images.appLogo.path,
-                  height: 34.h,
-                ),
+              : title ??
+                  Image.asset(
+                    Assets.images.appLogo.path,
+                    height: 34.h,
+                  ),
           leading: onBackButtonPressed != null ? BackButton(onPressed: onBackButtonPressed) : null,
           actions: actions,
           shape: RoundedRectangleBorder(
