@@ -9,6 +9,7 @@ import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class MessageListScreenVm {
   final BuildContext _context;
@@ -32,14 +33,20 @@ class MessageListScreenVm {
   final loading = ValueNotifier<bool>(false);
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
 
+  final scrollController = AutoScrollController();
+
+  bool _isFirstMessageUpdate = true;
+
   void _init() {
-    _messageListProvider.addListener(__messageListListener);
+    _messageListProvider.addListener(_messageListListener);
     _refreshMessages();
   }
 
   void dispose() {
-    _messageListProvider.removeListener(__messageListListener);
+    _messageListProvider.removeListener(_messageListListener);
     _messageListProvider.stopChecking();
+
+    scrollController.dispose();
 
     loading.dispose();
     messages.dispose();
@@ -101,9 +108,33 @@ class MessageListScreenVm {
 
   void openContextMenu() {}
 
-  void __messageListListener() {
+  void _messageListListener() {
     if (!_context.mounted) return;
     messages.value = _messageListProvider.messages;
+
+    if (_isFirstMessageUpdate) {
+      _scrollToUnreadMessage();
+    }
+  }
+
+  void _scrollToUnreadMessage() {
+    _isFirstMessageUpdate = false;
+
+    final messageList = messages.value ?? [];
+
+    final unreadMessageId = item.unreadMessage?.id;
+    if (unreadMessageId == null) return;
+
+    final unreadMessageIndex = messageList.indexWhere((e) => e.id == unreadMessageId);
+    if (unreadMessageIndex == -1) return;
+
+    scrollController.scrollToIndex(
+      unreadMessageIndex,
+      duration: Duration(milliseconds: 8),
+      preferPosition: AutoScrollPosition.middle,
+    );
+
+    // Scrollable.ensureVisible(invalidFields.first.context);
   }
 
   void _setLoading(bool value) {

@@ -163,7 +163,7 @@ final _mockedChats = [
   ChatApiModel(
     id: 2,
     member: _mockedMembers[2],
-    unreadMessage: _mockedMessagesTwo[2],
+    unreadMessage: _mockedMessagesTwo[9],
     lastMessage: _mockedMessagesTwo.last,
   ),
 ];
@@ -274,6 +274,168 @@ final _mockedMessagesTwo = [
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
     status: MessageStatus.sent,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 5,
+    index: 4,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 6,
+    index: 5,
+    createdAt: DateTime.now().subtract(Duration(minutes: 9)),
+    creator: _mockedMembers[0],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 7,
+    index: 6,
+    createdAt: DateTime.now().subtract(Duration(minutes: 1)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    attachment: AttachmentApiModel(
+      id: 1,
+      type: AttachmentType.image,
+      name: 'project_map.png',
+      url:
+          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+      size: 46540,
+    ),
+  ),
+  MessageApiModel(
+    id: 8,
+    index: 7,
+    createdAt: DateTime.now(),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 9,
+    index: 8,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 10,
+    index: 9,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 11,
+    index: 10,
+    createdAt: DateTime.now().subtract(Duration(minutes: 9)),
+    creator: _mockedMembers[0],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 12,
+    index: 11,
+    createdAt: DateTime.now().subtract(Duration(minutes: 1)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    attachment: AttachmentApiModel(
+      id: 1,
+      type: AttachmentType.image,
+      name: 'project_map.png',
+      url:
+          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+      size: 46540,
+    ),
+  ),
+  MessageApiModel(
+    id: 13,
+    index: 12,
+    createdAt: DateTime.now(),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 14,
+    index: 13,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 15,
+    index: 14,
+    createdAt: DateTime.now().subtract(Duration(minutes: 9)),
+    creator: _mockedMembers[0],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 16,
+    index: 15,
+    createdAt: DateTime.now().subtract(Duration(minutes: 1)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    attachment: AttachmentApiModel(
+      id: 1,
+      type: AttachmentType.image,
+      name: 'project_map.png',
+      url:
+          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+      size: 46540,
+    ),
+  ),
+  MessageApiModel(
+    id: 17,
+    index: 16,
+    createdAt: DateTime.now(),
+    creator: _mockedMembers[2],
+    status: MessageStatus.sent,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 18,
+    index: 17,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 19,
+    index: 18,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
+    text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+  ),
+  MessageApiModel(
+    id: 20,
+    index: 19,
+    createdAt: DateTime.now().subtract(Duration(minutes: 10)),
+    creator: _mockedMembers[2],
+    status: MessageStatus.seen,
     text:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),

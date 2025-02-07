@@ -18,6 +18,8 @@ class MessagesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('item.index: ${item.index}');
+
     final isMyMessage = item.creator.isCurrentUser ?? false;
     final crossAxisAlignment = isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final borderRadius = BorderRadius.circular(8).r;

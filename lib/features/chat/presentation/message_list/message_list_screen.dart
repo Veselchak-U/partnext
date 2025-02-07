@@ -10,6 +10,7 @@ import 'package:partnext/common/widgets/no_items_widget.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/widgets/messages_list_item.dart';
 import 'package:provider/provider.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class MessageListScreen extends StatelessWidget {
   const MessageListScreen({super.key});
@@ -55,33 +56,25 @@ class MessageListScreen extends StatelessWidget {
             children: [
               RefreshIndicator(
                 onRefresh: () async => vm.onRefresh(),
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(horizontal: 16).w,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 16.h),
-                        if (messages != null)
-                          ...List.generate(
-                            messages.length,
-                            (index) {
-                              final item = messages[index];
+                child: ListView.separated(
+                  controller: vm.scrollController,
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
+                  itemCount: messages?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final item = messages?[index];
+                    if (item == null) return SizedBox.shrink();
 
-                              return Padding(
-                                padding: EdgeInsets.only(bottom: 16.h),
-                                child: MessagesListItem(
-                                  item,
-                                  onTap: () => vm.onMessageTap(item),
-                                ),
-                              );
-                            },
-                          ),
-                        SizedBox(height: 50.h),
-                      ],
-                    ),
-                  ),
+                    return AutoScrollTag(
+                      key: ValueKey(index),
+                      index: index,
+                      controller: vm.scrollController,
+                      child: MessagesListItem(
+                        item,
+                        onTap: () => vm.onMessageTap(item),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (_, __) => SizedBox(height: 16.h),
                 ),
               ),
               if (messages?.isEmpty == true)

@@ -59,6 +59,7 @@ dependencies:
   animated_custom_dropdown: 3.1.1
   flutter_keyboard_visibility: 6.0.0
   defer_pointer: 0.0.2
+  scroll_to_index: 3.0.1
 
   # Code generation
   json_annotation: 4.9.0
