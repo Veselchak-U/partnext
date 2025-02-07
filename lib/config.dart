@@ -18,6 +18,8 @@ class Config {
   static const checkChatsPeriod = Duration(minutes: 1);
   static const checkMessagesPeriod = Duration(seconds: 15);
 
+  static const messageFileCacheStalePeriod = Duration(days: 30);
+
   static late final Env environment;
 
   static late final String? appDocFolder;

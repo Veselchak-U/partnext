@@ -12,7 +12,7 @@ class AppRoute {
   static const home = AppRoute('home', '/home');
 
   static const chats = AppRoute('chats', '/chats');
-  static const chatDetails = AppRoute('message_list', 'message_list');
+  static const messages = AppRoute('messages', 'messages');
 
   static const grow = AppRoute('grow', '/grow');
   static const partnerDetails = AppRoute('partner_details', 'partner_details');
@@ -23,6 +23,7 @@ class AppRoute {
   static const sendFeedback = AppRoute('send_feedback', 'send_feedback');
 
   static const actionResult = AppRoute('action_result', '/action_result');
+  static const viewImage = AppRoute('view_image', '/view_image');
 
   final String name;
   final String path;

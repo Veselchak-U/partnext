@@ -8,11 +8,6 @@ abstract interface class QuestionnaireRepository {
   Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire);
 
   Future<void> clearQuestionnaire();
-
-  Future<String> uploadImage({
-    required String filePath,
-    Function(int count, int total)? onSendProgress,
-  });
 }
 
 class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
@@ -44,16 +39,5 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
   @override
   Future<void> clearQuestionnaire() {
     return _localDatasource.setQuestionnaire(null);
-  }
-
-  @override
-  Future<String> uploadImage({
-    required String filePath,
-    Function(int count, int total)? onSendProgress,
-  }) {
-    return _remoteDatasource.uploadImage(
-      filePath: filePath,
-      onSendProgress: onSendProgress,
-    );
   }
 }

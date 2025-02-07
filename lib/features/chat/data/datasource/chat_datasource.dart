@@ -227,8 +227,9 @@ final _mockedMessagesOne = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.document,
-      name: 'file.word',
-      url: '',
+      name: 'project.pdf',
+      url: 'https://api.slingacademy.com/v1/sample-data/files/text-and-images.pdf',
+      size: 279166,
     ),
   ),
 ];
@@ -264,6 +265,7 @@ final _mockedMessagesTwo = [
       name: 'project_map.png',
       url:
           'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+      size: 46540,
     ),
   ),
   MessageApiModel(

@@ -12,6 +12,7 @@ AttachmentApiModel _$AttachmentApiModelFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
       name: json['name'] as String?,
       url: json['url'] as String?,
+      size: (json['size'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AttachmentApiModelToJson(AttachmentApiModel instance) =>
@@ -20,6 +21,7 @@ Map<String, dynamic> _$AttachmentApiModelToJson(AttachmentApiModel instance) =>
       'type': _$AttachmentTypeEnumMap[instance.type]!,
       'name': instance.name,
       'url': instance.url,
+      'size': instance.size,
     };
 
 const _$AttachmentTypeEnumMap = {

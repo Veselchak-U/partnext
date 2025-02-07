@@ -49,7 +49,7 @@ class ChatListScreenVm {
 
   void openChat(ChatApiModel chat) {
     _context.pushNamed(
-      AppRoute.chatDetails.name,
+      AppRoute.messages.name,
       extra: chat,
     );
   }

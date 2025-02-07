@@ -7,6 +7,7 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
+import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
@@ -18,11 +19,13 @@ import 'package:partnext/features/questionnaire/presentation/widgets/partnership
 class QuestionnaireScreenVm {
   final BuildContext _context;
   final QuestionnaireRepository _questionnaireRepository;
+  final FileRepository _fileRepository;
   final QuestionnaireScreenParams? params;
 
   QuestionnaireScreenVm(
     this._context,
-    this._questionnaireRepository, {
+    this._questionnaireRepository,
+    this._fileRepository, {
     this.params,
   }) {
     _init();
@@ -215,7 +218,7 @@ class QuestionnaireScreenVm {
         return;
       }
 
-      final imageUrl = await _questionnaireRepository.uploadImage(filePath: file.path);
+      final imageUrl = await _fileRepository.uploadFile(filePath: file.path);
       if (!_context.mounted) return;
 
       final newList = [...photos.value];

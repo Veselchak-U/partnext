@@ -46,6 +46,8 @@ class MessageApiModel {
 
   bool get isImage => attachment?.type == AttachmentType.image;
 
+  bool get isDocument => attachment?.type == AttachmentType.document;
+
   String get description {
     if (text != null) {
       return text ?? '';

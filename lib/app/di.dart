@@ -9,6 +9,7 @@ import 'package:partnext/app/service/network/api_client/interceptors/http_auth_i
 import 'package:partnext/app/service/network/api_client/interceptors/http_error_interceptor.dart';
 import 'package:partnext/app/service/network/api_client/interceptors/http_log_interceptor.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
+import 'package:partnext/app/service/storage/file_cache_service.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
@@ -17,6 +18,8 @@ import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
+import 'package:partnext/features/file/data/datasource/file_datasource.dart';
+import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
@@ -69,6 +72,7 @@ class DI {
     _sl.registerSingleton<DioApiClient>(DioApiClient(
       getAccessToken: () => _sl<UserLocalDatasource>().getAccessToken(),
     ));
+    _sl.registerSingleton<FileCacheService>(FileCacheServiceImpl());
   }
 
   void _dataSources() {
@@ -80,7 +84,6 @@ class DI {
         ));
     _sl.registerLazySingleton<QuestionnaireRemoteDatasource>(() => QuestionnaireRemoteDatasourceImpl(
           _sl<ApiClient>(),
-          _sl<DioApiClient>(),
         ));
     _sl.registerLazySingleton<QuestionnaireLocalDatasource>(() => QuestionnaireLocalDatasourceImpl(
           _sl<StorageService>(),
@@ -94,6 +97,10 @@ class DI {
         ));
     _sl.registerLazySingleton<ChatDatasource>(() => ChatDatasourceImpl(
           _sl<ApiClient>(),
+        ));
+    _sl.registerLazySingleton<FileDatasource>(() => FileDatasourceImpl(
+          _sl<DioApiClient>(),
+          _sl<FileCacheService>(),
         ));
   }
 
@@ -116,6 +123,9 @@ class DI {
         ));
     _sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImpl(
           _sl<ChatDatasource>(),
+        ));
+    _sl.registerLazySingleton<FileRepository>(() => FileRepositoryImpl(
+          _sl<FileDatasource>(),
         ));
   }
 

@@ -20,6 +20,7 @@ class MessagesListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMyMessage = item.creator.isCurrentUser ?? false;
     final crossAxisAlignment = isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start;
+    final borderRadius = BorderRadius.circular(8).r;
 
     return Row(
       children: [
@@ -28,32 +29,33 @@ class MessagesListItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: crossAxisAlignment,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: isMyMessage ? AppColors.backgroundMessage : AppColors.white,
-                  borderRadius: BorderRadius.circular(8).r,
-                ),
-                // padding: EdgeInsets.all(17).r,
-                child: Column(
-                  crossAxisAlignment: crossAxisAlignment,
-                  children: [
-                    SizedBox(height: 16.h),
-                    if (item.isImage)
+              Material(
+                color: isMyMessage ? AppColors.backgroundMessage : AppColors.white,
+                borderRadius: borderRadius,
+                child: InkWell(
+                  borderRadius: borderRadius,
+                  onTap: onTap,
+                  child: Column(
+                    crossAxisAlignment: crossAxisAlignment,
+                    children: [
+                      SizedBox(height: 16.h),
+                      if (item.isImage)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8).h,
+                          child: CachedNetworkImage(
+                            imageUrl: item.attachment?.url ?? '',
+                          ),
+                        ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 8).h,
-                        child: CachedNetworkImage(
-                          imageUrl: item.attachment?.url ?? '',
+                        padding: const EdgeInsets.symmetric(horizontal: 16).w,
+                        child: Text(
+                          item.description,
+                          style: AppTextStyles.s12w400.copyWith(color: AppColors.black),
                         ),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16).w,
-                      child: Text(
-                        item.description,
-                        style: AppTextStyles.s12w400.copyWith(color: AppColors.black),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                  ],
+                      SizedBox(height: 16.h),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 9.h),
