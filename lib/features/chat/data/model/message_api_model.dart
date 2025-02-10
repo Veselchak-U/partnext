@@ -12,7 +12,6 @@ class MessageApiModel {
   final int index;
   final DateTime createdAt;
   final MemberApiModel creator;
-  final MessageStatus status;
   final String? text;
   final AttachmentApiModel? attachment;
 
@@ -21,7 +20,6 @@ class MessageApiModel {
     required this.index,
     required this.createdAt,
     required this.creator,
-    required this.status,
     this.text,
     this.attachment,
   });
@@ -41,8 +39,6 @@ class MessageApiModel {
   }
 
   Map<String, dynamic> toJson() => _$MessageApiModelToJson(this);
-
-  bool get isUnread => status != MessageStatus.seen;
 
   bool get isImage => attachment?.type == AttachmentType.image;
 

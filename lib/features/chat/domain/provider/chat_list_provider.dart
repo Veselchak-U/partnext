@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
+import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 
 abstract interface class ChatListProvider with ChangeNotifier {
@@ -22,6 +23,11 @@ abstract interface class ChatListProvider with ChangeNotifier {
     String text,
     List<File> attachments,
   );
+
+  Future<void> markMessageAsRead({
+    required int chatId,
+    required MessageApiModel message,
+  });
 }
 
 class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
@@ -80,5 +86,27 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     } catch (e, st) {
       onError?.call(e, st);
     }
+  }
+
+  @override
+  Future<void> markMessageAsRead({
+    required int chatId,
+    required MessageApiModel message,
+  }) async {
+    final chatIndex = _chats.indexWhere((e) => e.id == chatId);
+    if (chatIndex == -1) return;
+
+    final chat = _chats[chatIndex];
+    final unreadMessageIndex = chat.unreadMessageIndex;
+    if (unreadMessageIndex == null) return;
+
+    if (message.index < unreadMessageIndex) return;
+
+    final unreadIndex = message.index == unreadMessageIndex ? null : message.index;
+    final updated = chat.copyWith(unreadMessageIndex: unreadIndex);
+    _chats[chatIndex] = updated;
+    notifyListeners();
+
+    _chatRepository.markMessageAsRead(chatId: chatId, messageId: message.id);
   }
 }

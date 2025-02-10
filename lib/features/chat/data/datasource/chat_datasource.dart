@@ -10,7 +10,6 @@ import 'package:partnext/features/chat/data/model/chat_page_api_model.dart';
 import 'package:partnext/features/chat/data/model/member_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
-import 'package:partnext/features/chat/domain/entity/message_status.dart';
 
 abstract interface class ChatDatasource {
   Future<List<ChatApiModel>> getChats();
@@ -26,6 +25,11 @@ abstract interface class ChatDatasource {
   Future<ChatPageApiModel> getChatPage(
     int chatId, {
     int? index,
+  });
+
+  Future<void> markMessageAsRead({
+    required int chatId,
+    required int messageId,
   });
 }
 
@@ -151,19 +155,42 @@ class ChatDatasourceImpl implements ChatDatasource {
       },
     );
   }
+
+  @override
+  Future<void> markMessageAsRead({
+    required int chatId,
+    required int messageId,
+  }) {
+    return Future.delayed(Duration(seconds: 1));
+
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.markMessageAsRead}');
+    //
+    // return _apiClient.post(
+    //   uri,
+    //   body: {
+    //     "chat_id": chatId,
+    //     "message_id": messageId,
+    //   },
+    //   parser: (response) {
+    //     if (response.statusCode == HttpStatus.ok) return;
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
+  }
 }
 
 final _mockedChats = [
   ChatApiModel(
     id: 1,
     member: _mockedMembers[1],
-    unreadMessage: _mockedMessagesOne[2],
+    unreadMessageIndex: 2,
     lastMessage: _mockedMessagesOne.last,
   ),
   ChatApiModel(
     id: 2,
     member: _mockedMembers[2],
-    unreadMessage: _mockedMessagesTwo[9],
+    unreadMessageIndex: 9,
     lastMessage: _mockedMessagesTwo.last,
   ),
 ];
@@ -196,7 +223,6 @@ final _mockedMessagesOne = [
     index: 0,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[1],
-    status: MessageStatus.seen,
     text:
         '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -205,7 +231,6 @@ final _mockedMessagesOne = [
     index: 1,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
-    status: MessageStatus.seen,
     text:
         '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -214,7 +239,6 @@ final _mockedMessagesOne = [
     index: 2,
     createdAt: DateTime.now(),
     creator: _mockedMembers[1],
-    status: MessageStatus.sent,
     text:
         '3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -223,7 +247,6 @@ final _mockedMessagesOne = [
     index: 3,
     createdAt: DateTime.now(),
     creator: _mockedMembers[0],
-    status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.document,
@@ -240,7 +263,6 @@ final _mockedMessagesTwo = [
     index: 0,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -249,7 +271,6 @@ final _mockedMessagesTwo = [
     index: 1,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
-    status: MessageStatus.seen,
     text:
         '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -258,7 +279,6 @@ final _mockedMessagesTwo = [
     index: 2,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
@@ -273,7 +293,6 @@ final _mockedMessagesTwo = [
     index: 3,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     text:
         '4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -282,7 +301,6 @@ final _mockedMessagesTwo = [
     index: 4,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '5 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -291,7 +309,6 @@ final _mockedMessagesTwo = [
     index: 5,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
-    status: MessageStatus.seen,
     text:
         '6 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -300,7 +317,6 @@ final _mockedMessagesTwo = [
     index: 6,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
@@ -315,7 +331,6 @@ final _mockedMessagesTwo = [
     index: 7,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     text:
         '8 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -324,7 +339,6 @@ final _mockedMessagesTwo = [
     index: 8,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '9 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -333,7 +347,6 @@ final _mockedMessagesTwo = [
     index: 9,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '10 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -342,7 +355,6 @@ final _mockedMessagesTwo = [
     index: 10,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
-    status: MessageStatus.seen,
     text:
         '11 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -351,7 +363,6 @@ final _mockedMessagesTwo = [
     index: 11,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
@@ -366,7 +377,6 @@ final _mockedMessagesTwo = [
     index: 12,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     text:
         '13 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -375,7 +385,6 @@ final _mockedMessagesTwo = [
     index: 13,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '14 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -384,7 +393,6 @@ final _mockedMessagesTwo = [
     index: 14,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
-    status: MessageStatus.seen,
     text:
         '15 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -393,7 +401,6 @@ final _mockedMessagesTwo = [
     index: 15,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
@@ -408,7 +415,6 @@ final _mockedMessagesTwo = [
     index: 16,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
-    status: MessageStatus.sent,
     text:
         '17 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -417,7 +423,6 @@ final _mockedMessagesTwo = [
     index: 17,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '18 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -426,7 +431,6 @@ final _mockedMessagesTwo = [
     index: 18,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '19 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
@@ -435,7 +439,6 @@ final _mockedMessagesTwo = [
     index: 19,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
-    status: MessageStatus.seen,
     text:
         '20 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),

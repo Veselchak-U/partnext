@@ -71,6 +71,7 @@ class MessageListScreen extends StatelessWidget {
                       child: MessagesListItem(
                         item,
                         onTap: () => vm.onMessageTap(item),
+                        onVisible: () => vm.onVisible(item),
                       ),
                     );
                   },

@@ -12,7 +12,6 @@ MessageApiModel _$MessageApiModelFromJson(Map<String, dynamic> json) =>
       index: (json['index'] as num).toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),
       creator: MemberApiModel.fromJson(json['creator'] as Map<String, dynamic>),
-      status: $enumDecode(_$MessageStatusEnumMap, json['status']),
       text: json['text'] as String?,
       attachment: json['attachment'] == null
           ? null
@@ -26,12 +25,6 @@ Map<String, dynamic> _$MessageApiModelToJson(MessageApiModel instance) =>
       'index': instance.index,
       'created_at': instance.createdAt.toIso8601String(),
       'creator': instance.creator,
-      'status': _$MessageStatusEnumMap[instance.status]!,
       'text': instance.text,
       'attachment': instance.attachment,
     };
-
-const _$MessageStatusEnumMap = {
-  MessageStatus.sent: 'sent',
-  MessageStatus.seen: 'seen',
-};

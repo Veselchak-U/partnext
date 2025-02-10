@@ -9,13 +9,13 @@ part 'chat_api_model.g.dart';
 class ChatApiModel {
   final int id;
   final MemberApiModel member;
-  final MessageApiModel? unreadMessage;
+  final int? unreadMessageIndex;
   final MessageApiModel? lastMessage;
 
   ChatApiModel({
     required this.id,
     required this.member,
-    this.unreadMessage,
+    this.unreadMessageIndex,
     this.lastMessage,
   });
 
@@ -27,7 +27,7 @@ class ChatApiModel {
 
   int get unreadCount {
     final lastIndex = lastMessage?.index;
-    final unreadIndex = unreadMessage?.index;
+    final unreadIndex = unreadMessageIndex;
     if (lastIndex == null || unreadIndex == null) return 0;
 
     return lastIndex - unreadIndex + 1;
@@ -39,5 +39,16 @@ class ChatApiModel {
 
   String get lastMessageDescription {
     return lastMessage?.description ?? '';
+  }
+
+  ChatApiModel copyWith({
+    required int? unreadMessageIndex,
+  }) {
+    return ChatApiModel(
+      id: id,
+      member: member,
+      unreadMessageIndex: unreadMessageIndex,
+      lastMessage: lastMessage,
+    );
   }
 }

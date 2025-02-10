@@ -7,6 +7,7 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/debouncer.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
+import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
@@ -15,17 +16,15 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 class MessageListScreenVm {
   final BuildContext _context;
   final MessageListProvider _messageListProvider;
+  final ChatListProvider _chatListProvider;
   final FileRepository _fileRepository;
-
-  // final ChatListProvider _chatListProvider;
   final ChatApiModel chat;
 
   MessageListScreenVm(
     this._context,
     this._messageListProvider,
-    this._fileRepository,
-    // this._chatListProvider,
-    {
+    this._chatListProvider,
+    this._fileRepository, {
     required this.chat,
   }) {
     _init();
@@ -36,6 +35,7 @@ class MessageListScreenVm {
 
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
+  final _onMessageReadDebouncer = Debouncer(milliseconds: 1000);
 
   void _init() {
     final scrollOffset = _messageListProvider.getScrollOffset(chat.id) ?? 0;
@@ -113,6 +113,15 @@ class MessageListScreenVm {
 
   void openContextMenu() {}
 
+  void onVisible(MessageApiModel message) {
+    _onMessageReadDebouncer.run(() {
+      _chatListProvider.markMessageAsRead(
+        chatId: chat.id,
+        message: message,
+      );
+    });
+  }
+
   void _messageListListener() {
     if (!_context.mounted) return;
     messages.value = _messageListProvider.messages;
@@ -127,14 +136,14 @@ class MessageListScreenVm {
   Future<void> _scrollToUnreadMessage() async {
     final messageList = messages.value ?? [];
 
-    final unreadMessageId = chat.unreadMessage?.id;
-    if (unreadMessageId == null) return;
+    final unreadMessageIndex = chat.unreadMessageIndex;
+    if (unreadMessageIndex == null) return;
 
-    final unreadMessageIndex = messageList.indexWhere((e) => e.id == unreadMessageId);
-    if (unreadMessageIndex == -1) return;
+    final index = messageList.indexWhere((e) => e.index == unreadMessageIndex);
+    if (index == -1) return;
 
     await autoScrollController.scrollToIndex(
-      unreadMessageIndex,
+      index,
       duration: Duration(milliseconds: 8),
       preferPosition: AutoScrollPosition.end,
     );

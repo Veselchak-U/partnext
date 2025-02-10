@@ -241,6 +241,7 @@ class AppNavigation {
                       create: (context) => MessageListScreenVm(
                         context,
                         DI.get<MessageListProvider>(),
+                        DI.get<ChatListProvider>(),
                         DI.get<FileRepository>(),
                         chat: state.extra as ChatApiModel,
                       ),
