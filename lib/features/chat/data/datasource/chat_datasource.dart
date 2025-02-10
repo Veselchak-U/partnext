@@ -198,7 +198,7 @@ final _mockedMessagesOne = [
     creator: _mockedMembers[1],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 2,
@@ -207,7 +207,7 @@ final _mockedMessagesOne = [
     creator: _mockedMembers[0],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 3,
@@ -216,7 +216,7 @@ final _mockedMessagesOne = [
     creator: _mockedMembers[1],
     status: MessageStatus.sent,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 4,
@@ -227,7 +227,7 @@ final _mockedMessagesOne = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.document,
-      name: 'project.pdf',
+      name: '4 project.pdf',
       url: 'https://api.slingacademy.com/v1/sample-data/files/text-and-images.pdf',
       size: 279166,
     ),
@@ -242,7 +242,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 2,
@@ -251,7 +251,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[0],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 3,
@@ -262,9 +262,9 @@ final _mockedMessagesTwo = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
-      name: 'project_map.png',
+      name: '3 project_map.png',
       url:
-          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+          'https://img.freepik.com/free-photo/people-office_144627-38035.jpg?t=st=1739193262~exp=1739196862~hmac=2243cf738ce3126fac7b943afe00fd4f36ac0fe89c7c64a9cb751dc27a67d707&w=740',
       size: 46540,
     ),
   ),
@@ -275,7 +275,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.sent,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 5,
@@ -284,7 +284,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '5 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 6,
@@ -293,7 +293,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[0],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '6 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 7,
@@ -304,7 +304,7 @@ final _mockedMessagesTwo = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
-      name: 'project_map.png',
+      name: '7 project_map.png',
       url:
           'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
       size: 46540,
@@ -317,7 +317,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.sent,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '8 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 9,
@@ -326,7 +326,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '9 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 10,
@@ -335,7 +335,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '10 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 11,
@@ -344,7 +344,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[0],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '11 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 12,
@@ -355,9 +355,9 @@ final _mockedMessagesTwo = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
-      name: 'project_map.png',
+      name: '12 project_map.png',
       url:
-          'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
+          'https://img.freepik.com/free-photo/people-office_144627-38035.jpg?t=st=1739193262~exp=1739196862~hmac=2243cf738ce3126fac7b943afe00fd4f36ac0fe89c7c64a9cb751dc27a67d707&w=740',
       size: 46540,
     ),
   ),
@@ -368,7 +368,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.sent,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '13 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 14,
@@ -377,7 +377,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '14 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 15,
@@ -386,7 +386,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[0],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '15 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 16,
@@ -397,7 +397,7 @@ final _mockedMessagesTwo = [
     attachment: AttachmentApiModel(
       id: 1,
       type: AttachmentType.image,
-      name: 'project_map.png',
+      name: '16 project_map.png',
       url:
           'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
       size: 46540,
@@ -410,7 +410,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.sent,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '17 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 18,
@@ -419,7 +419,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '18 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 19,
@@ -428,7 +428,7 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '19 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
   MessageApiModel(
     id: 20,
@@ -437,6 +437,6 @@ final _mockedMessagesTwo = [
     creator: _mockedMembers[2],
     status: MessageStatus.seen,
     text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        '20 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
   ),
 ];

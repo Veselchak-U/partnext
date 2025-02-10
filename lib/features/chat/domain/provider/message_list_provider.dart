@@ -15,6 +15,10 @@ abstract interface class MessageListProvider with ChangeNotifier {
   });
 
   void stopChecking();
+
+  double? getScrollOffset(int chatId);
+
+  void setScrollOffset(int chatId, double? value);
 }
 
 class MessageListProviderImpl with ChangeNotifier implements MessageListProvider {
@@ -28,7 +32,8 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   List<MessageApiModel> _messages = [];
   Timer? _checkTimer;
 
-  final Map<int, List<MessageApiModel>> _cache = {};
+  final Map<int, List<MessageApiModel>> _messageCache = {};
+  final Map<int, double?> _scrollOffsetCache = {};
 
   @override
   List<MessageApiModel> get messages => List.unmodifiable(_messages);
@@ -58,19 +63,29 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     _messages = [];
   }
 
+  @override
+  double? getScrollOffset(int chatId) {
+    return _scrollOffsetCache[chatId];
+  }
+
+  @override
+  void setScrollOffset(int chatId, double? value) {
+    _scrollOffsetCache[chatId] = value;
+  }
+
   void _fillFromCache() {
-    final fromCache = _cache[_chatId];
+    final fromCache = _messageCache[_chatId];
     if (fromCache != null) {
       _messages = fromCache;
       notifyListeners();
     }
   }
 
-  void _updateCache() {
+  void _updateMessagesCache() {
     final chatId = _chatId;
     if (chatId == null) return;
 
-    _cache[chatId] = _messages;
+    _messageCache[chatId] = _messages;
   }
 
   Future<void> _refreshMessages({
@@ -88,7 +103,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
       final uniqueMessages = _messages.toSet();
       uniqueMessages.addAll(chatPage.messages);
       _messages = uniqueMessages.sorted((a, b) => a.id.compareTo(b.id));
-      _updateCache();
+      _updateMessagesCache();
 
       notifyListeners();
     } catch (e, st) {

@@ -29,14 +29,14 @@ class MessageListScreen extends StatelessWidget {
               color: AppColors.background,
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: CachedNetworkImageProvider(vm.item.member.photoUrl),
+                image: CachedNetworkImageProvider(vm.chat.member.photoUrl),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           SizedBox(width: 20.w),
           Text(
-            vm.item.member.fullName,
+            vm.chat.member.fullName,
             style: AppTextStyles.s18w500,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -57,7 +57,7 @@ class MessageListScreen extends StatelessWidget {
               RefreshIndicator(
                 onRefresh: () async => vm.onRefresh(),
                 child: ListView.separated(
-                  controller: vm.scrollController,
+                  controller: vm.autoScrollController,
                   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
                   itemCount: messages?.length ?? 0,
                   itemBuilder: (context, index) {
@@ -67,7 +67,7 @@ class MessageListScreen extends StatelessWidget {
                     return AutoScrollTag(
                       key: ValueKey(index),
                       index: index,
-                      controller: vm.scrollController,
+                      controller: vm.autoScrollController,
                       child: MessagesListItem(
                         item,
                         onTap: () => vm.onMessageTap(item),

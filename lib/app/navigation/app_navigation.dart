@@ -242,7 +242,7 @@ class AppNavigation {
                         context,
                         DI.get<MessageListProvider>(),
                         DI.get<FileRepository>(),
-                        item: state.extra as ChatApiModel,
+                        chat: state.extra as ChatApiModel,
                       ),
                       dispose: (context, vm) => vm.dispose(),
                       child: const MessageListScreen(),
