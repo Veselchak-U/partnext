@@ -8,12 +8,14 @@ import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class MessagesListItem extends StatelessWidget {
-  final MessageApiModel item;
+  final MessageApiModel message;
+  final bool isUnread;
   final VoidCallback onTap;
   final VoidCallback onVisible;
 
   const MessagesListItem(
-    this.item, {
+    this.message, {
+    required this.isUnread,
     required this.onTap,
     required this.onVisible,
     super.key,
@@ -21,12 +23,15 @@ class MessagesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMyMessage = item.creator.isCurrentUser ?? false;
+    final isMyMessage = message.creator.isCurrentUser ?? false;
     final crossAxisAlignment = isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final borderRadius = BorderRadius.circular(8).r;
+    final textStyle = isUnread
+        ? AppTextStyles.s12w600.copyWith(color: AppColors.black)
+        : AppTextStyles.s12w400.copyWith(color: AppColors.black);
 
     return VisibilityDetector(
-      key: ValueKey(item.id),
+      key: ValueKey(message.id),
       onVisibilityChanged: (info) {
         if (info.visibleFraction == 1) onVisible.call();
       },
@@ -47,14 +52,14 @@ class MessagesListItem extends StatelessWidget {
                       crossAxisAlignment: crossAxisAlignment,
                       children: [
                         SizedBox(height: 16.h),
-                        if (item.isImage)
+                        if (message.isImage)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8).h,
                             child: SizedBox(
                               width: double.maxFinite,
                               height: 150.h,
                               child: CachedNetworkImage(
-                                imageUrl: item.attachment?.url ?? '',
+                                imageUrl: message.attachment?.url ?? '',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -62,8 +67,8 @@ class MessagesListItem extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16).w,
                           child: Text(
-                            item.description,
-                            style: AppTextStyles.s12w400.copyWith(color: AppColors.black),
+                            message.description,
+                            style: textStyle,
                           ),
                         ),
                         SizedBox(height: 16.h),
@@ -73,7 +78,7 @@ class MessagesListItem extends StatelessWidget {
                 ),
                 SizedBox(height: 9.h),
                 Text(
-                  item.createdAt.timeShort(),
+                  message.createdAt.timeShort(),
                   style: AppTextStyles.s12w400.copyWith(color: AppColors.gray),
                 ),
               ],

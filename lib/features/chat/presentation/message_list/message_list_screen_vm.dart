@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_file/open_file.dart';
@@ -32,6 +33,7 @@ class MessageListScreenVm {
 
   final loading = ValueNotifier<bool>(false);
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
+  final unreadMessageIndex = ValueNotifier<int?>(null);
 
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
@@ -44,6 +46,9 @@ class MessageListScreenVm {
 
     _messageListProvider.addListener(_messageListListener);
     _refreshMessages();
+
+    _chatListProvider.addListener(_chatListListener);
+    unreadMessageIndex.value = chat.unreadMessageIndex;
   }
 
   void dispose() {
@@ -53,8 +58,11 @@ class MessageListScreenVm {
     autoScrollController.removeListener(_saveScrollOffset);
     autoScrollController.dispose();
 
+    _chatListProvider.removeListener(_chatListListener);
+
     loading.dispose();
     messages.dispose();
+    unreadMessageIndex.dispose();
   }
 
   Future<void> _refreshMessages() async {
@@ -114,6 +122,9 @@ class MessageListScreenVm {
   void openContextMenu() {}
 
   void onVisible(MessageApiModel message) {
+    final isUnread = message.isUnread(unreadMessageIndex.value);
+    if (!isUnread) return;
+
     _onMessageReadDebouncer.run(() {
       _chatListProvider.markMessageAsRead(
         chatId: chat.id,
@@ -156,6 +167,14 @@ class MessageListScreenVm {
       final scrollOffset = autoScrollController.offset;
       _messageListProvider.setScrollOffset(chat.id, scrollOffset);
     });
+  }
+
+  void _chatListListener() {
+    final chats = _chatListProvider.chats;
+    final currentChat = chats.firstWhereOrNull((e) => e.id == chat.id);
+    if (currentChat == null) return;
+
+    unreadMessageIndex.value = currentChat.unreadMessageIndex;
   }
 
   void _setLoading(bool value) {

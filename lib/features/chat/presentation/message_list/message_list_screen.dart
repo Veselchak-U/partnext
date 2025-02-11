@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
@@ -54,10 +55,12 @@ class MessageListScreen extends StatelessWidget {
         builder: (context, messages, _) {
           return Stack(
             children: [
-              RefreshIndicator(
+              CustomMaterialIndicator(
+                trigger: IndicatorTrigger.bothEdges,
                 onRefresh: () async => vm.onRefresh(),
                 child: ListView.separated(
                   controller: vm.autoScrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
                   itemCount: messages?.length ?? 0,
                   itemBuilder: (context, index) {
@@ -68,10 +71,16 @@ class MessageListScreen extends StatelessWidget {
                       key: ValueKey(index),
                       index: index,
                       controller: vm.autoScrollController,
-                      child: MessagesListItem(
-                        item,
-                        onTap: () => vm.onMessageTap(item),
-                        onVisible: () => vm.onVisible(item),
+                      child: ValueListenableBuilder(
+                        valueListenable: vm.unreadMessageIndex,
+                        builder: (context, unreadMessageIndex, _) {
+                          return MessagesListItem(
+                            item,
+                            isUnread: item.isUnread(unreadMessageIndex),
+                            onTap: () => vm.onMessageTap(item),
+                            onVisible: () => vm.onVisible(item),
+                          );
+                        },
                       ),
                     );
                   },

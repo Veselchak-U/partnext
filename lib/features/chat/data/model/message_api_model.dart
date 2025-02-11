@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:partnext/features/chat/data/model/attachment_api_model.dart';
 import 'package:partnext/features/chat/data/model/member_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
-import 'package:partnext/features/chat/domain/entity/message_status.dart';
 
 part 'message_api_model.g.dart';
 
@@ -50,5 +49,11 @@ class MessageApiModel {
     }
 
     return '$attachment';
+  }
+
+  bool isUnread(int? unreadMessageIndex) {
+    if (unreadMessageIndex == null) return false;
+
+    return index >= unreadMessageIndex;
   }
 }

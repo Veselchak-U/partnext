@@ -220,7 +220,7 @@ final _mockedMembers = [
 final _mockedMessagesOne = [
   MessageApiModel(
     id: 1,
-    index: 0,
+    index: 1,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[1],
     text:
@@ -228,7 +228,7 @@ final _mockedMessagesOne = [
   ),
   MessageApiModel(
     id: 2,
-    index: 1,
+    index: 2,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
     text:
@@ -236,7 +236,7 @@ final _mockedMessagesOne = [
   ),
   MessageApiModel(
     id: 3,
-    index: 2,
+    index: 3,
     createdAt: DateTime.now(),
     creator: _mockedMembers[1],
     text:
@@ -244,7 +244,7 @@ final _mockedMessagesOne = [
   ),
   MessageApiModel(
     id: 4,
-    index: 3,
+    index: 4,
     createdAt: DateTime.now(),
     creator: _mockedMembers[0],
     attachment: AttachmentApiModel(
@@ -260,7 +260,7 @@ final _mockedMessagesOne = [
 final _mockedMessagesTwo = [
   MessageApiModel(
     id: 1,
-    index: 0,
+    index: 1,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -268,7 +268,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 2,
-    index: 1,
+    index: 2,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
     text:
@@ -276,7 +276,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 3,
-    index: 2,
+    index: 3,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
     attachment: AttachmentApiModel(
@@ -290,7 +290,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 4,
-    index: 3,
+    index: 4,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
     text:
@@ -298,7 +298,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 5,
-    index: 4,
+    index: 5,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -306,7 +306,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 6,
-    index: 5,
+    index: 6,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
     text:
@@ -314,7 +314,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 7,
-    index: 6,
+    index: 7,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
     attachment: AttachmentApiModel(
@@ -328,7 +328,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 8,
-    index: 7,
+    index: 8,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
     text:
@@ -336,7 +336,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 9,
-    index: 8,
+    index: 9,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -344,7 +344,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 10,
-    index: 9,
+    index: 10,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -352,7 +352,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 11,
-    index: 10,
+    index: 11,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
     text:
@@ -360,7 +360,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 12,
-    index: 11,
+    index: 12,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
     attachment: AttachmentApiModel(
@@ -374,7 +374,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 13,
-    index: 12,
+    index: 13,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
     text:
@@ -382,7 +382,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 14,
-    index: 13,
+    index: 14,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -390,7 +390,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 15,
-    index: 14,
+    index: 15,
     createdAt: DateTime.now().subtract(Duration(minutes: 9)),
     creator: _mockedMembers[0],
     text:
@@ -398,7 +398,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 16,
-    index: 15,
+    index: 16,
     createdAt: DateTime.now().subtract(Duration(minutes: 1)),
     creator: _mockedMembers[2],
     attachment: AttachmentApiModel(
@@ -412,7 +412,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 17,
-    index: 16,
+    index: 17,
     createdAt: DateTime.now(),
     creator: _mockedMembers[2],
     text:
@@ -420,7 +420,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 18,
-    index: 17,
+    index: 18,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -428,7 +428,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 19,
-    index: 18,
+    index: 19,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
@@ -436,7 +436,7 @@ final _mockedMessagesTwo = [
   ),
   MessageApiModel(
     id: 20,
-    index: 19,
+    index: 20,
     createdAt: DateTime.now().subtract(Duration(minutes: 10)),
     creator: _mockedMembers[2],
     text:
