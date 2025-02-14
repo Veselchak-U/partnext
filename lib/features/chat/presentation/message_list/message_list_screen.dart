@@ -10,6 +10,7 @@ import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/common/widgets/no_items_widget.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/widgets/messages_list_item.dart';
+import 'package:partnext/features/chat/presentation/message_list/widgets/page_loader_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -53,6 +54,8 @@ class MessageListScreen extends StatelessWidget {
       body: ValueListenableBuilder(
         valueListenable: vm.messages,
         builder: (context, messages, _) {
+          final messagesLength = messages?.length ?? 0;
+
           return Stack(
             children: [
               CustomMaterialIndicator(
@@ -62,14 +65,39 @@ class MessageListScreen extends StatelessWidget {
                   controller: vm.autoScrollController,
                   physics: const AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
-                  itemCount: messages?.length ?? 0,
+                  itemCount: messagesLength + 2,
                   itemBuilder: (context, index) {
-                    final item = messages?[index];
+                    if (index == 0) {
+                      return ValueListenableBuilder(
+                        valueListenable: vm.previousPageLoading,
+                        builder: (context, previousPageLoading, _) {
+                          return PageLoaderWidget(
+                            onInit: vm.getPreviousPage,
+                            loading: previousPageLoading,
+                          );
+                        },
+                      );
+                    }
+
+                    if (index == messagesLength + 1) {
+                      return ValueListenableBuilder(
+                        valueListenable: vm.nextPageLoading,
+                        builder: (context, nextPageLoading, _) {
+                          return PageLoaderWidget(
+                            onInit: vm.getNextPage,
+                            loading: nextPageLoading,
+                          );
+                        },
+                      );
+                    }
+
+                    final actualIndex = index - 1;
+                    final item = messages?[actualIndex];
                     if (item == null) return SizedBox.shrink();
 
                     return AutoScrollTag(
-                      key: ValueKey(index),
-                      index: index,
+                      key: ValueKey(actualIndex),
+                      index: actualIndex,
                       controller: vm.autoScrollController,
                       child: ValueListenableBuilder(
                         valueListenable: vm.unreadMessageIndex,

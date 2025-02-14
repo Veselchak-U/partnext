@@ -34,6 +34,8 @@ class MessageListScreenVm {
   final loading = ValueNotifier<bool>(false);
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
   final unreadMessageIndex = ValueNotifier<int?>(null);
+  final previousPageLoading = ValueNotifier<bool>(false);
+  final nextPageLoading = ValueNotifier<bool>(false);
 
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
@@ -63,6 +65,8 @@ class MessageListScreenVm {
     loading.dispose();
     messages.dispose();
     unreadMessageIndex.dispose();
+    previousPageLoading.dispose();
+    nextPageLoading.dispose();
   }
 
   Future<void> _refreshMessages() async {
@@ -131,6 +135,22 @@ class MessageListScreenVm {
         message: message,
       );
     });
+  }
+
+  Future<void> getPreviousPage() async {
+    previousPageLoading.value = true;
+    await _messageListProvider.fetchPreviousPage(
+      onError: _handleError,
+    );
+    previousPageLoading.value = false;
+  }
+
+  Future<void> getNextPage() async {
+    nextPageLoading.value = true;
+    await _messageListProvider.fetchNextPage(
+      onError: _handleError,
+    );
+    nextPageLoading.value = false;
   }
 
   void _messageListListener() {
