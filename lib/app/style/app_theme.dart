@@ -60,7 +60,7 @@ class AppTheme {
   );
 
   static const _dividerThemeLight = DividerThemeData(
-    color: AppColors.gray,
+    color: AppColors.disabled,
     space: 1,
   );
 

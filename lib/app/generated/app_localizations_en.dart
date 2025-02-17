@@ -493,4 +493,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get you => 'You';
+
+  @override
+  String get report => 'Report';
+
+  @override
+  String get report_user => 'Report User';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get thank_you_for_reporting_user => 'Thank You for Reporting a User';
+
+  @override
+  String get your_report_will_be_reviewed => 'Your reported profile will be reviewed\nand action will be taken.';
+
+  @override
+  String get back_to_chats => 'Back to Chats';
 }

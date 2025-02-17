@@ -10,6 +10,8 @@ import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
+import 'package:partnext/features/chat/presentation/message_list/widgets/message_menu.dart';
+import 'package:partnext/features/chat/presentation/report/report_screen_params.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -123,7 +125,27 @@ class MessageListScreenVm {
     _setLoading(false);
   }
 
-  void openContextMenu() {}
+  void openChatMenu() {}
+
+  void openMessageMenu(MessageApiModel message) {
+    showModalBottomSheet(
+      context: _context,
+      backgroundColor: Colors.transparent,
+      enableDrag: false,
+      builder: (context) {
+        return MessageMenu(
+          onReport: () => _openReportScreen(chat, message),
+        );
+      },
+    );
+  }
+
+  void _openReportScreen(ChatApiModel chat, MessageApiModel message) {
+    _context.pushNamed(
+      AppRoute.report.name,
+      extra: ReportScreenParams(chat: chat, message: message),
+    );
+  }
 
   void onVisible(MessageApiModel message) {
     final isUnread = message.isUnread(unreadMessageIndex.value);

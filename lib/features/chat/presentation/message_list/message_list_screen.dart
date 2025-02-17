@@ -48,7 +48,7 @@ class MessageListScreen extends StatelessWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.more_vert),
-          onPressed: vm.openContextMenu,
+          onPressed: vm.openChatMenu,
         ),
       ],
       body: ValueListenableBuilder(
@@ -106,6 +106,7 @@ class MessageListScreen extends StatelessWidget {
                             item,
                             isUnread: item.isUnread(unreadMessageIndex),
                             onTap: () => vm.onMessageTap(item),
+                            onLongPress: () => vm.openMessageMenu(item),
                             onVisible: () => vm.onVisible(item),
                           );
                         },

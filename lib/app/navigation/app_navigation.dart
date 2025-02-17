@@ -19,12 +19,16 @@ import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart'
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
+import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
+import 'package:partnext/features/chat/presentation/report/report_screen.dart';
+import 'package:partnext/features/chat/presentation/report/report_screen_params.dart';
+import 'package:partnext/features/chat/presentation/report/report_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
@@ -248,13 +252,29 @@ class AppNavigation {
                       dispose: (context, vm) => vm.dispose(),
                       child: const MessageListScreen(),
                     ),
-                  ),
-                  GoRoute(
-                    name: AppRoute.viewImage.name,
-                    path: AppRoute.viewImage.path,
-                    builder: (context, state) => ViewImageScreen(
-                      params: state.extra as ViewImageScreenParams,
-                    ),
+                    routes: [
+                      GoRoute(
+                        name: AppRoute.viewImage.name,
+                        path: AppRoute.viewImage.path,
+                        builder: (context, state) => ViewImageScreen(
+                          params: state.extra as ViewImageScreenParams,
+                        ),
+                      ),
+                      GoRoute(
+                        name: AppRoute.report.name,
+                        path: AppRoute.report.path,
+                        builder: (context, state) => Provider(
+                          lazy: false,
+                          create: (context) => ReportScreenVm(
+                            context,
+                            DI.get<ChatRepository>(),
+                            params: state.extra as ReportScreenParams,
+                          ),
+                          dispose: (context, vm) => vm.dispose(),
+                          child: const ReportScreen(),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

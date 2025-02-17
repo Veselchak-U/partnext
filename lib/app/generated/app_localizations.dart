@@ -1054,6 +1054,42 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אתה'**
   String get you;
+
+  /// No description provided for @report.
+  ///
+  /// In he, this message translates to:
+  /// **'דוח'**
+  String get report;
+
+  /// No description provided for @report_user.
+  ///
+  /// In he, this message translates to:
+  /// **'דווח על משתמש'**
+  String get report_user;
+
+  /// No description provided for @details.
+  ///
+  /// In he, this message translates to:
+  /// **'פרטים'**
+  String get details;
+
+  /// No description provided for @thank_you_for_reporting_user.
+  ///
+  /// In he, this message translates to:
+  /// **'תודה שדיווחת על משתמש'**
+  String get thank_you_for_reporting_user;
+
+  /// No description provided for @your_report_will_be_reviewed.
+  ///
+  /// In he, this message translates to:
+  /// **'הפרופיל המדווח שלך ייבדק\nותינקט פעולה.'**
+  String get your_report_will_be_reviewed;
+
+  /// No description provided for @back_to_chats.
+  ///
+  /// In he, this message translates to:
+  /// **'חזרה לצ \' אטים'**
+  String get back_to_chats;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

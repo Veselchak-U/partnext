@@ -24,6 +24,12 @@ abstract interface class ChatRepository {
     required int chatId,
     required int messageId,
   });
+
+  Future<void> reportMessage({
+    required int chatId,
+    required int messageId,
+    required String description,
+  });
 }
 
 class ChatRepositoryImpl implements ChatRepository {
@@ -70,6 +76,19 @@ class ChatRepositoryImpl implements ChatRepository {
     return _chatDatasource.markMessageAsRead(
       chatId: chatId,
       messageId: messageId,
+    );
+  }
+
+  @override
+  Future<void> reportMessage({
+    required int chatId,
+    required int messageId,
+    required String description,
+  }) {
+    return _chatDatasource.reportMessage(
+      chatId: chatId,
+      messageId: messageId,
+      description: description,
     );
   }
 }

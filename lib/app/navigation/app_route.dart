@@ -13,6 +13,7 @@ class AppRoute {
 
   static const chats = AppRoute('chats', '/chats');
   static const messages = AppRoute('messages', 'messages');
+  static const report = AppRoute('report', 'report');
 
   static const grow = AppRoute('grow', '/grow');
   static const partnerDetails = AppRoute('partner_details', 'partner_details');

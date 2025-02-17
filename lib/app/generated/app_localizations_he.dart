@@ -493,4 +493,22 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get you => 'אתה';
+
+  @override
+  String get report => 'דוח';
+
+  @override
+  String get report_user => 'דווח על משתמש';
+
+  @override
+  String get details => 'פרטים';
+
+  @override
+  String get thank_you_for_reporting_user => 'תודה שדיווחת על משתמש';
+
+  @override
+  String get your_report_will_be_reviewed => 'הפרופיל המדווח שלך ייבדק\nותינקט פעולה.';
+
+  @override
+  String get back_to_chats => 'חזרה לצ \' אטים';
 }

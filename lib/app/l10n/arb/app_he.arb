@@ -186,5 +186,11 @@
   "chats_ad_title": "99+ הזדמנויות עסקיות פוטנציאליות",
   "chats_ad_desc": "התחל איתם שיחה עסקית עכשיו!",
   "no_messages": "עדיין אין לך הודעות.",
-  "you": "אתה"
+  "you": "אתה",
+  "report": "דוח",
+  "report_user": "דווח על משתמש",
+  "details": "פרטים",
+  "thank_you_for_reporting_user": "תודה שדיווחת על משתמש",
+  "your_report_will_be_reviewed": "הפרופיל המדווח שלך ייבדק\nותינקט פעולה.",
+  "back_to_chats": "חזרה לצ ' אטים"
 }

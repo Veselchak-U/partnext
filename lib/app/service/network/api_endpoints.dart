@@ -20,6 +20,7 @@ class ApiEndpoints {
   static const sendMessage = 'api/v1/member/send_message';
   static const chatPage = 'api/v1/member/chat_page';
   static const markMessageAsRead = 'api/v1/member/mark_message_as_read';
+  static const reportMessage = 'api/v1/member/report_message';
 
   // Files
   static const uploadFile = 'api/v1/member/upload_file';

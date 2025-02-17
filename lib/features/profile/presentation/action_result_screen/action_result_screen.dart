@@ -70,9 +70,9 @@ class _ActionResultScreenState extends State<ActionResultScreen> {
               valueListenable: _loading,
               builder: (context, loading, _) {
                 return CommonButton(
-                  label: context.l10n.continue_browsing,
+                  label: widget.params.buttonLabel ?? context.l10n.continue_browsing,
                   iconPath: Assets.icons.send.path,
-                  onTap: _goHomeTab,
+                  onTap: widget.params.onTap ?? _goHomeTab,
                   loading: loading,
                 );
               },

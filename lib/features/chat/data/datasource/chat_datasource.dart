@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/app/service/network/api_client/api_client.dart';
-import 'package:partnext/app/service/network/api_client/entities/api_exception.dart';
-import 'package:partnext/app/service/network/api_endpoints.dart';
-import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/attachment_api_model.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/chat_page_api_model.dart';
@@ -32,6 +29,12 @@ abstract interface class ChatDatasource {
   Future<void> markMessageAsRead({
     required int chatId,
     required int messageId,
+  });
+
+  Future<void> reportMessage({
+    required int chatId,
+    required int messageId,
+    required String description,
   });
 }
 
@@ -153,23 +156,23 @@ class ChatDatasourceImpl implements ChatDatasource {
       () => _getMockedChatPage(chatId, index: index),
     );
 
-    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.chatPage}').replace(
-      queryParameters: {
-        'chat_id': '$chatId',
-        if (index != null) 'index': '$index',
-      },
-    );
-
-    return _apiClient.get(
-      uri,
-      parser: (response) {
-        if (response.body case final Map<String, dynamic> body) {
-          return ChatPageApiModel.fromJson(body);
-        }
-
-        throw ApiException(response);
-      },
-    );
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.chatPage}').replace(
+    //   queryParameters: {
+    //     'chat_id': '$chatId',
+    //     if (index != null) 'index': '$index',
+    //   },
+    // );
+    //
+    // return _apiClient.get(
+    //   uri,
+    //   parser: (response) {
+    //     if (response.body case final Map<String, dynamic> body) {
+    //       return ChatPageApiModel.fromJson(body);
+    //     }
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
   }
 
   ChatPageApiModel _getMockedChatPage(
@@ -211,6 +214,31 @@ class ChatDatasourceImpl implements ChatDatasource {
     //   body: {
     //     "chat_id": chatId,
     //     "message_id": messageId,
+    //   },
+    //   parser: (response) {
+    //     if (response.statusCode == HttpStatus.ok) return;
+    //
+    //     throw ApiException(response);
+    //   },
+    // );
+  }
+
+  @override
+  Future<void> reportMessage({
+    required int chatId,
+    required int messageId,
+    required String description,
+  }) {
+    return Future.delayed(Duration(seconds: 1));
+
+    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.reportMessage}');
+    //
+    // return _apiClient.post(
+    //   uri,
+    //   body: {
+    //     "chat_id": chatId,
+    //     "message_id": messageId,
+    //     "description": description,
     //   },
     //   parser: (response) {
     //     if (response.statusCode == HttpStatus.ok) return;

@@ -37,6 +37,10 @@ class $AssetsIconsGen {
   SvgGenImage get chatNavBar =>
       const SvgGenImage('assets/icons/chat_nav_bar.svg');
 
+  /// File path: assets/icons/check_circle.svg
+  SvgGenImage get checkCircle =>
+      const SvgGenImage('assets/icons/check_circle.svg');
+
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
 
@@ -130,6 +134,7 @@ class $AssetsIconsGen {
         camera,
         chat40,
         chatNavBar,
+        checkCircle,
         close,
         closeFilled,
         document,
