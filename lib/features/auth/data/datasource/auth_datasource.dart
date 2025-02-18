@@ -23,7 +23,7 @@ class AuthDatasourceImpl implements AuthDatasource {
     // return _apiClient.post(
     //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.registration}'),
     //   body: {
-    //   "fullName": fullName,
+    //   "full_name": fullName,
     //   "phone": phone,
     //   },
     //   parser: (response) {
@@ -78,7 +78,9 @@ class AuthDatasourceImpl implements AuthDatasource {
     //   "code": code,
     //   },
     //   parser: (response) {
-    //     if (response.statusCode == HttpStatus.ok) return;
+    //     if (response.body case final Map<String, dynamic> body) {
+    //       return UserApiModel.fromJson(body);
+    //     }
     //
     //     throw ApiException(response);
     //   },

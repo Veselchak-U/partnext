@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:collection/collection.dart';
 import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/app/service/network/api_client/api_client.dart';
@@ -17,8 +15,8 @@ abstract interface class ChatDatasource {
 
   Future<void> sendMessage(
     int chatId,
-    String text,
-    List<File> attachments,
+    String? text,
+    AttachmentApiModel? attachment,
   );
 
   Future<ChatPageApiModel> getChatPage(
@@ -97,9 +95,13 @@ class ChatDatasourceImpl implements ChatDatasource {
   @override
   Future<MessageApiModel> sendMessage(
     int chatId,
-    String text,
-    List<File> attachments,
+    String? text,
+    AttachmentApiModel? attachment,
   ) {
+    if (text == null && attachment == null) {
+      throw LogicException('Text or attachment must be not null');
+    }
+
     return Future.delayed(
       Duration(seconds: 1),
       () => MessageApiModel(
@@ -117,7 +119,8 @@ class ChatDatasourceImpl implements ChatDatasource {
     //   uri,
     //   body: {
     //     "chat_id": chatId,
-    //     "text": text,
+    //     if (text != null) "text": text,
+    //     if (attachment != null) "attachment": attachment.toJson(),
     //   },
     //   parser: (response) {
     //     if (response.body case final Map<String, dynamic> body) {
