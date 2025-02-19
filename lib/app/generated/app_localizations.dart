@@ -855,7 +855,7 @@ abstract class AppLocalizations {
   ///
   /// In he, this message translates to:
   /// **'סך הכל: {total}₪'**
-  String total(int total);
+  String total(String total);
 
   /// No description provided for @cancel_this_plan.
   ///

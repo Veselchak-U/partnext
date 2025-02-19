@@ -9,10 +9,10 @@ abstract interface class ChatRepository {
   Future<ChatApiModel> createChat(int userId);
 
   Future<void> sendMessage(
-    int chatId,
+    int chatId, {
     String? text,
     AttachmentApiModel? attachment,
-  );
+  });
 
   Future<ChatPageApiModel> getChatPage(
     int chatId, {
@@ -48,10 +48,10 @@ class ChatRepositoryImpl implements ChatRepository {
 
   @override
   Future<void> sendMessage(
-    int chatId,
+    int chatId, {
     String? text,
     AttachmentApiModel? attachment,
-  ) {
+  }) {
     return _chatDatasource.sendMessage(
       chatId,
       text,

@@ -6,6 +6,8 @@ import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
+import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
+import 'package:partnext/features/chat/domain/use_case/start_conversation_use_case.dart';
 
 abstract interface class ChatListProvider with ChangeNotifier {
   List<ChatApiModel> get chats;
@@ -22,6 +24,7 @@ abstract interface class ChatListProvider with ChangeNotifier {
     int partnerId,
     String text,
     List<File> attachments,
+    AttachmentType? attachmentsType,
   );
 
   Future<void> markMessageAsRead({
@@ -32,9 +35,11 @@ abstract interface class ChatListProvider with ChangeNotifier {
 
 class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   final ChatRepository _chatRepository;
+  final StartConversationUseCase _startConversationUseCase;
 
   ChatListProviderImpl(
     this._chatRepository,
+    this._startConversationUseCase,
   );
 
   List<ChatApiModel> _chats = [];
@@ -69,9 +74,9 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     int partnerId,
     String text,
     List<File> attachments,
+    AttachmentType? attachmentsType,
   ) async {
-    final chat = await _chatRepository.createChat(partnerId);
-    await _chatRepository.sendMessage(chat.id, text, attachments);
+    final chat = await _startConversationUseCase(partnerId, text, attachments, attachmentsType);
     _refreshChats();
 
     return chat;

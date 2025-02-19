@@ -34,47 +34,46 @@ class ApiEndpoints {
   ///   "user_id": int, // 1
   ///   "full_name": String, // "John Doe"
   ///   "position": String, // "Co-founder and CEO"
-  ///   "phone": String, // "+972123456789"
   ///   "image_url": String, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
+  ///   "pricing_plan": PricingPlanApiModel?, // nullable
   ///   "token": String, // "..."
-  ///   "pricing_plan": Map<String, dynamic>, // PricingPlanApiModel
   /// }
 
   /// PricingPlanApiModel: {
   ///     "id": int, // 1
   ///     "name": String, // "3 Month"
-  ///     "price": int, // 69
-  ///     "price_total": int, // 207
+  ///     "price": double, // 69.00
+  ///     "price_total": double, // 207.00
   ///     "discount_percent": int, // 30
-  ///     "is_default": bool, // true OR false
+  ///     "is_default": bool, // false
   /// }
   static const checkOtp = 'api/v1/member/auth/check_otp';
 
   // Questionnaire
 
-  /// Get current questionnaire.
+  /// Get current user questionnaire.
   ///
   /// Request: GET api/v1/member/questionnaire
   /// Response:
-  /// body: Map<String, dynamic>?, // QuestionnaireApiModel OR null
+  /// body: QuestionnaireApiModel?, // nullable
 
   /// QuestionnaireApiModel: {
   ///   "my_partnership_types": List<String>, // PartnershipType = ["ideaHolder", "startupOwner", "businessOwner", "strategicPartner", "activePartner", "other"]
   ///   "partner_partnership_types": List<String>, // PartnershipType
   ///   "my_interests": List<String>, // InterestType = ["artAndEntertainment", "music", "banking", "finance", "consulting", "creatives", "fashion", "mediaAndJournalism", "sales", "governmentAndPolitics", "vCAndInvestment", "education", "medicine", "marketing", "publicRelations", "tech", "advertising", "insurance", "realEstate", "lawPolicy", "travelHospitality", "policeMilitary", "constructions", "manufacturing", "foodAndBeverage", "counseling", "other"]
   ///   "partner_interests": List<String>, // InterestType
-  ///   "date_of_birth": String in ISO 8601 format, // "2002-02-27T19:00:00Z"
-  ///   "position": String, // "Co-founder and CEO"
-  ///   "bio": String, // "Some info about person"
-  ///   "experience": String, // One item of ExperienceDuration = ["from0To2", "from3To5", "from6To10", "from10", "from20"]
-  ///   "profile_url": String, // "https://www.linkedin.com/company/microsoft/"
+  ///   "date_of_birth": String? in ISO 8601 format, // "2002-02-27T19:00:00Z", nullable
+  ///   "position": String?, // "Co-founder and CEO", nullable
+  ///   "bio": String?, // "Some info about person", nullable
+  ///   "experience": String?, // One item of ExperienceDuration = ["from0To2", "from3To5", "from6To10", "from10", "from20"], nullable
+  ///   "profile_url": String?, // "https://www.linkedin.com/company/microsoft/", nullable
   ///   "photos": List<String>, // ["https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"]
   /// }
 
-  /// Update current questionnaire.
+  /// Update current user questionnaire.
   ///
   /// Request: POST api/v1/member/questionnaire
-  /// body: Map<String, dynamic>, // QuestionnaireApiModel
+  /// body: QuestionnaireApiModel,
   /// Response:
   /// statusCode: 201
   static const questionnaire = 'api/v1/member/questionnaire';
@@ -85,12 +84,12 @@ class ApiEndpoints {
   ///
   /// Request: GET api/v1/member/recommendations
   /// Response:
-  /// body: List<Map<String, dynamic>>?, // List<PartnerApiModel> OR null
+  /// body: List<PartnerApiModel>?, // nullable
 
   /// PartnerApiModel: {
   ///   "user_id": int, // 1
   ///   "full_name": String, // "John Doe"
-  ///   "questionnaire": Map<String, dynamic>, // QuestionnaireApiModel
+  ///   "questionnaire": QuestionnaireApiModel,
   /// }
   static const recommendations = 'api/v1/member/recommendations';
 
@@ -99,7 +98,7 @@ class ApiEndpoints {
   /// Request: POST api/v1/member/handle_recommendation
   /// body: {
   ///   "user_id": int, // 1
-  ///   "confirm": bool, // true OR false
+  ///   "confirm": bool, // true
   /// },
   /// Response:
   /// statusCode: 200
@@ -109,7 +108,7 @@ class ApiEndpoints {
   ///
   /// Request: GET api/v1/member/partners
   /// Response:
-  /// body: List<Map<String, dynamic>>?, // List<PartnerApiModel> OR null
+  /// body: List<PartnerApiModel>?, // nullable
   static const partners = 'api/v1/member/partners';
 
   /// Confirm or reject matched partner.
@@ -117,7 +116,7 @@ class ApiEndpoints {
   /// Request: POST api/v1/member/handle_partner
   /// body: {
   ///   "user_id": int, // 1
-  ///   "confirm": bool, // true OR false
+  ///   "confirm": bool, // true
   /// },
   /// Response:
   /// statusCode: 200
@@ -129,37 +128,37 @@ class ApiEndpoints {
   ///
   /// Request: GET api/v1/member/chats
   /// Response:
-  /// body: List<Map<String, dynamic>>? // List<ChatApiModel> OR null
+  /// body: List<ChatApiModel>? // nullable
 
   /// ChatApiModel: {
   ///   "id": int, // 1
-  ///   "member": Map<String, dynamic> , // MemberApiModel
-  ///   "unread_message_index": int? , // 1 OR null
-  ///   "last_message": Map<String, dynamic>?, // MessageApiModel OR null
+  ///   "member": MemberApiModel, // MemberApiModel
+  ///   "unread_message_index": int?, // 1, nullable
+  ///   "last_message": MessageApiModel?, // nullable
   /// }
 
   /// MemberApiModel: {
   ///   "user_id": int, // 1
   ///   "full_name": String , // "John Doe"
   ///   "photo_url": String , // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
-  ///   "is_current_user": bool?, // true OR false OR null
+  ///   "is_current_user": bool?, // false, nullable
   /// }
 
   /// MessageApiModel: {
   ///   "id": int, // 1
   ///   "index": int , // 1
   ///   "created_at": String in ISO 8601 format, // "2002-02-27T19:00:00Z"
-  ///   "creator": Map<String, dynamic>, // MemberApiModel
-  ///   "text": String?, // "Text of message" OR null
-  ///   "attachment": Map<String, dynamic>?, // AttachmentApiModel OR null
+  ///   "creator": MemberApiModel,
+  ///   "text": String?, // "Text of message", nullable
+  ///   "attachment": AttachmentApiModel?, // nullable
   /// }
 
   /// AttachmentApiModel: {
   ///   "id": int, // 1
-  ///   "type": String, // AttachmentType = ["image", "document"]
-  ///   "name": String?, // "business_plan.pdf" OR null
-  ///   "url": String?, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.pdf" OR null
-  ///   "size": int?, // 4096 OR null
+  ///   "type": String, // One item of AttachmentType = ["image", "document"]
+  ///   "name": String?, // "business_plan.pdf", nullable
+  ///   "url": String?, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.pdf", nullable
+  ///   "size": int?, // 4096, nullable
   /// }
   static const chats = 'api/v1/member/chats';
 
@@ -170,7 +169,7 @@ class ApiEndpoints {
   ///   "user_id": int, // 1
   /// },
   /// Response:
-  /// body: List<Map<String, dynamic>> // ChatApiModel
+  /// body: ChatApiModel
   static const createChat = 'api/v1/member/create_chat';
 
   /// Send new message to chat.
@@ -178,24 +177,120 @@ class ApiEndpoints {
   /// Request: POST api/v1/member/send_message
   /// body: {
   ///   "chat_id": int, // 1
-  ///   "text": String?, // "Text of message" OR null
-  ///   "attachment": AttachmentApiModel?, // Map<String, dynamic> OR null
+  ///   "text": String?, // "Text of message", nullable
+  ///   "attachment": AttachmentApiModel?, // nullable
   /// },
   /// Response:
-  /// body: List<Map<String, dynamic>> // MessageApiModel
+  /// body: MessageApiModel
   static const sendMessage = 'api/v1/member/send_message';
+
+  /// Get chat message page with an "index".
+  /// If "index" == null returns a page with the first unread message for current user.
+  ///
+  /// Messages from the server are requested page by page.
+  /// The number of messages per page is determined by the server.
+  ///
+  /// Request: POST api/v1/member/chat_page
+  /// body: {
+  ///   "chat_id": int, // 1
+  ///   "page_index": int?, // 0, nullable
+  /// },
+  /// Response:
+  /// body: ChatPageApiModel
+
+  /// ChatPageApiModel: {
+  ///   "page_index": int, // 0
+  ///   "last_page_index": int, // 10
+  ///   "messages": List<MessageApiModel>,
+  /// }
   static const chatPage = 'api/v1/member/chat_page';
+
+  /// Mark a message as read.
+  ///
+  /// Request: POST api/v1/member/mark_message_as_read
+  /// body: {
+  ///   "chat_id": int, // 1
+  ///   "message_id": int, // 2
+  /// },
+  /// Response:
+  /// statusCode: 200
   static const markMessageAsRead = 'api/v1/member/mark_message_as_read';
+
+  /// Report about some violation in the message.
+  ///
+  /// Request: POST api/v1/member/report_message
+  /// body: {
+  ///   "chat_id": int, // 1
+  ///   "message_id": int, // 2
+  ///   "description": String, // "Description of some violations"
+  /// },
+  /// Response:
+  /// statusCode: 200
   static const reportMessage = 'api/v1/member/report_message';
 
   // Files
+
+  /// Upload image or document to server.
+  ///
+  /// Request: POST api/v1/member/upload_file
+  /// body: FormData {
+  ///   "file": MultipartFile,
+  ///   "type": String, // One item of AttachmentType = ["image", "document"]
+  ///   "name": String?, // "business_plan.pdf", nullable
+  /// },
+  /// Response:
+  /// statusCode: 201
   static const uploadFile = 'api/v1/member/upload_file';
-  static const uploadImage = 'api/v1/member/upload_image';
 
   // Profile
+
+  /// Get current user profile.
+  ///
+  /// Request: GET api/v1/member/user_profile
+  /// Response:
+  /// body: UserApiModel,
+
+  /// Update current user main photo.
+  ///
+  /// Request: POST api/v1/member/user_profile
+  /// body: {
+  ///   "image_url": imageUrl, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
+  /// },
+  /// Response:
+  /// body: statusCode: 200
   static const userProfile = 'api/v1/member/user_profile';
+
+  /// Send some feedback about the app.
+  ///
+  /// Request: POST api/v1/member/send_feedback
+  /// body: {
+  ///   "message": String, // "Some feedback"
+  /// },
+  /// Response:
+  /// body: statusCode: 201
   static const sendFeedback = 'api/v1/member/send_feedback';
+
+  /// Get available pricing plans.
+  ///
+  /// Request: GET api/v1/member/pricing_plans
+  /// Response:
+  /// body: List<PricingPlanApiModel>,
   static const pricingPlans = 'api/v1/member/pricing_plans';
+
+  /// Update current user pricing plan.
+  ///
+  /// Request: POST api/v1/member/update_plan
+  /// body: {
+  ///   "plan_id": int, // 1
+  /// },
+  /// Response:
+  /// body: statusCode: 200
   static const updatePlan = 'api/v1/member/update_plan';
+
+  /// Cancel current user pricing plan.
+  ///
+  /// Request: POST api/v1/member/cancel_plan
+  /// Response:
+  /// body: statusCode: 200
   static const cancelPlan = 'api/v1/member/cancel_plan';
 }

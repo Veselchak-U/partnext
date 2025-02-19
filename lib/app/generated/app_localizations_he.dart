@@ -389,7 +389,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get unlimited_business_collaborations => 'שיתופי פעולה עסקיים ללא הגבלה';
 
   @override
-  String total(int total) {
+  String total(String total) {
     return 'סך הכל: $total₪';
   }
 

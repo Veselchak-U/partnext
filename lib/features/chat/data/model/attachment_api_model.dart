@@ -7,14 +7,14 @@ part 'attachment_api_model.g.dart';
 
 @JsonSerializable()
 class AttachmentApiModel {
-  final int id;
+  final int? id;
   final AttachmentType type;
   final String? name;
   final String? url;
   final int? size;
 
   AttachmentApiModel({
-    required this.id,
+    this.id,
     required this.type,
     this.name,
     this.url,

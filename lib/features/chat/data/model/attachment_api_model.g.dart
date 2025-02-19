@@ -8,7 +8,7 @@ part of 'attachment_api_model.dart';
 
 AttachmentApiModel _$AttachmentApiModelFromJson(Map<String, dynamic> json) =>
     AttachmentApiModel(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       type: $enumDecode(_$AttachmentTypeEnumMap, json['type']),
       name: json['name'] as String?,
       url: json['url'] as String?,

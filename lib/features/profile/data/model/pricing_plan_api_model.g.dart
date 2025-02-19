@@ -10,8 +10,8 @@ PricingPlanApiModel _$PricingPlanApiModelFromJson(Map<String, dynamic> json) =>
     PricingPlanApiModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      price: (json['price'] as num).toInt(),
-      priceTotal: (json['price_total'] as num).toInt(),
+      price: (json['price'] as num).toDouble(),
+      priceTotal: (json['price_total'] as num).toDouble(),
       discount: (json['discount'] as num?)?.toInt(),
       isDefault: json['is_default'] as bool?,
     );

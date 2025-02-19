@@ -6,8 +6,8 @@ part 'pricing_plan_api_model.g.dart';
 class PricingPlanApiModel {
   final int id;
   final String name;
-  final int price;
-  final int priceTotal;
+  final double price;
+  final double priceTotal;
   final int? discount;
   final bool? isDefault;
 

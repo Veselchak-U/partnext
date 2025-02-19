@@ -42,7 +42,7 @@ class PlanLabel extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  context.l10n.total(plan?.priceTotal ?? 0),
+                  context.l10n.total((plan?.priceTotal ?? 0).toStringAsFixed(2)),
                   style: AppTextStyles.s14w400,
                 ),
               ],

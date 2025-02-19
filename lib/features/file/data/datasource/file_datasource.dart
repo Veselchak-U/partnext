@@ -37,7 +37,7 @@ class FileDatasourceImpl implements FileDatasource {
     return _mockedPhotos[_mockedPhotosIndex];
 
     // return _dioApiClient.uploadImage(
-    //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.uploadImage}'),
+    //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.uploadFile}'),
     //   filePath,
     //   onSendProgress: onSendProgress,
     // );

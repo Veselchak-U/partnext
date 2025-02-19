@@ -70,7 +70,7 @@ class CurrentPlan extends StatelessWidget {
                         style: AppTextStyles.s20w400.copyWith(color: AppColors.white),
                       ),
                       Text(
-                        context.l10n.total(currentPlan.priceTotal),
+                        context.l10n.total(currentPlan.priceTotal.toStringAsFixed(2)),
                         style: AppTextStyles.s20w400.copyWith(color: AppColors.white),
                       ),
                     ],

@@ -6,6 +6,8 @@ import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
 abstract interface class ProfileDatasource {
+  Future<UserApiModel> getUserProfile();
+
   Future<void> uploadUserAvatar({
     required File file,
     Function(int count, int total)? onSendProgress,
@@ -18,8 +20,6 @@ abstract interface class ProfileDatasource {
   Future<String> updatePricingPlan(int planId);
 
   Future<void> cancelPricingPlan();
-
-  Future<UserApiModel> getUserProfile();
 }
 
 class ProfileDatasourceImpl implements ProfileDatasource {
@@ -32,6 +32,27 @@ class ProfileDatasourceImpl implements ProfileDatasource {
   );
 
   @override
+  Future<UserApiModel> getUserProfile() async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    return _mockedUser;
+
+    //   final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.userProfile}');
+    //
+    //   return _apiClient.get(
+    //     uri,
+    //     parser: (response) {
+    //       if (response.body case final Map<String, dynamic> body) {
+    //         return UserApiModel.fromJson(body);
+    //       }
+    //
+    //       throw ApiException(response);
+    //     },
+    //   );
+    // }
+  }
+
+  @override
   Future<void> uploadUserAvatar({
     required File file,
     Function(int count, int total)? onSendProgress,
@@ -39,8 +60,10 @@ class ProfileDatasourceImpl implements ProfileDatasource {
     return Future.delayed(const Duration(seconds: 1));
 
     // return _dioApiClient.uploadFiles(
-    //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.userAvatar}'),
-    //   [file],
+    //   Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.userProfile}'),
+    //   body: {
+    //     "image_url": imageUrl,
+    //   },
     //   onSendProgress: onSendProgress,
     // );
   }
@@ -132,34 +155,13 @@ class ProfileDatasourceImpl implements ProfileDatasource {
     //   },
     // );
   }
-
-  @override
-  Future<UserApiModel> getUserProfile() async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    return _mockedUser;
-
-    //   final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.userProfile}');
-    //
-    //   return _apiClient.get(
-    //     uri,
-    //     parser: (response) {
-    //       if (response.body case final Map<String, dynamic> body) {
-    //         return UserApiModel.fromJson(body);
-    //       }
-    //
-    //       throw ApiException(response);
-    //     },
-    //   );
-    // }
-  }
 }
 
 final _mockedUser = UserApiModel(
   id: -1,
   fullName: 'Eli Lavi',
   position: 'Co- Funder and CEO of Unaned',
-  phone: '+79281234567',
+  // phone: '+79281234567',
   token: 'token',
   imageUrl:
       'https://img.freepik.com/free-photo/girl-with-phone-istanbul_1157-8831.jpg?t=st=1734530631~exp=1734534231~hmac=d9bb0113cdf615783e75a425cb582eed17ee9d8232e797477222bea57453506e&w=1380',

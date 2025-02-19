@@ -23,6 +23,7 @@ class AppMessageField extends StatefulWidget {
   final void Function(
     String message,
     List<File> attachments,
+    AttachmentType? attachmentsType,
   ) onSend;
 
   const AppMessageField({
@@ -44,6 +45,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   String _text = '';
   List<File> _attachments = [];
+  AttachmentType? _attachmentsType;
 
   @override
   void initState() {
@@ -101,6 +103,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
     );
     if (xFiles.isEmpty) return;
 
+    _attachmentsType = AttachmentType.image;
     _sendFileMessage(xFiles);
   }
 
@@ -112,6 +115,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
     );
     if (result == null || result.xFiles.isEmpty) return;
 
+    _attachmentsType = AttachmentType.document;
     _sendFileMessage(result.xFiles);
   }
 
@@ -140,7 +144,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
     _hideMenu();
     if (_text.isEmpty && _attachments.isEmpty) return;
 
-    widget.onSend(_text, _attachments);
+    widget.onSend(_text, _attachments, _attachmentsType);
   }
 
   void _textFieldFocusNodeListener() {
