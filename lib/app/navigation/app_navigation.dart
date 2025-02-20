@@ -18,13 +18,13 @@ import 'package:partnext/features/auth/presentation/phone_validation/phone_valid
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:partnext/features/auth/presentation/sign_up/sign_up_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_success_screen.dart';
-import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen.dart';
+import 'package:partnext/features/chat/presentation/message_list/message_list_screen_params.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/report/report_screen.dart';
 import 'package:partnext/features/chat/presentation/report/report_screen_params.dart';
@@ -247,7 +247,7 @@ class AppNavigation {
                         DI.get<MessageListProvider>(),
                         DI.get<ChatListProvider>(),
                         DI.get<FileRepository>(),
-                        chat: state.extra as ChatApiModel,
+                        params: state.extra as MessageListScreenParams,
                       ),
                       dispose: (context, vm) => vm.dispose(),
                       child: const MessageListScreen(),

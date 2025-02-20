@@ -5,6 +5,7 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
+import 'package:partnext/features/chat/presentation/message_list/message_list_screen_params.dart';
 
 class ChatListScreenVm {
   final BuildContext _context;
@@ -50,7 +51,7 @@ class ChatListScreenVm {
   void openChat(ChatApiModel chat) {
     _context.pushNamed(
       AppRoute.messages.name,
-      extra: chat,
+      extra: MessageListScreenParams(chat: chat),
     );
   }
 

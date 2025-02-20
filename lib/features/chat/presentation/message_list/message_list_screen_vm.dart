@@ -21,38 +21,36 @@ class MessageListScreenVm {
   final MessageListProvider _messageListProvider;
   final ChatListProvider _chatListProvider;
   final FileRepository _fileRepository;
-  final ChatApiModel chat;
+  final int chatId;
 
   MessageListScreenVm(
     this._context,
     this._messageListProvider,
     this._chatListProvider,
     this._fileRepository, {
-    required this.chat,
+    required this.chatId,
   }) {
     _init();
   }
 
+  final initialized = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
   final unreadMessageIndex = ValueNotifier<int?>(null);
   final previousPageLoading = ValueNotifier<bool>(false);
   final nextPageLoading = ValueNotifier<bool>(false);
 
+  late final ChatApiModel chat;
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
   final _onMessageReadDebouncer = Debouncer(milliseconds: 1000);
 
-  void _init() {
-    final scrollOffset = _messageListProvider.getScrollOffset(chat.id) ?? 0;
-    autoScrollController = AutoScrollController(initialScrollOffset: scrollOffset);
-    autoScrollController.addListener(_saveScrollOffset);
-
-    _messageListProvider.addListener(_messageListListener);
-    _refreshMessages();
-
-    _chatListProvider.addListener(_chatListListener);
-    unreadMessageIndex.value = chat.unreadMessageIndex;
+  Future<void> _init() async {
+    _setLoading(true);
+    await _initChat();
+    await _initMessages();
+    initialized.value = true;
+    _setLoading(false);
   }
 
   void dispose() {
@@ -64,11 +62,44 @@ class MessageListScreenVm {
 
     _chatListProvider.removeListener(_chatListListener);
 
+    initialized.dispose();
     loading.dispose();
     messages.dispose();
     unreadMessageIndex.dispose();
     previousPageLoading.dispose();
     nextPageLoading.dispose();
+  }
+
+  Future<void> _initChat() async {
+    ChatApiModel? cachedChat = _chatListProvider.chats.firstWhereOrNull((e) => e.id == chatId);
+    if (cachedChat != null) {
+      chat = cachedChat;
+
+      return;
+    }
+
+    await _chatListProvider.startChecking(
+      onError: _handleError,
+    );
+
+    cachedChat = _chatListProvider.chats.firstWhereOrNull((e) => e.id == chatId);
+    if (cachedChat != null) {
+      chat = cachedChat;
+
+      return;
+    }
+  }
+
+  Future<void> _initMessages() async {
+    final scrollOffset = _messageListProvider.getScrollOffset(chat.id) ?? 0;
+    autoScrollController = AutoScrollController(initialScrollOffset: scrollOffset);
+    autoScrollController.addListener(_saveScrollOffset);
+
+    _messageListProvider.addListener(_messageListListener);
+    _refreshMessages();
+
+    _chatListProvider.addListener(_chatListListener);
+    unreadMessageIndex.value = chat.unreadMessageIndex;
   }
 
   Future<void> _refreshMessages() async {
