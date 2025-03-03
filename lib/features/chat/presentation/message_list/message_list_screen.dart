@@ -21,116 +21,135 @@ class MessageListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<MessageListScreenVm>();
 
-    return MainLayout(
-      title: Row(
-        children: [
-          Container(
-            width: 32.h,
-            height: 32.h,
-            decoration: BoxDecoration(
-              color: AppColors.background,
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(vm.chat.member.photoUrl),
-                fit: BoxFit.cover,
-              ),
+    return ValueListenableBuilder(
+      valueListenable: vm.initialized,
+      builder: (context, initialized, _) {
+        if (!initialized) {
+          return MainLayout(
+            body: ValueListenableBuilder(
+              valueListenable: vm.loading,
+              builder: (context, loading, _) {
+                return LoadingContainerIndicator(loading: loading);
+              },
             ),
-          ),
-          SizedBox(width: 20.w),
-          Text(
-            vm.chat.member.fullName,
-            style: AppTextStyles.s18w500,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.more_vert),
-          onPressed: vm.openChatMenu,
-        ),
-      ],
-      body: ValueListenableBuilder(
-        valueListenable: vm.messages,
-        builder: (context, messages, _) {
-          final messagesLength = messages?.length ?? 0;
+          );
+        }
 
-          return Stack(
+        final chat = vm.chat.value;
+        if (chat == null) return SizedBox.shrink();
+
+        return MainLayout(
+          title: Row(
             children: [
-              CustomMaterialIndicator(
-                trigger: IndicatorTrigger.bothEdges,
-                onRefresh: () async => vm.onRefresh(),
-                child: ListView.separated(
-                  controller: vm.autoScrollController,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
-                  itemCount: messagesLength + 2,
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return ValueListenableBuilder(
-                        valueListenable: vm.previousPageLoading,
-                        builder: (context, previousPageLoading, _) {
-                          return PageLoaderWidget(
-                            onInit: vm.getPreviousPage,
-                            loading: previousPageLoading,
-                          );
-                        },
-                      );
-                    }
-
-                    if (index == messagesLength + 1) {
-                      return ValueListenableBuilder(
-                        valueListenable: vm.nextPageLoading,
-                        builder: (context, nextPageLoading, _) {
-                          return PageLoaderWidget(
-                            onInit: vm.getNextPage,
-                            loading: nextPageLoading,
-                          );
-                        },
-                      );
-                    }
-
-                    final actualIndex = index - 1;
-                    final item = messages?[actualIndex];
-                    if (item == null) return SizedBox.shrink();
-
-                    return AutoScrollTag(
-                      key: ValueKey(actualIndex),
-                      index: actualIndex,
-                      controller: vm.autoScrollController,
-                      child: ValueListenableBuilder(
-                        valueListenable: vm.unreadMessageIndex,
-                        builder: (context, unreadMessageIndex, _) {
-                          return MessagesListItem(
-                            item,
-                            isUnread: item.isUnread(unreadMessageIndex),
-                            onTap: () => vm.onMessageTap(item),
-                            onLongPress: () => vm.openMessageMenu(item),
-                            onVisible: () => vm.onVisible(item),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  separatorBuilder: (_, __) => SizedBox(height: 16.h),
+              Container(
+                width: 32.h,
+                height: 32.h,
+                decoration: BoxDecoration(
+                  color: AppColors.background,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(chat.member.photoUrl),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              if (messages?.isEmpty == true)
-                NoItemsWidget(
-                  message: context.l10n.no_messages,
-                  onRefresh: () async => vm.onRefresh(),
-                ),
-              ValueListenableBuilder(
-                valueListenable: vm.loading,
-                builder: (context, loading, _) {
-                  return LoadingContainerIndicator(loading: loading);
-                },
+              SizedBox(width: 20.w),
+              Text(
+                chat.member.fullName,
+                style: AppTextStyles.s18w500,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
-          );
-        },
-      ),
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: vm.openChatMenu,
+            ),
+          ],
+          body: ValueListenableBuilder(
+            valueListenable: vm.messages,
+            builder: (context, messages, _) {
+              final messagesLength = messages?.length ?? 0;
+
+              return Stack(
+                children: [
+                  CustomMaterialIndicator(
+                    trigger: IndicatorTrigger.bothEdges,
+                    onRefresh: () async => vm.onRefresh(),
+                    child: ListView.separated(
+                      controller: vm.autoScrollController,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
+                      itemCount: messagesLength + 2,
+                      itemBuilder: (context, index) {
+                        if (index == 0) {
+                          return ValueListenableBuilder(
+                            valueListenable: vm.previousPageLoading,
+                            builder: (context, previousPageLoading, _) {
+                              return PageLoaderWidget(
+                                onInit: vm.getPreviousPage,
+                                loading: previousPageLoading,
+                              );
+                            },
+                          );
+                        }
+
+                        if (index == messagesLength + 1) {
+                          return ValueListenableBuilder(
+                            valueListenable: vm.nextPageLoading,
+                            builder: (context, nextPageLoading, _) {
+                              return PageLoaderWidget(
+                                onInit: vm.getNextPage,
+                                loading: nextPageLoading,
+                              );
+                            },
+                          );
+                        }
+
+                        final actualIndex = index - 1;
+                        final item = messages?[actualIndex];
+                        if (item == null) return SizedBox.shrink();
+
+                        return AutoScrollTag(
+                          key: ValueKey(actualIndex),
+                          index: actualIndex,
+                          controller: vm.autoScrollController,
+                          child: ValueListenableBuilder(
+                            valueListenable: vm.unreadMessageIndex,
+                            builder: (context, unreadMessageIndex, _) {
+                              return MessagesListItem(
+                                item,
+                                isUnread: item.isUnread(unreadMessageIndex),
+                                onTap: () => vm.onMessageTap(item),
+                                onLongPress: () => vm.openMessageMenu(item),
+                                onVisible: () => vm.onVisible(item),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      separatorBuilder: (_, __) => SizedBox(height: 16.h),
+                    ),
+                  ),
+                  if (messages?.isEmpty == true)
+                    NoItemsWidget(
+                      message: context.l10n.no_messages,
+                      onRefresh: () async => vm.onRefresh(),
+                    ),
+                  ValueListenableBuilder(
+                    valueListenable: vm.loading,
+                    builder: (context, loading, _) {
+                      return LoadingContainerIndicator(loading: loading);
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

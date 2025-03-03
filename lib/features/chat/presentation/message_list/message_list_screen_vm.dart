@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_file/open_file.dart';
 import 'package:partnext/app/navigation/app_route.dart';
+import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/debouncer.dart';
@@ -35,12 +36,12 @@ class MessageListScreenVm {
 
   final initialized = ValueNotifier<bool>(false);
   final loading = ValueNotifier<bool>(false);
+  final chat = ValueNotifier<ChatApiModel?>(null);
   final messages = ValueNotifier<List<MessageApiModel>?>(null);
   final unreadMessageIndex = ValueNotifier<int?>(null);
   final previousPageLoading = ValueNotifier<bool>(false);
   final nextPageLoading = ValueNotifier<bool>(false);
 
-  late final ChatApiModel chat;
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
   final _onMessageReadDebouncer = Debouncer(milliseconds: 1000);
@@ -64,6 +65,7 @@ class MessageListScreenVm {
 
     initialized.dispose();
     loading.dispose();
+    chat.dispose();
     messages.dispose();
     unreadMessageIndex.dispose();
     previousPageLoading.dispose();
@@ -71,27 +73,34 @@ class MessageListScreenVm {
   }
 
   Future<void> _initChat() async {
+    // Get chat from cache
     ChatApiModel? cachedChat = _chatListProvider.chats.firstWhereOrNull((e) => e.id == chatId);
     if (cachedChat != null) {
-      chat = cachedChat;
+      chat.value = cachedChat;
 
       return;
     }
 
+    // If it is not in cache - refresh chats from server
     await _chatListProvider.startChecking(
       onError: _handleError,
     );
 
+    // Get chat from cache after refresh
     cachedChat = _chatListProvider.chats.firstWhereOrNull((e) => e.id == chatId);
     if (cachedChat != null) {
-      chat = cachedChat;
+      chat.value = cachedChat;
 
       return;
     }
+
+    _onError('${LogicException('Chat id=$chatId not found')}');
   }
 
   Future<void> _initMessages() async {
-    final scrollOffset = _messageListProvider.getScrollOffset(chat.id) ?? 0;
+    if (chat.value == null) return;
+
+    final scrollOffset = _messageListProvider.getScrollOffset(chatId) ?? 0;
     autoScrollController = AutoScrollController(initialScrollOffset: scrollOffset);
     autoScrollController.addListener(_saveScrollOffset);
 
@@ -99,13 +108,13 @@ class MessageListScreenVm {
     _refreshMessages();
 
     _chatListProvider.addListener(_chatListListener);
-    unreadMessageIndex.value = chat.unreadMessageIndex;
+    unreadMessageIndex.value = chat.value?.unreadMessageIndex;
   }
 
   Future<void> _refreshMessages() async {
     _setLoading(true);
     await _messageListProvider.startChecking(
-      chatId: chat.id,
+      chatId: chatId,
       onError: _handleError,
     );
     _setLoading(false);
@@ -159,13 +168,16 @@ class MessageListScreenVm {
   void openChatMenu() {}
 
   void openMessageMenu(MessageApiModel message) {
+    final currentChat = chat.value;
+    if (currentChat == null) return;
+
     showModalBottomSheet(
       context: _context,
       backgroundColor: Colors.transparent,
       enableDrag: false,
       builder: (context) {
         return MessageMenu(
-          onReport: () => _openReportScreen(chat, message),
+          onReport: () => _openReportScreen(currentChat, message),
         );
       },
     );
@@ -184,7 +196,7 @@ class MessageListScreenVm {
 
     _onMessageReadDebouncer.run(() {
       _chatListProvider.markMessageAsRead(
-        chatId: chat.id,
+        chatId: chatId,
         message: message,
       );
     });
@@ -210,7 +222,7 @@ class MessageListScreenVm {
     if (!_context.mounted) return;
     messages.value = _messageListProvider.messages;
 
-    final scrollOffset = _messageListProvider.getScrollOffset(chat.id);
+    final scrollOffset = _messageListProvider.getScrollOffset(chatId);
     final isFirstUpdate = scrollOffset == null;
     if (isFirstUpdate) {
       _scrollToUnreadMessage();
@@ -220,7 +232,7 @@ class MessageListScreenVm {
   Future<void> _scrollToUnreadMessage() async {
     final messageList = messages.value ?? [];
 
-    final unreadMessageIndex = chat.unreadMessageIndex;
+    final unreadMessageIndex = chat.value?.unreadMessageIndex;
     if (unreadMessageIndex == null) return;
 
     final index = messageList.indexWhere((e) => e.index == unreadMessageIndex);
@@ -238,13 +250,13 @@ class MessageListScreenVm {
   void _saveScrollOffset() {
     _scrollDebouncer.run(() {
       final scrollOffset = autoScrollController.offset;
-      _messageListProvider.setScrollOffset(chat.id, scrollOffset);
+      _messageListProvider.setScrollOffset(chatId, scrollOffset);
     });
   }
 
   void _chatListListener() {
     final chats = _chatListProvider.chats;
-    final currentChat = chats.firstWhereOrNull((e) => e.id == chat.id);
+    final currentChat = chats.firstWhereOrNull((e) => e.id == chatId);
     if (currentChat == null) return;
 
     unreadMessageIndex.value = currentChat.unreadMessageIndex;

@@ -24,7 +24,6 @@ import 'package:partnext/features/chat/domain/provider/message_list_provider.dar
 import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen.dart';
-import 'package:partnext/features/chat/presentation/message_list/message_list_screen_params.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/report/report_screen.dart';
 import 'package:partnext/features/chat/presentation/report/report_screen_params.dart';
@@ -247,7 +246,7 @@ class AppNavigation {
                         DI.get<MessageListProvider>(),
                         DI.get<ChatListProvider>(),
                         DI.get<FileRepository>(),
-                        params: state.extra as MessageListScreenParams,
+                        chatId: state.extra as int,
                       ),
                       dispose: (context, vm) => vm.dispose(),
                       child: const MessageListScreen(),
