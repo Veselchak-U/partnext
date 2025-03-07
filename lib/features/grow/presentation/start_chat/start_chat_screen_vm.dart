@@ -79,17 +79,17 @@ class StartChatScreenVm {
   void _goChatScreen(int chatId) {
     if (!_context.mounted) return;
 
-    //TODO: deal with inner navigation
-    _context.goNamed(
-      AppRoute.grow.name,
-      // extra: chatId,
-    );
-    Future.delayed(
-      Duration(milliseconds: 50),
-      () {
-        _navBarIndexProvider.navBarIndex = NavBarTab.chats.index;
-      },
-    );
+    final goRouter = GoRouter.of(_context);
+    goRouter.pop();
+
+    _navBarIndexProvider.navBarIndex = NavBarTab.chats.index;
+
+    Future.delayed(Duration(milliseconds: 100)).then((_) {
+      goRouter.goNamed(
+        AppRoute.messages.name,
+        extra: chatId,
+      );
+    });
   }
 
   void _setInitializing(bool value) {
