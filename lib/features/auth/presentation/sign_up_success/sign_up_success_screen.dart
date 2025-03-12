@@ -8,6 +8,7 @@ import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/change_locale_button.dart';
 import 'package:partnext/common/buttons/common_button.dart';
+import 'package:partnext/config.dart';
 
 class SignUpSuccessScreen extends StatelessWidget {
   const SignUpSuccessScreen({super.key});
@@ -18,6 +19,8 @@ class SignUpSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isProdBuild = Config.isProdBuild;
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Stack(
@@ -61,11 +64,12 @@ class SignUpSuccessScreen extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).viewPadding.top,
-            right: 0,
-            child: ChangeLocaleButton(),
-          ),
+          if (!isProdBuild)
+            Positioned(
+              top: MediaQuery.of(context).viewPadding.top,
+              right: 0,
+              child: ChangeLocaleButton(),
+            ),
         ],
       ),
     );

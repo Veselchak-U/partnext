@@ -6,12 +6,15 @@ import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/change_locale_button.dart';
+import 'package:partnext/config.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isProdBuild = Config.isProdBuild;
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -38,11 +41,12 @@ class WelcomeBody extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-          top: MediaQuery.of(context).viewPadding.top,
-          right: 0,
-          child: ChangeLocaleButton(),
-        ),
+        if (!isProdBuild)
+          Positioned(
+            top: MediaQuery.of(context).viewPadding.top,
+            right: 0,
+            child: ChangeLocaleButton(),
+          ),
       ],
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/buttons/change_locale_button.dart';
+import 'package:partnext/config.dart';
 
 class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? titleText;
@@ -12,7 +13,6 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final double? titleSpacing;
   final bool automaticallyImplyLeading;
-  final bool addChangeLocaleButton;
   final Widget? leading;
   final Color backgroundColor;
   final Color foregroundColor;
@@ -25,7 +25,6 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.titleSpacing,
     this.automaticallyImplyLeading = true,
-    this.addChangeLocaleButton = true,
     this.leading,
     this.backgroundColor = AppColors.white,
     this.foregroundColor = AppColors.primary,
@@ -39,6 +38,8 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isProdBuild = Config.isProdBuild;
+
     return AppBar(
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
@@ -52,7 +53,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       automaticallyImplyLeading: automaticallyImplyLeading,
       leading: leading,
-      actions: addChangeLocaleButton ? [const ChangeLocaleButton(), ...actions] : actions,
+      actions: isProdBuild ? actions : [const ChangeLocaleButton(), ...actions],
     );
   }
 }
