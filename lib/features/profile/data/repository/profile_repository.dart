@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
+import 'package:partnext/features/file/data/datasource/file_datasource.dart';
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
 abstract interface class ProfileRepository {
   Future<UserApiModel> getUserProfile();
 
-  Future<void> uploadUserAvatar({
+  Future<void> updateUserAvatar({
     required File file,
     Function(int count, int total)? onSendProgress,
   });
@@ -23,9 +24,11 @@ abstract interface class ProfileRepository {
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDatasource _profileDatasource;
+  final FileDatasource _fileDatasource;
 
   ProfileRepositoryImpl(
     this._profileDatasource,
+    this._fileDatasource,
   );
 
   @override
@@ -34,14 +37,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> uploadUserAvatar({
+  Future<void> updateUserAvatar({
     required File file,
     Function(int count, int total)? onSendProgress,
-  }) {
-    return _profileDatasource.uploadUserAvatar(
-      file: file,
+  }) async {
+    final imageUrl = await _fileDatasource.uploadFile(
+      filePath: file.path,
       onSendProgress: onSendProgress,
     );
+
+    return _profileDatasource.updateUserAvatar(imageUrl);
   }
 
   @override

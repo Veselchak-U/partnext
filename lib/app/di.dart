@@ -94,7 +94,6 @@ class DI {
         ));
     _sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceImpl(
           _sl<ApiClient>(),
-          _sl<DioApiClient>(),
         ));
     _sl.registerLazySingleton<ChatDatasource>(() => ChatDatasourceImpl(
           _sl<ApiClient>(),
@@ -121,6 +120,7 @@ class DI {
         ));
     _sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(
           _sl<ProfileDatasource>(),
+          _sl<FileDatasource>(),
         ));
     _sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImpl(
           _sl<ChatDatasource>(),

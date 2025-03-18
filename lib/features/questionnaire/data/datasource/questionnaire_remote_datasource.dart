@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:partnext/app/service/network/api_client/api_client.dart';
+import 'package:partnext/app/service/network/api_client/entities/api_exception.dart';
+import 'package:partnext/app/service/network/api_endpoints.dart';
+import 'package:partnext/config.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 
 abstract interface class QuestionnaireRemoteDatasource {
@@ -18,9 +23,9 @@ class QuestionnaireRemoteDatasourceImpl implements QuestionnaireRemoteDatasource
 
   @override
   Future<QuestionnaireApiModel?> fetchQuestionnaire() async {
-    await Future.delayed(Duration(seconds: 1));
-
-    return null;
+    // await Future.delayed(Duration(seconds: 1));
+    //
+    // return null;
 
     // try {
     //   var model = QuestionnaireApiModel.fromJson(jsonDecode(_lastQuestionnare));
@@ -30,39 +35,39 @@ class QuestionnaireRemoteDatasourceImpl implements QuestionnaireRemoteDatasource
     //   return null;
     // }
 
-    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.getQuestionnaire}');
-    //
-    // return _apiClient.get(
-    //   uri,
-    //   parser: (response) {
-    //     if (response.body case final Map<String, dynamic> body) {
-    //       if (body.isEmpty) return null;
-    //
-    //       return QuestionnaireApiModel.fromJson(body);
-    //     }
-    //
-    //     throw ApiException(response);
-    //   },
-    // );
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.questionnaire}');
+
+    return _apiClient.get(
+      uri,
+      parser: (response) {
+        if (response.body case final Map<String, dynamic> body) {
+          if (body.isEmpty) return null;
+
+          return QuestionnaireApiModel.fromJson(body);
+        }
+
+        throw ApiException(response);
+      },
+    );
   }
 
   @override
   Future<void> updateQuestionnaire(QuestionnaireApiModel questionnaire) async {
-    await Future.delayed(Duration(seconds: 1));
-    // _lastQuestionnare = jsonEncode(questionnaire.toJson());
-
-    return;
-
-    // final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.updateQuestionnaire}');
+    // await Future.delayed(Duration(seconds: 1));
+    // // _lastQuestionnare = jsonEncode(questionnaire.toJson());
     //
-    // return _apiClient.post(
-    //   uri,
-    //   body: questionnaire.toJson(),
-    //   parser: (response) {
-    //     if (response.statusCode == HttpStatus.created) return;
-    //
-    //     throw ApiException(response);
-    //   },
-    // );
+    // return;
+
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.questionnaire}');
+
+    return _apiClient.post(
+      uri,
+      body: questionnaire.toJson(),
+      parser: (response) {
+        if (response.statusCode == HttpStatus.created) return;
+
+        throw ApiException(response);
+      },
+    );
   }
 }

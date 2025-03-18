@@ -70,7 +70,7 @@ class ProfileScreenVm {
 
     _setLoading(true);
     try {
-      await _profileRepository.uploadUserAvatar(
+      await _profileRepository.updateUserAvatar(
         file: File(image.path),
       );
 
