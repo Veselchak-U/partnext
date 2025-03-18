@@ -81,6 +81,8 @@ dev_dependencies:
 
   # Utils
   flutter_launcher_icons: 0.14.1
+  # Usage: dart run rename setBundleId --targets android,ios --value "com.partnextapp"
+  rename: 3.0.2
 
 flutter:
   generate: true
