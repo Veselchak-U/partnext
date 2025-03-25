@@ -15,8 +15,7 @@ MessageApiModel _$MessageApiModelFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String?,
       attachment: json['attachment'] == null
           ? null
-          : AttachmentApiModel.fromJson(
-              json['attachment'] as Map<String, dynamic>),
+          : FileApiModel.fromJson(json['attachment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageApiModelToJson(MessageApiModel instance) =>

@@ -5,15 +5,15 @@ part 'user_api_model.g.dart';
 
 @JsonSerializable()
 class UserApiModel {
-  final int id;
+  final int userId;
   final String fullName;
-  final String position;
-  final String imageUrl;
+  final String? position;
+  final String? imageUrl;
   final PricingPlanApiModel? pricingPlan;
   final String token;
 
   UserApiModel({
-    required this.id,
+    required this.userId,
     required this.fullName,
     required this.position,
     required this.imageUrl,

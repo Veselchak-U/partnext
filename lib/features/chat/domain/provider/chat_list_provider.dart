@@ -6,7 +6,7 @@ import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
-import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/chat/domain/use_case/start_conversation_use_case.dart';
 
 abstract interface class ChatListProvider with ChangeNotifier {
@@ -24,7 +24,7 @@ abstract interface class ChatListProvider with ChangeNotifier {
     int partnerId,
     String text,
     List<File> attachments,
-    AttachmentType? attachmentsType,
+    RemoteFileType attachmentsType,
   );
 
   Future<void> markMessageAsRead({
@@ -74,7 +74,7 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     int partnerId,
     String text,
     List<File> attachments,
-    AttachmentType? attachmentsType,
+    RemoteFileType attachmentsType,
   ) async {
     final chat = await _startConversationUseCase(partnerId, text, attachments, attachmentsType);
     _refreshChats();

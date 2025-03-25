@@ -15,15 +15,15 @@ import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/common/layouts/focus_layout.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/config.dart';
-import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 
-typedef MenuItem = ({AttachmentType type, String icon, String label});
+typedef MenuItem = ({RemoteFileType type, String icon, String label});
 
 class AppMessageField extends StatefulWidget {
   final void Function(
     String message,
     List<File> attachments,
-    AttachmentType? attachmentsType,
+    RemoteFileType attachmentsType,
   ) onSend;
 
   const AppMessageField({
@@ -38,14 +38,14 @@ class AppMessageField extends StatefulWidget {
 class _AppMessageFieldState extends State<AppMessageField> {
   final _isMenuOpened = ValueNotifier<bool>(false);
   final _menuList = <MenuItem>[
-    (type: AttachmentType.image, icon: Assets.icons.image.path, label: l10n?.image ?? ''),
-    (type: AttachmentType.document, icon: Assets.icons.document.path, label: l10n?.document ?? ''),
+    (type: RemoteFileType.image, icon: Assets.icons.image.path, label: l10n?.image ?? ''),
+    (type: RemoteFileType.document, icon: Assets.icons.document.path, label: l10n?.document ?? ''),
   ];
   final _textFieldFocusNode = FocusNode();
 
   String _text = '';
   List<File> _attachments = [];
-  AttachmentType? _attachmentsType;
+  RemoteFileType _attachmentsType = RemoteFileType.document;
 
   @override
   void initState() {
@@ -88,10 +88,10 @@ class _AppMessageFieldState extends State<AppMessageField> {
     _hideMenu();
 
     switch (item.type) {
-      case AttachmentType.image:
+      case RemoteFileType.image:
         _pickImages();
         break;
-      case AttachmentType.document:
+      case RemoteFileType.document:
         _pickDocuments();
         break;
     }
@@ -103,7 +103,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
     );
     if (xFiles.isEmpty) return;
 
-    _attachmentsType = AttachmentType.image;
+    _attachmentsType = RemoteFileType.image;
     _sendFileMessage(xFiles);
   }
 
@@ -115,7 +115,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
     );
     if (result == null || result.xFiles.isEmpty) return;
 
-    _attachmentsType = AttachmentType.document;
+    _attachmentsType = RemoteFileType.document;
     _sendFileMessage(result.xFiles);
   }
 

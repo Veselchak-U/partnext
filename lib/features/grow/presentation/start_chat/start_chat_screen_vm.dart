@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
-import 'package:partnext/features/chat/domain/entity/attachment_type.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
@@ -58,7 +58,7 @@ class StartChatScreenVm {
   Future<void> onStartConversation(
     String text,
     List<File> attachments,
-    AttachmentType? attachmentsType,
+    RemoteFileType attachmentsType,
   ) async {
     _setLoading(true);
     try {

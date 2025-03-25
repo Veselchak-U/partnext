@@ -18,7 +18,7 @@ class DioApiClient {
     _getAccessToken = getAccessToken;
   }
 
-  Future<String> uploadImage(
+  Future<Map<String, dynamic>> uploadImage(
     Uri uri,
     String filePath, {
     Map<String, dynamic> formDataMap = const {},
@@ -47,10 +47,10 @@ class DioApiClient {
         onSendProgress: onSendProgress,
       );
 
-      if (response.statusCode == HttpStatus.ok) {
+      if (response.statusCode == HttpStatus.created) {
         final data = response.data as Map<String, dynamic>;
 
-        return data['url'] as String;
+        return data;
       }
 
       throw ApiException(

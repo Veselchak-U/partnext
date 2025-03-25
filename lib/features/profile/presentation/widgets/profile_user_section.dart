@@ -32,7 +32,7 @@ class ProfileUserSection extends StatelessWidget {
                             top: 0,
                             child: CircleAvatar(
                               radius: 92.r,
-                              backgroundImage: CachedNetworkImageProvider(user.imageUrl),
+                              backgroundImage: CachedNetworkImageProvider(user.imageUrl ?? ''),
                             ),
                           ),
                           if (user.isPremium)
@@ -61,7 +61,7 @@ class ProfileUserSection extends StatelessWidget {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      user.position,
+                      user.position ?? '',
                       style: AppTextStyles.s14w400,
                       textAlign: TextAlign.center,
                     ),

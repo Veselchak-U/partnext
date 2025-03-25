@@ -1,10 +1,15 @@
 import 'dart:io';
 
+import 'package:partnext/features/chat/data/model/file_api_model.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/file/data/datasource/file_datasource.dart';
+import 'package:path/path.dart' as p;
 
 abstract interface class FileRepository {
-  Future<String> uploadFile({
-    required String filePath,
+  Future<FileApiModel> uploadFile({
+    required String path,
+    required RemoteFileType type,
+    String? name,
     Function(int count, int total)? onSendProgress,
   });
 
@@ -19,12 +24,18 @@ class FileRepositoryImpl implements FileRepository {
   FileRepositoryImpl(this._fileDatasource);
 
   @override
-  Future<String> uploadFile({
-    required String filePath,
+  Future<FileApiModel> uploadFile({
+    required String path,
+    required RemoteFileType type,
+    String? name,
     Function(int count, int total)? onSendProgress,
   }) {
+    final fileName = name ?? p.basename(path);
+
     return _fileDatasource.uploadFile(
-      filePath: filePath,
+      path: path,
+      type: type,
+      name: fileName,
       onSendProgress: onSendProgress,
     );
   }

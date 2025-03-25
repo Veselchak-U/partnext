@@ -7,6 +7,7 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
@@ -218,11 +219,14 @@ class QuestionnaireScreenVm {
         return;
       }
 
-      final imageUrl = await _fileRepository.uploadFile(filePath: file.path);
+      final model = await _fileRepository.uploadFile(
+        path: file.path,
+        type: RemoteFileType.image,
+      );
       if (!_context.mounted) return;
 
       final newList = [...photos.value];
-      newList[index] = imageUrl;
+      newList[index] = model.url;
       photos.value = newList;
       _hasChanges = true;
 

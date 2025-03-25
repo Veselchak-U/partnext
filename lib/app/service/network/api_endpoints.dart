@@ -34,7 +34,7 @@ class ApiEndpoints {
   ///   "user_id": int, // 1
   ///   "full_name": String, // "John Doe"
   ///   "position": String, // "Co-founder and CEO"
-  ///   "image_url": String, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
+  ///   "image_url": String, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"
   ///   "pricing_plan": PricingPlanApiModel?, // nullable
   ///   "token": String, // "..."
   /// }
@@ -67,7 +67,7 @@ class ApiEndpoints {
   ///   "bio": String?, // "Some info about person", nullable
   ///   "experience": String?, // One item of ExperienceDuration = ["from0To2", "from3To5", "from6To10", "from10", "from20"], nullable
   ///   "profile_url": String?, // "https://www.linkedin.com/company/microsoft/", nullable
-  ///   "photos": List<String>, // ["https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"]
+  ///   "photos": List<String>, // ["https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"]
   /// }
 
   /// Update current user questionnaire.
@@ -140,7 +140,7 @@ class ApiEndpoints {
   /// MemberApiModel: {
   ///   "user_id": int, // 1
   ///   "full_name": String , // "John Doe"
-  ///   "photo_url": String , // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
+  ///   "photo_url": String , // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"
   ///   "is_current_user": bool?, // false, nullable
   /// }
 
@@ -150,15 +150,15 @@ class ApiEndpoints {
   ///   "created_at": String in ISO 8601 format, // "2002-02-27T19:00:00Z"
   ///   "creator": MemberApiModel,
   ///   "text": String?, // "Text of message", nullable
-  ///   "attachment": AttachmentApiModel?, // nullable
+  ///   "attachment": // FileApiModel?, nullable
   /// }
 
-  /// AttachmentApiModel: {
+  /// FileApiModel: {
   ///   "id": int, // 1
   ///   "type": String, // One item of AttachmentType = ["image", "document"]
-  ///   "name": String?, // "business_plan.pdf", nullable
-  ///   "url": String?, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.pdf", nullable
-  ///   "size": int?, // 4096, nullable
+  ///   "name": String, // "business_plan.pdf"
+  ///   "url": String, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"
+  ///   "size": int, // 4096
   /// }
   static const chats = 'api/v1/member/chats';
 
@@ -178,7 +178,7 @@ class ApiEndpoints {
   /// body: {
   ///   "chat_id": int, // 1
   ///   "text": String?, // "Text of message", nullable
-  ///   "attachment": AttachmentApiModel?, // nullable
+  ///   "attachment_id": 1, // (id of FileApiModel), nullable
   /// },
   /// Response:
   /// body: MessageApiModel
@@ -236,10 +236,11 @@ class ApiEndpoints {
   /// body: FormData {
   ///   "file": MultipartFile,
   ///   "type": String, // One item of AttachmentType = ["image", "document"]
-  ///   "name": String?, // "business_plan.pdf", nullable
+  ///   "name": String, // "business_plan.pdf"
   /// },
   /// Response:
   /// statusCode: 201
+  /// body: FileApiModel
   static const uploadFile = 'api/v1/member/upload_file';
 
   // Profile
@@ -254,7 +255,7 @@ class ApiEndpoints {
   ///
   /// Request: POST api/v1/member/user_profile
   /// body: {
-  ///   "image_url": imageUrl, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae.png"
+  ///   "image_url": imageUrl, // "https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"
   /// },
   /// Response:
   /// body: statusCode: 200

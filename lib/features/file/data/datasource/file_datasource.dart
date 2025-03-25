@@ -4,10 +4,14 @@ import 'package:partnext/app/service/network/api_endpoints.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
 import 'package:partnext/app/service/storage/file_cache_service.dart';
 import 'package:partnext/config.dart';
+import 'package:partnext/features/chat/data/model/file_api_model.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 
 abstract interface class FileDatasource {
-  Future<String> uploadFile({
-    required String filePath,
+  Future<FileApiModel> uploadFile({
+    required String path,
+    required RemoteFileType type,
+    required String name,
     Function(int count, int total)? onSendProgress,
   });
 
@@ -23,11 +27,13 @@ class FileDatasourceImpl implements FileDatasource {
     this._fileCacheService,
   );
 
-  int _mockedPhotosIndex = 0;
+  // int _mockedPhotosIndex = 0;
 
   @override
-  Future<String> uploadFile({
-    required String filePath,
+  Future<FileApiModel> uploadFile({
+    required String path,
+    required RemoteFileType type,
+    required String name,
     Function(int count, int total)? onSendProgress,
   }) async {
     // await Future.delayed(const Duration(seconds: 5));
@@ -38,11 +44,17 @@ class FileDatasourceImpl implements FileDatasource {
     //
     // return _mockedPhotos[_mockedPhotosIndex];
 
-    return _dioApiClient.uploadImage(
+    final data = await _dioApiClient.uploadImage(
       Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.uploadFile}'),
-      filePath,
+      path,
+      formDataMap: {
+        "type": type.name,
+        "name": name,
+      },
       onSendProgress: onSendProgress,
     );
+
+    return FileApiModel.fromJson(data);
   }
 
   @override
