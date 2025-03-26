@@ -7,6 +7,7 @@ import 'package:partnext/app/service/network/api_endpoints.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/chat_page_api_model.dart';
+import 'package:partnext/features/chat/data/model/file_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 
 abstract interface class ChatDatasource {
@@ -17,7 +18,7 @@ abstract interface class ChatDatasource {
   Future<void> sendMessage(
     int chatId,
     String? text,
-    int? attachmentId,
+    FileApiModel? attachment,
   );
 
   Future<ChatPageApiModel> getChatPage(
@@ -97,9 +98,9 @@ class ChatDatasourceImpl implements ChatDatasource {
   Future<MessageApiModel> sendMessage(
     int chatId,
     String? text,
-    int? attachmentId,
+    FileApiModel? attachment,
   ) {
-    if (text == null && attachmentId == null) {
+    if (text == null && attachment == null) {
       throw LogicException('Text or attachment must be not null');
     }
 
@@ -121,7 +122,7 @@ class ChatDatasourceImpl implements ChatDatasource {
       body: {
         "chat_id": chatId,
         if (text != null) "text": text,
-        if (attachmentId != null) "attachment_id": attachmentId,
+        if (attachment != null) "attachment": attachment.toJson(),
       },
       parser: (response) {
         if (response.body case final Map<String, dynamic> body) {

@@ -51,7 +51,7 @@ class PartnerItemWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8).r,
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
-                            item.questionnaire.photos.first,
+                            item.questionnaire.photos.first.url,
                           ),
                           fit: BoxFit.cover,
                         ),

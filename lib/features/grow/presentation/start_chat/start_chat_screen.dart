@@ -42,7 +42,7 @@ class StartChatScreen extends StatelessWidget {
                     Expanded(
                       child: StartChatPhotoBlock(
                         myImageUrl: vm.myImageUrl,
-                        partnerImageUrl: vm.partner.questionnaire.photos.first,
+                        partnerImageUrl: vm.partner.questionnaire.photos.first.url,
                         partnerFullName: vm.partner.fullName,
                         partnerPosition: vm.partner.questionnaire.position ?? '',
                       ),

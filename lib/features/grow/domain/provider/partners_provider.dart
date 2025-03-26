@@ -30,14 +30,14 @@ class PartnersProviderImpl with ChangeNotifier implements PartnersProvider {
 
   @override
   Future<void> approve(PartnerApiModel partner) async {
-    await _partnerRepository.handlePartner(partner.id, confirm: true);
+    await _partnerRepository.handlePartner(partner.userId, confirm: true);
     _partners.remove(partner);
     notifyListeners();
   }
 
   @override
   Future<void> reject(PartnerApiModel partner) async {
-    await _partnerRepository.handlePartner(partner.id, confirm: false);
+    await _partnerRepository.handlePartner(partner.userId, confirm: false);
     _partners.remove(partner);
     notifyListeners();
   }

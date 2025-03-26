@@ -5,12 +5,12 @@ part 'partner_api_model.g.dart';
 
 @JsonSerializable()
 class PartnerApiModel {
-  final int id;
+  final int userId;
   final String fullName;
   final QuestionnaireApiModel questionnaire;
 
   PartnerApiModel({
-    required this.id,
+    required this.userId,
     required this.fullName,
     required this.questionnaire,
   });

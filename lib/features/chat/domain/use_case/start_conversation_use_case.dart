@@ -25,7 +25,7 @@ class StartConversationUseCase {
 
     // Only text, without attachments
     if (attachmentFiles.isEmpty) {
-      await _chatRepository.sendMessage(chat.id, text: text, attachmentId: null);
+      await _chatRepository.sendMessage(chat.id, text: text, attachment: null);
 
       return chat;
     }
@@ -43,8 +43,8 @@ class StartConversationUseCase {
     for (int i = 0; i < attachments.length; i++) {
       // Only first message contains text
       final messageText = i == 0 ? text : null;
-      final attachmentId = attachments[i].id;
-      await _chatRepository.sendMessage(chat.id, text: messageText, attachmentId: attachmentId);
+      final messageAttachment = attachments[i];
+      await _chatRepository.sendMessage(chat.id, text: messageText, attachment: messageAttachment);
     }
 
     return chat;

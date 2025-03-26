@@ -63,7 +63,7 @@ class StartChatScreenVm {
     _setLoading(true);
     try {
       final chat = await _chatListProvider.startConversation(
-        partner.id,
+        partner.userId,
         text,
         attachments,
         attachmentsType,

@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:partnext/common/utils/date_time_ext.dart';
+import 'package:partnext/features/chat/data/model/file_api_model.dart';
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
 import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
@@ -11,12 +13,13 @@ class QuestionnaireApiModel {
   final List<PartnershipType> partnerPartnershipTypes;
   final List<InterestType> myInterests;
   final List<InterestType> partnerInterests;
+  @ConvertDateTime()
   final DateTime? dateOfBirth;
   final String? position;
   final String? bio;
   final ExperienceDuration? experience;
   final String? profileUrl;
-  final List<String> photos;
+  final List<FileApiModel> photos;
 
   QuestionnaireApiModel({
     this.myPartnershipTypes = const [],
@@ -59,7 +62,7 @@ class QuestionnaireApiModel {
     String? bio,
     ExperienceDuration? experience,
     String? profileUrl,
-    List<String>? photos,
+    List<FileApiModel>? photos,
   }) {
     return QuestionnaireApiModel(
       myPartnershipTypes: myPartnershipTypes ?? this.myPartnershipTypes,

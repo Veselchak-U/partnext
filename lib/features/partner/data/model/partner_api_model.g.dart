@@ -8,7 +8,7 @@ part of 'partner_api_model.dart';
 
 PartnerApiModel _$PartnerApiModelFromJson(Map<String, dynamic> json) =>
     PartnerApiModel(
-      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
       fullName: json['full_name'] as String,
       questionnaire: QuestionnaireApiModel.fromJson(
           json['questionnaire'] as Map<String, dynamic>),
@@ -16,7 +16,7 @@ PartnerApiModel _$PartnerApiModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PartnerApiModelToJson(PartnerApiModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'user_id': instance.userId,
       'full_name': instance.fullName,
       'questionnaire': instance.questionnaire,
     };

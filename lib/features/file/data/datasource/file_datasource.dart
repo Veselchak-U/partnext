@@ -36,13 +36,19 @@ class FileDatasourceImpl implements FileDatasource {
     required String name,
     Function(int count, int total)? onSendProgress,
   }) async {
-    // await Future.delayed(const Duration(seconds: 5));
+    // await Future.delayed(const Duration(seconds: 3));
     // _mockedPhotosIndex++;
     // if (_mockedPhotosIndex >= _mockedPhotos.length) {
     //   _mockedPhotosIndex = 0;
     // }
     //
-    // return _mockedPhotos[_mockedPhotosIndex];
+    // return FileApiModel(
+    //   id: 1,
+    //   type: RemoteFileType.image,
+    //   name: name,
+    //   size: 100000,
+    //   url: _mockedPhotos[_mockedPhotosIndex],
+    // );
 
     final data = await _dioApiClient.uploadImage(
       Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.uploadFile}'),

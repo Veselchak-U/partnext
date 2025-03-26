@@ -11,6 +11,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 201
   static const registration = 'api/v1/member/auth/registration';
+  // +
 
   /// Request OTP
   ///
@@ -21,6 +22,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 200
   static const requestOtp = 'api/v1/member/auth/request_otp';
+  // +
 
   /// Login
   ///
@@ -48,6 +50,7 @@ class ApiEndpoints {
   ///     "is_default": bool, // false
   /// }
   static const checkOtp = 'api/v1/member/auth/check_otp';
+  // +
 
   // Questionnaire
 
@@ -67,7 +70,7 @@ class ApiEndpoints {
   ///   "bio": String?, // "Some info about person", nullable
   ///   "experience": String?, // One item of ExperienceDuration = ["from0To2", "from3To5", "from6To10", "from10", "from20"], nullable
   ///   "profile_url": String?, // "https://www.linkedin.com/company/microsoft/", nullable
-  ///   "photos": List<String>, // ["https://partnext.bitango.co.il/files/04b319ed-127a-4dac-a1db-951ef5c770ae"]
+  ///   "photos": List<FileApiModel>, //
   /// }
 
   /// Update current user questionnaire.
@@ -77,6 +80,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 201
   static const questionnaire = 'api/v1/member/questionnaire';
+  // -
 
   // Parnters
 
@@ -178,7 +182,7 @@ class ApiEndpoints {
   /// body: {
   ///   "chat_id": int, // 1
   ///   "text": String?, // "Text of message", nullable
-  ///   "attachment_id": 1, // (id of FileApiModel), nullable
+  ///   "attachment": FileApiModel // nullable
   /// },
   /// Response:
   /// body: MessageApiModel

@@ -1,6 +1,5 @@
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:partnext/common/utils/string_ext.dart';
 
 extension DateTimeExt on DateTime? {
   bool isOnTheSameDay(DateTime other) {
@@ -34,14 +33,20 @@ class ConvertDateTime implements JsonConverter<DateTime?, String?> {
 
   @override
   DateTime? fromJson(String? value) {
-    return value.toDate();
+    if (value == null) return null;
+
+    // return value.toDate();
+
+    return DateTime.tryParse(value)?.toLocal();
   }
 
   @override
   String? toJson(DateTime? value) {
     if (value == null) return null;
 
-    return DateFormat('dd.MM.yyyy').format(value);
+    // return DateFormat('dd.MM.yyyy').format(value);
+
+    return value.toUtc().toIso8601String();
   }
 }
 

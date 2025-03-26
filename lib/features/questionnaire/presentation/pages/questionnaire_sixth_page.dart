@@ -55,7 +55,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                         valueListenable: vm.currentPhotoIndex,
                         builder: (context, currentPhotoIndex, _) {
                           return PhotoItemView(
-                            imageUrl: photos[currentPhotoIndex],
+                            imageUrl: photos[currentPhotoIndex]?.url ?? '',
                             onDelete: () => vm.removeImage(currentPhotoIndex),
                           );
                         },
@@ -71,7 +71,7 @@ class _QuestionnaireSixthPageState extends State<QuestionnaireSixthPage>
                             valueListenable: vm.loadingPhoto,
                             builder: (context, loadingPhoto, _) {
                               return PhotoItem(
-                                imageUrl: photos[index],
+                                imageUrl: photos[index]?.url ?? '',
                                 onTap: () => vm.onTapImage(index),
                                 loading: loadingPhoto[index],
                               );

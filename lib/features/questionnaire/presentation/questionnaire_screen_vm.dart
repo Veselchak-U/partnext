@@ -7,6 +7,7 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/widgets/row_selector.dart';
+import 'package:partnext/features/chat/data/model/file_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/questionnaire/data/model/questionnaire_api_model.dart';
@@ -37,7 +38,7 @@ class QuestionnaireScreenVm {
   final loadingPhoto = ValueNotifier<List<bool>>(List<bool>.filled(4, false));
   final isFirstPage = ValueNotifier<bool>(true);
   final isLastPage = ValueNotifier<bool>(false);
-  final photos = ValueNotifier<List<String>>(List<String>.filled(4, ''));
+  final photos = ValueNotifier<List<FileApiModel?>>(List<FileApiModel?>.filled(4, null));
   final currentPhotoIndex = ValueNotifier<int>(0);
 
   final pageController = PageController();
@@ -196,8 +197,8 @@ class QuestionnaireScreenVm {
   }
 
   void onTapImage(int index) {
-    final imageUrl = photos.value[index];
-    if (imageUrl.isEmpty) {
+    final image = photos.value[index];
+    if (image == null) {
       addImage(index);
     } else {
       setCurrentPhotoIndex(index);
@@ -226,7 +227,7 @@ class QuestionnaireScreenVm {
       if (!_context.mounted) return;
 
       final newList = [...photos.value];
-      newList[index] = model.url;
+      newList[index] = model;
       photos.value = newList;
       _hasChanges = true;
 
@@ -240,7 +241,7 @@ class QuestionnaireScreenVm {
 
   void removeImage(int index) {
     final newList = [...photos.value];
-    newList[index] = '';
+    newList[index] = null;
     photos.value = newList;
     _hasChanges = true;
   }
@@ -398,7 +399,7 @@ class QuestionnaireScreenVm {
   Future<void> _sendQuestionnaire() async {
     _setLoading(true);
     try {
-      final notEmptyPhotos = photos.value.where((e) => e != '').toList();
+      final notEmptyPhotos = photos.value.nonNulls.toList();
       questionnaire = questionnaire.copyWith(photos: notEmptyPhotos);
       await _questionnaireRepository.updateQuestionnaire(questionnaire);
 

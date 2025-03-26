@@ -33,6 +33,8 @@ class RecommendationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final photoUrls = item.questionnaire.photos.map((e) => e.url).toList();
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.background,
@@ -48,7 +50,7 @@ class RecommendationItemWidget extends StatelessWidget {
             children: [
               Hero(
                 tag: withHeroEffect ? item.questionnaire.photos.first : UniqueKey(),
-                child: RecommendationPhotosWidget(item.questionnaire.photos),
+                child: RecommendationPhotosWidget(photoUrls),
               ),
               SizedBox(height: 22.h),
               RecommendationProfileUrlWidget(

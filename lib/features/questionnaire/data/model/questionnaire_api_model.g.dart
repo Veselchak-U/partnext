@@ -26,16 +26,15 @@ QuestionnaireApiModel _$QuestionnaireApiModelFromJson(
               ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e))
               .toList() ??
           const [],
-      dateOfBirth: json['date_of_birth'] == null
-          ? null
-          : DateTime.parse(json['date_of_birth'] as String),
+      dateOfBirth:
+          const ConvertDateTime().fromJson(json['date_of_birth'] as String?),
       position: json['position'] as String?,
       bio: json['bio'] as String?,
       experience:
           $enumDecodeNullable(_$ExperienceDurationEnumMap, json['experience']),
       profileUrl: json['profile_url'] as String?,
       photos: (json['photos'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => FileApiModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
@@ -54,7 +53,7 @@ Map<String, dynamic> _$QuestionnaireApiModelToJson(
       'partner_interests': instance.partnerInterests
           .map((e) => _$InterestTypeEnumMap[e]!)
           .toList(),
-      'date_of_birth': instance.dateOfBirth?.toIso8601String(),
+      'date_of_birth': const ConvertDateTime().toJson(instance.dateOfBirth),
       'position': instance.position,
       'bio': instance.bio,
       'experience': _$ExperienceDurationEnumMap[instance.experience],

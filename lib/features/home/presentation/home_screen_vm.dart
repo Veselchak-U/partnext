@@ -82,7 +82,7 @@ class HomeScreenVm {
 
     // _setLoading(true);
     try {
-      await _partnerRepository.handleRecommendation(recommendation.id, confirm: confirm);
+      await _partnerRepository.handleRecommendation(recommendation.userId, confirm: confirm);
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
