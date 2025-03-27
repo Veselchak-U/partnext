@@ -11,6 +11,7 @@ class LogoutUseCase {
   );
 
   Future<void> call() async {
+    await _userRepository.setAccessToken(null);
     await _userRepository.setUser(null);
     await _questionnaireRepository.clearQuestionnaire();
   }

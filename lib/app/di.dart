@@ -14,6 +14,7 @@ import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/auth/domain/use_case/login_use_case.dart';
 import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
@@ -131,13 +132,17 @@ class DI {
   }
 
   void _businessLogic() {
-    _sl.registerFactory(() => RefreshUserProfileUseCase(
-          _sl<ProfileRepository>(),
+    _sl.registerFactory(() => LoginUseCase(
+          _sl<AuthRepository>(),
           _sl<UserRepository>(),
         ));
     _sl.registerFactory(() => LogoutUseCase(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+        ));
+    _sl.registerFactory(() => RefreshUserProfileUseCase(
+          _sl<ProfileRepository>(),
+          _sl<UserRepository>(),
         ));
     _sl.registerFactory(() => StartConversationUseCase(
           _sl<FileRepository>(),

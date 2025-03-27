@@ -1,12 +1,12 @@
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
-import 'package:partnext/features/auth/data/model/user_api_model.dart';
+import 'package:partnext/features/auth/data/model/login_api_model.dart';
 
 abstract interface class AuthRepository {
   Future<void> register(String fullName, String phone);
 
   Future<void> requestOtp(String phone);
 
-  Future<UserApiModel> login(String phone, String code);
+  Future<LoginApiModel> login(String phone, String code);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -27,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserApiModel> login(String phone, String code) {
+  Future<LoginApiModel> login(String phone, String code) {
     return _authDatasource.login(phone, code);
   }
 }

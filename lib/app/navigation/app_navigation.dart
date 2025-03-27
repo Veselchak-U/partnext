@@ -10,6 +10,7 @@ import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/auth/domain/use_case/login_use_case.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen_vm.dart';
 import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen.dart';
@@ -162,8 +163,8 @@ class AppNavigation {
           create: (context) => PhoneValidationScreenVm(
             context,
             DI.get<AuthRepository>(),
-            DI.get<UserRepository>(),
             DI.get<QuestionnaireRepository>(),
+            DI.get<LoginUseCase>(),
             params: state.extra as PhoneValidationScreenParams,
           ),
           dispose: (context, vm) => vm.dispose(),

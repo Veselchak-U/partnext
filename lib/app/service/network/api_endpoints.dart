@@ -80,7 +80,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 201
   static const questionnaire = 'api/v1/member/questionnaire';
-  // -
+  // +
 
   // Parnters
 
@@ -274,6 +274,7 @@ class ApiEndpoints {
   /// Response:
   /// body: statusCode: 201
   static const sendFeedback = 'api/v1/member/send_feedback';
+  // -
 
   /// Get available pricing plans.
   ///

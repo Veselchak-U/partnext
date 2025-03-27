@@ -4,22 +4,22 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
+import 'package:partnext/features/auth/domain/use_case/login_use_case.dart';
 import 'package:partnext/features/auth/presentation/phone_validation/phone_validation_screen_params.dart';
-import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 
 class PhoneValidationScreenVm {
   final BuildContext _context;
   final AuthRepository _authRepository;
-  final UserRepository _userRepository;
   final QuestionnaireRepository _questionnaireRepository;
+  final LoginUseCase _loginUseCase;
   final PhoneValidationScreenParams params;
 
   PhoneValidationScreenVm(
     this._context,
     this._authRepository,
-    this._userRepository,
-    this._questionnaireRepository, {
+    this._questionnaireRepository,
+    this._loginUseCase, {
     required this.params,
   }) {
     _init();
@@ -62,8 +62,7 @@ class PhoneValidationScreenVm {
 
     _setLoading(true);
     try {
-      final user = await _authRepository.login(params.phone, _code);
-      await _userRepository.setUser(user);
+      await _loginUseCase(params.phone, _code);
 
       _checkQuestionnaire();
     } on Object catch (e, st) {

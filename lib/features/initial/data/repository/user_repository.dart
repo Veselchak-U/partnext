@@ -34,6 +34,5 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> setUser(UserApiModel? user) async {
     await _userLocalDatasource.setUser(user);
-    await _userLocalDatasource.setAccessToken(user?.token);
   }
 }

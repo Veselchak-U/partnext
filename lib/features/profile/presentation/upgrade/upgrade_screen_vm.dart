@@ -143,10 +143,6 @@ class UpgradeScreenVm {
 
     _setLoading(true);
     try {
-      //TODO: remove after test
-      await _refreshUserProfileUseCase.call();
-      //
-
       purchaseUrl = await _profileRepository.updatePricingPlan(newPlan.id);
       _goNextPage();
     } on Object catch (e, st) {
@@ -159,7 +155,7 @@ class UpgradeScreenVm {
   Future<void> onPurchaseSuccess() async {
     _setLoading(true);
     try {
-      await _refreshUserProfileUseCase.call();
+      await _refreshUserProfileUseCase();
 
       if (!_context.mounted) return;
       _context.goNamed(

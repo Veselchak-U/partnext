@@ -10,7 +10,6 @@ class UserApiModel {
   final String? position;
   final String? imageUrl;
   final PricingPlanApiModel? pricingPlan;
-  final String token;
 
   UserApiModel({
     required this.userId,
@@ -18,7 +17,6 @@ class UserApiModel {
     required this.position,
     required this.imageUrl,
     required this.pricingPlan,
-    required this.token,
   });
 
   bool get isPremium => pricingPlan != null;

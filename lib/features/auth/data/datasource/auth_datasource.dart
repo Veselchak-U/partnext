@@ -4,14 +4,14 @@ import 'package:partnext/app/service/network/api_client/api_client.dart';
 import 'package:partnext/app/service/network/api_client/entities/api_exception.dart';
 import 'package:partnext/app/service/network/api_endpoints.dart';
 import 'package:partnext/config.dart';
-import 'package:partnext/features/auth/data/model/user_api_model.dart';
+import 'package:partnext/features/auth/data/model/login_api_model.dart';
 
 abstract interface class AuthDatasource {
   Future<void> register(String fullName, String phone);
 
   Future<void> requestOtp(String phone);
 
-  Future<UserApiModel> login(String phone, String code);
+  Future<LoginApiModel> login(String phone, String code);
 }
 
 class AuthDatasourceImpl implements AuthDatasource {
@@ -55,7 +55,7 @@ class AuthDatasourceImpl implements AuthDatasource {
   }
 
   @override
-  Future<UserApiModel> login(String phone, String code) async {
+  Future<LoginApiModel> login(String phone, String code) async {
     // await Future.delayed(Duration(seconds: 1));
     //
     // return UserApiModel(
@@ -83,7 +83,7 @@ class AuthDatasourceImpl implements AuthDatasource {
       },
       parser: (response) {
         if (response.body case final Map<String, dynamic> body) {
-          return UserApiModel.fromJson(body);
+          return LoginApiModel.fromJson(body);
         }
 
         throw ApiException(response);
