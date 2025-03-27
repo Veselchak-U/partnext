@@ -290,8 +290,9 @@ class ApiEndpoints {
   ///   "plan_id": int, // 1
   /// },
   /// Response:
-  /// body: statusCode: 200
+  /// body: {"iframe_url": "https://gateway20.pelecard.biz/PaymentGW?transactionId=2bc88a5e-88c7-4d1a-ba44-2fd8757c6a25"}
   static const updatePlan = 'api/v1/member/update_plan';
+  // -
 
   /// Cancel current user pricing plan.
   ///

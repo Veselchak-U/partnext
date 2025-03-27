@@ -43,6 +43,21 @@ class _UpgradeThirdPageState extends State<UpgradeThirdPage> {
 
             return NavigationDecision.navigate;
           },
+          onProgress: (int progress) {
+            debugPrint('!!!onProgress: $progress');
+          },
+          onPageStarted: (String url) {
+            debugPrint('!!!onPageStarted: $url');
+          },
+          onPageFinished: (String url) {
+            debugPrint('!!!onPageFinished: $url');
+          },
+          onHttpError: (HttpResponseError error) {
+            debugPrint('!!!onHttpError: $error');
+          },
+          onWebResourceError: (WebResourceError error) {
+            debugPrint('!!!onWebResourceError ${error.errorType} ${error.errorCode} ${error.description}');
+          },
         ),
       )
       ..loadRequest(Uri.parse(vm.purchaseUrl));
