@@ -96,6 +96,7 @@ class ApiEndpoints {
   ///   "questionnaire": QuestionnaireApiModel,
   /// }
   static const recommendations = 'api/v1/member/recommendations';
+  // +
 
   /// Confirm or reject partner's recommendation.
   ///
@@ -107,6 +108,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 200
   static const handleRecommendation = 'api/v1/member/handle_recommendation';
+  // +
 
   /// Get matched partners.
   ///

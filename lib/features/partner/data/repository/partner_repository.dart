@@ -24,8 +24,8 @@ class PartnerRepositoryImpl implements PartnerRepository {
   }
 
   @override
-  Future<void> handleRecommendation(int id, {required bool confirm}) {
-    return _partnerDatasource.handleRecommendation(id, confirm: confirm);
+  Future<void> handleRecommendation(int userId, {required bool confirm}) {
+    return _partnerDatasource.handleRecommendation(userId, confirm: confirm);
   }
 
   @override

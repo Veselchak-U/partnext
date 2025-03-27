@@ -192,5 +192,6 @@
   "details": "Details",
   "thank_you_for_reporting_user": "Thank You for Reporting a User",
   "your_report_will_be_reviewed": "Your reported profile will be reviewed\nand action will be taken.",
-  "back_to_chats": "Back to Chats"
+  "back_to_chats": "Back to Chats",
+  "no_photo": "No photo"
 }

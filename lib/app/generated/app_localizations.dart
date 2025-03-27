@@ -1090,6 +1090,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'חזרה לצ \' אטים'**
   String get back_to_chats;
+
+  /// No description provided for @no_photo.
+  ///
+  /// In he, this message translates to:
+  /// **'אין תמונה'**
+  String get no_photo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

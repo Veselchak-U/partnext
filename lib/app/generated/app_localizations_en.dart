@@ -511,4 +511,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get back_to_chats => 'Back to Chats';
+
+  @override
+  String get no_photo => 'No photo';
 }

@@ -89,81 +89,84 @@ class _RecommendationPhotosWidgetState extends State<RecommendationPhotosWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.urls.isEmpty) return const SizedBox.shrink();
-
     final borderRadius = BorderRadius.circular(8).r;
+    final noPhotos = widget.urls.isEmpty;
 
     return Material(
       color: AppColors.white,
       borderRadius: borderRadius,
       child: SizedBox(
         height: 330.h,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: pageController,
-              children: List.generate(
-                widget.urls.length,
-                (index) => ClipRRect(
-                  borderRadius: borderRadius,
-                  child: CachedNetworkImage(
-                    imageUrl: widget.urls[index],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: noPhotos
+            ? Center(
+                child: Text(context.l10n.no_photo),
+              )
+            : Stack(
+                alignment: Alignment.center,
                 children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back_ios_new),
-                    iconSize: 24.r,
-                    alignment: Alignment.centerLeft,
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
-                      foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
-                      fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
+                  PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: pageController,
+                    children: List.generate(
+                      widget.urls.length,
+                      (index) => ClipRRect(
+                        borderRadius: borderRadius,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.urls[index],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                    onPressed: _onPressLeft,
                   ),
-                  IconButton(
-                    icon: Icon(Icons.arrow_forward_ios),
-                    iconSize: 24.r,
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
-                      foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
-                      fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_back_ios_new),
+                          iconSize: 24.r,
+                          alignment: Alignment.centerLeft,
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
+                            foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
+                            fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
+                          ),
+                          onPressed: _onPressLeft,
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.arrow_forward_ios),
+                          iconSize: 24.r,
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll<Color?>(Colors.white.withValues(alpha: 0.4)),
+                            foregroundColor: const WidgetStatePropertyAll<Color?>(AppColors.primary),
+                            fixedSize: WidgetStatePropertyAll<Size?>(Size.square(42.r)),
+                          ),
+                          onPressed: _onPressRight,
+                        ),
+                      ],
                     ),
-                    onPressed: _onPressRight,
+                  ),
+                  Positioned(
+                    bottom: 14.h,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32).w,
+                      child: SmoothPageIndicator(
+                        controller: pageController,
+                        textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
+                        count: widget.urls.length,
+                        effect: SlideEffect(
+                          dotWidth: 40.w,
+                          dotHeight: 4.h,
+                          spacing: 5.w,
+                          activeDotColor: AppColors.primary,
+                          dotColor: AppColors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            Positioned(
-              bottom: 14.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32).w,
-                child: SmoothPageIndicator(
-                  controller: pageController,
-                  textDirection: context.locale.isRtl ? TextDirection.rtl : TextDirection.ltr,
-                  count: widget.urls.length,
-                  effect: SlideEffect(
-                    dotWidth: 40.w,
-                    dotHeight: 4.h,
-                    spacing: 5.w,
-                    activeDotColor: AppColors.primary,
-                    dotColor: AppColors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

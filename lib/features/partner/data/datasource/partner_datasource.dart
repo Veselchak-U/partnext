@@ -53,7 +53,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
 
   @override
   Future<void> handleRecommendation(
-    int id, {
+    int userId, {
     required bool confirm,
   }) {
     // return Future.delayed(Duration(seconds: 1));
@@ -63,7 +63,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
     return _apiClient.post(
       uri,
       body: {
-        "id": id,
+        "user_id": userId,
         "confirm": confirm,
       },
       parser: (response) {
