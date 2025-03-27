@@ -50,7 +50,12 @@ class ChatListItem extends StatelessWidget {
                       color: AppColors.background,
                       borderRadius: BorderRadius.circular(10).r,
                       image: DecorationImage(
-                        image: CachedNetworkImageProvider(item.member.photoUrl),
+                        image: CachedNetworkImageProvider(
+                          item.member.photoUrl,
+                          errorListener: (error) {
+                            debugPrint('!!! CachedNetworkImageProvider error: $error');
+                          },
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -32,7 +32,12 @@ class ProfileUserSection extends StatelessWidget {
                             top: 0,
                             child: CircleAvatar(
                               radius: 92.r,
-                              backgroundImage: CachedNetworkImageProvider(user.imageUrl ?? ''),
+                              backgroundImage: CachedNetworkImageProvider(
+                                user.imageUrl ?? '',
+                                errorListener: (error) {
+                                  debugPrint('!!! CachedNetworkImageProvider error: $error');
+                                },
+                              ),
                             ),
                           ),
                           if (user.isPremium)

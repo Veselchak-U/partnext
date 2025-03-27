@@ -48,7 +48,12 @@ class MessageListScreen extends StatelessWidget {
                   color: AppColors.background,
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: CachedNetworkImageProvider(chat.member.photoUrl),
+                    image: CachedNetworkImageProvider(
+                      chat.member.photoUrl,
+                      errorListener: (error) {
+                        debugPrint('!!! CachedNetworkImageProvider error: $error');
+                      },
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

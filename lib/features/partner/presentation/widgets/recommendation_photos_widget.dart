@@ -43,7 +43,12 @@ class _RecommendationPhotosWidgetState extends State<RecommendationPhotosWidget>
       List.generate(
         count - 1,
         (index) => precacheImage(
-          CachedNetworkImageProvider(widget.urls[index + 1]),
+          CachedNetworkImageProvider(
+            widget.urls[index + 1],
+            errorListener: (error) {
+              debugPrint('!!! CachedNetworkImageProvider error: $error');
+            },
+          ),
           context,
         ),
       ),

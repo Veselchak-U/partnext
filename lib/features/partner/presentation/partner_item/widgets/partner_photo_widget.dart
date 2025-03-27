@@ -43,7 +43,12 @@ class _PartnerPhotoWidgetState extends State<PartnerPhotoWidget> {
       List.generate(
         count - 1,
         (index) => precacheImage(
-          CachedNetworkImageProvider(widget.urls[index + 1]),
+          CachedNetworkImageProvider(
+            widget.urls[index + 1],
+            errorListener: (error) {
+              debugPrint('!!! CachedNetworkImageProvider error: $error');
+            },
+          ),
           context,
         ),
       ),

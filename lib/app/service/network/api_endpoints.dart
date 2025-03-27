@@ -246,6 +246,7 @@ class ApiEndpoints {
   /// statusCode: 201
   /// body: FileApiModel
   static const uploadFile = 'api/v1/member/upload_file';
+  // +
 
   // Profile
 
@@ -282,6 +283,7 @@ class ApiEndpoints {
   /// Response:
   /// body: List<PricingPlanApiModel>,
   static const pricingPlans = 'api/v1/member/pricing_plans';
+  // +
 
   /// Update current user pricing plan.
   ///

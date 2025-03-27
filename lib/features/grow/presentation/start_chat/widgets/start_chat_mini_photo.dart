@@ -32,6 +32,9 @@ class StartChatMiniPhoto extends StatelessWidget {
               image: DecorationImage(
                 image: CachedNetworkImageProvider(
                   imageUrl,
+                  errorListener: (error) {
+                    debugPrint('!!! CachedNetworkImageProvider error: $error');
+                  },
                 ),
                 fit: BoxFit.cover,
               ),

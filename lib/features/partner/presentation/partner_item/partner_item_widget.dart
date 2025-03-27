@@ -52,6 +52,9 @@ class PartnerItemWidget extends StatelessWidget {
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
                             item.questionnaire.photos.first.url,
+                            errorListener: (error) {
+                              debugPrint('!!! CachedNetworkImageProvider error: $error');
+                            },
                           ),
                           fit: BoxFit.cover,
                         ),

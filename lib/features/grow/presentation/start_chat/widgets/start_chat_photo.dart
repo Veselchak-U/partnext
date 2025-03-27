@@ -25,7 +25,12 @@ class StartChatPhoto extends StatelessWidget {
         borderRadius: BorderRadius.circular(10).r,
         border: Border.all(color: AppColors.white, width: 3),
         image: DecorationImage(
-          image: CachedNetworkImageProvider(imageUrl),
+          image: CachedNetworkImageProvider(
+            imageUrl,
+            errorListener: (error) {
+              debugPrint('!!! CachedNetworkImageProvider error: $error');
+            },
+          ),
           fit: BoxFit.cover,
         ),
       ),
