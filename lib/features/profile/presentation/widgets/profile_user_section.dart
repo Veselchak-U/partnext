@@ -38,6 +38,12 @@ class ProfileUserSection extends StatelessWidget {
                                   debugPrint('!!! CachedNetworkImageProvider error: $error');
                                 },
                               ),
+                              child: user.imageUrl == null
+                                  ? Icon(
+                                      Icons.person,
+                                      size: 80.r,
+                                    )
+                                  : null,
                             ),
                           ),
                           if (user.isPremium)
