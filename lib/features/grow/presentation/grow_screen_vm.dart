@@ -29,6 +29,9 @@ class GrowScreenVm {
   final hasPremium = ValueNotifier<bool>(false);
   final partners = ValueNotifier<List<PartnerApiModel>?>(null);
 
+  //TODO: remove after testing
+  bool _isFirstLoad = true;
+
   void _init() {
     _navBarIndexProvider.addListener(_navBarIndexProviderListener);
     _partnersProvider.addListener(_partnersProviderListener);
@@ -46,6 +49,14 @@ class GrowScreenVm {
   }
 
   Future<void> _initUser() async {
+    //TODO: remove after testing
+    if (!_isFirstLoad) {
+      hasPremium.value = true;
+
+      return;
+    }
+    _isFirstLoad = false;
+
     try {
       final user = await _userRepository.getUser();
       hasPremium.value = user?.isPremium ?? false;

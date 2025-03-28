@@ -63,6 +63,12 @@ class _UpgradeThirdPageState extends State<UpgradeThirdPage> {
       ..loadRequest(Uri.parse(vm.purchaseUrl));
 
     _startTimeoutTimer();
+
+    // TODO: remove after testing
+    Future.delayed(
+      const Duration(seconds: 3),
+      () => vm.onPurchaseSuccess(),
+    );
   }
 
   @override

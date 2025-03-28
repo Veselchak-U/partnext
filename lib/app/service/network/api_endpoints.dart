@@ -267,6 +267,7 @@ class ApiEndpoints {
   /// Response:
   /// body: statusCode: 200
   static const userProfile = 'api/v1/member/user_profile';
+  // -
 
   /// Send some feedback about the app.
   ///
