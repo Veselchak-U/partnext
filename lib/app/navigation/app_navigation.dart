@@ -62,6 +62,7 @@ import 'package:partnext/features/profile/presentation/send_feedback/send_feedba
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen.dart';
 import 'package:partnext/features/profile/presentation/upgrade/upgrade_screen_vm.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
+import 'package:partnext/features/questionnaire/domain/use_case/update_questionnaire_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_vm.dart';
@@ -180,6 +181,7 @@ class AppNavigation {
             context,
             DI.get<QuestionnaireRepository>(),
             DI.get<FileRepository>(),
+            DI.get<UpdateQuestionnaireUseCase>(),
             params: state.extra as QuestionnaireScreenParams?,
           ),
           dispose: (context, vm) => vm.dispose(),

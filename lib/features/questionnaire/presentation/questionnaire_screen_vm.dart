@@ -15,6 +15,7 @@ import 'package:partnext/features/questionnaire/data/repository/questionnaire_re
 import 'package:partnext/features/questionnaire/domain/model/experience_duration.dart';
 import 'package:partnext/features/questionnaire/domain/model/interest_type.dart';
 import 'package:partnext/features/questionnaire/domain/model/partnership_type.dart';
+import 'package:partnext/features/questionnaire/domain/use_case/update_questionnaire_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 import 'package:partnext/features/questionnaire/presentation/widgets/partnership_description_overlay.dart';
 
@@ -22,12 +23,14 @@ class QuestionnaireScreenVm {
   final BuildContext _context;
   final QuestionnaireRepository _questionnaireRepository;
   final FileRepository _fileRepository;
+  final UpdateQuestionnaireUseCase _updateQuestionnaireUseCase;
   final QuestionnaireScreenParams? params;
 
   QuestionnaireScreenVm(
     this._context,
     this._questionnaireRepository,
-    this._fileRepository, {
+    this._fileRepository,
+    this._updateQuestionnaireUseCase, {
     this.params,
   }) {
     _init();
@@ -330,7 +333,7 @@ class QuestionnaireScreenVm {
   }
 
   bool _sixthPageCheck() {
-    final notEmptyPhotos = photos.value.where((e) => e != '').toList();
+    final notEmptyPhotos = photos.value.nonNulls.toList();
     if (notEmptyPhotos.length < 2) {
       _onError(_context.l10n.add_least_2_photos_to_continue);
 
@@ -401,7 +404,7 @@ class QuestionnaireScreenVm {
     try {
       final notEmptyPhotos = photos.value.nonNulls.toList();
       questionnaire = questionnaire.copyWith(photos: notEmptyPhotos);
-      await _questionnaireRepository.updateQuestionnaire(questionnaire);
+      await _updateQuestionnaireUseCase(questionnaire);
 
       _goToNextScreen();
     } on Object catch (e, st) {

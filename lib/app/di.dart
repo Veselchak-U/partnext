@@ -36,6 +36,7 @@ import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_u
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_local_datasource.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_remote_datasource.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
+import 'package:partnext/features/questionnaire/domain/use_case/update_questionnaire_use_case.dart';
 
 class DI {
   static final _sl = GetIt.instance;
@@ -139,6 +140,11 @@ class DI {
     _sl.registerFactory(() => LogoutUseCase(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+        ));
+    _sl.registerFactory(() => UpdateQuestionnaireUseCase(
+          _sl<QuestionnaireRepository>(),
+          _sl<ProfileRepository>(),
+          _sl<UserRepository>(),
         ));
     _sl.registerFactory(() => RefreshUserProfileUseCase(
           _sl<ProfileRepository>(),
