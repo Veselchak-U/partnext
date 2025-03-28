@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/file/data/datasource/file_datasource.dart';
@@ -10,8 +8,8 @@ import 'package:path/path.dart' as p;
 abstract interface class ProfileRepository {
   Future<UserApiModel> getUserProfile();
 
-  Future<void> updateUserAvatar({
-    required File file,
+  Future<void> updateUserAvatar(
+    String filePath, {
     Function(int count, int total)? onSendProgress,
   });
 
@@ -39,14 +37,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateUserAvatar({
-    required File file,
+  Future<void> updateUserAvatar(
+    String filePath, {
     Function(int count, int total)? onSendProgress,
   }) async {
-    final fileName = p.basename(file.path);
+    final fileName = p.basename(filePath);
 
     final model = await _fileDatasource.uploadFile(
-      path: file.path,
+      path: filePath,
       type: RemoteFileType.image,
       name: fileName,
       onSendProgress: onSendProgress,

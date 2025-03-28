@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,20 +8,20 @@ import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
-import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
+import 'package:partnext/features/profile/domain/use_case/update_user_avatar_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 
 class ProfileScreenVm {
   final BuildContext _context;
   final UserRepository _userRepository;
-  final ProfileRepository _profileRepository;
+  final UpdateUserAvatarUseCase _updateUserAvatarUseCase;
   final LogoutUseCase _logoutUseCase;
 
   ProfileScreenVm(
     this._context,
     this._userRepository,
-    this._profileRepository,
+    this._updateUserAvatarUseCase,
     this._logoutUseCase,
   ) {
     _init();
@@ -70,9 +68,7 @@ class ProfileScreenVm {
 
     _setLoading(true);
     try {
-      await _profileRepository.updateUserAvatar(
-        file: File(image.path),
-      );
+      await _updateUserAvatarUseCase(image.path);
 
       if (!_context.mounted) return;
       _initUser();
