@@ -39,6 +39,10 @@ class PhoneValidationScreenVm {
 
   void onCodeChanged(String value) {
     _code = value;
+
+    if (value.length == 6) {
+      login();
+    }
   }
 
   Future<void> resendOtp() async {
