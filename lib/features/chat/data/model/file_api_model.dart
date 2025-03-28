@@ -8,7 +8,8 @@ part 'file_api_model.g.dart';
 @JsonSerializable()
 class FileApiModel {
   final int id;
-  final RemoteFileType type;
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  final RemoteFileType? type;
   final String name;
   final String url;
   final int size;
@@ -28,6 +29,7 @@ class FileApiModel {
     return switch (type) {
       RemoteFileType.image => '${l10n?.image}: ${name ?? ''}$fileSize',
       RemoteFileType.document => '${l10n?.document}: ${name ?? ''}$fileSize',
+      _ => '${l10n?.file}: ${name ?? ''}$fileSize',
     };
   }
 

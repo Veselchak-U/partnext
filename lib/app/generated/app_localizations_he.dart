@@ -472,6 +472,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get document => 'מסמך';
 
   @override
+  String get file => 'קובץ';
+
+  @override
   String get no_chats => 'עדיין אין לך צ \' אטים.';
 
   @override

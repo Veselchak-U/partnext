@@ -9,14 +9,19 @@ part 'questionnaire_api_model.g.dart';
 
 @JsonSerializable()
 class QuestionnaireApiModel {
+  @JsonKey(unknownEnumValue: PartnershipType.other)
   final List<PartnershipType> myPartnershipTypes;
+  @JsonKey(unknownEnumValue: PartnershipType.other)
   final List<PartnershipType> partnerPartnershipTypes;
+  @JsonKey(unknownEnumValue: InterestType.other)
   final List<InterestType> myInterests;
+  @JsonKey(unknownEnumValue: InterestType.other)
   final List<InterestType> partnerInterests;
   @ConvertDateTime()
   final DateTime? dateOfBirth;
   final String? position;
   final String? bio;
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   final ExperienceDuration? experience;
   final String? profileUrl;
   final List<FileApiModel> photos;

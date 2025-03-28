@@ -8,7 +8,8 @@ part of 'file_api_model.dart';
 
 FileApiModel _$FileApiModelFromJson(Map<String, dynamic> json) => FileApiModel(
       id: (json['id'] as num).toInt(),
-      type: $enumDecode(_$RemoteFileTypeEnumMap, json['type']),
+      type: $enumDecodeNullable(_$RemoteFileTypeEnumMap, json['type'],
+          unknownValue: JsonKey.nullForUndefinedEnumValue),
       name: json['name'] as String,
       url: json['url'] as String,
       size: (json['size'] as num).toInt(),
@@ -17,7 +18,7 @@ FileApiModel _$FileApiModelFromJson(Map<String, dynamic> json) => FileApiModel(
 Map<String, dynamic> _$FileApiModelToJson(FileApiModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': _$RemoteFileTypeEnumMap[instance.type]!,
+      'type': _$RemoteFileTypeEnumMap[instance.type],
       'name': instance.name,
       'url': instance.url,
       'size': instance.size,

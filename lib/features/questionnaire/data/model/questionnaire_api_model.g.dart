@@ -10,28 +10,33 @@ QuestionnaireApiModel _$QuestionnaireApiModelFromJson(
         Map<String, dynamic> json) =>
     QuestionnaireApiModel(
       myPartnershipTypes: (json['my_partnership_types'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e,
+                  unknownValue: PartnershipType.other))
               .toList() ??
           const [],
       partnerPartnershipTypes:
           (json['partner_partnership_types'] as List<dynamic>?)
-                  ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e))
+                  ?.map((e) => $enumDecode(_$PartnershipTypeEnumMap, e,
+                      unknownValue: PartnershipType.other))
                   .toList() ??
               const [],
       myInterests: (json['my_interests'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e,
+                  unknownValue: InterestType.other))
               .toList() ??
           const [],
       partnerInterests: (json['partner_interests'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$InterestTypeEnumMap, e,
+                  unknownValue: InterestType.other))
               .toList() ??
           const [],
       dateOfBirth:
           const ConvertDateTime().fromJson(json['date_of_birth'] as String?),
       position: json['position'] as String?,
       bio: json['bio'] as String?,
-      experience:
-          $enumDecodeNullable(_$ExperienceDurationEnumMap, json['experience']),
+      experience: $enumDecodeNullable(
+          _$ExperienceDurationEnumMap, json['experience'],
+          unknownValue: JsonKey.nullForUndefinedEnumValue),
       profileUrl: json['profile_url'] as String?,
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => FileApiModel.fromJson(e as Map<String, dynamic>))

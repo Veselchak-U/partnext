@@ -472,6 +472,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get document => 'Document';
 
   @override
+  String get file => 'File';
+
+  @override
   String get no_chats => 'You don\'t have any chats yet.';
 
   @override

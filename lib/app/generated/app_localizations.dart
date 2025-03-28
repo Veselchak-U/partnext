@@ -1013,6 +1013,12 @@ abstract class AppLocalizations {
   /// **'מסמך'**
   String get document;
 
+  /// No description provided for @file.
+  ///
+  /// In he, this message translates to:
+  /// **'קובץ'**
+  String get file;
+
   /// No description provided for @no_chats.
   ///
   /// In he, this message translates to:
