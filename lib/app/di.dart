@@ -142,14 +142,13 @@ class DI {
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
         ));
-    _sl.registerFactory(() => UpdateQuestionnaireUseCase(
-          _sl<QuestionnaireRepository>(),
-          _sl<ProfileRepository>(),
-          _sl<UserRepository>(),
-        ));
     _sl.registerFactory(() => RefreshUserProfileUseCase(
           _sl<ProfileRepository>(),
           _sl<UserRepository>(),
+        ));
+    _sl.registerFactory(() => UpdateQuestionnaireUseCase(
+          _sl<QuestionnaireRepository>(),
+          _sl<RefreshUserProfileUseCase>(),
         ));
     _sl.registerFactory(() => UpdateUserAvatarUseCase(
           _sl<ProfileRepository>(),

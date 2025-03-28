@@ -4,14 +4,17 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
+import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 
 class InitialScreenVm {
   final BuildContext _context;
   final InitialController _initialController;
+  final RefreshUserProfileUseCase _refreshUserProfileUseCase;
 
   InitialScreenVm(
     this._context,
     this._initialController,
+    this._refreshUserProfileUseCase,
   ) {
     _init();
   }
@@ -56,6 +59,11 @@ class InitialScreenVm {
     };
 
     if (nextScreen == null) return;
+
+    // Refresh the user profile every time the application is launched
+    if (nextScreen == AppRoute.home.name) {
+      _refreshUserProfileUseCase();
+    }
 
     LoggerService().d('InitialScreenVm: nextScreen = "$nextScreen"');
     _context.goNamed(nextScreen);

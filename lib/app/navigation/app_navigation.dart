@@ -118,6 +118,7 @@ class AppNavigation {
             create: (context) => InitialScreenVm(
               context,
               DI.get<InitialController>(),
+              DI.get<RefreshUserProfileUseCase>(),
             ),
             dispose: (context, vm) => vm.dispose(),
             child: const InitialScreen(),
