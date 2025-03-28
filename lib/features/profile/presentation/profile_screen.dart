@@ -35,14 +35,17 @@ class ProfileScreen extends StatelessWidget {
       extendBodyBehindAppBar: false,
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 24.h),
-                const ProfileUserSection(),
-                SizedBox(height: 24.h),
-                const ProfileActionsSection(),
-              ],
+          RefreshIndicator(
+            onRefresh: vm.refreshUserProfile,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 24.h),
+                  const ProfileUserSection(),
+                  SizedBox(height: 24.h),
+                  const ProfileActionsSection(),
+                ],
+              ),
             ),
           ),
           ValueListenableBuilder(

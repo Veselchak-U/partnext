@@ -9,18 +9,21 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
+import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/update_user_avatar_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
 
 class ProfileScreenVm {
   final BuildContext _context;
   final UserRepository _userRepository;
+  final RefreshUserProfileUseCase _refreshUserProfileUseCase;
   final UpdateUserAvatarUseCase _updateUserAvatarUseCase;
   final LogoutUseCase _logoutUseCase;
 
   ProfileScreenVm(
     this._context,
     this._userRepository,
+    this._refreshUserProfileUseCase,
     this._updateUserAvatarUseCase,
     this._logoutUseCase,
   ) {
@@ -77,6 +80,10 @@ class ProfileScreenVm {
       _onError('$e');
     }
     _setLoading(false);
+  }
+
+  Future<void> refreshUserProfile() {
+    return _refreshUserProfileUseCase();
   }
 
   void goUpgrade() {
