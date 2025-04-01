@@ -1,11 +1,15 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_page_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
+import 'package:partnext/features/chat/domain/use_case/send_message_use_case.dart';
 
 typedef ErrorHandler = void Function(Object e, StackTrace st);
 
@@ -26,13 +30,21 @@ abstract interface class MessageListProvider with ChangeNotifier {
   Future<void> fetchPreviousPage({ErrorHandler? onError});
 
   Future<void> fetchNextPage({ErrorHandler onError});
+
+  Future<List<MessageApiModel>> sendMessage(
+    String text,
+    List<File> attachmentFiles,
+    RemoteFileType attachmentsType,
+  );
 }
 
 class MessageListProviderImpl with ChangeNotifier implements MessageListProvider {
   final ChatRepository _chatRepository;
+  final SendMessageUseCase _sendMessageUseCase;
 
   MessageListProviderImpl(
     this._chatRepository,
+    this._sendMessageUseCase,
   );
 
   int? _chatId;
@@ -107,6 +119,18 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
       pageIndex: last + 1,
       onError: onError,
     );
+  }
+
+  @override
+  Future<List<MessageApiModel>> sendMessage(
+    String text,
+    List<File> attachments,
+    RemoteFileType attachmentsType,
+  ) async {
+    final chatId = _chatId;
+    if (chatId == null) throw LogicException('Chat checking is not started');
+
+    return _sendMessageUseCase(chatId, text, attachments, attachmentsType);
   }
 
   void _fillFromCache() {

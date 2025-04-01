@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +11,7 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/debouncer.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
+import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/presentation/message_list/widgets/message_menu.dart';
@@ -216,6 +219,23 @@ class MessageListScreenVm {
       onError: _handleError,
     );
     nextPageLoading.value = false;
+  }
+
+  Future<void> onSendMessage(
+    String text,
+    List<File> attachmentFiles,
+    RemoteFileType attachmentsType,
+  ) async {
+    _setLoading(true);
+    try {
+      await _messageListProvider.sendMessage(text, attachmentFiles, attachmentsType);
+
+      _refreshMessages();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
   }
 
   void _messageListListener() {

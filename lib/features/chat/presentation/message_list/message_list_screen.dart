@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/form_fields/app_message_field.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/common/widgets/no_items_widget.dart';
@@ -38,6 +39,8 @@ class MessageListScreen extends StatelessWidget {
         final chat = vm.chat.value;
         if (chat == null) return SizedBox.shrink();
 
+        final photoUrl = chat.member.photoUrl;
+
         return MainLayout(
           title: Row(
             children: [
@@ -47,16 +50,19 @@ class MessageListScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.background,
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      chat.member.photoUrl,
-                      errorListener: (error) {
-                        debugPrint('!!! CachedNetworkImageProvider error: $error');
-                      },
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+                  image: photoUrl == null
+                      ? null
+                      : DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            photoUrl,
+                            errorListener: (error) {
+                              debugPrint('!!! CachedNetworkImageProvider error: $error');
+                            },
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                 ),
+                child: photoUrl == null ? Icon(Icons.person) : null,
               ),
               SizedBox(width: 20.w),
               Text(
@@ -80,63 +86,76 @@ class MessageListScreen extends StatelessWidget {
 
               return Stack(
                 children: [
-                  CustomMaterialIndicator(
-                    trigger: IndicatorTrigger.bothEdges,
-                    onRefresh: () async => vm.onRefresh(),
-                    child: ListView.separated(
-                      controller: vm.autoScrollController,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
-                      itemCount: messagesLength + 2,
-                      itemBuilder: (context, index) {
-                        if (index == 0) {
-                          return ValueListenableBuilder(
-                            valueListenable: vm.previousPageLoading,
-                            builder: (context, previousPageLoading, _) {
-                              return PageLoaderWidget(
-                                onInit: vm.getPreviousPage,
-                                loading: previousPageLoading,
+                  Column(
+                    children: [
+                      Expanded(
+                        child: CustomMaterialIndicator(
+                          trigger: IndicatorTrigger.bothEdges,
+                          onRefresh: () async => vm.onRefresh(),
+                          child: ListView.separated(
+                            controller: vm.autoScrollController,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
+                            itemCount: messagesLength + 2,
+                            itemBuilder: (context, index) {
+                              if (index == 0) {
+                                return ValueListenableBuilder(
+                                  valueListenable: vm.previousPageLoading,
+                                  builder: (context, previousPageLoading, _) {
+                                    return PageLoaderWidget(
+                                      onInit: vm.getPreviousPage,
+                                      loading: previousPageLoading,
+                                    );
+                                  },
+                                );
+                              }
+
+                              if (index == messagesLength + 1) {
+                                return ValueListenableBuilder(
+                                  valueListenable: vm.nextPageLoading,
+                                  builder: (context, nextPageLoading, _) {
+                                    return PageLoaderWidget(
+                                      onInit: vm.getNextPage,
+                                      loading: nextPageLoading,
+                                    );
+                                  },
+                                );
+                              }
+
+                              final actualIndex = index - 1;
+                              final item = messages?[actualIndex];
+                              if (item == null) return SizedBox.shrink();
+
+                              return AutoScrollTag(
+                                key: ValueKey(actualIndex),
+                                index: actualIndex,
+                                controller: vm.autoScrollController,
+                                child: ValueListenableBuilder(
+                                  valueListenable: vm.unreadMessageIndex,
+                                  builder: (context, unreadMessageIndex, _) {
+                                    return MessagesListItem(
+                                      item,
+                                      isUnread: item.isUnread(unreadMessageIndex),
+                                      onTap: () => vm.onMessageTap(item),
+                                      onLongPress: () => vm.openMessageMenu(item),
+                                      onVisible: () => vm.onVisible(item),
+                                    );
+                                  },
+                                ),
                               );
                             },
-                          );
-                        }
-
-                        if (index == messagesLength + 1) {
-                          return ValueListenableBuilder(
-                            valueListenable: vm.nextPageLoading,
-                            builder: (context, nextPageLoading, _) {
-                              return PageLoaderWidget(
-                                onInit: vm.getNextPage,
-                                loading: nextPageLoading,
-                              );
-                            },
-                          );
-                        }
-
-                        final actualIndex = index - 1;
-                        final item = messages?[actualIndex];
-                        if (item == null) return SizedBox.shrink();
-
-                        return AutoScrollTag(
-                          key: ValueKey(actualIndex),
-                          index: actualIndex,
-                          controller: vm.autoScrollController,
-                          child: ValueListenableBuilder(
-                            valueListenable: vm.unreadMessageIndex,
-                            builder: (context, unreadMessageIndex, _) {
-                              return MessagesListItem(
-                                item,
-                                isUnread: item.isUnread(unreadMessageIndex),
-                                onTap: () => vm.onMessageTap(item),
-                                onLongPress: () => vm.openMessageMenu(item),
-                                onVisible: () => vm.onVisible(item),
-                              );
-                            },
+                            separatorBuilder: (_, __) => SizedBox(height: 16.h),
                           ),
-                        );
-                      },
-                      separatorBuilder: (_, __) => SizedBox(height: 16.h),
-                    ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                        child: AppMessageField(
+                          onSend: vm.onSendMessage,
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                    ],
                   ),
                   if (messages?.isEmpty == true)
                     NoItemsWidget(
