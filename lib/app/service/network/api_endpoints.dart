@@ -128,6 +128,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 200
   static const handlePartner = 'api/v1/member/handle_partner';
+  // +
 
   // Chats
 
@@ -168,6 +169,7 @@ class ApiEndpoints {
   ///   "size": int, // 4096
   /// }
   static const chats = 'api/v1/member/chats';
+  // +
 
   /// Create new chat with partner OR return existing chat.
   ///
@@ -191,6 +193,7 @@ class ApiEndpoints {
   /// Response:
   /// body: MessageApiModel
   static const sendMessage = 'api/v1/member/send_message';
+  // +
 
   /// Get chat message page with an "index".
   /// If "index" == null returns a page with the first unread message for current user.
@@ -235,6 +238,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 200
   static const reportMessage = 'api/v1/member/report_message';
+  // +
 
   // Files
 
