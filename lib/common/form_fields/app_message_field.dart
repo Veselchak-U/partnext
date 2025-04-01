@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:defer_pointer/defer_pointer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,13 +18,14 @@ import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 
 typedef MenuItem = ({RemoteFileType type, String icon, String label});
+typedef SendMessageCallback = Future<void> Function(
+  String message,
+  List<File> attachments,
+  RemoteFileType attachmentsType,
+);
 
 class AppMessageField extends StatefulWidget {
-  final void Function(
-    String message,
-    List<File> attachments,
-    RemoteFileType attachmentsType,
-  ) onSend;
+  final SendMessageCallback onSend;
 
   const AppMessageField({
     required this.onSend,
@@ -41,20 +42,30 @@ class _AppMessageFieldState extends State<AppMessageField> {
     (type: RemoteFileType.image, icon: Assets.icons.image.path, label: l10n?.image ?? ''),
     (type: RemoteFileType.document, icon: Assets.icons.document.path, label: l10n?.document ?? ''),
   ];
+  final _textController = TextEditingController();
   final _textFieldFocusNode = FocusNode();
 
-  String _text = '';
   List<File> _attachments = [];
   RemoteFileType _attachmentsType = RemoteFileType.document;
+
+  OverlayEntry? _overlayEntry;
+  final _layerLink = LayerLink();
 
   @override
   void initState() {
     super.initState();
     _textFieldFocusNode.addListener(_textFieldFocusNodeListener);
+
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) => _createOverlayEntry(),
+    );
   }
 
   @override
   void dispose() {
+    _overlayEntry?.remove();
+
+    _textController.dispose();
     _textFieldFocusNode.removeListener(_textFieldFocusNodeListener);
     _textFieldFocusNode.dispose();
 
@@ -71,7 +82,7 @@ class _AppMessageFieldState extends State<AppMessageField> {
   }
 
   void _onTextChanged(String value) {
-    _text = value;
+    _textController.text = value;
   }
 
   void _switchMenu() {
@@ -80,7 +91,11 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   void _hideMenu() {
     if (_isMenuOpened.value) {
-      _isMenuOpened.value = false;
+      SchedulerBinding.instance.addPostFrameCallback(
+        (_) {
+          _isMenuOpened.value = false;
+        },
+      );
     }
   }
 
@@ -142,13 +157,20 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   Future<void> _sendMessage() async {
     _hideMenu();
-    if (_text.isEmpty && _attachments.isEmpty) return;
+    final text = _textController.text;
+    if (text.isEmpty && _attachments.isEmpty) return;
 
-    widget.onSend(_text, _attachments, _attachmentsType);
+    await widget.onSend(text, _attachments, _attachmentsType);
+    _clearField();
+  }
+
+  void _clearField() {
+    _textController.clear();
+    _attachments.clear();
   }
 
   void _textFieldFocusNodeListener() {
-    if (_textFieldFocusNode.hasFocus) _hideMenu();
+    // if (_textFieldFocusNode.hasFocus) _hideMenu();
   }
 
   void _onError(String message) {
@@ -157,84 +179,107 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   @override
   Widget build(BuildContext context) {
-    final menuHeight = _menuList.length * 48.h + 16.h;
-    final isLtr = context.locale.isLtr;
-
-    return DeferredPointerHandler(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            height: max(48, 48.h),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(10).r,
+    return CompositedTransformTarget(
+      link: _layerLink,
+      child: Container(
+        height: max(48, 48.h),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10).r,
+        ),
+        child: Row(
+          children: [
+            IconButton(
+              icon: SvgPicture.asset(
+                Assets.icons.paperClip32.path,
+                height: 32.h,
+              ),
+              padding: EdgeInsets.zero,
+              onPressed: _switchMenu,
             ),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: SvgPicture.asset(
-                    Assets.icons.paperClip32.path,
-                    height: 32.h,
-                  ),
-                  padding: EdgeInsets.zero,
-                  onPressed: _switchMenu,
+            SizedBox(width: 12.w),
+            Expanded(
+              child: TextFormField(
+                controller: _textController,
+                focusNode: _textFieldFocusNode,
+                decoration: InputDecoration.collapsed(
+                  hintText: context.l10n.write_message,
+                  hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray),
                 ),
-                SizedBox(width: 12.w),
-                Expanded(
-                  child: TextFormField(
-                    focusNode: _textFieldFocusNode,
-                    decoration: InputDecoration.collapsed(
-                      hintText: context.l10n.write_message,
-                      hintStyle: AppTextStyles.s14w400.copyWith(color: AppColors.gray),
-                    ),
-                    onChanged: _onTextChanged,
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                IconButton(
-                  icon: SvgPicture.asset(
-                    Assets.icons.send.path,
-                    height: 24.h,
-                  ),
-                  padding: EdgeInsets.zero,
-                  onPressed: _sendMessage,
-                ),
-                SizedBox(width: 4.w),
-              ],
-            ),
-          ),
-          Positioned(
-            top: -menuHeight - 8.h,
-            left: isLtr ? 0 : null,
-            right: isLtr ? null : 0,
-            child: DeferPointer(
-              child: ValueListenableBuilder<bool>(
-                valueListenable: _isMenuOpened,
-                builder: (context, isMenuOpened, child) {
-                  return AnimatedSize(
-                    duration: Duration(milliseconds: 150),
-                    child: isMenuOpened ? child : const SizedBox.shrink(),
-                  );
-                },
-                child: _Menu(
-                  items: _menuList,
-                  onTap: _onMenuSelected,
-                ),
+                onChanged: _onTextChanged,
               ),
             ),
-          ),
-        ],
+            SizedBox(width: 12.w),
+            IconButton(
+              icon: SvgPicture.asset(
+                Assets.icons.send.path,
+                height: 24.h,
+              ),
+              padding: EdgeInsets.zero,
+              onPressed: _sendMessage,
+            ),
+            SizedBox(width: 4.w),
+          ],
+        ),
       ),
     );
+  }
+
+  void _createOverlayEntry() {
+    final renderBox = context.findRenderObject() as RenderBox;
+    final size = renderBox.size;
+    // final offset = renderBox.localToGlobal(Offset.zero);
+
+    final isLtr = context.locale.isLtr;
+
+    final menuItemWidth = 160.w;
+    final menuItemHeight = 48.h;
+    final menuVerticalPadding = 8.h;
+    final menuHeight = (_menuList.length * menuItemHeight) + (menuVerticalPadding * 2);
+
+    final entry = OverlayEntry(
+      builder: (context) => PositionedDirectional(
+        start: 0,
+        child: CompositedTransformFollower(
+          link: _layerLink,
+          showWhenUnlinked: false,
+          offset: Offset(isLtr ? 0 : size.width - menuItemWidth, -menuHeight - 8.h),
+          child: ValueListenableBuilder<bool>(
+            valueListenable: _isMenuOpened,
+            builder: (context, isMenuOpened, child) {
+              return AnimatedSize(
+                duration: Duration(milliseconds: 150),
+                child: isMenuOpened ? child : const SizedBox.shrink(),
+              );
+            },
+            child: _Menu(
+              itemWidth: menuItemWidth,
+              itemHeight: menuItemHeight,
+              verticalPadding: menuVerticalPadding,
+              items: _menuList,
+              onTap: _onMenuSelected,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    _overlayEntry = entry;
+    Overlay.of(context).insert(entry);
   }
 }
 
 class _Menu extends StatelessWidget {
+  final double itemWidth;
+  final double itemHeight;
+  final double verticalPadding;
   final List<MenuItem> items;
   final Function(MenuItem) onTap;
 
   const _Menu({
+    required this.itemWidth,
+    required this.itemHeight,
+    required this.verticalPadding,
     required this.items,
     required this.onTap,
     super.key,
@@ -248,14 +293,17 @@ class _Menu extends StatelessWidget {
         borderRadius: BorderRadius.circular(8).r,
         boxShadow: [AppShadows.container],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 8).h,
+      padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: List.generate(
           items.length,
           (index) {
             final item = items[index];
 
             return _MenuItem(
+              itemWidth: itemWidth,
+              itemHeight: itemHeight,
               item: item,
               onTap: () => onTap(item),
             );
@@ -267,10 +315,14 @@ class _Menu extends StatelessWidget {
 }
 
 class _MenuItem extends StatelessWidget {
+  final double itemWidth;
+  final double itemHeight;
   final MenuItem item;
   final VoidCallback onTap;
 
   const _MenuItem({
+    required this.itemWidth,
+    required this.itemHeight,
     required this.item,
     required this.onTap,
     super.key,
@@ -282,9 +334,10 @@ class _MenuItem extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: SizedBox(
-          width: 160.w,
-          height: 48.h,
+          width: itemWidth,
+          height: itemHeight,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(width: 16.w),
               SvgPicture.asset(
