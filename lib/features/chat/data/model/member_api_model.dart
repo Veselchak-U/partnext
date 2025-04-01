@@ -4,13 +4,13 @@ part 'member_api_model.g.dart';
 
 @JsonSerializable()
 class MemberApiModel {
-  final int id;
+  final int userId;
   final String fullName;
-  final String photoUrl;
+  final String? photoUrl;
   final bool? isCurrentUser;
 
   MemberApiModel({
-    required this.id,
+    required this.userId,
     required this.fullName,
     required this.photoUrl,
     this.isCurrentUser,

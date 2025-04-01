@@ -15,7 +15,7 @@ abstract interface class ChatDatasource {
 
   Future<ChatApiModel> createChat(int userId);
 
-  Future<void> sendMessage(
+  Future<MessageApiModel> sendMessage(
     int chatId,
     String? text,
     FileApiModel? attachment,
@@ -145,7 +145,7 @@ class ChatDatasourceImpl implements ChatDatasource {
   //
   //   return (lastMessage?.index ?? -2) + 1;
   // }
-
+  //
   // MessageApiModel? _getLastMessage(int chatId) {
   //   return switch (chatId) {
   //     0 => _mockedPages0.last.messages.last,
@@ -191,7 +191,7 @@ class ChatDatasourceImpl implements ChatDatasource {
   //
   //   return _getMockedChatUnreadPage(chatId);
   // }
-
+  //
   // ChatPageApiModel _getMockedChatUnreadPage(int chatId) {
   //   final unreadMessageIndex = _mockedChats.firstWhereOrNull((e) => e.id == chatId)?.unreadMessageIndex;
   //   if (unreadMessageIndex == null) throw LogicException('Chat id=$chatId not found');
@@ -271,20 +271,20 @@ class ChatDatasourceImpl implements ChatDatasource {
 //
 // final _mockedMembers = [
 //   MemberApiModel(
-//     id: 0,
+//     userId: 0,
 //     fullName: 'Me',
 //     photoUrl:
 //         'https://img.freepik.com/free-photo/girl-with-phone-istanbul_1157-8831.jpg?t=st=1734530631~exp=1734534231~hmac=d9bb0113cdf615783e75a425cb582eed17ee9d8232e797477222bea57453506e&w=1380',
 //     isCurrentUser: true,
 //   ),
 //   MemberApiModel(
-//     id: 1,
+//     userId: 1,
 //     fullName: 'Eli Lavi',
 //     photoUrl:
 //         'https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?t=st=1734279139~exp=1734282739~hmac=e8745deace0d4a83784c82efcc52bf3870c91ab4c8658026541141d517af3e9a&w=1380',
 //   ),
 //   MemberApiModel(
-//     id: 2,
+//     userId: 2,
 //     fullName: 'John Kirby',
 //     photoUrl:
 //         'https://img.freepik.com/free-photo/man-with-photo-camera-his-holidays_23-2149373965.jpg?t=st=1734279350~exp=1734282950~hmac=2a095adb5a495534e7d0005b47acee5e0892b1c3f1c2fce7acec887d24c12839&w=740',
@@ -325,9 +325,9 @@ class ChatDatasourceImpl implements ChatDatasource {
 //         index: 3,
 //         createdAt: DateTime.now(),
 //         creator: _mockedMembers[0],
-//         attachment: AttachmentApiModel(
+//         attachment: FileApiModel(
 //           id: 0,
-//           type: AttachmentType.document,
+//           type: RemoteFileType.document,
 //           name: '3 project.pdf',
 //           url: 'https://api.slingacademy.com/v1/sample-data/files/text-and-images.pdf',
 //           size: 279166,
@@ -363,9 +363,9 @@ class ChatDatasourceImpl implements ChatDatasource {
 //         index: 2,
 //         createdAt: DateTime.now().subtract(Duration(minutes: 18)),
 //         creator: _mockedMembers[2],
-//         attachment: AttachmentApiModel(
+//         attachment: FileApiModel(
 //           id: 1,
-//           type: AttachmentType.image,
+//           type: RemoteFileType.image,
 //           name: '2 project_map.png',
 //           url:
 //               'https://img.freepik.com/free-photo/people-office_144627-38035.jpg?t=st=1739193262~exp=1739196862~hmac=2243cf738ce3126fac7b943afe00fd4f36ac0fe89c7c64a9cb751dc27a67d707&w=740',
@@ -407,9 +407,9 @@ class ChatDatasourceImpl implements ChatDatasource {
 //         index: 6,
 //         createdAt: DateTime.now().subtract(Duration(minutes: 14)),
 //         creator: _mockedMembers[2],
-//         attachment: AttachmentApiModel(
+//         attachment: FileApiModel(
 //           id: 2,
-//           type: AttachmentType.image,
+//           type: RemoteFileType.image,
 //           name: '6 project_map.png',
 //           url:
 //               'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',
@@ -459,9 +459,9 @@ class ChatDatasourceImpl implements ChatDatasource {
 //         index: 11,
 //         createdAt: DateTime.now().subtract(Duration(minutes: 9)),
 //         creator: _mockedMembers[2],
-//         attachment: AttachmentApiModel(
+//         attachment: FileApiModel(
 //           id: 3,
-//           type: AttachmentType.image,
+//           type: RemoteFileType.image,
 //           name: '11 project_map.png',
 //           url:
 //               'https://img.freepik.com/free-photo/people-office_144627-38035.jpg?t=st=1739193262~exp=1739196862~hmac=2243cf738ce3126fac7b943afe00fd4f36ac0fe89c7c64a9cb751dc27a67d707&w=740',
@@ -503,9 +503,9 @@ class ChatDatasourceImpl implements ChatDatasource {
 //         index: 15,
 //         createdAt: DateTime.now().subtract(Duration(minutes: 5)),
 //         creator: _mockedMembers[2],
-//         attachment: AttachmentApiModel(
+//         attachment: FileApiModel(
 //           id: 4,
-//           type: AttachmentType.image,
+//           type: RemoteFileType.image,
 //           name: '15 project_map.png',
 //           url:
 //               'https://img.freepik.com/free-photo/web-icon-set-drawn-chalkboard-with-white-chalk_23-2147841254.jpg?t=st=1738768524~exp=1738772124~hmac=d0773a62d78d5511caa10630dc319049e22dfefdbc34c24355fbcf7b0968cee9&w=740',

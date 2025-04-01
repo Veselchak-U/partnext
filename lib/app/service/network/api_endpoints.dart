@@ -116,6 +116,7 @@ class ApiEndpoints {
   /// Response:
   /// body: List<PartnerApiModel>?, // nullable
   static const partners = 'api/v1/member/partners';
+  // +
 
   /// Confirm or reject matched partner.
   ///
@@ -177,6 +178,7 @@ class ApiEndpoints {
   /// Response:
   /// body: ChatApiModel
   static const createChat = 'api/v1/member/create_chat';
+  // -
 
   /// Send new message to chat.
   ///

@@ -100,7 +100,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
   }
 
   @override
-  Future<void> handlePartner(int id, {required bool confirm}) {
+  Future<void> handlePartner(int userId, {required bool confirm}) {
     // return Future.delayed(Duration(seconds: 1));
 
     final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.handlePartner}');
@@ -108,7 +108,7 @@ class PartnerDatasourceImpl implements PartnerDatasource {
     return _apiClient.post(
       uri,
       body: {
-        "id": id,
+        "user_id": userId,
         "confirm": confirm,
       },
       parser: (response) {

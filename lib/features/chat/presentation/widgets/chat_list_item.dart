@@ -28,6 +28,8 @@ class ChatListItem extends StatelessWidget {
     final messageTitleStyle = AppTextStyles.s12w600.copyWith(height: 15 / 12);
     final messageDescStyle = AppTextStyles.s12w400.copyWith(height: 15 / 12);
 
+    final photoUrl = item.member.photoUrl;
+
     return Stack(
       children: [
         Material(
@@ -46,19 +48,23 @@ class ChatListItem extends StatelessWidget {
                 children: [
                   Container(
                     width: 48.h,
+                    height: 48.h,
                     decoration: BoxDecoration(
                       color: AppColors.background,
                       borderRadius: BorderRadius.circular(10).r,
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          item.member.photoUrl,
-                          errorListener: (error) {
-                            debugPrint('!!! CachedNetworkImageProvider error: $error');
-                          },
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      image: photoUrl == null
+                          ? null
+                          : DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                photoUrl,
+                                errorListener: (error) {
+                                  debugPrint('!!! CachedNetworkImageProvider error: $error');
+                                },
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                     ),
+                    child: photoUrl == null ? Icon(Icons.person) : null,
                   ),
                   SizedBox(width: 11.w),
                   Expanded(

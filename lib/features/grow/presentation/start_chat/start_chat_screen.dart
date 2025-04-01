@@ -28,6 +28,9 @@ class StartChatScreen extends StatelessWidget {
             builder: (context, initializing, _) {
               if (initializing) return const SizedBox.shrink();
 
+              final partnerImageUrl =
+                  vm.partner.questionnaire.photos.isNotEmpty ? vm.partner.questionnaire.photos.first.url : '';
+
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16).w,
                 child: Column(
@@ -42,7 +45,7 @@ class StartChatScreen extends StatelessWidget {
                     Expanded(
                       child: StartChatPhotoBlock(
                         myImageUrl: vm.myImageUrl,
-                        partnerImageUrl: vm.partner.questionnaire.photos.first.url,
+                        partnerImageUrl: partnerImageUrl,
                         partnerFullName: vm.partner.fullName,
                         partnerPosition: vm.partner.questionnaire.position ?? '',
                       ),

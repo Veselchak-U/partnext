@@ -34,6 +34,9 @@ class RecommendationItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final photoUrls = item.questionnaire.photos.map((e) => e.url).toList();
+    final heroTag = withHeroEffect && item.questionnaire.photos.isNotEmpty
+        ? item.questionnaire.photos.first
+        : UniqueKey().toString();
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -49,7 +52,7 @@ class RecommendationItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: withHeroEffect ? item.questionnaire.photos.first : UniqueKey(),
+                tag: heroTag,
                 child: RecommendationPhotosWidget(photoUrls),
               ),
               SizedBox(height: 22.h),

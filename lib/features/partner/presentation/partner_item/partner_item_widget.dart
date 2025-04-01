@@ -26,6 +26,7 @@ class PartnerItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(8).r;
+    final heroTag = item.questionnaire.photos.isNotEmpty ? item.questionnaire.photos.first.url : UniqueKey().toString();
 
     return Material(
       color: AppColors.white,
@@ -42,7 +43,7 @@ class PartnerItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: item.questionnaire.photos.first,
+                    tag: heroTag,
                     child: Container(
                       width: 112.r,
                       height: 112.r,
@@ -51,7 +52,7 @@ class PartnerItemWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8).r,
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
-                            item.questionnaire.photos.first.url,
+                            heroTag,
                             errorListener: (error) {
                               debugPrint('!!! CachedNetworkImageProvider error: $error');
                             },

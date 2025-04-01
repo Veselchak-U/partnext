@@ -2,13 +2,14 @@ import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/chat_page_api_model.dart';
 import 'package:partnext/features/chat/data/model/file_api_model.dart';
+import 'package:partnext/features/chat/data/model/message_api_model.dart';
 
 abstract interface class ChatRepository {
   Future<List<ChatApiModel>> getChats();
 
   Future<ChatApiModel> createChat(int userId);
 
-  Future<void> sendMessage(
+  Future<MessageApiModel> sendMessage(
     int chatId, {
     String? text,
     FileApiModel? attachment,
@@ -47,7 +48,7 @@ class ChatRepositoryImpl implements ChatRepository {
   }
 
   @override
-  Future<void> sendMessage(
+  Future<MessageApiModel> sendMessage(
     int chatId, {
     String? text,
     FileApiModel? attachment,
