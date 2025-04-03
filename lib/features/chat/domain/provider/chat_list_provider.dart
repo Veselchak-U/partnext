@@ -49,7 +49,7 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   List<ChatApiModel> get chats => List.unmodifiable(_chats);
 
   @override
-  int get unreadChatCount => _chats.where((e) => e.unreadCount != 0).length;
+  int get unreadChatCount => _chats.where((e) => (e.unreadMessageCount ?? 0) != 0).length;
 
   @override
   Future<void> startChecking({
@@ -108,9 +108,10 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     if (message.index < unreadMessageIndex) return;
 
     final lastMessageIndex = chats[chatIndex].lastMessage?.index;
-    final newUnreadIndex = message.index == lastMessageIndex ? null : message.index + 1;
+    if (lastMessageIndex == null) return;
 
-    final updated = chat.copyWith(unreadMessageIndex: newUnreadIndex);
+    final newUnreadCount = lastMessageIndex - message.index;
+    final updated = chat.copyWith(unreadMessageCount: newUnreadCount);
     _chats[chatIndex] = updated;
     notifyListeners();
 

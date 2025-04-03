@@ -9,13 +9,14 @@ part 'chat_api_model.g.dart';
 class ChatApiModel {
   final int id;
   final MemberApiModel member;
-  final int? unreadMessageIndex;
+  @JsonKey(name: 'unread_message_index')
+  final int? unreadMessageCount;
   final MessageApiModel? lastMessage;
 
   ChatApiModel({
     required this.id,
     required this.member,
-    this.unreadMessageIndex,
+    this.unreadMessageCount,
     this.lastMessage,
   });
 
@@ -25,12 +26,14 @@ class ChatApiModel {
 
   Map<String, dynamic> toJson() => _$ChatApiModelToJson(this);
 
-  int get unreadCount {
-    final lastIndex = lastMessage?.index;
-    final unreadIndex = unreadMessageIndex;
-    if (lastIndex == null || unreadIndex == null) return 0;
+  int? get unreadMessageIndex {
+    final unreadCount = unreadMessageCount;
+    if (unreadCount == null || unreadCount == 0) return null;
 
-    return lastIndex - unreadIndex + 1;
+    final lastIndex = lastMessage?.index;
+    if (lastIndex == null) return null;
+
+    return lastIndex - unreadCount + 1;
   }
 
   String get lastMessageCreator {
@@ -42,12 +45,12 @@ class ChatApiModel {
   }
 
   ChatApiModel copyWith({
-    required int? unreadMessageIndex,
+    required int? unreadMessageCount,
   }) {
     return ChatApiModel(
       id: id,
       member: member,
-      unreadMessageIndex: unreadMessageIndex,
+      unreadMessageCount: unreadMessageCount,
       lastMessage: lastMessage,
     );
   }

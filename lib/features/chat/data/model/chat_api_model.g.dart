@@ -9,7 +9,7 @@ part of 'chat_api_model.dart';
 ChatApiModel _$ChatApiModelFromJson(Map<String, dynamic> json) => ChatApiModel(
       id: (json['id'] as num).toInt(),
       member: MemberApiModel.fromJson(json['member'] as Map<String, dynamic>),
-      unreadMessageIndex: (json['unread_message_index'] as num?)?.toInt(),
+      unreadMessageCount: (json['unread_message_index'] as num?)?.toInt(),
       lastMessage: json['last_message'] == null
           ? null
           : MessageApiModel.fromJson(
@@ -20,6 +20,6 @@ Map<String, dynamic> _$ChatApiModelToJson(ChatApiModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'member': instance.member,
-      'unread_message_index': instance.unreadMessageIndex,
+      'unread_message_index': instance.unreadMessageCount,
       'last_message': instance.lastMessage,
     };
