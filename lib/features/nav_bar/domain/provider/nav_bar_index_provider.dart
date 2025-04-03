@@ -4,7 +4,7 @@ import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 abstract interface class NavBarIndexProvider with ChangeNotifier {
   int navBarIndex = NavBarTab.home.index;
 
-  void reset();
+  void reset({bool notify = true});
 }
 
 class NavBarIndexProviderImpl with ChangeNotifier implements NavBarIndexProvider {
@@ -22,8 +22,8 @@ class NavBarIndexProviderImpl with ChangeNotifier implements NavBarIndexProvider
   }
 
   @override
-  void reset() {
+  void reset({bool notify = true}) {
     _navBarIndex = _initialIndex;
-    notifyListeners();
+    if (notify) notifyListeners();
   }
 }

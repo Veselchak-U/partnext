@@ -142,6 +142,10 @@ class DI {
     _sl.registerFactory(() => LogoutUseCase(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+          _sl<NavBarIndexProvider>(),
+          _sl<PartnersProvider>(),
+          _sl<ChatListProvider>(),
+          _sl<MessageListProvider>(),
         ));
     _sl.registerFactory(() => RefreshUserProfileUseCase(
           _sl<ProfileRepository>(),

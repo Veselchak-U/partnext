@@ -36,6 +36,8 @@ abstract interface class MessageListProvider with ChangeNotifier {
     List<File> attachmentFiles,
     RemoteFileType attachmentsType,
   );
+
+  void clearCache();
 }
 
 class MessageListProviderImpl with ChangeNotifier implements MessageListProvider {
@@ -65,9 +67,9 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     required int chatId,
     ErrorHandler? onError,
   }) {
-    _chatId = chatId;
+    stopChecking();
 
-    _checkTimer?.cancel();
+    _chatId = chatId;
     _checkTimer = Timer.periodic(
       Config.checkMessagesPeriod,
       (_) => _fetchMessagePage(),
@@ -131,6 +133,12 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     if (chatId == null) throw LogicException('Chat checking is not started');
 
     return _sendMessageUseCase(chatId, text, attachments, attachmentsType);
+  }
+
+  @override
+  void clearCache() {
+    _messageCache.clear();
+    _scrollOffsetCache.clear();
   }
 
   void _fillFromCache() {

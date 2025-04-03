@@ -30,6 +30,7 @@ class NavBarScreenVm {
   void dispose() {
     _navBarIndexProvider.removeListener(_onPageSelectedOutside);
     _chatListProvider.removeListener(_chatListListener);
+    _chatListProvider.stopChecking();
 
     loading.dispose();
     pageIndex.dispose();

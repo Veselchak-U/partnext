@@ -10,6 +10,8 @@ abstract interface class PartnersProvider with ChangeNotifier {
   Future<void> approve(PartnerApiModel partner);
 
   Future<void> reject(PartnerApiModel partner);
+
+  void clearCache();
 }
 
 class PartnersProviderImpl with ChangeNotifier implements PartnersProvider {
@@ -17,28 +19,33 @@ class PartnersProviderImpl with ChangeNotifier implements PartnersProvider {
 
   PartnersProviderImpl(this._partnerRepository);
 
-  List<PartnerApiModel> _partners = [];
+  List<PartnerApiModel> _partnerCache = [];
 
   @override
-  List<PartnerApiModel> get partners => [..._partners];
+  List<PartnerApiModel> get partners => List.unmodifiable(_partnerCache);
 
   @override
   Future<void> refreshPartners() async {
-    _partners = await _partnerRepository.getPartners();
+    _partnerCache = await _partnerRepository.getPartners();
     notifyListeners();
   }
 
   @override
   Future<void> approve(PartnerApiModel partner) async {
     await _partnerRepository.handlePartner(partner.userId, confirm: true);
-    _partners.remove(partner);
+    _partnerCache.remove(partner);
     notifyListeners();
   }
 
   @override
   Future<void> reject(PartnerApiModel partner) async {
     await _partnerRepository.handlePartner(partner.userId, confirm: false);
-    _partners.remove(partner);
+    _partnerCache.remove(partner);
     notifyListeners();
+  }
+
+  @override
+  void clearCache() {
+    _partnerCache = [];
   }
 }

@@ -31,6 +31,8 @@ abstract interface class ChatListProvider with ChangeNotifier {
     required int chatId,
     required MessageApiModel message,
   });
+
+  void clearCache();
 }
 
 class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
@@ -42,20 +44,21 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     this._startConversationUseCase,
   );
 
-  List<ChatApiModel> _chats = [];
+  List<ChatApiModel> _chatCache = [];
   Timer? _checkTimer;
 
   @override
-  List<ChatApiModel> get chats => List.unmodifiable(_chats);
+  List<ChatApiModel> get chats => List.unmodifiable(_chatCache);
 
   @override
-  int get unreadChatCount => _chats.where((e) => (e.unreadMessageCount ?? 0) != 0).length;
+  int get unreadChatCount => _chatCache.where((e) => (e.unreadMessageCount ?? 0) != 0).length;
 
   @override
   Future<void> startChecking({
     Function(Object, StackTrace)? onError,
   }) {
-    _checkTimer?.cancel();
+    stopChecking();
+
     _checkTimer = Timer.periodic(
       Config.checkChatsPeriod,
       (_) => _refreshChats(),
@@ -86,7 +89,7 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     Function(Object, StackTrace)? onError,
   }) async {
     try {
-      _chats = await _chatRepository.getChats();
+      _chatCache = await _chatRepository.getChats();
       notifyListeners();
     } catch (e, st) {
       onError?.call(e, st);
@@ -98,10 +101,10 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     required int chatId,
     required MessageApiModel message,
   }) async {
-    final chatIndex = _chats.indexWhere((e) => e.id == chatId);
+    final chatIndex = _chatCache.indexWhere((e) => e.id == chatId);
     if (chatIndex == -1) return;
 
-    final chat = _chats[chatIndex];
+    final chat = _chatCache[chatIndex];
     final unreadMessageIndex = chat.unreadMessageIndex;
     if (unreadMessageIndex == null) return;
 
@@ -112,9 +115,14 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
 
     final newUnreadCount = lastMessageIndex - message.index;
     final updated = chat.copyWith(unreadMessageCount: newUnreadCount);
-    _chats[chatIndex] = updated;
+    _chatCache[chatIndex] = updated;
     notifyListeners();
 
     _chatRepository.markMessageAsRead(chatId: chatId, messageId: message.id);
+  }
+
+  @override
+  void clearCache() {
+    _chatCache = [];
   }
 }
