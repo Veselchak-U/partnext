@@ -103,6 +103,7 @@ class MessageListScreen extends StatelessWidget {
                                   valueListenable: vm.previousPageLoading,
                                   builder: (context, previousPageLoading, _) {
                                     return PageLoaderWidget(
+                                      key: ValueKey(vm.currentPage),
                                       onInit: vm.getPreviousPage,
                                       loading: previousPageLoading,
                                     );
@@ -115,6 +116,7 @@ class MessageListScreen extends StatelessWidget {
                                   valueListenable: vm.nextPageLoading,
                                   builder: (context, nextPageLoading, _) {
                                     return PageLoaderWidget(
+                                      key: ValueKey(vm.currentPage),
                                       onInit: vm.getNextPage,
                                       loading: nextPageLoading,
                                     );

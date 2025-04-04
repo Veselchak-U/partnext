@@ -16,6 +16,8 @@ typedef ErrorHandler = void Function(Object e, StackTrace st);
 abstract interface class MessageListProvider with ChangeNotifier {
   List<MessageApiModel> get messages;
 
+  int? get currentPage;
+
   Future<void> startChecking({
     required int chatId,
     ErrorHandler? onError,
@@ -51,6 +53,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
   int? _chatId;
   int? _firstPageIndex;
+  int? _currentPageIndex;
   int? _lastPageIndex;
   int? _maxPageIndex;
   List<MessageApiModel> _messages = [];
@@ -61,6 +64,9 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
   @override
   List<MessageApiModel> get messages => List.unmodifiable(_messages);
+
+  @override
+  int? get currentPage => _currentPageIndex;
 
   @override
   Future<void> startChecking({
@@ -103,7 +109,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   @override
   Future<void> fetchPreviousPage({ErrorHandler? onError}) {
     final first = _firstPageIndex;
-    if (first == null || first <= 0) return Future.value();
+    if (first == null || first <= 1) return Future.value();
 
     return _fetchMessagePage(
       pageIndex: first - 1,
@@ -187,6 +193,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   void _updatePageIndexes(ChatPageApiModel page) {
     _maxPageIndex = page.lastPageIndex;
     final current = page.pageIndex;
+    _currentPageIndex = current;
 
     final first = _firstPageIndex;
     if (first == null || current < first) {

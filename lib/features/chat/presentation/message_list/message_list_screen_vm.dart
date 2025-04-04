@@ -44,6 +44,7 @@ class MessageListScreenVm {
   final unreadMessageIndex = ValueNotifier<int?>(null);
   final previousPageLoading = ValueNotifier<bool>(false);
   final nextPageLoading = ValueNotifier<bool>(false);
+  int? currentPage;
 
   late final AutoScrollController autoScrollController;
   final _scrollDebouncer = Debouncer(milliseconds: 50);
@@ -241,6 +242,7 @@ class MessageListScreenVm {
   void _messageListListener() {
     if (!_context.mounted) return;
     messages.value = _messageListProvider.messages;
+    currentPage = _messageListProvider.currentPage;
 
     final scrollOffset = _messageListProvider.getScrollOffset(chatId);
     final isFirstUpdate = scrollOffset == null;
