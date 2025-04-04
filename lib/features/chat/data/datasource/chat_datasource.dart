@@ -164,7 +164,7 @@ class ChatDatasourceImpl implements ChatDatasource {
     final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.chatPage}').replace(
       queryParameters: {
         'chat_id': '$chatId',
-        if (index != null) 'index': '$index',
+        if (index != null) 'page_index': '$index',
       },
     );
 
