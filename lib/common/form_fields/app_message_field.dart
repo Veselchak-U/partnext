@@ -136,11 +136,9 @@ class _AppMessageFieldState extends State<AppMessageField> {
 
   Future<void> _sendFileMessage(List<XFile> xFiles) async {
     final maxSize = Config.attachmentMaxSize * 1024 * 1024;
-    int total = 0;
     for (final xFile in xFiles) {
       final size = await xFile.length();
-      total += size;
-      if (total > maxSize) {
+      if (size > maxSize) {
         if (context.mounted) {
           _onError(context.l10n.attachment_max_size(Config.attachmentMaxSize));
         }

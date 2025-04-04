@@ -1034,7 +1034,7 @@ abstract class AppLocalizations {
   /// No description provided for @attachment_max_size.
   ///
   /// In he, this message translates to:
-  /// **'הגודל הכולל של הקבצים לא יעלה על {size} מגה בייט.'**
+  /// **'גודל הקבצים שהועלו לא יעלה על {size} מגה בייט.'**
   String attachment_max_size(int size);
 
   /// No description provided for @chats_ad_title.

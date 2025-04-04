@@ -176,7 +176,7 @@
   "file": "File",
   "no_chats": "You don't have any chats yet.",
   "chats": "Chats",
-  "attachment_max_size": "The total size of the files should not exceed {size} MB.",
+  "attachment_max_size": "The size of uploaded files must not exceed {size} MB.",
   "@attachment_max_size": {
     "placeholders": {
       "size": {

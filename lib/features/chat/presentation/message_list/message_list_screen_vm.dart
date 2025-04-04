@@ -135,7 +135,7 @@ class MessageListScreenVm {
   void onMessageTap(MessageApiModel item) {
     if (item.isImage) {
       _openImage(item);
-    } else if (item.isDocument) {
+    } else {
       _openDocument(item);
     }
   }

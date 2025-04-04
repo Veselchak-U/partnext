@@ -484,7 +484,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String attachment_max_size(int size) {
-    return 'The total size of the files should not exceed $size MB.';
+    return 'The size of uploaded files must not exceed $size MB.';
   }
 
   @override

@@ -176,7 +176,7 @@
   "file": "קובץ",
   "no_chats": "עדיין אין לך צ ' אטים.",
   "chats": "צ ' אטים",
-  "attachment_max_size": "הגודל הכולל של הקבצים לא יעלה על {size} מגה בייט.",
+  "attachment_max_size": "גודל הקבצים שהועלו לא יעלה על {size} מגה בייט.",
   "@attachment_max_size": {
     "placeholders": {
       "size": {

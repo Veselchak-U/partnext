@@ -12,11 +12,11 @@ class Config {
 
   static const paymentTimeoutDuration = Duration(minutes: 10);
 
-  static const attachmentMaxSize = 3; //In megabytes
+  static const attachmentMaxSize = 10; //In megabytes
   static const attachmentAllowedFileExtensions = ['pdf'];
 
-  static const checkChatsPeriod = Duration(minutes: 10); // minutes: 1
-  static const checkMessagesPeriod = Duration(minutes: 10); // seconds: 15
+  static const checkChatsPeriod = Duration(minutes: 1);
+  static const checkMessagesPeriod = Duration(seconds: 15);
 
   static const messageFileCacheStalePeriod = Duration(days: 30);
 
