@@ -180,7 +180,7 @@ class ApiEndpoints {
   /// Response:
   /// body: ChatApiModel
   static const createChat = 'api/v1/member/create_chat';
-  // -
+  // +
 
   /// Send new message to chat.
   ///
@@ -215,6 +215,7 @@ class ApiEndpoints {
   ///   "messages": List<MessageApiModel>,
   /// }
   static const chatPage = 'api/v1/member/chat_page';
+  // +
 
   /// Mark a message as read.
   ///
@@ -226,6 +227,7 @@ class ApiEndpoints {
   /// Response:
   /// statusCode: 200
   static const markMessageAsRead = 'api/v1/member/mark_message_as_read';
+  // +
 
   /// Report about some violation in the message.
   ///

@@ -61,7 +61,7 @@ class MessageListScreenVm {
     _messageListProvider.removeListener(_messageListListener);
     _messageListProvider.stopChecking();
 
-    autoScrollController.removeListener(_saveScrollOffset);
+    autoScrollController.removeListener(_scrollListener);
     autoScrollController.dispose();
 
     _chatListProvider.removeListener(_chatListListener);
@@ -105,7 +105,7 @@ class MessageListScreenVm {
 
     final scrollOffset = _messageListProvider.getScrollOffset(chatId) ?? 0;
     autoScrollController = AutoScrollController(initialScrollOffset: scrollOffset);
-    autoScrollController.addListener(_saveScrollOffset);
+    autoScrollController.addListener(_scrollListener);
 
     _messageListProvider.addListener(_messageListListener);
     _refreshMessages();
@@ -267,11 +267,29 @@ class MessageListScreenVm {
     _saveScrollOffset();
   }
 
+  void _scrollListener() {
+    _saveScrollOffset();
+    _fetchNearestPage();
+  }
+
   void _saveScrollOffset() {
     _scrollDebouncer.run(() {
       final scrollOffset = autoScrollController.offset;
       _messageListProvider.setScrollOffset(chatId, scrollOffset);
     });
+  }
+
+  void _fetchNearestPage() {
+    final scrollOffset = autoScrollController.offset;
+    final maxScrollExtent = autoScrollController.position.maxScrollExtent;
+
+    if (scrollOffset == 0) {
+      getPreviousPage();
+    }
+
+    if (scrollOffset == maxScrollExtent) {
+      getNextPage();
+    }
   }
 
   void _chatListListener() {

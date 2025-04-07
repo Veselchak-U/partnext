@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   int? _chatId;
   int? _startPageIndex;
   int? _endPageIndex;
-  int? _maxPageIndex;
+  int? _lastPageIndex;
   List<MessageApiModel> _messages = [];
   Timer? _checkTimer;
 
@@ -87,7 +88,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     _chatId = null;
     _startPageIndex = null;
     _endPageIndex = null;
-    _maxPageIndex = null;
+    _lastPageIndex = null;
     _messages = [];
   }
 
@@ -107,7 +108,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     if (start == null || start <= 1) return Future.value();
 
     return _fetchMessagePage(
-      pageIndex: start - 1,
+      pageIndex: max(start - 1, 1),
       onError: onError,
     );
   }
@@ -115,11 +116,11 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   @override
   Future<void> fetchNextPage({ErrorHandler? onError}) {
     final end = _endPageIndex;
-    final max = _maxPageIndex;
-    if (end == null || max == null || end >= max) return Future.value();
+    final last = _lastPageIndex;
+    if (end == null || last == null) return Future.value();
 
     return _fetchMessagePage(
-      pageIndex: end + 1,
+      pageIndex: min(end + 1, last),
       onError: onError,
     );
   }
@@ -151,7 +152,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
       final indexes = _pageIndexCache[_chatId];
       _startPageIndex = indexes?.$1;
       _endPageIndex = indexes?.$2;
-      _maxPageIndex = indexes?.$3;
+      _lastPageIndex = indexes?.$3;
 
       notifyListeners();
     }
@@ -177,7 +178,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
       _updatePageIndexes(chatId, chatPage);
       debugPrint('!!! start page: $_startPageIndex');
       debugPrint('!!! end page: $_endPageIndex');
-      debugPrint('!!! max page: $_maxPageIndex');
+      debugPrint('!!! last page: $_lastPageIndex');
 
       notifyListeners();
     } catch (e, st) {
@@ -193,8 +194,8 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   }
 
   void _updatePageIndexes(int chatId, ChatPageApiModel page) {
-    _maxPageIndex = page.lastPageIndex;
     final current = page.pageIndex;
+    final last = page.lastPageIndex;
 
     final start = _startPageIndex;
     if (start == null || current < start) {
@@ -203,9 +204,11 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
     final end = _endPageIndex;
     if (end == null || current > end) {
-      _endPageIndex = current;
+      _endPageIndex = min(current, last);
     }
 
-    _pageIndexCache[chatId] = (_startPageIndex, _endPageIndex, _maxPageIndex);
+    _lastPageIndex = last;
+
+    _pageIndexCache[chatId] = (_startPageIndex, _endPageIndex, _lastPageIndex);
   }
 }

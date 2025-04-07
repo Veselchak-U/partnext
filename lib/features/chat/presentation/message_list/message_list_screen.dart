@@ -99,8 +99,6 @@ class MessageListScreen extends StatelessWidget {
                             itemCount: messagesLength + 2,
                             itemBuilder: (context, index) {
                               if (index == 0) {
-                                vm.getPreviousPage();
-
                                 return ValueListenableBuilder(
                                   valueListenable: vm.previousPageLoading,
                                   builder: (context, previousPageLoading, _) {
@@ -112,8 +110,6 @@ class MessageListScreen extends StatelessWidget {
                               }
 
                               if (index == messagesLength + 1) {
-                                vm.getNextPage();
-
                                 return ValueListenableBuilder(
                                   valueListenable: vm.nextPageLoading,
                                   builder: (context, nextPageLoading, _) {

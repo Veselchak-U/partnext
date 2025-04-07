@@ -52,7 +52,7 @@ class MessageApiModel {
   }
 
   bool isUnread(int? unreadMessageIndex) {
-    if (unreadMessageIndex == null) return false;
+    if (unreadMessageIndex == null || unreadMessageIndex == 0) return false;
 
     return index >= unreadMessageIndex;
   }

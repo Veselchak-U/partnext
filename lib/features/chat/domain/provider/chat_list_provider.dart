@@ -106,15 +106,16 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
 
     final chat = _chatCache[chatIndex];
     final unreadMessageIndex = chat.unreadMessageIndex;
-    if (unreadMessageIndex == null) return;
+    if (unreadMessageIndex == 0) return;
 
-    if (message.index < unreadMessageIndex) return;
+    final messageIndex = message.index;
+    if (messageIndex < unreadMessageIndex) return;
 
     final lastMessageIndex = chats[chatIndex].lastMessage?.index;
     if (lastMessageIndex == null) return;
 
-    final newUnreadCount = lastMessageIndex - message.index;
-    final updated = chat.copyWith(unreadMessageCount: newUnreadCount);
+    final newUnreadMessageIndex = messageIndex + 1 >= lastMessageIndex ? 0 : messageIndex + 1;
+    final updated = chat.copyWith(unreadMessageIndex: newUnreadMessageIndex);
     _chatCache[chatIndex] = updated;
     notifyListeners();
 
