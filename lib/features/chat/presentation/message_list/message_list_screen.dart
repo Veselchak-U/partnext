@@ -91,7 +91,7 @@ class MessageListScreen extends StatelessWidget {
                       Expanded(
                         child: CustomMaterialIndicator(
                           trigger: IndicatorTrigger.bothEdges,
-                          onRefresh: () async => vm.onRefresh(),
+                          onRefresh: () async => vm.refreshCurrentPage(),
                           child: ListView.separated(
                             controller: vm.autoScrollController,
                             physics: const AlwaysScrollableScrollPhysics(),
@@ -158,7 +158,7 @@ class MessageListScreen extends StatelessWidget {
                   if (messages?.isEmpty == true)
                     NoItemsWidget(
                       message: context.l10n.no_messages,
-                      onRefresh: () async => vm.onRefresh(),
+                      onRefresh: () async => vm.refreshCurrentPage(),
                     ),
                   ValueListenableBuilder(
                     valueListenable: vm.loading,

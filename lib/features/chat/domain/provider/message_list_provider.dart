@@ -24,9 +24,11 @@ abstract interface class MessageListProvider with ChangeNotifier {
 
   void stopChecking();
 
-  double? getScrollOffset(int chatId);
+  void refreshCurrentPage();
 
-  void setScrollOffset(int chatId, double? value);
+  // double? getScrollOffset(int chatId);
+  //
+  // void setScrollOffset(int chatId, double? value);
 
   Future<void> fetchPreviousPage({ErrorHandler? onError});
 
@@ -57,9 +59,9 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   List<MessageApiModel> _messages = [];
   Timer? _checkTimer;
 
-  final Map<int, List<MessageApiModel>> _messageCache = {};
-  final Map<int, double?> _scrollOffsetCache = {};
-  final Map<int, (int? start, int? end, int? max)> _pageIndexCache = {};
+  // final Map<int, List<MessageApiModel>> _messageCache = {};
+  // final Map<int, double?> _scrollOffsetCache = {};
+  // final Map<int, (int? start, int? end, int? max)> _pageIndexCache = {};
 
   @override
   List<MessageApiModel> get messages => List.unmodifiable(_messages);
@@ -68,18 +70,39 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   Future<void> startChecking({
     required int chatId,
     ErrorHandler? onError,
-  }) {
+  }) async {
     stopChecking();
 
     _chatId = chatId;
     _checkTimer = Timer.periodic(
       Config.checkMessagesPeriod,
-      (_) => _fetchMessagePage(),
+      (_) => _fetchMessagePage(notify: true),
     );
 
-    _fillFromCache();
+    // _fillFromCache();
 
-    return _fetchMessagePage(onError: onError);
+    await _fetchMessagePage(onError: onError, notify: false);
+
+    if (_startPageIndex != 1) {
+      await fetchPreviousPage(notify: false);
+    }
+
+    if (_endPageIndex != _lastPageIndex) {
+      await fetchNextPage(notify: false);
+    }
+
+    notifyListeners();
+  }
+
+  @override
+  Future<void> refreshCurrentPage() async {
+    _checkTimer?.cancel();
+    _checkTimer = Timer.periodic(
+      Config.checkMessagesPeriod,
+      (_) => _fetchMessagePage(notify: true),
+    );
+
+    return _fetchMessagePage(notify: true);
   }
 
   @override
@@ -92,29 +115,36 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     _messages = [];
   }
 
-  @override
-  double? getScrollOffset(int chatId) {
-    return _scrollOffsetCache[chatId];
-  }
+  // @override
+  // double? getScrollOffset(int chatId) {
+  //   return _scrollOffsetCache[chatId];
+  // }
+  //
+  // @override
+  // void setScrollOffset(int chatId, double? value) {
+  //   _scrollOffsetCache[chatId] = value;
+  // }
 
   @override
-  void setScrollOffset(int chatId, double? value) {
-    _scrollOffsetCache[chatId] = value;
-  }
-
-  @override
-  Future<void> fetchPreviousPage({ErrorHandler? onError}) {
+  Future<void> fetchPreviousPage({
+    ErrorHandler? onError,
+    bool notify = true,
+  }) {
     final start = _startPageIndex;
     if (start == null || start <= 1) return Future.value();
 
     return _fetchMessagePage(
       pageIndex: max(start - 1, 1),
       onError: onError,
+      notify: notify,
     );
   }
 
   @override
-  Future<void> fetchNextPage({ErrorHandler? onError}) {
+  Future<void> fetchNextPage({
+    ErrorHandler? onError,
+    bool notify = true,
+  }) {
     final end = _endPageIndex;
     final last = _lastPageIndex;
     if (end == null || last == null) return Future.value();
@@ -122,6 +152,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     return _fetchMessagePage(
       pageIndex: min(end + 1, last),
       onError: onError,
+      notify: notify,
     );
   }
 
@@ -139,28 +170,29 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
   @override
   void clearCache() {
-    _messageCache.clear();
-    _scrollOffsetCache.clear();
-    _pageIndexCache.clear();
+    // _messageCache.clear();
+    // _scrollOffsetCache.clear();
+    // _pageIndexCache.clear();
   }
 
-  void _fillFromCache() {
-    final fromCache = _messageCache[_chatId];
-    if (fromCache != null) {
-      _messages = fromCache;
-
-      final indexes = _pageIndexCache[_chatId];
-      _startPageIndex = indexes?.$1;
-      _endPageIndex = indexes?.$2;
-      _lastPageIndex = indexes?.$3;
-
-      notifyListeners();
-    }
-  }
+  // void _fillFromCache() {
+  //   final fromCache = _messageCache[_chatId];
+  //   if (fromCache != null) {
+  //     _messages = fromCache;
+  //
+  //     final indexes = _pageIndexCache[_chatId];
+  //     _startPageIndex = indexes?.$1;
+  //     _endPageIndex = indexes?.$2;
+  //     _lastPageIndex = indexes?.$3;
+  //
+  //     // notifyListeners();
+  //   }
+  // }
 
   Future<void> _fetchMessagePage({
     int? pageIndex,
     ErrorHandler? onError,
+    required bool notify,
   }) async {
     final chatId = _chatId;
     if (chatId == null) {
@@ -180,7 +212,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
       debugPrint('!!! end page: $_endPageIndex');
       debugPrint('!!! last page: $_lastPageIndex');
 
-      notifyListeners();
+      if (notify) notifyListeners();
     } catch (e, st) {
       onError?.call(e, st);
     }
@@ -190,7 +222,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
     final chatId = _chatId;
     if (chatId == null) return;
 
-    _messageCache[chatId] = _messages;
+    // _messageCache[chatId] = _messages;
   }
 
   void _updatePageIndexes(int chatId, ChatPageApiModel page) {
@@ -209,6 +241,6 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
     _lastPageIndex = last;
 
-    _pageIndexCache[chatId] = (_startPageIndex, _endPageIndex, _lastPageIndex);
+    // _pageIndexCache[chatId] = (_startPageIndex, _endPageIndex, _lastPageIndex);
   }
 }

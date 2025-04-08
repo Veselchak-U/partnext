@@ -49,6 +49,8 @@ class MessageListScreenVm {
   final _scrollDebouncer = Debouncer(milliseconds: 50);
   final _onMessageReadDebouncer = Debouncer(milliseconds: 1000);
 
+  bool _isFirstUpdate = true;
+
   Future<void> _init() async {
     _setLoading(true);
     await _initChat();
@@ -103,18 +105,18 @@ class MessageListScreenVm {
   Future<void> _initMessages() async {
     if (chat.value == null) return;
 
-    final scrollOffset = _messageListProvider.getScrollOffset(chatId) ?? 0;
-    autoScrollController = AutoScrollController(initialScrollOffset: scrollOffset);
+    // final scrollOffset = _messageListProvider.getScrollOffset(chatId) ?? 0;
+    autoScrollController = AutoScrollController(/*initialScrollOffset: scrollOffset*/);
     autoScrollController.addListener(_scrollListener);
 
     _messageListProvider.addListener(_messageListListener);
-    _refreshMessages();
+    _startMessagesChecking();
 
     _chatListProvider.addListener(_chatListListener);
     unreadMessageIndex.value = chat.value?.unreadMessageIndex;
   }
 
-  Future<void> _refreshMessages() async {
+  Future<void> _startMessagesChecking() async {
     _setLoading(true);
     await _messageListProvider.startChecking(
       chatId: chatId,
@@ -128,8 +130,8 @@ class MessageListScreenVm {
     _onError('$e');
   }
 
-  void onRefresh() {
-    _refreshMessages();
+  void refreshCurrentPage() {
+    _messageListProvider.refreshCurrentPage();
   }
 
   void onMessageTap(MessageApiModel item) {
@@ -230,7 +232,7 @@ class MessageListScreenVm {
     try {
       await _messageListProvider.sendMessage(text, attachmentFiles, attachmentsType);
 
-      _refreshMessages();
+      refreshCurrentPage();
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
@@ -242,9 +244,10 @@ class MessageListScreenVm {
     if (!_context.mounted) return;
     messages.value = _messageListProvider.messages;
 
-    final scrollOffset = _messageListProvider.getScrollOffset(chatId);
-    final isFirstUpdate = scrollOffset == null;
-    if (isFirstUpdate) {
+    // final scrollOffset = _messageListProvider.getScrollOffset(chatId);
+    // final isFirstUpdate = scrollOffset == null;
+    if (_isFirstUpdate) {
+      _isFirstUpdate = false;
       _scrollToUnreadMessage();
     }
   }
@@ -256,7 +259,11 @@ class MessageListScreenVm {
     if (unreadMessageIndex == null) return;
 
     final index = messageList.indexWhere((e) => e.index == unreadMessageIndex);
-    if (index == -1) return;
+    if (index == -1) {
+      _scrollToLastMessage();
+
+      return;
+    }
 
     await autoScrollController.scrollToIndex(
       index,
@@ -264,20 +271,34 @@ class MessageListScreenVm {
       preferPosition: AutoScrollPosition.end,
     );
 
-    _saveScrollOffset();
+    // _saveScrollOffset();
+  }
+
+  Future<void> _scrollToLastMessage() async {
+    final messageList = messages.value ?? [];
+    if (messageList.isEmpty) return;
+
+    final index = messageList.last.index;
+    await autoScrollController.scrollToIndex(
+      index,
+      duration: Duration(milliseconds: 8),
+      preferPosition: AutoScrollPosition.end,
+    );
+
+    // _saveScrollOffset();
   }
 
   void _scrollListener() {
-    _saveScrollOffset();
+    // _saveScrollOffset();
     _fetchNearestPage();
   }
 
-  void _saveScrollOffset() {
-    _scrollDebouncer.run(() {
-      final scrollOffset = autoScrollController.offset;
-      _messageListProvider.setScrollOffset(chatId, scrollOffset);
-    });
-  }
+  // void _saveScrollOffset() {
+  //   _scrollDebouncer.run(() {
+  //     final scrollOffset = autoScrollController.offset;
+  //     _messageListProvider.setScrollOffset(chatId, scrollOffset);
+  //   });
+  // }
 
   void _fetchNearestPage() {
     final scrollOffset = autoScrollController.offset;
