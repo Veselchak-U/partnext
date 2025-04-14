@@ -7,8 +7,8 @@ import 'package:path_provider/path_provider.dart';
 class Config {
   static const appName = 'Partnext';
   static const isProdBuild = bool.fromEnvironment('PROD_BUILD');
-  static const termsAndConditionsUrl = 'https://partnext.bitango.co.il/page/termsOfUse';
-  static const privacyPolicyUrl = 'https://partnext.bitango.co.il/page/termsOfUse';
+  static const termsAndConditionsUrl = 'https://part-next.com/img/terms.pdf';
+  static const privacyPolicyUrl = 'https://part-next.com/img/privacy.pdf';
 
   static const paymentTimeoutDuration = Duration(minutes: 10);
 
