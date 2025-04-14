@@ -69,6 +69,8 @@ class QuestionnaireApiModel {
     String? profileUrl,
     List<FileApiModel>? photos,
   }) {
+    final normalizedProfileUrl = profileUrl?.trim().isEmpty == true ? null : profileUrl;
+
     return QuestionnaireApiModel(
       myPartnershipTypes: myPartnershipTypes ?? this.myPartnershipTypes,
       partnerPartnershipTypes: partnerPartnershipTypes ?? this.partnerPartnershipTypes,
@@ -78,7 +80,7 @@ class QuestionnaireApiModel {
       position: position ?? this.position,
       bio: bio ?? this.bio,
       experience: experience ?? this.experience,
-      profileUrl: profileUrl ?? this.profileUrl,
+      profileUrl: profileUrl != null ? normalizedProfileUrl : this.profileUrl,
       photos: photos ?? this.photos,
     );
   }
