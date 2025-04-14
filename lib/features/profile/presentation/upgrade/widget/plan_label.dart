@@ -26,26 +26,31 @@ class PlanLabel extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.fromLTRB(16, 16, 24, 12).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              plan?.name ?? '',
-              style: AppTextStyles.s16w700,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    plan?.name ?? '',
+                    style: AppTextStyles.s16w700,
+                  ),
+                  Text(
                     '${plan?.price}₪',
                     style: AppTextStyles.s14w400,
                   ),
-                ),
-                Text(
-                  context.l10n.total((plan?.priceTotal ?? 0).toStringAsFixed(2)),
-                  style: AppTextStyles.s14w400,
-                ),
-              ],
+                  Text(
+                    context.l10n.per_month,
+                    style: AppTextStyles.s14w400,
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              context.l10n.total((plan?.priceTotal ?? 0).toStringAsFixed(2)),
+              style: AppTextStyles.s14w400,
             ),
           ],
         ),

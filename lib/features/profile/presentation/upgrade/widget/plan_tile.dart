@@ -54,18 +54,20 @@ class PlanTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [const SizedBox(height: 0)],
+                  ),
                   Text(
                     item.name,
                     style: AppTextStyles.s20w700.copyWith(color: actualTextColor),
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(height: 0),
-                    ],
-                  ),
                   Text(
                     '${item.price}₪',
                     style: AppTextStyles.s20w400.copyWith(color: actualTextColor),
+                  ),
+                  Text(
+                    context.l10n.per_month,
+                    style: AppTextStyles.s16w400.copyWith(color: actualTextColor),
                   ),
                 ],
               ),

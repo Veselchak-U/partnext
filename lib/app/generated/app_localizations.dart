@@ -1102,6 +1102,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אין תמונה'**
   String get no_photo;
+
+  /// No description provided for @per_month.
+  ///
+  /// In he, this message translates to:
+  /// **'לחודש'**
+  String get per_month;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

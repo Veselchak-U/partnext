@@ -519,4 +519,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get no_photo => 'אין תמונה';
+
+  @override
+  String get per_month => 'לחודש';
 }
