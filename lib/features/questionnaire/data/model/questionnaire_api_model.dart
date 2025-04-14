@@ -48,7 +48,7 @@ class QuestionnaireApiModel {
       position != null &&
       bio != null &&
       experience != null &&
-      profileUrl != null &&
+      // profileUrl != null &&
       photos.isNotEmpty;
 
   factory QuestionnaireApiModel.fromJson(Map<String, dynamic> json) {

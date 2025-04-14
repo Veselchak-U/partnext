@@ -91,7 +91,6 @@ class _QuestionnaireFifthPageState extends State<QuestionnaireFifthPage>
                   AppTextField(
                     label: context.l10n.linkedin_profile_url,
                     initialValue: vm.questionnaire.profileUrl,
-                    validator: InputValidators.emptyValidator,
                     onChanged: vm.onProfileUrlChanged,
                   ),
                 ],
