@@ -74,10 +74,10 @@ class MessageListScreen extends StatelessWidget {
             ],
           ),
           actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: vm.openChatMenu,
-            ),
+            // IconButton(
+            //   icon: Icon(Icons.more_vert),
+            //   onPressed: vm.openChatMenu,
+            // ),
           ],
           body: ValueListenableBuilder(
             valueListenable: vm.messages,

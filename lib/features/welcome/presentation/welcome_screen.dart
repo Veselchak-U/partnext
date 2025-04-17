@@ -9,6 +9,7 @@ import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/buttons/change_locale_button.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/features/welcome/presentation/widgets/welcome_body.dart';
 
@@ -89,6 +90,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
+          ),
+          PositionedDirectional(
+            top: MediaQuery.of(context).viewPadding.top,
+            end: 8.w,
+            child: ChangeLocaleButton(isDebug: false),
           ),
         ],
       ),

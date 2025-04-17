@@ -184,7 +184,7 @@
       }
     }
   },
-  "chats_ad_title": "+99 Potential business opportunities",
+  "chats_ad_title": "Potential business opportunities",
   "chats_ad_desc": "Start a business conversation with them now!",
   "no_messages": "You don't have any messages yet.",
   "you": "You",
@@ -195,5 +195,6 @@
   "your_report_will_be_reviewed": "Your reported profile will be reviewed\nand action will be taken.",
   "back_to_chats": "Back to Chats",
   "no_photo": "No photo",
-  "per_month": "per month"
+  "per_month": "per month",
+  "per_week": "per week"
 }

@@ -5,6 +5,7 @@ import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
+import 'package:partnext/common/buttons/change_locale_button.dart';
 import 'package:partnext/common/buttons/common_button.dart';
 import 'package:partnext/common/form_fields/app_check_box.dart';
 import 'package:partnext/common/form_fields/app_phone_field.dart';
@@ -34,107 +35,116 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final vm = context.read<SignUpScreenVm>();
 
-    return GradientLayout(
-      body: Form(
-        key: vm.formKey,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 32).w,
-          child: Column(
-            children: [
-              SizedBox(height: 9.h),
-              Text(
-                context.l10n.registration,
-                style: AppTextStyles.s20w700,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 52.h),
-              AppTextField(
-                label: context.l10n.full_name,
-                autofocus: true,
-                validator: InputValidators.emptyValidator,
-                onChanged: vm.onFullNameChanged,
-              ),
-              SizedBox(height: 16.h),
-              AppPhoneField(
-                label: context.l10n.phone_number,
-                onChanged: vm.onPhoneChanged,
-              ),
-              SizedBox(height: 112.h),
-              ValueListenableBuilder(
-                valueListenable: vm.loading,
-                builder: (context, loading, _) {
-                  return CommonButton(
-                    label: context.l10n.next,
-                    iconPath: Assets.icons.send.path,
-                    onTap: vm.onNext,
-                    loading: loading,
-                  );
-                },
-              ),
-              SizedBox(height: 17.h),
-              ValueListenableBuilder(
-                valueListenable: vm.termsConfirmed,
-                builder: (context, termsConfirmed, _) {
-                  return ValueListenableBuilder(
-                    valueListenable: vm.termsMustAccepted,
-                    builder: (context, termsMustAccepted, _) {
-                      final foregroundColor = termsMustAccepted ? AppColors.red : null;
-
-                      return AppCheckBox(
-                        checked: termsConfirmed,
-                        color: foregroundColor,
-                        onChanged: vm.onTermsConfirmedChanged,
-                        labelWidget: Text.rich(
-                          style: AppTextStyles.s12w400.copyWith(color: foregroundColor),
-                          TextSpan(
-                            children: [
-                              TextSpan(text: '${context.l10n.i_accept} '),
-                              TextSpan(
-                                text: context.l10n.terms_and_conditions,
-                                style: AppTextStyles.s12w400.copyWith(
-                                  color: foregroundColor ?? AppColors.primaryLight,
-                                  decoration: TextDecoration.underline,
-                                ),
-                                recognizer: TapGestureRecognizer()..onTap = vm.openTermsAndConditions,
-                              ),
-                              TextSpan(text: ' ${context.l10n.and} '),
-                              TextSpan(
-                                text: context.l10n.privacy_policy,
-                                style: AppTextStyles.s12w400.copyWith(
-                                  color: foregroundColor ?? AppColors.primaryLight,
-                                  decoration: TextDecoration.underline,
-                                ),
-                                recognizer: TapGestureRecognizer()..onTap = vm.openPrivacyPolicy,
-                              ),
-                            ],
-                          ),
-                        ),
+    return Stack(
+      children: [
+        GradientLayout(
+          body: Form(
+            key: vm.formKey,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 32).w,
+              child: Column(
+                children: [
+                  SizedBox(height: 9.h),
+                  Text(
+                    context.l10n.registration,
+                    style: AppTextStyles.s20w700,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 52.h),
+                  AppTextField(
+                    label: context.l10n.full_name,
+                    autofocus: true,
+                    validator: InputValidators.emptyValidator,
+                    onChanged: vm.onFullNameChanged,
+                  ),
+                  SizedBox(height: 16.h),
+                  AppPhoneField(
+                    label: context.l10n.phone_number,
+                    onChanged: vm.onPhoneChanged,
+                  ),
+                  SizedBox(height: 112.h),
+                  ValueListenableBuilder(
+                    valueListenable: vm.loading,
+                    builder: (context, loading, _) {
+                      return CommonButton(
+                        label: context.l10n.next,
+                        iconPath: Assets.icons.send.path,
+                        onTap: vm.onNext,
+                        loading: loading,
                       );
                     },
-                  );
-                },
-              ),
-              SizedBox(height: 27.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    context.l10n.already_have_account,
-                    style: AppTextStyles.s14w400,
                   ),
-                  TextButton(
-                    onPressed: vm.goLogin,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8).w,
-                      child: Text(context.l10n.login),
-                    ),
+                  SizedBox(height: 17.h),
+                  ValueListenableBuilder(
+                    valueListenable: vm.termsConfirmed,
+                    builder: (context, termsConfirmed, _) {
+                      return ValueListenableBuilder(
+                        valueListenable: vm.termsMustAccepted,
+                        builder: (context, termsMustAccepted, _) {
+                          final foregroundColor = termsMustAccepted ? AppColors.red : null;
+
+                          return AppCheckBox(
+                            checked: termsConfirmed,
+                            color: foregroundColor,
+                            onChanged: vm.onTermsConfirmedChanged,
+                            labelWidget: Text.rich(
+                              style: AppTextStyles.s12w400.copyWith(color: foregroundColor),
+                              TextSpan(
+                                children: [
+                                  TextSpan(text: '${context.l10n.i_accept} '),
+                                  TextSpan(
+                                    text: context.l10n.terms_and_conditions,
+                                    style: AppTextStyles.s12w400.copyWith(
+                                      color: foregroundColor ?? AppColors.primaryLight,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()..onTap = vm.openTermsAndConditions,
+                                  ),
+                                  TextSpan(text: ' ${context.l10n.and} '),
+                                  TextSpan(
+                                    text: context.l10n.privacy_policy,
+                                    style: AppTextStyles.s12w400.copyWith(
+                                      color: foregroundColor ?? AppColors.primaryLight,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()..onTap = vm.openPrivacyPolicy,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(height: 27.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        context.l10n.already_have_account,
+                        style: AppTextStyles.s14w400,
+                      ),
+                      TextButton(
+                        onPressed: vm.goLogin,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8).w,
+                          child: Text(context.l10n.login),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
+        PositionedDirectional(
+          top: MediaQuery.of(context).viewPadding.top,
+          end: 8.w,
+          child: ChangeLocaleButton(isDebug: false),
+        ),
+      ],
     );
   }
 }

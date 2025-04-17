@@ -488,7 +488,7 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get chats_ad_title => '99+ הזדמנויות עסקיות פוטנציאליות';
+  String get chats_ad_title => 'הזדמנויות עסקיות פוטנציאליות';
 
   @override
   String get chats_ad_desc => 'התחל איתם שיחה עסקית עכשיו!';
@@ -522,4 +522,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get per_month => 'לחודש';
+
+  @override
+  String get per_week => 'בשבוע';
 }

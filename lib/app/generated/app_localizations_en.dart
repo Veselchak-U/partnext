@@ -488,7 +488,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get chats_ad_title => '+99 Potential business opportunities';
+  String get chats_ad_title => 'Potential business opportunities';
 
   @override
   String get chats_ad_desc => 'Start a business conversation with them now!';
@@ -522,4 +522,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get per_month => 'per month';
+
+  @override
+  String get per_week => 'per week';
 }

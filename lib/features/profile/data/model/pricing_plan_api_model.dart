@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 
 part 'pricing_plan_api_model.g.dart';
 
@@ -35,4 +36,6 @@ class PricingPlanApiModel {
 
   @override
   int get hashCode => id.hashCode;
+
+  String get periodLabel => (name.toLowerCase().contains('week') ? l10n?.per_week : l10n?.per_month) ?? '';
 }

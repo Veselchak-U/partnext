@@ -66,7 +66,7 @@ class PlanTile extends StatelessWidget {
                     style: AppTextStyles.s20w400.copyWith(color: actualTextColor),
                   ),
                   Text(
-                    context.l10n.per_month,
+                    item.periodLabel,
                     style: AppTextStyles.s16w400.copyWith(color: actualTextColor),
                   ),
                 ],

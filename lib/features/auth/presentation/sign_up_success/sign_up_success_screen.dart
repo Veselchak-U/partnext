@@ -64,12 +64,11 @@ class SignUpSuccessScreen extends StatelessWidget {
               ],
             ),
           ),
-          if (!isProdBuild)
-            Positioned(
-              top: MediaQuery.of(context).viewPadding.top,
-              right: 0,
-              child: ChangeLocaleButton(),
-            ),
+          Positioned(
+            top: MediaQuery.of(context).viewPadding.top,
+            right: 0,
+            child: ChangeLocaleButton(),
+          ),
         ],
       ),
     );

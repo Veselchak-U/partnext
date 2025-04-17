@@ -1040,7 +1040,7 @@ abstract class AppLocalizations {
   /// No description provided for @chats_ad_title.
   ///
   /// In he, this message translates to:
-  /// **'99+ הזדמנויות עסקיות פוטנציאליות'**
+  /// **'הזדמנויות עסקיות פוטנציאליות'**
   String get chats_ad_title;
 
   /// No description provided for @chats_ad_desc.
@@ -1108,6 +1108,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'לחודש'**
   String get per_month;
+
+  /// No description provided for @per_week.
+  ///
+  /// In he, this message translates to:
+  /// **'בשבוע'**
+  String get per_week;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

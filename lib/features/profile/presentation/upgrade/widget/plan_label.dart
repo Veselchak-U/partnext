@@ -6,15 +6,16 @@ import 'package:partnext/app/style/app_text_styles.dart';
 import 'package:partnext/features/profile/data/model/pricing_plan_api_model.dart';
 
 class PlanLabel extends StatelessWidget {
-  final PricingPlanApiModel? plan;
+  final PricingPlanApiModel? item;
 
   const PlanLabel(
-    this.plan, {
+    this.item, {
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final plan = item;
     if (plan == null) return const SizedBox.shrink();
 
     final borderRadius = BorderRadius.circular(8.r);
@@ -34,22 +35,22 @@ class PlanLabel extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    plan?.name ?? '',
+                    plan.name,
                     style: AppTextStyles.s16w700,
                   ),
                   Text(
-                    '${plan?.price}₪',
+                    '${plan.price}₪',
                     style: AppTextStyles.s14w400,
                   ),
                   Text(
-                    context.l10n.per_month,
+                    plan.periodLabel,
                     style: AppTextStyles.s14w400,
                   ),
                 ],
               ),
             ),
             Text(
-              context.l10n.total((plan?.priceTotal ?? 0).toStringAsFixed(2)),
+              context.l10n.total(plan.priceTotal.toStringAsFixed(2)),
               style: AppTextStyles.s14w400,
             ),
           ],
