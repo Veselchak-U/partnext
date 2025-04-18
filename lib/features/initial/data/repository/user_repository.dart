@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
 
@@ -9,6 +11,10 @@ abstract interface class UserRepository {
   Future<UserApiModel?> getUser();
 
   Future<void> setUser(UserApiModel? user);
+
+  Future<Locale?> getLocale();
+
+  Future<void> setLocale(Locale? locale);
 }
 
 class UserRepositoryImpl implements UserRepository {
@@ -34,5 +40,15 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> setUser(UserApiModel? user) async {
     await _userLocalDatasource.setUser(user);
+  }
+
+  @override
+  Future<Locale?> getLocale() {
+    return _userLocalDatasource.getLocale();
+  }
+
+  @override
+  Future<void> setLocale(Locale? locale) {
+    return _userLocalDatasource.setLocale(locale);
   }
 }

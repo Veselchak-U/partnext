@@ -9,6 +9,7 @@ import 'package:partnext/app/di.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/app/style/app_theme.dart';
 import 'package:partnext/config.dart';
+import 'package:partnext/features/initial/data/repository/user_repository.dart';
 
 void main() {
   runZonedGuarded(
@@ -71,5 +72,8 @@ Future<void> _initializeApp() async {
 
   // Controller.observer = StateControllerObserver();
 
-  runApp(const App());
+  final savedLocale = await DI.get<UserRepository>().getLocale();
+  runApp(App(
+    savedLocale,
+  ));
 }
