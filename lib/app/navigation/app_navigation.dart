@@ -22,6 +22,7 @@ import 'package:partnext/features/auth/presentation/sign_up_success/sign_up_succ
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
+import 'package:partnext/features/chat/domain/use_case/send_message_use_case.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen.dart';
 import 'package:partnext/features/chat/presentation/chat_list_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/message_list/message_list_screen.dart';
@@ -325,6 +326,7 @@ class AppNavigation {
                         DI.get<ChatListProvider>(),
                         DI.get<UserRepository>(),
                         DI.get<NavBarIndexProvider>(),
+                        DI.get<SendMessageUseCase>(),
                         partner: state.extra as PartnerApiModel,
                       ),
                       dispose: (context, vm) => vm.dispose(),

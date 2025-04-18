@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
-import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
-import 'package:partnext/features/chat/domain/use_case/start_conversation_use_case.dart';
 
 abstract interface class ChatListProvider with ChangeNotifier {
   List<ChatApiModel> get chats;
@@ -20,12 +17,16 @@ abstract interface class ChatListProvider with ChangeNotifier {
 
   void stopChecking();
 
-  Future<ChatApiModel> startConversation(
+  Future<ChatApiModel> createChat(
     int partnerId,
-    String text,
-    List<File> attachments,
-    RemoteFileType attachmentsType,
   );
+
+  // Future<ChatApiModel> startConversation(
+  //   int partnerId,
+  //   String text,
+  //   List<File> attachments,
+  //   RemoteFileType attachmentsType,
+  // );
 
   Future<void> markMessageAsRead({
     required int chatId,
@@ -37,11 +38,11 @@ abstract interface class ChatListProvider with ChangeNotifier {
 
 class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   final ChatRepository _chatRepository;
-  final StartConversationUseCase _startConversationUseCase;
+  // final StartConversationUseCase _startConversationUseCase;
 
   ChatListProviderImpl(
     this._chatRepository,
-    this._startConversationUseCase,
+    // this._startConversationUseCase,
   );
 
   List<ChatApiModel> _chatCache = [];
@@ -73,17 +74,25 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   }
 
   @override
-  Future<ChatApiModel> startConversation(
-    int partnerId,
-    String text,
-    List<File> attachments,
-    RemoteFileType attachmentsType,
-  ) async {
-    final chat = await _startConversationUseCase(partnerId, text, attachments, attachmentsType);
+  Future<ChatApiModel> createChat(int partnerId) async {
+    final chat = await _chatRepository.createChat(partnerId);
     _refreshChats();
 
     return chat;
   }
+
+  // @override
+  // Future<ChatApiModel> startConversation(
+  //   int partnerId,
+  //   String text,
+  //   List<File> attachments,
+  //   RemoteFileType attachmentsType,
+  // ) async {
+  //   final chat = await _startConversationUseCase(partnerId, text, attachments, attachmentsType);
+  //   _refreshChats();
+  //
+  //   return chat;
+  // }
 
   Future<void> _refreshChats({
     Function(Object, StackTrace)? onError,

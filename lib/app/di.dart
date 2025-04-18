@@ -20,7 +20,6 @@ import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/domain/use_case/send_message_use_case.dart';
-import 'package:partnext/features/chat/domain/use_case/start_conversation_use_case.dart';
 import 'package:partnext/features/file/data/datasource/file_datasource.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
@@ -163,10 +162,10 @@ class DI {
           _sl<FileRepository>(),
           _sl<ChatRepository>(),
         ));
-    _sl.registerFactory(() => StartConversationUseCase(
-          _sl<ChatRepository>(),
-          _sl<SendMessageUseCase>(),
-        ));
+    // _sl.registerFactory(() => StartConversationUseCase(
+    //       _sl<ChatRepository>(),
+    //       _sl<SendMessageUseCase>(),
+    //     ));
 
     _sl.registerFactory(() => InitialController(
           _sl<UserRepository>(),
@@ -181,7 +180,7 @@ class DI {
         ));
     _sl.registerLazySingleton<ChatListProvider>(() => ChatListProviderImpl(
           _sl<ChatRepository>(),
-          _sl<StartConversationUseCase>(),
+          // _sl<StartConversationUseCase>(),
         ));
     _sl.registerLazySingleton<MessageListProvider>(() => MessageListProviderImpl(
           _sl<ChatRepository>(),

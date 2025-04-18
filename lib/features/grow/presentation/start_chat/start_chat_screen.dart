@@ -54,7 +54,7 @@ class StartChatScreen extends StatelessWidget {
                     const StartChatAdviceBlock(),
                     SizedBox(height: 16.h),
                     AppMessageField(
-                      onSend: vm.onStartConversation,
+                      onSend: vm.onSendMessage,
                     ),
                     KeyboardVisibilityBuilder(
                       builder: (context, isKeyboardVisible) {
