@@ -19,6 +19,8 @@ abstract interface class ProfileDatasource {
   Future<String> updatePricingPlan(int planId);
 
   Future<void> cancelPricingPlan();
+
+  Future<void> deleteUserProfile();
 }
 
 class ProfileDatasourceImpl implements ProfileDatasource {
@@ -149,6 +151,20 @@ class ProfileDatasourceImpl implements ProfileDatasource {
       uri,
       parser: (response) {
         if (response.statusCode == HttpStatus.ok) return;
+
+        throw ApiException(response);
+      },
+    );
+  }
+
+  @override
+  Future<void> deleteUserProfile() {
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.userProfile}');
+
+    return _apiClient.delete(
+      uri,
+      parser: (response) {
+        if (response.statusCode == HttpStatus.noContent) return;
 
         throw ApiException(response);
       },

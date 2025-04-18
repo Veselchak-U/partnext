@@ -20,6 +20,8 @@ abstract interface class ProfileRepository {
   Future<String> updatePricingPlan(int planId);
 
   Future<void> cancelPricingPlan();
+
+  Future<void> deleteUserProfile();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -71,5 +73,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> cancelPricingPlan() {
     return _profileDatasource.cancelPricingPlan();
+  }
+
+  @override
+  Future<void> deleteUserProfile() {
+    return _profileDatasource.deleteUserProfile();
   }
 }

@@ -1114,6 +1114,24 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'בשבוע'**
   String get per_week;
+
+  /// No description provided for @delete_account.
+  ///
+  /// In he, this message translates to:
+  /// **'מחק חשבון'**
+  String get delete_account;
+
+  /// No description provided for @sure_to_delete_account.
+  ///
+  /// In he, this message translates to:
+  /// **'האם אתה מאשר שברצונך למחוק לצמיתות את חשבונך ואת כל הנתונים הקשורים אליו?\n\nשחזור נתונים יהיה בלתי אפשרי לאחר המחיקה!'**
+  String get sure_to_delete_account;
+
+  /// No description provided for @delete.
+  ///
+  /// In he, this message translates to:
+  /// **'מחק'**
+  String get delete;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

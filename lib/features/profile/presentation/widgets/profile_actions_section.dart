@@ -15,7 +15,7 @@ class ProfileActionsSection extends StatelessWidget {
     final vm = context.read<ProfileScreenVm>();
 
     return Container(
-      height: 450.h,
+      height: 550.h,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(25).r),
@@ -51,6 +51,13 @@ class ProfileActionsSection extends StatelessWidget {
             iconAsset: Assets.icons.navLogout.path,
             label: context.l10n.logout,
             onTap: vm.logOut,
+          ),
+          SizedBox(height: 20.h),
+          NavigationItemWidget(
+            iconAsset: Assets.icons.deleteForever.path,
+            label: context.l10n.delete_account,
+            isDanger: true,
+            onTap: vm.deleteAccount,
           ),
         ],
       ),

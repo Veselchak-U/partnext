@@ -8,6 +8,7 @@ import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/update_user_avatar_use_case.dart';
@@ -16,6 +17,7 @@ import 'package:partnext/features/questionnaire/presentation/questionnaire_scree
 class ProfileScreenVm {
   final BuildContext _context;
   final UserRepository _userRepository;
+  final ProfileRepository _profileRepository;
   final RefreshUserProfileUseCase _refreshUserProfileUseCase;
   final UpdateUserAvatarUseCase _updateUserAvatarUseCase;
   final LogoutUseCase _logoutUseCase;
@@ -23,6 +25,7 @@ class ProfileScreenVm {
   ProfileScreenVm(
     this._context,
     this._userRepository,
+    this._profileRepository,
     this._refreshUserProfileUseCase,
     this._updateUserAvatarUseCase,
     this._logoutUseCase,
@@ -111,6 +114,30 @@ class ProfileScreenVm {
 
     _setLoading(true);
     try {
+      await _logoutUseCase();
+
+      _goInitialScreen();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
+    _setLoading(false);
+  }
+
+  Future<void> deleteAccount() async {
+    final dialogResult = await AppDialogs.showConfirmationDialog(
+      context: _context,
+      title: _context.l10n.delete_account,
+      description: _context.l10n.sure_to_delete_account,
+      confirmLabel: _context.l10n.delete,
+      isDanger: true,
+    );
+    if (dialogResult != true) return;
+
+    _setLoading(true);
+    try {
+      await _profileRepository.deleteUserProfile();
+
       await _logoutUseCase();
 
       _goInitialScreen();

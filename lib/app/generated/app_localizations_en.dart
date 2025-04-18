@@ -525,4 +525,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get per_week => 'per week';
+
+  @override
+  String get delete_account => 'Delete account';
+
+  @override
+  String get sure_to_delete_account => 'Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!';
+
+  @override
+  String get delete => 'Delete';
 }

@@ -9,17 +9,20 @@ class NavigationItemWidget extends StatelessWidget {
   final String iconAsset;
   final String label;
   final VoidCallback? onTap;
+  final bool? isDanger;
 
   const NavigationItemWidget({
     required this.iconAsset,
     required this.label,
     this.onTap,
+    this.isDanger,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = AppColors.primary.withValues(alpha: onTap == null ? 0.3 : 1);
+    final enabled = onTap != null;
+    final foregroundColor = (isDanger == true ? AppColors.red : AppColors.primary).withValues(alpha: enabled ? 1 : 0.3);
 
     return Material(
       child: InkWell(

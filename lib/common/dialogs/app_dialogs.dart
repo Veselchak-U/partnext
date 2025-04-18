@@ -15,12 +15,17 @@ class AppDialogs {
     bool showCancelButton = true,
     String? cancelLabel,
     bool? isDismissible,
+    bool? isDanger,
   }) {
+    final cancelColor = AppColors.primary;
+    final confirmColor = isDanger == true ? AppColors.red : AppColors.primary;
+
     return showAppDialog<bool>(
       context: context,
       isDismissible: isDismissible,
       title: title,
       description: description,
+      isDanger: isDanger,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -35,7 +40,7 @@ class AppDialogs {
                   child: Text(
                     cancelLabel ?? context.l10n.cancel,
                     style: AppTextStyles.s14w400.copyWith(
-                      color: AppColors.primary,
+                      color: cancelColor,
                       decoration: TextDecoration.none,
                     ),
                   ),
@@ -50,7 +55,7 @@ class AppDialogs {
               child: Text(
                 confirmLabel ?? context.l10n.ok,
                 style: AppTextStyles.s14w400.copyWith(
-                  color: AppColors.primary,
+                  color: confirmColor,
                   decoration: TextDecoration.none,
                 ),
               ),
@@ -104,8 +109,10 @@ class AppDialogs {
     required Widget body,
     bool? isDismissible,
     EdgeInsetsGeometry? padding,
+    bool? isDanger,
   }) {
     final theme = Theme.of(context);
+    final titleStyle = isDanger == true ? AppTextStyles.s24w400.copyWith(color: AppColors.red) : AppTextStyles.s24w400;
 
     return showDialog<T>(
       context: context,
@@ -125,7 +132,7 @@ class AppDialogs {
                   if (title?.isNotEmpty == true)
                     Text(
                       title ?? '',
-                      style: AppTextStyles.s24w400,
+                      style: titleStyle,
                     ),
                   if (description?.isNotEmpty == true)
                     Padding(

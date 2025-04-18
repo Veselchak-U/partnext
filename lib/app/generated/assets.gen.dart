@@ -48,6 +48,10 @@ class $AssetsIconsGen {
   SvgGenImage get closeFilled =>
       const SvgGenImage('assets/icons/close_filled.svg');
 
+  /// File path: assets/icons/delete_forever.svg
+  SvgGenImage get deleteForever =>
+      const SvgGenImage('assets/icons/delete_forever.svg');
+
   /// File path: assets/icons/document.svg
   SvgGenImage get document => const SvgGenImage('assets/icons/document.svg');
 
@@ -137,6 +141,7 @@ class $AssetsIconsGen {
         checkCircle,
         close,
         closeFilled,
+        deleteForever,
         document,
         dropdownClosed,
         dropdownExpanded,

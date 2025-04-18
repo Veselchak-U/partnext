@@ -525,4 +525,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get per_week => 'בשבוע';
+
+  @override
+  String get delete_account => 'מחק חשבון';
+
+  @override
+  String get sure_to_delete_account => 'האם אתה מאשר שברצונך למחוק לצמיתות את חשבונך ואת כל הנתונים הקשורים אליו?\n\nשחזור נתונים יהיה בלתי אפשרי לאחר המחיקה!';
+
+  @override
+  String get delete => 'מחק';
 }

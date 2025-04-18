@@ -196,5 +196,8 @@
   "back_to_chats": "Back to Chats",
   "no_photo": "No photo",
   "per_month": "per month",
-  "per_week": "per week"
+  "per_week": "per week",
+  "delete_account": "Delete account",
+  "sure_to_delete_account": "Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!",
+  "delete": "Delete"
 }

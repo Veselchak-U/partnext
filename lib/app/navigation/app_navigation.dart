@@ -347,6 +347,7 @@ class AppNavigation {
                   create: (context) => ProfileScreenVm(
                     context,
                     DI.get<UserRepository>(),
+                    DI.get<ProfileRepository>(),
                     DI.get<RefreshUserProfileUseCase>(),
                     DI.get<UpdateUserAvatarUseCase>(),
                     DI.get<LogoutUseCase>(),
