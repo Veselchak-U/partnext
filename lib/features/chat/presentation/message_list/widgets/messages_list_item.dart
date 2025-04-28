@@ -11,14 +11,12 @@ class MessagesListItem extends StatelessWidget {
   final MessageApiModel message;
   final bool isUnread;
   final VoidCallback onTap;
-  final VoidCallback onLongPress;
   final VoidCallback onVisible;
 
   const MessagesListItem(
     this.message, {
     required this.isUnread,
     required this.onTap,
-    required this.onLongPress,
     required this.onVisible,
     super.key,
   });
@@ -50,7 +48,6 @@ class MessagesListItem extends StatelessWidget {
                   child: InkWell(
                     borderRadius: borderRadius,
                     onTap: onTap,
-                    onLongPress: onLongPress,
                     child: Column(
                       crossAxisAlignment: crossAxisAlignment,
                       children: [

@@ -27,9 +27,11 @@ abstract interface class ChatRepository {
 
   Future<void> reportMessage({
     required int chatId,
-    required int messageId,
     required String description,
+    int? messageId,
   });
+
+  Future<void> deleteChat(int chatId);
 }
 
 class ChatRepositoryImpl implements ChatRepository {
@@ -82,13 +84,18 @@ class ChatRepositoryImpl implements ChatRepository {
   @override
   Future<void> reportMessage({
     required int chatId,
-    required int messageId,
     required String description,
+    int? messageId,
   }) {
     return _chatDatasource.reportMessage(
       chatId: chatId,
-      messageId: messageId,
       description: description,
+      messageId: messageId,
     );
+  }
+
+  @override
+  Future<void> deleteChat(int chatId) {
+    return _chatDatasource.deleteChat(chatId);
   }
 }

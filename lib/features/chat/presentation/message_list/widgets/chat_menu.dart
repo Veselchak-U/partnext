@@ -4,12 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:partnext/app/generated/assets.gen.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/style/app_colors.dart';
-import 'package:partnext/features/chat/presentation/message_list/widgets/message_menu_item.dart';
+import 'package:partnext/features/chat/presentation/message_list/widgets/chat_menu_item.dart';
 
-class MessageMenu extends StatelessWidget {
+class ChatMenu extends StatelessWidget {
+  final VoidCallback onUnmatch;
   final VoidCallback onReport;
 
-  const MessageMenu({
+  const ChatMenu({
+    required this.onUnmatch,
     required this.onReport,
     super.key,
   });
@@ -26,10 +28,20 @@ class MessageMenu extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            MessageMenuItem(
-              label: context.l10n.report,
-              iconAsset: Assets.icons.checkCircle.path,
+            ChatMenuItem(
+              label: context.l10n.unmatch,
+              iconAsset: Assets.icons.heartMinus.path,
               borderRadius: BorderRadius.vertical(top: Radius.circular(10).r),
+              color: AppColors.red,
+              onTap: () {
+                context.pop();
+                onUnmatch.call();
+              },
+            ),
+            ChatMenuItem(
+              label: context.l10n.report,
+              iconAsset: Assets.icons.report.path,
+              color: AppColors.red,
               onTap: () {
                 context.pop();
                 onReport.call();
@@ -39,11 +51,10 @@ class MessageMenu extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: const Divider(),
             ),
-            MessageMenuItem(
+            ChatMenuItem(
               label: context.l10n.cancel,
-              iconAsset: Assets.icons.close.path,
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(10).r),
-              color: AppColors.red,
+              color: AppColors.primary,
               onTap: context.pop,
             ),
           ],

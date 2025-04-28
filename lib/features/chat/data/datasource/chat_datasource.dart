@@ -33,9 +33,11 @@ abstract interface class ChatDatasource {
 
   Future<void> reportMessage({
     required int chatId,
-    required int messageId,
     required String description,
+    int? messageId,
   });
+
+  Future<void> deleteChat(int chatId);
 }
 
 class ChatDatasourceImpl implements ChatDatasource {
@@ -231,8 +233,8 @@ class ChatDatasourceImpl implements ChatDatasource {
   @override
   Future<void> reportMessage({
     required int chatId,
-    required int messageId,
     required String description,
+    int? messageId,
   }) {
     // return Future.delayed(Duration(seconds: 1));
 
@@ -242,8 +244,25 @@ class ChatDatasourceImpl implements ChatDatasource {
       uri,
       body: {
         "chat_id": chatId,
-        "message_id": messageId,
+        if (messageId != null) "message_id": messageId,
         "description": description,
+      },
+      parser: (response) {
+        if (response.statusCode == HttpStatus.ok) return;
+
+        throw ApiException(response);
+      },
+    );
+  }
+
+  @override
+  Future<void> deleteChat(int chatId) {
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.deleteChat}');
+
+    return _apiClient.post(
+      uri,
+      body: {
+        "chat_id": chatId,
       },
       parser: (response) {
         if (response.statusCode == HttpStatus.ok) return;

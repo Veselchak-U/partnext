@@ -188,6 +188,8 @@
   "chats_ad_desc": "Start a business conversation with them now!",
   "no_messages": "You don't have any messages yet.",
   "you": "You",
+  "unmatch": "Unmatch",
+  "sure_to_unmatch": "Do you confirm that you want to de-match with the user? \nAll messages and related files of this chat will be permanently deleted.",
   "report": "Report",
   "report_user": "Report User",
   "details": "Details",

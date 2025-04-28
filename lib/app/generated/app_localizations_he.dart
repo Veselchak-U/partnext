@@ -503,6 +503,12 @@ class AppLocalizationsHe extends AppLocalizations {
   String get report => 'דוח';
 
   @override
+  String get unmatch => 'בטל התאמה';
+
+  @override
+  String get sure_to_unmatch => 'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש? \nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות.';
+
+  @override
   String get report_user => 'דווח על משתמש';
 
   @override

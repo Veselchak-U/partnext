@@ -54,7 +54,7 @@ class ProfileActionsSection extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           NavigationItemWidget(
-            iconAsset: Assets.icons.deleteForever.path,
+            iconAsset: Assets.icons.navDelete.path,
             label: context.l10n.delete_account,
             isDanger: true,
             onTap: vm.deleteAccount,

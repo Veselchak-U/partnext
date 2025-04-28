@@ -71,11 +71,18 @@ class $AssetsIconsGen {
   SvgGenImage get handshakeNavBar =>
       const SvgGenImage('assets/icons/handshake_nav_bar.svg');
 
+  /// File path: assets/icons/heart_minus.svg
+  SvgGenImage get heartMinus =>
+      const SvgGenImage('assets/icons/heart_minus.svg');
+
   /// File path: assets/icons/image.svg
   SvgGenImage get image => const SvgGenImage('assets/icons/image.svg');
 
   /// File path: assets/icons/linkedin.svg
   SvgGenImage get linkedin => const SvgGenImage('assets/icons/linkedin.svg');
+
+  /// File path: assets/icons/nav_delete.svg
+  SvgGenImage get navDelete => const SvgGenImage('assets/icons/nav_delete.svg');
 
   /// File path: assets/icons/nav_edit.svg
   SvgGenImage get navEdit => const SvgGenImage('assets/icons/nav_edit.svg');
@@ -112,6 +119,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/reject_92.svg
   SvgGenImage get reject92 => const SvgGenImage('assets/icons/reject_92.svg');
 
+  /// File path: assets/icons/report.svg
+  SvgGenImage get report => const SvgGenImage('assets/icons/report.svg');
+
   /// File path: assets/icons/rocket_nav_bar.svg
   SvgGenImage get rocketNavBar =>
       const SvgGenImage('assets/icons/rocket_nav_bar.svg');
@@ -147,8 +157,10 @@ class $AssetsIconsGen {
         dropdownExpanded,
         handshake40,
         handshakeNavBar,
+        heartMinus,
         image,
         linkedin,
+        navDelete,
         navEdit,
         navFeedback,
         navLogout,
@@ -159,6 +171,7 @@ class $AssetsIconsGen {
         questionMark,
         reject,
         reject92,
+        report,
         rocketNavBar,
         send,
         star40,

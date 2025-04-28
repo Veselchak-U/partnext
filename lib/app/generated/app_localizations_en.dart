@@ -503,6 +503,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get report => 'Report';
 
   @override
+  String get unmatch => 'Unmatch';
+
+  @override
+  String get sure_to_unmatch => 'Do you confirm that you want to de-match with the user? \nAll messages and related files of this chat will be permanently deleted.';
+
+  @override
   String get report_user => 'Report User';
 
   @override

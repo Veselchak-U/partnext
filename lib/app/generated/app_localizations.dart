@@ -1067,6 +1067,18 @@ abstract class AppLocalizations {
   /// **'דוח'**
   String get report;
 
+  /// No description provided for @unmatch.
+  ///
+  /// In he, this message translates to:
+  /// **'בטל התאמה'**
+  String get unmatch;
+
+  /// No description provided for @sure_to_unmatch.
+  ///
+  /// In he, this message translates to:
+  /// **'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש? \nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות.'**
+  String get sure_to_unmatch;
+
   /// No description provided for @report_user.
   ///
   /// In he, this message translates to:

@@ -3,10 +3,10 @@ import 'package:partnext/features/chat/data/model/message_api_model.dart';
 
 class ReportScreenParams {
   final ChatApiModel chat;
-  final MessageApiModel message;
+  final MessageApiModel? message;
 
   ReportScreenParams({
     required this.chat,
-    required this.message,
+    this.message,
   });
 }

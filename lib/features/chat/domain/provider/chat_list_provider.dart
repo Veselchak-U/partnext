@@ -33,6 +33,8 @@ abstract interface class ChatListProvider with ChangeNotifier {
     required MessageApiModel message,
   });
 
+  Future<void> deleteChat(int chatId);
+
   void clearCache();
 }
 
@@ -129,6 +131,12 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     notifyListeners();
 
     _chatRepository.markMessageAsRead(chatId: chatId, messageId: message.id);
+  }
+
+  @override
+  Future<void> deleteChat(int chatId) async {
+    await _chatRepository.deleteChat(chatId);
+    _refreshChats();
   }
 
   @override

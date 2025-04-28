@@ -43,8 +43,8 @@ class ReportScreenVm {
     try {
       await _chatRepository.reportMessage(
         chatId: params.chat.id,
-        messageId: params.message.id,
         description: description,
+        messageId: params.message?.id,
       );
 
       _goReportSuccess();

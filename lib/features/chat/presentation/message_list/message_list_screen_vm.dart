@@ -4,9 +4,11 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_file/open_file.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
+import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/debouncer.dart';
 import 'package:partnext/features/chat/data/model/chat_api_model.dart';
@@ -14,7 +16,7 @@ import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:partnext/features/chat/domain/entity/remote_file_type.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
-import 'package:partnext/features/chat/presentation/message_list/widgets/message_menu.dart';
+import 'package:partnext/features/chat/presentation/message_list/widgets/chat_menu.dart';
 import 'package:partnext/features/chat/presentation/report/report_screen_params.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
@@ -170,9 +172,7 @@ class MessageListScreenVm {
     _setLoading(false);
   }
 
-  void openChatMenu() {}
-
-  void openMessageMenu(MessageApiModel message) {
+  void openChatMenu() {
     final currentChat = chat.value;
     if (currentChat == null) return;
 
@@ -181,17 +181,40 @@ class MessageListScreenVm {
       backgroundColor: Colors.transparent,
       enableDrag: false,
       builder: (context) {
-        return MessageMenu(
-          onReport: () => _openReportScreen(currentChat, message),
+        return ChatMenu(
+          onUnmatch: () => _unmatchPartner(currentChat),
+          onReport: () => _openReportScreen(currentChat),
         );
       },
     );
   }
 
-  void _openReportScreen(ChatApiModel chat, MessageApiModel message) {
+  Future<void> _unmatchPartner(ChatApiModel chat) async {
+    final dialogResult = await AppDialogs.showConfirmationDialog(
+      context: _context,
+      title: _context.l10n.unmatch,
+      description: _context.l10n.sure_to_unmatch,
+      isDanger: true,
+    );
+    if (dialogResult != true) return;
+
+    _setLoading(true);
+    try {
+      await _chatListProvider.deleteChat(chat.id);
+
+      if (!_context.mounted) return;
+      _context.pop();
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+      _setLoading(false);
+    }
+  }
+
+  void _openReportScreen(ChatApiModel chat) {
     _context.pushNamed(
       AppRoute.report.name,
-      extra: ReportScreenParams(chat: chat, message: message),
+      extra: ReportScreenParams(chat: chat),
     );
   }
 

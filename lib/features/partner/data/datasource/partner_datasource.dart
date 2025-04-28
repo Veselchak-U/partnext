@@ -10,13 +10,13 @@ abstract interface class PartnerDatasource {
   Future<List<PartnerApiModel>> getRecommendations();
 
   Future<void> handleRecommendation(
-    int id, {
+    int userId, {
     required bool confirm,
   });
 
   Future<List<PartnerApiModel>> getPartners();
 
-  Future<void> handlePartner(int id, {required bool confirm});
+  Future<void> handlePartner(int userId, {required bool confirm});
 }
 
 class PartnerDatasourceImpl implements PartnerDatasource {

@@ -4,17 +4,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
 
-class MessageMenuItem extends StatelessWidget {
+class ChatMenuItem extends StatelessWidget {
   final String label;
-  final String iconAsset;
   final VoidCallback onTap;
+  final String? iconAsset;
   final Color color;
   final BorderRadius? borderRadius;
 
-  const MessageMenuItem({
+  const ChatMenuItem({
     required this.label,
-    required this.iconAsset,
     required this.onTap,
+    this.iconAsset,
     this.color = AppColors.greenDark,
     this.borderRadius,
     super.key,
@@ -22,6 +22,8 @@ class MessageMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final asset = iconAsset;
+
     return InkWell(
       borderRadius: borderRadius,
       onTap: onTap,
@@ -29,13 +31,14 @@ class MessageMenuItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 16.w,
           children: [
-            SvgPicture.asset(
-              iconAsset,
-              height: 24.h,
-              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-            ),
-            SizedBox(width: 16.w),
+            if (asset != null)
+              SvgPicture.asset(
+                asset,
+                height: 24.h,
+                colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+              ),
             Text(
               label,
               style: AppTextStyles.s14w600.copyWith(color: color),
