@@ -33,7 +33,11 @@ class PartnerDatasourceImpl implements PartnerDatasource {
     //   () => [..._mockedPartners],
     // );
 
-    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.recommendations}');
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.recommendations}').replace(
+      queryParameters: {
+        "only_liked_me": "0",
+      },
+    );
 
     return _apiClient.get(
       uri,
@@ -81,7 +85,11 @@ class PartnerDatasourceImpl implements PartnerDatasource {
     //   () => [..._mockedPartners],
     // );
 
-    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.partners}');
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.partners}').replace(
+      queryParameters: {
+        "only_liked_me": "1",
+      },
+    );
 
     return _apiClient.get(
       uri,
