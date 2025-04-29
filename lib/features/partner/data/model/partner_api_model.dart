@@ -8,11 +8,13 @@ class PartnerApiModel {
   final int userId;
   final String fullName;
   final QuestionnaireApiModel questionnaire;
+  final bool? isLikedMe;
 
   PartnerApiModel({
     required this.userId,
     required this.fullName,
     required this.questionnaire,
+    this.isLikedMe,
   });
 
   factory PartnerApiModel.fromJson(Map<String, dynamic> json) {

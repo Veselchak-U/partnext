@@ -219,6 +219,7 @@ class AppNavigation {
                   lazy: false,
                   create: (context) => HomeScreenVm(
                     context,
+                    DI.get<NavBarIndexProvider>(),
                     DI.get<PartnerRepository>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
@@ -242,6 +243,23 @@ class AppNavigation {
                   child: const ChatListScreen(),
                 ),
                 routes: [
+                  GoRoute(
+                    name: AppRoute.startChat.name,
+                    path: AppRoute.startChat.path,
+                    builder: (context, state) => Provider(
+                      lazy: false,
+                      create: (context) => StartChatScreenVm(
+                        context,
+                        DI.get<ChatListProvider>(),
+                        DI.get<UserRepository>(),
+                        DI.get<NavBarIndexProvider>(),
+                        DI.get<SendMessageUseCase>(),
+                        partner: state.extra as PartnerApiModel,
+                      ),
+                      dispose: (context, vm) => vm.dispose(),
+                      child: const StartChatScreen(),
+                    ),
+                  ),
                   GoRoute(
                     name: AppRoute.messages.name,
                     path: AppRoute.messages.path,
@@ -310,27 +328,11 @@ class AppNavigation {
                       create: (context) => PartnerDetailsScreenVm(
                         context,
                         DI.get<PartnersProvider>(),
+                        DI.get<NavBarIndexProvider>(),
                         partner: state.extra as PartnerApiModel,
                       ),
                       dispose: (context, vm) => vm.dispose(),
                       child: const PartnerDetailsScreen(),
-                    ),
-                  ),
-                  GoRoute(
-                    name: AppRoute.startChat.name,
-                    path: AppRoute.startChat.path,
-                    builder: (context, state) => Provider(
-                      lazy: false,
-                      create: (context) => StartChatScreenVm(
-                        context,
-                        DI.get<ChatListProvider>(),
-                        DI.get<UserRepository>(),
-                        DI.get<NavBarIndexProvider>(),
-                        DI.get<SendMessageUseCase>(),
-                        partner: state.extra as PartnerApiModel,
-                      ),
-                      dispose: (context, vm) => vm.dispose(),
-                      child: const StartChatScreen(),
                     ),
                   ),
                 ],

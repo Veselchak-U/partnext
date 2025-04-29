@@ -12,6 +12,7 @@ PartnerApiModel _$PartnerApiModelFromJson(Map<String, dynamic> json) =>
       fullName: json['full_name'] as String,
       questionnaire: QuestionnaireApiModel.fromJson(
           json['questionnaire'] as Map<String, dynamic>),
+      isLikedMe: json['is_liked_me'] as bool?,
     );
 
 Map<String, dynamic> _$PartnerApiModelToJson(PartnerApiModel instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$PartnerApiModelToJson(PartnerApiModel instance) =>
       'user_id': instance.userId,
       'full_name': instance.fullName,
       'questionnaire': instance.questionnaire,
+      'is_liked_me': instance.isLikedMe,
     };

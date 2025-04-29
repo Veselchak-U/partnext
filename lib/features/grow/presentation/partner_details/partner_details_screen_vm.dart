@@ -5,16 +5,20 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
+import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
+import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 
 class PartnerDetailsScreenVm {
   final BuildContext _context;
   final PartnersProvider _partnersProvider;
+  final NavBarIndexProvider _navBarIndexProvider;
   final PartnerApiModel partner;
 
   PartnerDetailsScreenVm(
     this._context,
-    this._partnersProvider, {
+    this._partnersProvider,
+    this._navBarIndexProvider, {
     required this.partner,
   }) {
     _init();
@@ -59,11 +63,15 @@ class PartnerDetailsScreenVm {
   }
 
   void _startChat() {
-    if (!_context.mounted) return;
-    _context.goNamed(
-      AppRoute.startChat.name,
-      extra: partner,
-    );
+    _navBarIndexProvider.navBarIndex = NavBarTab.chats.index;
+
+    Future.delayed(Duration(milliseconds: 50)).then((_) {
+      if (!_context.mounted) return;
+      _context.goNamed(
+        AppRoute.startChat.name,
+        extra: partner,
+      );
+    });
   }
 
   void _goBack() {

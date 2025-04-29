@@ -36,6 +36,7 @@ class HomeScreen extends StatelessWidget {
                 allowVerticalSwipe: false,
                 swipeAnchor: SwipeAnchor.bottom,
                 controller: vm.swipableController,
+                onSwipeCompleted: vm.onSwipeCompleted,
                 itemCount: recommendations.length,
                 builder: (context, properties) {
                   final item = recommendations[properties.index];
@@ -56,7 +57,6 @@ class HomeScreen extends StatelessWidget {
                     child: RecommendationOverlay(isRight),
                   );
                 },
-                onSwipeCompleted: vm.onSwipeCompleted,
               );
             },
           ),

@@ -118,11 +118,15 @@ class GrowScreenVm {
   }
 
   void _startChat(PartnerApiModel partner) {
-    if (!_context.mounted) return;
-    _context.goNamed(
-      AppRoute.startChat.name,
-      extra: partner,
-    );
+    _navBarIndexProvider.navBarIndex = NavBarTab.chats.index;
+
+    Future.delayed(Duration(milliseconds: 50)).then((_) {
+      if (!_context.mounted) return;
+      _context.goNamed(
+        AppRoute.startChat.name,
+        extra: partner,
+      );
+    });
   }
 
   void goUpgradeScreen() {
