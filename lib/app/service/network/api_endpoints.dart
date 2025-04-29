@@ -242,15 +242,15 @@ class ApiEndpoints {
   static const reportMessage = 'api/v1/member/report_message';
   // +
 
-  /// Delete chat and unmatch partner.
+  /// Unmatch partner and delete chat.
   ///
-  /// Request: POST api/v1/member/delete_chat
+  /// Request: POST api/v1/member/reject_partner
   /// body: {
-  ///   "chat_id": int, // 1
+  ///   "user_id": int, // 1
   /// },
   /// Response:
   /// statusCode: 200
-  static const deleteChat = 'api/v1/member/delete_chat';
+  static const rejectPartner = 'api/v1/member/reject_partner';
 
   // Files
 

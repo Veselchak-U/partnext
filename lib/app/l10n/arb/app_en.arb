@@ -189,7 +189,7 @@
   "no_messages": "You don't have any messages yet.",
   "you": "You",
   "unmatch": "Unmatch",
-  "sure_to_unmatch": "Do you confirm that you want to de-match with the user? \nAll messages and related files of this chat will be permanently deleted.",
+  "sure_to_unmatch": "Do you confirm that you want to de-match with the user?\n\nAll messages and related files of this chat will be permanently deleted!",
   "report": "Report",
   "report_user": "Report User",
   "details": "Details",
@@ -201,5 +201,6 @@
   "per_week": "per week",
   "delete_account": "Delete account",
   "sure_to_delete_account": "Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!",
-  "delete": "Delete"
+  "delete": "Delete",
+  "confirm": "Confirm"
 }

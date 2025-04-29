@@ -41,7 +41,7 @@ class ReportScreenVm {
 
     _setLoading(true);
     try {
-      await _chatRepository.reportMessage(
+      await _chatRepository.report(
         chatId: params.chat.id,
         description: description,
         messageId: params.message?.id,

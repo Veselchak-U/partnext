@@ -194,13 +194,14 @@ class MessageListScreenVm {
       context: _context,
       title: _context.l10n.unmatch,
       description: _context.l10n.sure_to_unmatch,
+      confirmLabel: _context.l10n.confirm,
       isDanger: true,
     );
     if (dialogResult != true) return;
 
     _setLoading(true);
     try {
-      await _chatListProvider.deleteChat(chat.id);
+      await _chatListProvider.deleteChat(chat);
 
       if (!_context.mounted) return;
       _context.pop();

@@ -31,13 +31,13 @@ abstract interface class ChatDatasource {
     required int messageId,
   });
 
-  Future<void> reportMessage({
+  Future<void> report({
     required int chatId,
     required String description,
     int? messageId,
   });
 
-  Future<void> deleteChat(int chatId);
+  Future<void> deleteChat(int userId);
 }
 
 class ChatDatasourceImpl implements ChatDatasource {
@@ -231,7 +231,7 @@ class ChatDatasourceImpl implements ChatDatasource {
   }
 
   @override
-  Future<void> reportMessage({
+  Future<void> report({
     required int chatId,
     required String description,
     int? messageId,
@@ -256,16 +256,16 @@ class ChatDatasourceImpl implements ChatDatasource {
   }
 
   @override
-  Future<void> deleteChat(int chatId) {
-    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.deleteChat}');
+  Future<void> deleteChat(int userId) {
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.rejectPartner}');
 
     return _apiClient.post(
       uri,
       body: {
-        "chat_id": chatId,
+        "user_id": userId,
       },
       parser: (response) {
-        if (response.statusCode == HttpStatus.ok) return;
+        if (response.statusCode == HttpStatus.noContent) return;
 
         throw ApiException(response);
       },

@@ -506,7 +506,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unmatch => 'Unmatch';
 
   @override
-  String get sure_to_unmatch => 'Do you confirm that you want to de-match with the user? \nAll messages and related files of this chat will be permanently deleted.';
+  String get sure_to_unmatch => 'Do you confirm that you want to de-match with the user?\n\nAll messages and related files of this chat will be permanently deleted!';
 
   @override
   String get report_user => 'Report User';
@@ -540,4 +540,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get delete => 'Delete';
+
+  @override
+  String get confirm => 'Confirm';
 }

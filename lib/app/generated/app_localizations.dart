@@ -1076,7 +1076,7 @@ abstract class AppLocalizations {
   /// No description provided for @sure_to_unmatch.
   ///
   /// In he, this message translates to:
-  /// **'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש? \nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות.'**
+  /// **'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש?\n\nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות!'**
   String get sure_to_unmatch;
 
   /// No description provided for @report_user.
@@ -1144,6 +1144,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'מחק'**
   String get delete;
+
+  /// No description provided for @confirm.
+  ///
+  /// In he, this message translates to:
+  /// **'אישור'**
+  String get confirm;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
