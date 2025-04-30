@@ -63,15 +63,15 @@ class ReportScreenVm {
         title: _context.l10n.thank_you_for_reporting_user,
         description: _context.l10n.your_report_will_be_reviewed,
         buttonLabel: _context.l10n.back_to_chats,
-        onTap: _goMessageListScreen,
+        onTap: _goChatList,
+        onBackButtonPressed: _goChatList,
       ),
     );
   }
 
-  void _goMessageListScreen() {
+  void _goChatList() {
     if (!_context.mounted) return;
-    _context.pop();
-    _context.pop();
+    _context.goNamed(AppRoute.chats.name);
   }
 
   void _setLoading(bool value) {

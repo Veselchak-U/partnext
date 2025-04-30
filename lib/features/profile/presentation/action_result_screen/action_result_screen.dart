@@ -47,6 +47,7 @@ class _ActionResultScreenState extends State<ActionResultScreen> {
   Widget build(BuildContext context) {
     return SimpleLayout(
       sysAppBarBackgroundColor: AppColors.white,
+      onBackButtonPressed: widget.params.onBackButtonPressed,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32).w,
         child: Column(
