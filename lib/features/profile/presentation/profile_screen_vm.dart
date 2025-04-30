@@ -85,8 +85,9 @@ class ProfileScreenVm {
     _setLoading(false);
   }
 
-  Future<void> refreshUserProfile() {
-    return _refreshUserProfileUseCase();
+  Future<void> refreshUserProfile() async {
+    await _refreshUserProfileUseCase();
+    _initUser();
   }
 
   void goUpgrade() {
