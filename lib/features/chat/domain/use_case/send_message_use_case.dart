@@ -21,14 +21,18 @@ class SendMessageUseCase {
     List<File> attachmentFiles,
     RemoteFileType attachmentsType,
   ) async {
-    // Only text, without attachments
-    if (attachmentFiles.isEmpty) {
+    final messages = <MessageApiModel>[];
+    // First message contains text if it exist
+    if (text.isNotEmpty) {
       final message = await _chatRepository.sendMessage(chatId, text: text, attachment: null);
-
-      return [message];
+      messages.add(message);
     }
 
-    // With attachments
+    if (attachmentFiles.isEmpty) {
+      return messages;
+    }
+
+    // Upload attachments
     final attachments = <FileApiModel>[];
     for (final file in attachmentFiles) {
       final model = await _fileRepository.uploadFile(
@@ -38,12 +42,9 @@ class SendMessageUseCase {
       attachments.add(model);
     }
 
-    final messages = <MessageApiModel>[];
     for (int i = 0; i < attachments.length; i++) {
-      // Only first message contains text
-      final messageText = i == 0 ? text : null;
-      final messageAttachment = attachments[i];
-      final message = await _chatRepository.sendMessage(chatId, text: messageText, attachment: messageAttachment);
+      final attachment = attachments[i];
+      final message = await _chatRepository.sendMessage(chatId, attachment: attachment);
       messages.add(message);
     }
 
