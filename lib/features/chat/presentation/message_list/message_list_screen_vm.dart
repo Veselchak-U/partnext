@@ -232,19 +232,31 @@ class MessageListScreenVm {
   }
 
   Future<void> getPreviousPage() async {
-    previousPageLoading.value = true;
+    _setPreviousPageLoading(true);
     await _messageListProvider.fetchPreviousPage(
       onError: _handleError,
     );
-    previousPageLoading.value = false;
+    _setPreviousPageLoading(false);
+  }
+
+  void _setPreviousPageLoading(bool value) {
+    if (!_context.mounted) return;
+
+    previousPageLoading.value = value;
   }
 
   Future<void> getNextPage() async {
-    nextPageLoading.value = true;
+    _setNextPageLoading(true);
     await _messageListProvider.fetchNextPage(
       onError: _handleError,
     );
-    nextPageLoading.value = false;
+    _setNextPageLoading(false);
+  }
+
+  void _setNextPageLoading(bool value) {
+    if (!_context.mounted) return;
+
+    nextPageLoading.value = value;
   }
 
   Future<void> onSendMessage(

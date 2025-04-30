@@ -49,12 +49,9 @@ class ChatListScreen extends StatelessWidget {
 
                               return Padding(
                                 padding: EdgeInsets.only(bottom: 16.h),
-                                child: SizedBox(
-                                  height: 80.h,
-                                  child: ChatListItem(
-                                    item,
-                                    onTap: () => vm.openChat(item),
-                                  ),
+                                child: ChatListItem(
+                                  item,
+                                  onTap: () => vm.openChat(item),
                                 ),
                               );
                             },

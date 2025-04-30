@@ -20,8 +20,8 @@ class ChatListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(8).r;
     final isLtr = context.locale.isLtr;
-    final unreadCount = (item.unreadMessageCount ?? 0) < 10
-        ? '${item.unreadMessageCount ?? ''}'
+    final unreadCount = (item.unreadMessageCount) < 10
+        ? '${item.unreadMessageCount}'
         : isLtr
             ? '9+'
             : '+9';
@@ -39,7 +39,7 @@ class ChatListItem extends StatelessWidget {
             borderRadius: borderRadius,
             onTap: onTap,
             child: Container(
-              height: 80.h,
+              height: 84.h,
               decoration: BoxDecoration(
                 borderRadius: borderRadius,
               ),
@@ -107,7 +107,7 @@ class ChatListItem extends StatelessWidget {
           end: 8.w,
           child: AnimatedSize(
             duration: Duration(milliseconds: 250),
-            child: (item.unreadMessageCount ?? 0) == 0
+            child: (item.unreadMessageCount) == 0
                 ? const SizedBox.shrink()
                 : IgnorePointer(
                     child: Container(
