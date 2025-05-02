@@ -7,8 +7,8 @@ import 'package:path_provider/path_provider.dart';
 class Config {
   static const appName = 'Partnext';
   static const isProdBuild = bool.fromEnvironment('PROD_BUILD');
-  static const termsAndConditionsUrl = 'https://part-next.com/img/terms.pdf';
-  static const privacyPolicyUrl = 'https://part-next.com/img/privacy.pdf';
+  static const termsAndConditionsUrl = 'https://partnext.tech/terms/';
+  static const privacyPolicyUrl = 'https://partnext.tech/privacy/';
 
   static const paymentTimeoutDuration = Duration(minutes: 10);
 
