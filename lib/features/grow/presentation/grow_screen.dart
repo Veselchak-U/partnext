@@ -6,7 +6,6 @@ import 'package:partnext/common/layouts/main_layout.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/grow/presentation/grow_screen_vm.dart';
 import 'package:partnext/features/grow/presentation/widgets/no_partners_widget.dart';
-import 'package:partnext/features/grow/presentation/widgets/upgrade_panel.dart';
 import 'package:partnext/features/partner/presentation/partner_item/partner_item_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -93,21 +92,21 @@ class GrowScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              ValueListenableBuilder(
-                valueListenable: vm.loading,
-                builder: (context, loading, _) {
-                  return AnimatedPositioned(
-                    duration: const Duration(milliseconds: 250),
-                    top: loading || hasPremium ? -upgradePanelHeight : 0,
-                    left: 0,
-                    right: 0,
-                    child: UpgradePanel(
-                      height: upgradePanelHeight,
-                      onTap: vm.goUpgradeScreen,
-                    ),
-                  );
-                },
-              ),
+              // ValueListenableBuilder(
+              //   valueListenable: vm.loading,
+              //   builder: (context, loading, _) {
+              //     return AnimatedPositioned(
+              //       duration: const Duration(milliseconds: 250),
+              //       top: loading || hasPremium ? -upgradePanelHeight : 0,
+              //       left: 0,
+              //       right: 0,
+              //       child: UpgradePanel(
+              //         height: upgradePanelHeight,
+              //         onTap: vm.goUpgradeScreen,
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           );
         },
