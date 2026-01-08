@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bidi_text/flutter_bidi_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:partnext/app/style/app_colors.dart';
 import 'package:partnext/app/style/app_text_styles.dart';
@@ -66,7 +67,7 @@ class MessagesListItem extends StatelessWidget {
                           ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16).w,
-                          child: Text(
+                          child: BidiText(
                             message.description,
                             style: textStyle,
                           ),

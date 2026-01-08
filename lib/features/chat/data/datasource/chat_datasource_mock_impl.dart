@@ -172,24 +172,21 @@ final _mockedPages0 = [
         index: 0,
         createdAt: DateTime.now().subtract(Duration(minutes: 10)),
         creator: _mockedMembers[1],
-        text:
-            '0 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '0 מה אתה הולך לעשות אם אתה לא רוצה לעשות את זה ?',
       ),
       MessageApiModel(
         id: 1,
         index: 1,
         createdAt: DateTime.now().subtract(Duration(minutes: 9)),
         creator: _mockedMembers[0],
-        text:
-            '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '1 Lorem ipsum dolor sit amet?',
       ),
       MessageApiModel(
         id: 2,
         index: 2,
         createdAt: DateTime.now().subtract(Duration(minutes: 8)),
         creator: _mockedMembers[1],
-        text:
-            '2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '2 Lorem ipsum dolor sit amet? לעשות את זה?',
       ),
       MessageApiModel(
         id: 3,
@@ -218,16 +215,14 @@ final _mockedPages1 = [
         index: 0,
         createdAt: DateTime.now().subtract(Duration(minutes: 20)),
         creator: _mockedMembers[2],
-        text:
-            '0 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '0 מה אתה הולך לעשות אם אתה לא רוצה לעשות את זה ?',
       ),
       MessageApiModel(
         id: 1,
         index: 1,
         createdAt: DateTime.now().subtract(Duration(minutes: 19)),
         creator: _mockedMembers[0],
-        text:
-            '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
       ),
       MessageApiModel(
         id: 2,
@@ -248,8 +243,7 @@ final _mockedPages1 = [
         index: 3,
         createdAt: DateTime.now().subtract(Duration(minutes: 17)),
         creator: _mockedMembers[2],
-        text:
-            '3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim',
+        text: '3 Lorem ipsum dolor sit amet? לעשות את זה?',
       ),
     ],
   ),

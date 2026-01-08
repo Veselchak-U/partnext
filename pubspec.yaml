@@ -46,6 +46,7 @@ dependencies:
   flutter_cache_manager: 3.4.1
   cached_network_image: 3.4.1
   open_file: 3.5.10
+  flutter_bidi_text: 1.1.1
 
   # UI
   cupertino_icons: 1.0.8
