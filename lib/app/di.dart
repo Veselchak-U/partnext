@@ -13,14 +13,17 @@ import 'package:partnext/app/service/storage/file_cache_service.dart';
 import 'package:partnext/app/service/storage/secure_storage_service.dart';
 import 'package:partnext/app/service/storage/storage_service.dart';
 import 'package:partnext/features/auth/data/datasource/auth_datasource.dart';
+import 'package:partnext/features/auth/data/datasource/auth_datasource_mock_impl.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/domain/use_case/login_use_case.dart';
 import 'package:partnext/features/chat/data/datasource/chat_datasource.dart';
+import 'package:partnext/features/chat/data/datasource/chat_datasource_mock_impl.dart';
 import 'package:partnext/features/chat/data/repository/chat_repository.dart';
 import 'package:partnext/features/chat/domain/provider/chat_list_provider.dart';
 import 'package:partnext/features/chat/domain/provider/message_list_provider.dart';
 import 'package:partnext/features/chat/domain/use_case/send_message_use_case.dart';
 import 'package:partnext/features/file/data/datasource/file_datasource.dart';
+import 'package:partnext/features/file/data/datasource/file_datasource_mock_impl.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/initial/data/datasource/user_local_datasource.dart';
@@ -28,14 +31,17 @@ import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
+import 'package:partnext/features/partner/data/datasource/partner_datasource_mock_impl.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/datasource/profile_datasource.dart';
+import 'package:partnext/features/profile/data/datasource/profile_datasource_mock_impl.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
 import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/update_user_avatar_use_case.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_local_datasource.dart';
 import 'package:partnext/features/questionnaire/data/datasource/questionnaire_remote_datasource.dart';
+import 'package:partnext/features/questionnaire/data/datasource/questionnaire_remote_datasource_mock_impl.dart';
 import 'package:partnext/features/questionnaire/data/repository/questionnaire_repository.dart';
 import 'package:partnext/features/questionnaire/domain/use_case/update_questionnaire_use_case.dart';
 
@@ -84,26 +90,15 @@ class DI {
           _sl<SecureStorageService>(),
           _sl<StorageService>(),
         ));
-    _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceImpl(
-          _sl<ApiClient>(),
-        ));
-    _sl.registerLazySingleton<QuestionnaireRemoteDatasource>(() => QuestionnaireRemoteDatasourceImpl(
-          _sl<ApiClient>(),
-        ));
+    _sl.registerLazySingleton<AuthDatasource>(() => AuthDatasourceMockImpl());
+    _sl.registerLazySingleton<QuestionnaireRemoteDatasource>(() => QuestionnaireRemoteDatasourceMockImpl());
     _sl.registerLazySingleton<QuestionnaireLocalDatasource>(() => QuestionnaireLocalDatasourceImpl(
           _sl<StorageService>(),
         ));
-    _sl.registerLazySingleton<PartnerDatasource>(() => PartnerDatasourceImpl(
-          _sl<ApiClient>(),
-        ));
-    _sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceImpl(
-          _sl<ApiClient>(),
-        ));
-    _sl.registerLazySingleton<ChatDatasource>(() => ChatDatasourceImpl(
-          _sl<ApiClient>(),
-        ));
-    _sl.registerLazySingleton<FileDatasource>(() => FileDatasourceImpl(
-          _sl<DioApiClient>(),
+    _sl.registerLazySingleton<PartnerDatasource>(() => PartnerDatasourceMockImpl());
+    _sl.registerLazySingleton<ProfileDatasource>(() => ProfileDatasourceMockImpl());
+    _sl.registerLazySingleton<ChatDatasource>(() => ChatDatasourceMockImpl());
+    _sl.registerLazySingleton<FileDatasource>(() => FileDatasourceMockImpl(
           _sl<FileCacheService>(),
         ));
   }

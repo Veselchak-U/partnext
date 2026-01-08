@@ -64,10 +64,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
-  String get invalid_phone_number => 'Invalid phone number, please try again :)';
+  String get invalid_phone_number =>
+      'Invalid phone number, please try again :)';
 
   @override
-  String get terms_must_accepted => 'To register, you must agree to the terms and conditions';
+  String get terms_must_accepted =>
+      'To register, you must agree to the terms and conditions';
 
   @override
   String get registration => 'Registration';
@@ -103,7 +105,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password_must_contain => 'The password must consist of 6 digits';
 
   @override
-  String get enter_validation_code => 'Please enter the validation code that we sent you';
+  String get enter_validation_code =>
+      'Please enter the validation code that we sent you';
 
   @override
   String get did_not_get_code => 'Didn’t get the code?';
@@ -226,7 +229,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plus_other => '+ Other';
 
   @override
-  String get partnership_type_description => 'To get the interest of others, make sure you have a developed idea in written.\n\n · What is it? \n · Why to buy/use it?\n · What problem does it solve? \n · Advantages & Disadvantages and more details you’re willing to share.';
+  String get partnership_type_description =>
+      'To get the interest of others, make sure you have a developed idea in written.\n\n · What is it? \n · Why to buy/use it?\n · What problem does it solve? \n · Advantages & Disadvantages and more details you’re willing to share.';
 
   @override
   String get i_am_looking_for => 'I am Looking for';
@@ -250,13 +254,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get your_current_position => 'Your current position and organization';
 
   @override
-  String get kind_of_partnership_are_you_looking => 'What kind of partnership are you looking for?';
+  String get kind_of_partnership_are_you_looking =>
+      'What kind of partnership are you looking for?';
 
   @override
   String get tell_us_about_yourself_first => 'Tell us about yourself, ';
 
   @override
-  String get tell_us_about_yourself_second => 'What you are passionate about? What have you achieved?';
+  String get tell_us_about_yourself_second =>
+      'What you are passionate about? What have you achieved?';
 
   @override
   String get years_of_experience => 'Years of experience';
@@ -271,16 +277,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get specify_amount_of_experience => 'Specify the amount of experience';
 
   @override
-  String get first_image_will_be => 'The first image will be your profile photo, while all other images can be of you or related to your business.';
+  String get first_image_will_be =>
+      'The first image will be your profile photo, while all other images can be of you or related to your business.';
 
   @override
-  String get add_least_2_photos_to_continue => 'Add at least 2 photos to continue';
+  String get add_least_2_photos_to_continue =>
+      'Add at least 2 photos to continue';
 
   @override
   String get registration_complete => 'Registration\nComplete';
 
   @override
-  String get registration_complete_description => 'Slide right to talk business\nIt will be a Match if you both slide right.\nSlide left if you don\'t think the partner shown is a good match.';
+  String get registration_complete_description =>
+      'Slide right to talk business\nIt will be a Match if you both slide right.\nSlide left if you don\'t think the partner shown is a good match.';
 
   @override
   String get start_browsing => 'Start Browsing';
@@ -289,16 +298,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lot_of_swipes_today => 'Wow, That\'s a lot of swipes today!';
 
   @override
-  String get no_recommendations_today => 'There are no recommendations for today.';
+  String get no_recommendations_today =>
+      'There are no recommendations for today.';
 
   @override
-  String get check_back_soon => 'Check back soon,\nwe\'ll have new profiles to show you';
+  String get check_back_soon =>
+      'Check back soon,\nwe\'ll have new profiles to show you';
 
   @override
   String get about_yourself => 'About yourself';
 
   @override
-  String get what_partnership_are_you_looking => 'What kind of partnership are you looking for?';
+  String get what_partnership_are_you_looking =>
+      'What kind of partnership are you looking for?';
 
   @override
   String get share => 'Share';
@@ -358,13 +370,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmation => 'Confirmation';
 
   @override
-  String get all_unsaved_data_will_be_lost => 'Do you really want to get out? All unsaved data will be lost.';
+  String get all_unsaved_data_will_be_lost =>
+      'Do you really want to get out? All unsaved data will be lost.';
 
   @override
   String get message_is_too_short => 'The message is too short.';
 
   @override
-  String get your_opinion_is_important => 'Your opinion is important to us! We will be happy to receive feedback from you.';
+  String get your_opinion_is_important =>
+      'Your opinion is important to us! We will be happy to receive feedback from you.';
 
   @override
   String get send => 'Send';
@@ -373,7 +387,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feedback_accepted => 'Feedback\nAccepted';
 
   @override
-  String get thank_you_for_taking_time => 'Thank you for taking the time\nto send us feedback';
+  String get thank_you_for_taking_time =>
+      'Thank you for taking the time\nto send us feedback';
 
   @override
   String get continue_browsing => 'Continue Browsing';
@@ -382,13 +397,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continue_label => 'Continue';
 
   @override
-  String get who_wanted_create_business_with_you => 'See who wanted to create a business opportunity with you';
+  String get who_wanted_create_business_with_you =>
+      'See who wanted to create a business opportunity with you';
 
   @override
-  String get start_conversation_with_partners => 'Start conversation with potential business partners';
+  String get start_conversation_with_partners =>
+      'Start conversation with potential business partners';
 
   @override
-  String get unlimited_business_collaborations => 'Unlimited business collaborations';
+  String get unlimited_business_collaborations =>
+      'Unlimited business collaborations';
 
   @override
   String total(String total) {
@@ -405,7 +423,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get payment => 'Payment';
 
   @override
-  String get payment_desc => 'Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price.';
+  String get payment_desc =>
+      'Unless you cancel at least 24 hours before your subscription ends, your payment method will automatically renew for the same period and price.';
 
   @override
   String get confirm_purchase => 'Confirm Purchase';
@@ -420,7 +439,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thank_you => 'Thank You!';
 
   @override
-  String get lets_find_out_your_opportunities => 'Lets find out your opportunities :)';
+  String get lets_find_out_your_opportunities =>
+      'Lets find out your opportunities :)';
 
   @override
   String get purchase_timeout => 'Purchase timeout';
@@ -432,7 +452,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel_upgrade => 'Cancel the upgrade';
 
   @override
-  String get cancel_upgrade_desc => 'Are you sure you want to cancel the upgrade? Upon expiration of the upgrade period, the upgrade will not automatically renew.';
+  String get cancel_upgrade_desc =>
+      'Are you sure you want to cancel the upgrade? Upon expiration of the upgrade period, the upgrade will not automatically renew.';
 
   @override
   String get keep_upgrading => 'Keep upgrading';
@@ -441,13 +462,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get upgrade_was_canceled => 'The upgrade was canceled!';
 
   @override
-  String get upgrade_was_canceled_desc => 'You will not be automatically charged again once your upgrade expires.';
+  String get upgrade_was_canceled_desc =>
+      'You will not be automatically charged again once your upgrade expires.';
 
   @override
   String get partnext_grow => 'Partnext Grow';
 
   @override
-  String get your_growth_can_accelerate => 'Your growth can accelerate with the connections you achieve here!\nSee who wants to connect with you.';
+  String get your_growth_can_accelerate =>
+      'Your growth can accelerate with the connections you achieve here!\nSee who wants to connect with you.';
 
   @override
   String get lets_talk_business => 'Let\'s Talk Business';
@@ -506,7 +529,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unmatch => 'Unmatch';
 
   @override
-  String get sure_to_unmatch => 'Do you confirm that you want to de-match with the user?\n\nAll messages and related files of this chat will be permanently deleted!';
+  String get sure_to_unmatch =>
+      'Do you confirm that you want to de-match with the user?\n\nAll messages and related files of this chat will be permanently deleted!';
 
   @override
   String get report_user => 'Report User';
@@ -518,7 +542,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thank_you_for_reporting_user => 'Thank You for Reporting a User';
 
   @override
-  String get your_report_will_be_reviewed => 'Your reported profile will be reviewed\nand action will be taken.';
+  String get your_report_will_be_reviewed =>
+      'Your reported profile will be reviewed\nand action will be taken.';
 
   @override
   String get back_to_chats => 'Back to Chats';
@@ -536,7 +561,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete_account => 'Delete account';
 
   @override
-  String get sure_to_delete_account => 'Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!';
+  String get sure_to_delete_account =>
+      'Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!';
 
   @override
   String get delete => 'Delete';

@@ -226,7 +226,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get plus_other => '+ אחר';
 
   @override
-  String get partnership_type_description => 'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.';
+  String get partnership_type_description =>
+      'כדי לקבל את האינטרס של אחרים, ודא שיש לך רעיון מפותח בכתב.\n\n · מה זה? \n · למה לקנות / להשתמש בו?\n · איזו בעיה זה פותר? \n · יתרונות וחסרונות ופרטים נוספים שאתה מוכן לשתף.';
 
   @override
   String get i_am_looking_for => 'אני מחפש';
@@ -250,7 +251,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get your_current_position => 'המיקום והארגון הנוכחי שלך';
 
   @override
-  String get kind_of_partnership_are_you_looking => 'איזה סוג של שותפות אתה מחפש?';
+  String get kind_of_partnership_are_you_looking =>
+      'איזה סוג של שותפות אתה מחפש?';
 
   @override
   String get tell_us_about_yourself_first => 'ספר לנו על עצמך,';
@@ -271,7 +273,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get specify_amount_of_experience => 'ציין את כמות הניסיון';
 
   @override
-  String get first_image_will_be => 'התמונה הראשונה תהיה תמונת הפרופיל שלך, בעוד שכל שאר התמונות יכולות להיות שלך או קשורות לעסק שלך.';
+  String get first_image_will_be =>
+      'התמונה הראשונה תהיה תמונת הפרופיל שלך, בעוד שכל שאר התמונות יכולות להיות שלך או קשורות לעסק שלך.';
 
   @override
   String get add_least_2_photos_to_continue => 'הוסף לפחות 2 תמונות להמשך';
@@ -280,7 +283,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get registration_complete => 'רישום\nשלם';
 
   @override
-  String get registration_complete_description => 'להחליק זכות לדבר עסקים\nזה יהיה התאמה אם שניכם להחליק ימינה.\nהחלק שמאלה אם אינך חושב שהשותף המוצג הוא התאמה טובה.';
+  String get registration_complete_description =>
+      'להחליק זכות לדבר עסקים\nזה יהיה התאמה אם שניכם להחליק ימינה.\nהחלק שמאלה אם אינך חושב שהשותף המוצג הוא התאמה טובה.';
 
   @override
   String get start_browsing => 'התחל לגלוש';
@@ -292,7 +296,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get no_recommendations_today => 'אין המלצות להיום.';
 
   @override
-  String get check_back_soon => 'בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך';
+  String get check_back_soon =>
+      'בדוק שוב בקרוב,\nיהיו לנו פרופילים חדשים להראות לך';
 
   @override
   String get about_yourself => 'על עצמך';
@@ -358,7 +363,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get confirmation => 'אישור';
 
   @override
-  String get all_unsaved_data_will_be_lost => 'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.';
+  String get all_unsaved_data_will_be_lost =>
+      'אתה באמת רוצה לצאת? כל הנתונים שלא נשמרו יאבדו.';
 
   @override
   String get message_is_too_short => 'ההודעה קצרה מדי.';
@@ -373,7 +379,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get feedback_accepted => 'משוב\nהתקבל';
 
   @override
-  String get thank_you_for_taking_time => 'תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב';
+  String get thank_you_for_taking_time =>
+      'תודה שהקדשת מזמנך\nכדי לשלוח לנו משוב';
 
   @override
   String get continue_browsing => 'המשך גלישה';
@@ -382,13 +389,16 @@ class AppLocalizationsHe extends AppLocalizations {
   String get continue_label => 'המשך';
 
   @override
-  String get who_wanted_create_business_with_you => 'ראה מי רצה ליצור איתך הזדמנות עסקית';
+  String get who_wanted_create_business_with_you =>
+      'ראה מי רצה ליצור איתך הזדמנות עסקית';
 
   @override
-  String get start_conversation_with_partners => 'התחל שיחה עם שותפים עסקיים פוטנציאליים';
+  String get start_conversation_with_partners =>
+      'התחל שיחה עם שותפים עסקיים פוטנציאליים';
 
   @override
-  String get unlimited_business_collaborations => 'שיתופי פעולה עסקיים ללא הגבלה';
+  String get unlimited_business_collaborations =>
+      'שיתופי פעולה עסקיים ללא הגבלה';
 
   @override
   String total(String total) {
@@ -405,7 +415,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get payment => 'תשלום';
 
   @override
-  String get payment_desc => 'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.';
+  String get payment_desc =>
+      'אלא אם תבטל לפחות 24 שעות לפני סיום המנוי שלך, אמצעי התשלום שלך יתחדש אוטומטית באותה תקופה ומחיר.';
 
   @override
   String get confirm_purchase => 'אשר רכישה';
@@ -420,7 +431,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get thank_you => 'תודה!';
 
   @override
-  String get lets_find_out_your_opportunities => 'בואו לגלות את ההזדמנויות שלך :)';
+  String get lets_find_out_your_opportunities =>
+      'בואו לגלות את ההזדמנויות שלך :)';
 
   @override
   String get purchase_timeout => 'פסק זמן לרכישה';
@@ -432,7 +444,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get cancel_upgrade => 'בטל את השדרוג';
 
   @override
-  String get cancel_upgrade_desc => 'האם אתה בטוח שברצונך לבטל את השדרוג? עם תום תקופת השדרוג, השדרוג לא יתחדש אוטומטית.';
+  String get cancel_upgrade_desc =>
+      'האם אתה בטוח שברצונך לבטל את השדרוג? עם תום תקופת השדרוג, השדרוג לא יתחדש אוטומטית.';
 
   @override
   String get keep_upgrading => 'המשך לשדרג';
@@ -441,13 +454,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get upgrade_was_canceled => 'השדרוג בוטל!';
 
   @override
-  String get upgrade_was_canceled_desc => 'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.';
+  String get upgrade_was_canceled_desc =>
+      'לא תחויב שוב אוטומטית לאחר שתוקף השדרוג שלך יפוג.';
 
   @override
   String get partnext_grow => 'לגדול Partnext';
 
   @override
-  String get your_growth_can_accelerate => 'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.';
+  String get your_growth_can_accelerate =>
+      'הצמיחה שלך יכולה להאיץ עם החיבורים שאתה משיג כאן!\nראה מי רוצה להתחבר אליך.';
 
   @override
   String get lets_talk_business => 'בואו נדבר על עסקים';
@@ -506,7 +521,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get unmatch => 'בטל התאמה';
 
   @override
-  String get sure_to_unmatch => 'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש?\n\nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות!';
+  String get sure_to_unmatch =>
+      'האם אתה מאשר שברצונך לבטל התאמה עם המשתמש?\n\nכל ההודעות והקבצים הקשורים בצ \' אט זה יימחקו לצמיתות!';
 
   @override
   String get report_user => 'דווח על משתמש';
@@ -518,7 +534,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get thank_you_for_reporting_user => 'תודה שדיווחת על משתמש';
 
   @override
-  String get your_report_will_be_reviewed => 'הפרופיל המדווח שלך ייבדק\nותינקט פעולה.';
+  String get your_report_will_be_reviewed =>
+      'הפרופיל המדווח שלך ייבדק\nותינקט פעולה.';
 
   @override
   String get back_to_chats => 'חזרה לצ \' אטים';
@@ -536,7 +553,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get delete_account => 'מחק חשבון';
 
   @override
-  String get sure_to_delete_account => 'האם אתה מאשר שברצונך למחוק לצמיתות את חשבונך ואת כל הנתונים הקשורים אליו?\n\nשחזור נתונים יהיה בלתי אפשרי לאחר המחיקה!';
+  String get sure_to_delete_account =>
+      'האם אתה מאשר שברצונך למחוק לצמיתות את חשבונך ואת כל הנתונים הקשורים אליו?\n\nשחזור נתונים יהיה בלתי אפשרי לאחר המחיקה!';
 
   @override
   String get delete => 'מחק';
