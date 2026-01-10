@@ -112,7 +112,7 @@ class MessageListScreenVm {
     autoScrollController.addListener(_scrollListener);
 
     _messageListProvider.addListener(_messageListListener);
-    _startMessagesChecking();
+    await _startMessagesChecking();
 
     _chatListProvider.addListener(_chatListListener);
     unreadMessageIndex.value = chat.value?.unreadMessageIndex;
@@ -285,6 +285,8 @@ class MessageListScreenVm {
     if (_isFirstUpdate) {
       _isFirstUpdate = false;
       _scrollToUnreadMessage();
+    } else {
+      // autoScrollController.
     }
   }
 

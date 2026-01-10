@@ -8,6 +8,8 @@ import 'package:partnext/common/utils/date_time_ext.dart';
 import 'package:partnext/features/chat/data/model/message_api_model.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+const _visibleFractionThreshold = 0.75;
+
 class MessagesListItem extends StatelessWidget {
   final MessageApiModel message;
   final bool isUnread;
@@ -34,7 +36,9 @@ class MessagesListItem extends StatelessWidget {
     return VisibilityDetector(
       key: ValueKey(message.id),
       onVisibilityChanged: (info) {
-        if (info.visibleFraction == 1) onVisible.call();
+        if (info.visibleFraction > _visibleFractionThreshold) {
+          onVisible.call();
+        }
       },
       child: Row(
         children: [

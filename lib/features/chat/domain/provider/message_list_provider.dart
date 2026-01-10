@@ -83,7 +83,7 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
 
     await _fetchMessagePage(onError: onError, notify: false);
 
-    if (_startPageIndex != 1) {
+    if (_startPageIndex != 0) {
       await fetchPreviousPage(notify: false);
     }
 
@@ -129,12 +129,12 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   Future<void> fetchPreviousPage({
     ErrorHandler? onError,
     bool notify = true,
-  }) {
+  }) async {
     final start = _startPageIndex;
-    if (start == null || start <= 1) return Future.value();
+    if (start == null || start <= 0) return Future.value();
 
-    return _fetchMessagePage(
-      pageIndex: max(start - 1, 1),
+    await _fetchMessagePage(
+      pageIndex: max(start - 1, 0),
       onError: onError,
       notify: notify,
     );
@@ -144,12 +144,12 @@ class MessageListProviderImpl with ChangeNotifier implements MessageListProvider
   Future<void> fetchNextPage({
     ErrorHandler? onError,
     bool notify = true,
-  }) {
+  }) async {
     final end = _endPageIndex;
     final last = _lastPageIndex;
     if (end == null || last == null) return Future.value();
 
-    return _fetchMessagePage(
+    await _fetchMessagePage(
       pageIndex: min(end + 1, last),
       onError: onError,
       notify: notify,

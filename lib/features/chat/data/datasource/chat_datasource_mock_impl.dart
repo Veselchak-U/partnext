@@ -12,19 +12,17 @@ class ChatDatasourceMockImpl implements ChatDatasource {
   ChatDatasourceMockImpl();
 
   @override
-  Future<List<ChatApiModel>> getChats() {
-    return Future.delayed(
-      Duration(seconds: 1),
-      () => [..._mockedChats],
-    );
+  Future<List<ChatApiModel>> getChats() async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    return [..._mockedChats];
   }
 
   @override
-  Future<ChatApiModel> createChat(int userId) {
-    return Future.delayed(
-      Duration(seconds: 1),
-      () => _mockedChats.first,
-    );
+  Future<ChatApiModel> createChat(int userId) async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    return _mockedChats.first;
   }
 
   @override
@@ -32,20 +30,19 @@ class ChatDatasourceMockImpl implements ChatDatasource {
     int chatId,
     String? text,
     FileApiModel? attachment,
-  ) {
+  ) async {
     if (text == null && attachment == null) {
       throw LogicException('Text or attachment must be not null');
     }
 
-    return Future.delayed(
-      Duration(seconds: 1),
-      () => MessageApiModel(
-        id: _getNewMessageId(chatId),
-        index: _getNewMessageIndex(chatId),
-        createdAt: DateTime.now(),
-        creator: _mockedMembers[1],
-        text: text,
-      ),
+    await Future.delayed(Duration(milliseconds: 500));
+
+    return MessageApiModel(
+      id: _getNewMessageId(chatId),
+      index: _getNewMessageIndex(chatId),
+      createdAt: DateTime.now(),
+      creator: _mockedMembers[1],
+      text: text,
     );
   }
 
@@ -62,28 +59,22 @@ class ChatDatasourceMockImpl implements ChatDatasource {
   }
 
   MessageApiModel? _getLastMessage(int chatId) {
-    return switch (chatId) {
-      0 => _mockedPages0.last.messages.last,
-      1 => _mockedPages1.last.messages.last,
-      _ => null,
-    };
+    final chatPages = _getChatPages(chatId);
+    final lastPageMessages = chatPages.last.messages;
+
+    return lastPageMessages.isEmpty ? null : lastPageMessages.last;
   }
 
   @override
-  Future<ChatPageApiModel> getChatPage(int chatId, {int? index}) {
-    return Future.delayed(
-      Duration(seconds: 1),
-      () => _getMockedChatPage(chatId, index: index),
-    );
-  }
-
-  ChatPageApiModel _getMockedChatPage(
+  Future<ChatPageApiModel> getChatPage(
     int chatId, {
     int? index,
-  }) {
-    final pages = chatId == 0 ? _mockedPages0 : _mockedPages1;
-    if (index != null) {
-      return pages[index];
+  }) async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    final chatPages = _getChatPages(chatId);
+    if (index != null && index <= chatPages.length - 1) {
+      return chatPages[index];
     }
 
     return _getMockedChatUnreadPage(chatId);
@@ -91,15 +82,15 @@ class ChatDatasourceMockImpl implements ChatDatasource {
 
   ChatPageApiModel _getMockedChatUnreadPage(int chatId) {
     final unreadMessageIndex = _mockedChats.firstWhereOrNull((e) => e.id == chatId)?.unreadMessageIndex;
+    //TODO: изменить условие проверки, т.к. unreadMessageIndex может быть null
     if (unreadMessageIndex == null) throw LogicException('Chat id=$chatId not found');
 
-    final pages = chatId == 0 ? _mockedPages0 : _mockedPages1;
-    final unreadPage = pages.firstWhereOrNull(
+    final chatPages = _getChatPages(chatId);
+    final unreadPage = chatPages.firstWhereOrNull(
       (p) => p.messages.firstWhereOrNull((m) => m.index == unreadMessageIndex) != null,
     );
-    if (unreadPage == null) throw LogicException('Page not found');
 
-    return unreadPage;
+    return unreadPage ?? chatPages.last;
   }
 
   @override
@@ -107,7 +98,19 @@ class ChatDatasourceMockImpl implements ChatDatasource {
     required int chatId,
     required int messageId,
   }) {
-    return Future.delayed(Duration(seconds: 1));
+    final chatIndex = _mockedChats.indexWhere((e) => e.id == chatId);
+    final chatPages = _getChatPages(chatId);
+    final messageIndex = chatPages
+        .firstWhereOrNull((page) => page.messages.firstWhereOrNull((m) => m.id == messageId) != null)
+        ?.messages
+        .firstWhere((m) => m.id == messageId)
+        .index;
+    if (messageIndex != null) {
+      final updated = _mockedChats[chatIndex].copyWith(unreadMessageIndex: messageIndex + 1);
+      _mockedChats[chatIndex] = updated;
+    }
+
+    return Future.delayed(Duration(milliseconds: 500));
   }
 
   @override
@@ -116,27 +119,36 @@ class ChatDatasourceMockImpl implements ChatDatasource {
     required String description,
     int? messageId,
   }) {
-    return Future.delayed(Duration(seconds: 1));
+    return Future.delayed(Duration(milliseconds: 500));
   }
 
   @override
   Future<void> deleteChat(int userId) {
-    return Future.delayed(Duration(seconds: 1));
+    _mockedChats.removeWhere((e) => e.member.userId == userId);
+    return Future.delayed(Duration(milliseconds: 500));
+  }
+
+  List<ChatPageApiModel> _getChatPages(int chatId) {
+    return switch (chatId) {
+      0 => _mockedChatOnePages,
+      1 => _mockedChatMultiplePages,
+      _ => [],
+    };
   }
 }
 
-final _mockedChats = [
+List<ChatApiModel> _mockedChats = [
   ChatApiModel(
     id: 0,
     member: _mockedMembers[1],
     unreadMessageIndex: 1,
-    lastMessage: _mockedPages0.last.messages.last,
+    lastMessage: _mockedChatOnePages.last.messages.last,
   ),
   ChatApiModel(
     id: 1,
     member: _mockedMembers[2],
-    unreadMessageIndex: 3,
-    lastMessage: _mockedPages1.last.messages.last,
+    unreadMessageIndex: 1,
+    lastMessage: _mockedChatMultiplePages.last.messages.last,
   ),
 ];
 
@@ -162,7 +174,7 @@ final _mockedMembers = [
   ),
 ];
 
-final _mockedPages0 = [
+final _mockedChatOnePages = [
   ChatPageApiModel(
     pageIndex: 0,
     lastPageIndex: 0,
@@ -205,7 +217,7 @@ final _mockedPages0 = [
   )
 ];
 
-final _mockedPages1 = [
+final _mockedChatMultiplePages = [
   ChatPageApiModel(
     pageIndex: 0,
     lastPageIndex: 4,

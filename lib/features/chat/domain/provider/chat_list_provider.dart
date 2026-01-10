@@ -54,7 +54,7 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   List<ChatApiModel> get chats => List.unmodifiable(_chatCache);
 
   @override
-  int get unreadChatCount => _chatCache.where((e) => (e.unreadMessageCount ?? 0) != 0).length;
+  int get unreadChatCount => _chatCache.where((e) => e.unreadMessageCount != 0).length;
 
   @override
   Future<void> startChecking({
@@ -96,22 +96,12 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   //   return chat;
   // }
 
-  Future<void> _refreshChats({
-    Function(Object, StackTrace)? onError,
-  }) async {
-    try {
-      _chatCache = await _chatRepository.getChats();
-      notifyListeners();
-    } catch (e, st) {
-      onError?.call(e, st);
-    }
-  }
-
   @override
   Future<void> markMessageAsRead({
     required int chatId,
     required MessageApiModel message,
   }) async {
+    // Set changes in the local cache
     final chatIndex = _chatCache.indexWhere((e) => e.id == chatId);
     if (chatIndex == -1) return;
 
@@ -130,6 +120,7 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
     _chatCache[chatIndex] = updated;
     notifyListeners();
 
+    // Set changes in the backend
     _chatRepository.markMessageAsRead(chatId: chatId, messageId: message.id);
   }
 
@@ -142,5 +133,16 @@ class ChatListProviderImpl with ChangeNotifier implements ChatListProvider {
   @override
   void clearCache() {
     _chatCache = [];
+  }
+
+  Future<void> _refreshChats({
+    Function(Object, StackTrace)? onError,
+  }) async {
+    try {
+      _chatCache = await _chatRepository.getChats();
+      notifyListeners();
+    } catch (e, st) {
+      onError?.call(e, st);
+    }
   }
 }
