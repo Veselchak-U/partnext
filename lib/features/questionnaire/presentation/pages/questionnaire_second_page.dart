@@ -47,10 +47,6 @@ class _QuestionnaireSecondPageState extends State<QuestionnaireSecondPage>
                 label: PartnershipTypeHelper.getIAmLookingForLabel(item),
                 selected: vm.questionnaire.partnerPartnershipTypes.contains(item),
                 onSelect: (selected) => vm.onPartnerPartnershipTypeSelected(item, selected),
-                onOpenDescription: (context) => vm.openOverlay(
-                  context,
-                  text: PartnershipTypeHelper.getIAmLookingForDescription(item),
-                ),
               );
             },
             separatorBuilder: (_, __) => SizedBox(height: 16.h),

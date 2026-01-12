@@ -47,10 +47,6 @@ class _QuestionnaireFirstPageState extends State<QuestionnaireFirstPage>
                 label: PartnershipTypeHelper.getWhoIAmLabel(item),
                 selected: vm.questionnaire.myPartnershipTypes.contains(item),
                 onSelect: (selected) => vm.onMyPartnershipTypeSelected(item, selected),
-                onOpenDescription: (context) => vm.openOverlay(
-                  context,
-                  text: PartnershipTypeHelper.getWhoIAmDescription(item),
-                ),
               );
             },
             separatorBuilder: (_, __) => SizedBox(height: 16.h),
