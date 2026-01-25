@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "parnext-notifications",
+          "appId": "1:810671317166:android:e091e9dee503961d6fcd3f",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "parnext-notifications",
+          "configurations": {
+            "android": "1:810671317166:android:e091e9dee503961d6fcd3f",
+            "ios": "1:810671317166:ios:c72f1db1e826750f6fcd3f"
+          }
+        }
+      }
+    }
+  }
+}

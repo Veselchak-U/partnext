@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/app/style/app_theme.dart';
 import 'package:partnext/config.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
+import 'package:partnext/firebase_options.dart';
 
 void main() {
   runZonedGuarded(
@@ -24,9 +26,9 @@ void main() {
 Future<void> _initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   FlutterError.onError = (details) {
     // if (!kDebugMode) FirebaseCrashlytics.instance.recordFlutterFatalError(details);
