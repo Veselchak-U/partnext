@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:partnext/app/l10n/l10n.dart';
-import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
@@ -40,6 +39,7 @@ class QuestionnaireScreenVm {
   final loading = ValueNotifier<bool>(false);
   final loadingPhoto = ValueNotifier<List<bool>>(List<bool>.filled(4, false));
   final isFirstPage = ValueNotifier<bool>(true);
+  final isPenultimatePage = ValueNotifier<bool>(false);
   final isLastPage = ValueNotifier<bool>(false);
   final photos = ValueNotifier<List<FileApiModel?>>(List<FileApiModel?>.filled(4, null));
   final currentPhotoIndex = ValueNotifier<int>(0);
@@ -55,6 +55,12 @@ class QuestionnaireScreenVm {
 
   bool get isEditMode => params?.isEdit == true;
 
+  bool get isPageControllerInProgress {
+    final page = pageController.page;
+
+    return page?.round() != page;
+  }
+
   bool _hasChanges = false;
 
   void _init() {
@@ -66,6 +72,7 @@ class QuestionnaireScreenVm {
     loading.dispose();
     loadingPhoto.dispose();
     isFirstPage.dispose();
+    isPenultimatePage.dispose();
     isLastPage.dispose();
     photos.dispose();
     currentPhotoIndex.dispose();
@@ -344,32 +351,44 @@ class QuestionnaireScreenVm {
   }
 
   Future<void> _goNextPage() async {
-    if (isLastPage.value) {
-      _sendQuestionnaire();
-
+    if (isPageControllerInProgress) {
       return;
     }
+
+    if (isPenultimatePage.value) {
+      final result = await _sendQuestionnaire();
+      if (!result) {
+        return;
+      }
+      _exitIfEditMode();
+    }
+
+    isFirstPage.value = false;
+    isPenultimatePage.value = pageController.page == 4;
+    isLastPage.value = pageController.page == 5;
 
     await pageController.nextPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
-
-    isFirstPage.value = false;
-    isLastPage.value = pageController.page == 5;
   }
 
   Future<void> onPreviousPage() async {
+    if (isPageControllerInProgress) {
+      return;
+    }
+
     FocusScope.of(_context).unfocus();
     closeOverlay();
+
+    isFirstPage.value = pageController.page == 1;
+    isPenultimatePage.value = pageController.page == 6;
+    isLastPage.value = false;
 
     await pageController.previousPage(
       duration: const Duration(milliseconds: 250),
       curve: Curves.decelerate,
     );
-
-    isFirstPage.value = pageController.page == 0;
-    isLastPage.value = false;
   }
 
   void onBackButtonPressed(BuildContext context) {
@@ -399,28 +418,29 @@ class QuestionnaireScreenVm {
     _context.pop();
   }
 
-  Future<void> _sendQuestionnaire() async {
+  Future<bool> _sendQuestionnaire() async {
+    bool result = false;
     _setLoading(true);
     try {
       final notEmptyPhotos = photos.value.nonNulls.toList();
       questionnaire = questionnaire.copyWith(photos: notEmptyPhotos);
       await _updateQuestionnaireUseCase(questionnaire);
 
-      _goToNextScreen();
+      result = true;
     } on Object catch (e, st) {
       LoggerService().e(error: e, stackTrace: st);
       _onError('$e');
     }
     _setLoading(false);
+
+    return result;
   }
 
-  void _goToNextScreen() {
+  void _exitIfEditMode() {
     if (!_context.mounted) return;
 
     if (isEditMode) {
       _context.pop();
-    } else {
-      _context.goNamed(AppRoute.signUpSuccess.name);
     }
   }
 

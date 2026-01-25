@@ -8,6 +8,7 @@ part 'message_api_model.g.dart';
 @JsonSerializable()
 class MessageApiModel {
   final int id;
+  // It is assumed that the message index starts from 1 and it goes in a row without skipping
   final int index;
   final DateTime createdAt;
   final MemberApiModel creator;

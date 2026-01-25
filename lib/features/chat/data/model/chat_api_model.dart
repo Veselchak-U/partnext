@@ -9,6 +9,7 @@ part 'chat_api_model.g.dart';
 class ChatApiModel {
   final int id;
   final MemberApiModel member;
+  // It is assumed that the message index starts from 1 and it goes in a row without skipping
   final int unreadMessageIndex;
   final MessageApiModel? lastMessage;
 

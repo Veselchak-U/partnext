@@ -13,44 +13,53 @@ class QuestionnaireButtonBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.read<QuestionnaireScreenVm>();
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16).r,
-          child: ValueListenableBuilder(
-            valueListenable: vm.isLastPage,
-            builder: (context, isLastPage, _) {
-              return ValueListenableBuilder(
-                valueListenable: vm.loading,
-                builder: (context, loading, _) {
-                  return Column(
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 150),
-                        child: isLastPage
-                            ? CommonButton(
-                                key: ValueKey(true),
-                                label: vm.isEditMode ? context.l10n.save : context.l10n.finish_registration,
-                                iconPath: Assets.icons.send.path,
-                                onTap: vm.onNextPage,
-                                loading: loading,
-                              )
-                            : CommonButton(
-                                key: ValueKey(false),
-                                label: context.l10n.next,
-                                iconPath: Assets.icons.send.path,
-                                onTap: vm.onNextPage,
-                                loading: loading,
-                              ),
-                      ),
-                    ],
+    return ValueListenableBuilder(
+      valueListenable: vm.isLastPage,
+      builder: (context, isLastPage, _) {
+        if (isLastPage) {
+          return const SizedBox.shrink();
+        }
+
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16).r,
+              child: ValueListenableBuilder(
+                valueListenable: vm.isPenultimatePage,
+                builder: (context, isPenultimatePage, _) {
+                  return ValueListenableBuilder(
+                    valueListenable: vm.loading,
+                    builder: (context, loading, _) {
+                      return Column(
+                        children: [
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 150),
+                            child: isPenultimatePage
+                                ? CommonButton(
+                                    key: ValueKey(true),
+                                    label: vm.isEditMode ? context.l10n.save : context.l10n.finish_registration,
+                                    iconPath: Assets.icons.send.path,
+                                    onTap: vm.onNextPage,
+                                    loading: loading,
+                                  )
+                                : CommonButton(
+                                    key: ValueKey(false),
+                                    label: context.l10n.next,
+                                    iconPath: Assets.icons.send.path,
+                                    onTap: vm.onNextPage,
+                                    loading: loading,
+                                  ),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
-              );
-            },
-          ),
-        ),
-      ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
