@@ -49,6 +49,7 @@ import 'package:partnext/features/initial/presentation/initial_screen_vm.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen.dart';
 import 'package:partnext/features/nav_bar/presentation/nav_bar_screen_vm.dart';
+import 'package:partnext/features/notifications/domain/use_case/send_push_token_use_case.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
@@ -221,6 +222,7 @@ class AppNavigation {
                     context,
                     DI.get<NavBarIndexProvider>(),
                     DI.get<PartnerRepository>(),
+                    DI.get<SendPushTokenUseCase>(),
                   ),
                   dispose: (context, vm) => vm.dispose(),
                   child: const HomeScreen(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
@@ -6,6 +7,7 @@ import 'package:partnext/common/overlays/app_overlays.dart';
 import 'package:partnext/common/utils/url_launcher.dart';
 import 'package:partnext/features/nav_bar/domain/entity/nav_bar_tab.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
+import 'package:partnext/features/notifications/domain/use_case/send_push_token_use_case.dart';
 import 'package:partnext/features/partner/data/model/partner_api_model.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
 import 'package:swipable_stack/swipable_stack.dart';
@@ -14,11 +16,13 @@ class HomeScreenVm {
   final BuildContext _context;
   final NavBarIndexProvider _navBarIndexProvider;
   final PartnerRepository _partnerRepository;
+  final SendPushTokenUseCase _sendPushTokenUseCase;
 
   HomeScreenVm(
     this._context,
     this._navBarIndexProvider,
     this._partnerRepository,
+    this._sendPushTokenUseCase,
   ) {
     _init();
   }
@@ -31,6 +35,7 @@ class HomeScreenVm {
   bool isTooManySwipes = false;
 
   void _init() {
+    _sendPushToken();
     getRecommendations();
   }
 
@@ -39,6 +44,18 @@ class HomeScreenVm {
 
     loading.dispose();
     recommendations.dispose();
+  }
+
+  void _sendPushToken() {
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) async {
+        try {
+          await _sendPushTokenUseCase.call();
+        } on Object catch (e) {
+          LoggerService().d('$e');
+        }
+      },
+    );
   }
 
   Future<void> getRecommendations() async {

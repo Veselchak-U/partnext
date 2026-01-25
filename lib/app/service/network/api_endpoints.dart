@@ -1,6 +1,8 @@
 class ApiEndpoints {
   // Auth
 
+  static const saveFcm = 'api/v1/member/auth/save_fcm';
+
   /// Registration
   ///
   /// Request: POST api/v1/member/auth/registration

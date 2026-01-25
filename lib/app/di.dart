@@ -30,6 +30,9 @@ import 'package:partnext/features/initial/data/datasource/user_local_datasource.
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
+import 'package:partnext/features/notifications/data/notification_repository.dart';
+import 'package:partnext/features/notifications/domain/use_case/send_push_token_use_case.dart';
+import 'package:partnext/features/notifications/service/notification_service.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource_mock_impl.dart';
 import 'package:partnext/features/partner/data/repository/partner_repository.dart';
@@ -83,6 +86,7 @@ class DI {
       getAccessToken: () => _sl<UserLocalDatasource>().getAccessToken(),
     ));
     _sl.registerSingleton<FileCacheService>(FileCacheServiceImpl());
+    _sl.registerSingleton<NotificationService>(NotificationService());
   }
 
   void _dataSources() {
@@ -127,6 +131,10 @@ class DI {
     _sl.registerLazySingleton<FileRepository>(() => FileRepositoryImpl(
           _sl<FileDatasource>(),
         ));
+    _sl.registerLazySingleton<NotificationRepository>(() => NotificationRepositoryImpl(
+          _sl<NotificationService>(),
+          _sl<ApiClient>(),
+        ));
   }
 
   void _businessLogic() {
@@ -166,6 +174,9 @@ class DI {
     _sl.registerFactory(() => InitialController(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+        ));
+    _sl.registerFactory(() => SendPushTokenUseCase(
+          _sl<NotificationRepository>(),
         ));
   }
 
