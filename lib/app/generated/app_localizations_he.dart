@@ -136,7 +136,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get other => 'אחרים';
 
   @override
-  String get grow_idea => 'לגדל רעיון';
+  String get grow_idea => 'לפתח רעיון';
 
   @override
   String get partnership_on_startup => 'שותפות בסטארט-אפ';
@@ -258,7 +258,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get tell_us_about_yourself_first => 'ספר לנו על עצמך,';
 
   @override
-  String get tell_us_about_yourself_second => 'מה אתה נלהב? מה השגת?';
+  String get tell_us_about_yourself_second => 'ממה אתה נלהב? מה השגת?';
 
   @override
   String get years_of_experience => 'שנים של ניסיון';
@@ -280,7 +280,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get add_least_2_photos_to_continue => 'הוסף לפחות 2 תמונות להמשך';
 
   @override
-  String get registration_complete => 'רישום\nשלם';
+  String get registration_complete => 'רישום\nהושלם';
 
   @override
   String get registration_complete_description =>

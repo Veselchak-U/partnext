@@ -347,7 +347,7 @@ abstract class AppLocalizations {
   /// No description provided for @grow_idea.
   ///
   /// In he, this message translates to:
-  /// **'לגדל רעיון'**
+  /// **'לפתח רעיון'**
   String get grow_idea;
 
   /// No description provided for @partnership_on_startup.
@@ -587,7 +587,7 @@ abstract class AppLocalizations {
   /// No description provided for @tell_us_about_yourself_second.
   ///
   /// In he, this message translates to:
-  /// **'מה אתה נלהב? מה השגת?'**
+  /// **'ממה אתה נלהב? מה השגת?'**
   String get tell_us_about_yourself_second;
 
   /// No description provided for @years_of_experience.
@@ -629,7 +629,7 @@ abstract class AppLocalizations {
   /// No description provided for @registration_complete.
   ///
   /// In he, this message translates to:
-  /// **'רישום\nשלם'**
+  /// **'רישום\nהושלם'**
   String get registration_complete;
 
   /// No description provided for @registration_complete_description.
