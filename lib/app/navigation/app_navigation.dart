@@ -9,6 +9,7 @@ import 'package:partnext/app/navigation/app_route.dart';
 import 'package:partnext/app/navigation/navigation_error_screen.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/config.dart';
 import 'package:partnext/features/auth/data/repository/auth_repository.dart';
 import 'package:partnext/features/auth/domain/use_case/login_use_case.dart';
 import 'package:partnext/features/auth/presentation/login/login_screen.dart';
@@ -418,6 +419,13 @@ class AppNavigation {
 
         return AppRoute.login.path;
       }
+    }
+
+    // Deep-links
+    if (state.uri.host == Config.deepLinkHost) {
+      final link = state.uri.toString().split(state.uri.host).last;
+
+      return link;
     }
 
     return null;

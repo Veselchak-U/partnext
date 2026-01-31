@@ -12,7 +12,8 @@ class NavigationErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
