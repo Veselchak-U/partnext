@@ -1153,6 +1153,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'אישור'**
   String get confirm;
+
+  /// No description provided for @partner_not_found.
+  ///
+  /// In he, this message translates to:
+  /// **'השותף לא נמצא.'**
+  String get partner_not_found;
+
+  /// No description provided for @partner_not_found_description.
+  ///
+  /// In he, this message translates to:
+  /// **'מצטער, לא נמצא משתמש כזה.'**
+  String get partner_not_found_description;
 }
 
 class _AppLocalizationsDelegate

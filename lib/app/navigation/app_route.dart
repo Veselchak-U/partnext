@@ -8,6 +8,7 @@ class AppRoute {
   static const phoneValidation = AppRoute('phone_validation', '/phone_validation');
   static const questionnaire = AppRoute('questionnaire', '/questionnaire');
   static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
+  static const partnerLink = AppRoute('partner_link', '/partner_link');
 
   static const home = AppRoute('home', '/home');
 

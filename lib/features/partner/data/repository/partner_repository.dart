@@ -9,6 +9,8 @@ abstract interface class PartnerRepository {
   Future<List<PartnerApiModel>> getPartners();
 
   Future<void> handlePartner(int id, {required bool confirm});
+
+  Future<PartnerApiModel?> getPartnerById(int id);
 }
 
 class PartnerRepositoryImpl implements PartnerRepository {
@@ -36,5 +38,10 @@ class PartnerRepositoryImpl implements PartnerRepository {
   @override
   Future<void> handlePartner(int userId, {required bool confirm}) {
     return _partnerDatasource.handlePartner(userId, confirm: confirm);
+  }
+
+  @override
+  Future<PartnerApiModel?> getPartnerById(int id) {
+    return _partnerDatasource.getPartnerById(id);
   }
 }

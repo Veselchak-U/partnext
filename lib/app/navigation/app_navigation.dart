@@ -33,6 +33,8 @@ import 'package:partnext/features/chat/presentation/report/report_screen_params.
 import 'package:partnext/features/chat/presentation/report/report_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
+import 'package:partnext/features/deep_link/partner_link/presentation/partner_link_screen.dart';
+import 'package:partnext/features/deep_link/partner_link/presentation/partner_link_screen_vm.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
 import 'package:partnext/features/grow/domain/provider/partners_provider.dart';
 import 'package:partnext/features/grow/presentation/grow_screen.dart';
@@ -74,12 +76,15 @@ import 'package:partnext/features/welcome/presentation/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 class AppNavigation {
-  static final _allowingWithoutAuthorization = [
+  static final _noAuthorizationPaths = [
     AppRoute.initial.path,
     AppRoute.welcome.path,
     AppRoute.login.path,
     AppRoute.signUp.path,
     AppRoute.phoneValidation.path,
+  ];
+  static final _deepLinkPaths = [
+    AppRoute.partnerLink.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -197,6 +202,21 @@ class AppNavigation {
         name: AppRoute.signUpSuccess.name,
         path: AppRoute.signUpSuccess.path,
         builder: (context, state) => const SignUpSuccessScreen(),
+      ),
+      GoRoute(
+        name: AppRoute.partnerLink.name,
+        path: AppRoute.partnerLink.path,
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => PartnerLinkScreenVm(
+            context,
+            DI.get<NavBarIndexProvider>(),
+            DI.get<PartnerRepository>(),
+            partnerId: int.tryParse(state.uri.queryParameters['id'] ?? ''),
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const PartnerLinkScreen(),
+        ),
       ),
       StatefulShellRoute.indexedStack(
         // parentNavigatorKey: _rootNavigatorKey,
@@ -413,7 +433,7 @@ class AppNavigation {
     LoggerService().d('AppNavigation navigate to "${state.uri.toString()}"');
     if (await _isUnauthorizedUser()) {
       final currentLocation = state.uri.toString();
-      if (!_allowingWithoutAuthorization.contains(currentLocation)) {
+      if (!_noAuthorizationPaths.contains(currentLocation)) {
         if (context.mounted) AppOverlays.showErrorBanner(context.l10n.go_to_login_screen);
         LoggerService().d('AppNavigation._redirect("${AppRoute.login.path}")');
 
@@ -423,9 +443,15 @@ class AppNavigation {
 
     // Deep-links
     if (state.uri.host == Config.deepLinkHost) {
-      final link = state.uri.toString().split(state.uri.host).last;
+      final path = state.uri.path;
+      if (_deepLinkPaths.contains(path)) {
+        LoggerService().d('AppNavigation deep-link detected');
+        final query = '?${state.uri.query}';
 
-      return link;
+        return path + query;
+      }
+
+      return AppRoute.home.path;
     }
 
     return null;

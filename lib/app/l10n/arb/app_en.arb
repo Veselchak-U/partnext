@@ -202,5 +202,7 @@
   "delete_account": "Delete account",
   "sure_to_delete_account": "Do you confirm that you want to permanently delete your account and all related data?\n\nData recovery will be impossible after deletion!",
   "delete": "Delete",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "partner_not_found": "Partner not found.",
+  "partner_not_found_description": "Sorry, no such user was found."
 }

@@ -120,6 +120,8 @@ class ApiEndpoints {
   static const partners = 'api/v1/member/partners';
   // +
 
+  static const partner = 'api/v1/member/partner';
+
   /// Confirm or reject matched partner.
   ///
   /// Request: POST api/v1/member/handle_partner

@@ -561,4 +561,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get confirm => 'אישור';
+
+  @override
+  String get partner_not_found => 'השותף לא נמצא.';
+
+  @override
+  String get partner_not_found_description => 'מצטער, לא נמצא משתמש כזה.';
 }

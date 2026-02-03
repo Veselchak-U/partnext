@@ -17,6 +17,8 @@ abstract interface class PartnerDatasource {
   Future<List<PartnerApiModel>> getPartners();
 
   Future<void> handlePartner(int userId, {required bool confirm});
+
+  Future<PartnerApiModel?> getPartnerById(int id);
 }
 
 class PartnerDatasourceImpl implements PartnerDatasource {
@@ -99,6 +101,30 @@ class PartnerDatasourceImpl implements PartnerDatasource {
       },
       parser: (response) {
         if (response.statusCode == HttpStatus.ok) return;
+
+        throw ApiException(response);
+      },
+    );
+  }
+
+  @override
+  Future<PartnerApiModel?> getPartnerById(int id) {
+    final uri = Uri.parse('${Config.environment.baseUrl}${ApiEndpoints.partner}').replace(
+      queryParameters: {
+        'id': '$id',
+      },
+    );
+
+    return _apiClient.get(
+      uri,
+      parser: (response) {
+        if (response.body case final Map<String, dynamic>? body) {
+          if (body == null) {
+            return null;
+          }
+
+          return PartnerApiModel.fromJson(body);
+        }
 
         throw ApiException(response);
       },

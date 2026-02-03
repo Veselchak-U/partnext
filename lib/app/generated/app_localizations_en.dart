@@ -569,4 +569,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirm => 'Confirm';
+
+  @override
+  String get partner_not_found => 'Partner not found.';
+
+  @override
+  String get partner_not_found_description => 'Sorry, no such user was found.';
 }

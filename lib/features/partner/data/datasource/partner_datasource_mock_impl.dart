@@ -38,6 +38,14 @@ class PartnerDatasourceMockImpl implements PartnerDatasource {
   Future<void> handlePartner(int userId, {required bool confirm}) {
     return Future.delayed(Duration(seconds: 1));
   }
+
+  @override
+  Future<PartnerApiModel?> getPartnerById(int id) {
+    return Future.delayed(
+      Duration(seconds: 1),
+      () => _mockedPartners.first,
+    );
+  }
 }
 
 final _mockedPartners = [
