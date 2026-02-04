@@ -9,6 +9,7 @@ class AppRoute {
   static const questionnaire = AppRoute('questionnaire', '/questionnaire');
   static const signUpSuccess = AppRoute('sign_up_success', '/sign_up_success');
   static const partnerLink = AppRoute('partner_link', '/partner_link');
+  static const chatLink = AppRoute('chat_link', '/chat_link');
 
   static const home = AppRoute('home', '/home');
 

@@ -31,6 +31,8 @@ import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/initial/domain/logic/initial_controller.dart';
 import 'package:partnext/features/nav_bar/domain/provider/nav_bar_index_provider.dart';
 import 'package:partnext/features/notifications/data/notification_repository.dart';
+import 'package:partnext/features/notifications/domain/use_case/get_location_from_push_use_case.dart';
+import 'package:partnext/features/notifications/domain/use_case/navigate_from_push_use_case.dart';
 import 'package:partnext/features/notifications/domain/use_case/send_push_token_use_case.dart';
 import 'package:partnext/features/notifications/service/notification_service.dart';
 import 'package:partnext/features/partner/data/datasource/partner_datasource.dart';
@@ -170,10 +172,17 @@ class DI {
     //       _sl<ChatRepository>(),
     //       _sl<SendMessageUseCase>(),
     //     ));
-
+    _sl.registerFactory(() => GetLocationFromPushUseCase(
+          () => AppNavigation.locationFromPush,
+        ));
+    _sl.registerFactory(() => NavigateFromPushUseCase(
+          AppNavigation.navigateFromPush,
+        ));
     _sl.registerFactory(() => InitialController(
           _sl<UserRepository>(),
           _sl<QuestionnaireRepository>(),
+          _sl<GetLocationFromPushUseCase>(),
+          _sl<NavigateFromPushUseCase>(),
         ));
     _sl.registerFactory(() => SendPushTokenUseCase(
           _sl<NotificationRepository>(),

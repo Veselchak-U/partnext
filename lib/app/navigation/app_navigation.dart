@@ -89,6 +89,10 @@ class AppNavigation {
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
+  static String? _locationFromPush;
+
+  static String? get locationFromPush => _locationFromPush;
+
   static Future<bool> _isUnauthorizedUser() async {
     final token = await DI.get<UserRepository>().getAccessToken();
 
@@ -103,6 +107,27 @@ class AppNavigation {
     } else {
       LoggerService().d('AppNavigation.goToScreen($name) cancelled - context == null');
     }
+  }
+
+  static void navigateFromPush(String location) {
+    LoggerService().d('AppNavigation.navigateFromPush: location = $location');
+    _locationFromPush = location;
+
+    final context = _rootNavigatorKey.currentContext;
+    if (context == null) {
+      LoggerService().d('AppNavigation.navigateFromPush() exit: context == null');
+
+      return;
+    }
+
+    if (!context.mounted) {
+      LoggerService().d('AppNavigation.navigateFromPush() exit: context is not mounted');
+
+      return;
+    }
+
+    _locationFromPush = null;
+    context.go(location);
   }
 
   static final router = GoRouter(

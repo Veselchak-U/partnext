@@ -12,6 +12,10 @@ final class InitialController$Loading extends InitialControllerState {
   const InitialController$Loading();
 }
 
+final class InitialController$HasLocationFromPush extends InitialControllerState {
+  const InitialController$HasLocationFromPush();
+}
+
 final class InitialController$Unauthorized extends InitialControllerState {
   const InitialController$Unauthorized();
 }
