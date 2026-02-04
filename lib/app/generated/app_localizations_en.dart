@@ -575,4 +575,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get partner_not_found_description => 'Sorry, no such user was found.';
+
+  @override
+  String get user_profile_cannot_retrieved =>
+      'User profile cannot be retrieved';
 }

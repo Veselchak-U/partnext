@@ -26,17 +26,17 @@ class ProfileActionsSection extends StatelessWidget {
           NavigationItemWidget(
             iconAsset: Assets.icons.navShare.path,
             label: context.l10n.share,
-            // onTap: () {},
+            onTap: vm.shareMyProfile,
           ),
           NavigationItemWidget(
             iconAsset: Assets.icons.navUpgrade.path,
             label: context.l10n.upgrade,
-            // onTap: vm.goUpgrade,
+            onTap: vm.goUpgrade,
           ),
           NavigationItemWidget(
             iconAsset: Assets.icons.navFeedback.path,
             label: context.l10n.send_feedback,
-            // onTap: vm.goSendFeedback,
+            onTap: vm.goSendFeedback,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 8.h),

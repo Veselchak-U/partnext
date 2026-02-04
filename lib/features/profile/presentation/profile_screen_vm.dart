@@ -3,9 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/app/navigation/app_route.dart';
+import 'package:partnext/app/service/logger/exception/logic_exception.dart';
 import 'package:partnext/app/service/logger/logger_service.dart';
 import 'package:partnext/common/dialogs/app_dialogs.dart';
 import 'package:partnext/common/overlays/app_overlays.dart';
+import 'package:partnext/config.dart';
 import 'package:partnext/features/auth/data/model/user_api_model.dart';
 import 'package:partnext/features/initial/data/repository/user_repository.dart';
 import 'package:partnext/features/profile/data/repository/profile_repository.dart';
@@ -13,6 +15,7 @@ import 'package:partnext/features/profile/domain/use_case/logout_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/refresh_user_profile_use_case.dart';
 import 'package:partnext/features/profile/domain/use_case/update_user_avatar_use_case.dart';
 import 'package:partnext/features/questionnaire/presentation/questionnaire_screen_params.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileScreenVm {
   final BuildContext _context;
@@ -92,6 +95,23 @@ class ProfileScreenVm {
 
   void goUpgrade() {
     _context.pushNamed(AppRoute.upgrade.name);
+  }
+
+  Future<void> shareMyProfile() async {
+    try {
+      final user = await _userRepository.getUser();
+      if (user == null) {
+        if (!_context.mounted) return;
+        throw LogicException(_context.l10n.user_profile_cannot_retrieved);
+      }
+      final shareText = 'https://${Config.deepLinkHost}${AppRoute.partnerLink.path}?id=${user.userId}';
+      await SharePlus.instance.share(
+        ShareParams(text: shareText),
+      );
+    } on Object catch (e, st) {
+      LoggerService().e(error: e, stackTrace: st);
+      _onError('$e');
+    }
   }
 
   void goSendFeedback() {

@@ -204,5 +204,6 @@
   "delete": "מחק",
   "confirm": "אישור",
   "partner_not_found": "השותף לא נמצא.",
-  "partner_not_found_description": "מצטער, לא נמצא משתמש כזה."
+  "partner_not_found_description": "מצטער, לא נמצא משתמש כזה.",
+  "user_profile_cannot_retrieved": "לא ניתן לאחזר את פרופיל המשתמש"
 }

@@ -567,4 +567,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get partner_not_found_description => 'מצטער, לא נמצא משתמש כזה.';
+
+  @override
+  String get user_profile_cannot_retrieved => 'לא ניתן לאחזר את פרופיל המשתמש';
 }

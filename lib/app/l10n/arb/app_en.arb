@@ -204,5 +204,6 @@
   "delete": "Delete",
   "confirm": "Confirm",
   "partner_not_found": "Partner not found.",
-  "partner_not_found_description": "Sorry, no such user was found."
+  "partner_not_found_description": "Sorry, no such user was found.",
+  "user_profile_cannot_retrieved": "User profile cannot be retrieved"
 }

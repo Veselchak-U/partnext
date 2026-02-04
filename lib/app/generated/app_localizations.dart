@@ -1165,6 +1165,12 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'מצטער, לא נמצא משתמש כזה.'**
   String get partner_not_found_description;
+
+  /// No description provided for @user_profile_cannot_retrieved.
+  ///
+  /// In he, this message translates to:
+  /// **'לא ניתן לאחזר את פרופיל המשתמש'**
+  String get user_profile_cannot_retrieved;
 }
 
 class _AppLocalizationsDelegate
