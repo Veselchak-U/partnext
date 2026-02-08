@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:partnext/app/l10n/l10n.dart';
 import 'package:partnext/common/layouts/main_layout.dart';
+import 'package:partnext/common/widgets/item_not_found_widget.dart';
 import 'package:partnext/common/widgets/loading_container_indicator.dart';
 import 'package:partnext/features/deep_link/partner_link/presentation/partner_link_screen_vm.dart';
-import 'package:partnext/features/deep_link/partner_link/presentation/widgets/partner_not_found_widget.dart';
 import 'package:partnext/features/partner/presentation/recommendation_item_widget.dart';
 import 'package:partnext/features/partner/presentation/widgets/recommendation_overlay.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,10 @@ class PartnerLinkScreen extends StatelessWidget {
               }
 
               if (recommendations.isEmpty) {
-                return PartnerNotFoundWidget(
+                return ItemNotFoundWidget(
+                  title: context.l10n.partner_not_found,
+                  description: context.l10n.partner_not_found_description,
+                  buttonLabel: context.l10n.continue_browsing,
                   onTap: vm.goHome,
                 );
               }

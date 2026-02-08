@@ -579,4 +579,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get user_profile_cannot_retrieved =>
       'User profile cannot be retrieved';
+
+  @override
+  String get chat_not_found => 'Chat not found.';
+
+  @override
+  String get chat_not_found_description =>
+      'Unfortunately, no such chat was found.';
 }

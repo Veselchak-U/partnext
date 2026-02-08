@@ -1171,6 +1171,18 @@ abstract class AppLocalizations {
   /// In he, this message translates to:
   /// **'לא ניתן לאחזר את פרופיל המשתמש'**
   String get user_profile_cannot_retrieved;
+
+  /// No description provided for @chat_not_found.
+  ///
+  /// In he, this message translates to:
+  /// **'צ \' אט לא נמצא.'**
+  String get chat_not_found;
+
+  /// No description provided for @chat_not_found_description.
+  ///
+  /// In he, this message translates to:
+  /// **'למרבה הצער, לא נמצא צ \' אט כזה.'**
+  String get chat_not_found_description;
 }
 
 class _AppLocalizationsDelegate

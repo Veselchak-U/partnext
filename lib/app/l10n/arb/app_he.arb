@@ -205,5 +205,7 @@
   "confirm": "אישור",
   "partner_not_found": "השותף לא נמצא.",
   "partner_not_found_description": "מצטער, לא נמצא משתמש כזה.",
-  "user_profile_cannot_retrieved": "לא ניתן לאחזר את פרופיל המשתמש"
+  "user_profile_cannot_retrieved": "לא ניתן לאחזר את פרופיל המשתמש",
+  "chat_not_found": "צ ' אט לא נמצא.",
+  "chat_not_found_description": "למרבה הצער, לא נמצא צ ' אט כזה."
 }
