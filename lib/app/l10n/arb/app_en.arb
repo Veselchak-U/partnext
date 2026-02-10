@@ -205,5 +205,7 @@
   "confirm": "Confirm",
   "partner_not_found": "Partner not found.",
   "partner_not_found_description": "Sorry, no such user was found.",
-  "user_profile_cannot_retrieved": "User profile cannot be retrieved"
+  "user_profile_cannot_retrieved": "User profile cannot be retrieved",
+  "chat_not_found": "Chat not found.",
+  "chat_not_found_description": "Unfortunately, no such chat was found."
 }

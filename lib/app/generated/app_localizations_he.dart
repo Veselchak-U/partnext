@@ -570,4 +570,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get user_profile_cannot_retrieved => 'לא ניתן לאחזר את פרופיל המשתמש';
+
+  @override
+  String get chat_not_found => 'צ \' אט לא נמצא.';
+
+  @override
+  String get chat_not_found_description => 'למרבה הצער, לא נמצא צ \' אט כזה.';
 }

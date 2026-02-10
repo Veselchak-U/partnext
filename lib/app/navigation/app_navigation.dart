@@ -33,6 +33,8 @@ import 'package:partnext/features/chat/presentation/report/report_screen_params.
 import 'package:partnext/features/chat/presentation/report/report_screen_vm.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen.dart';
 import 'package:partnext/features/chat/presentation/view_image/view_image_screen_params.dart';
+import 'package:partnext/features/deep_link/chat_link/presentation/chat_link_screen.dart';
+import 'package:partnext/features/deep_link/chat_link/presentation/chat_link_screen_vm.dart';
 import 'package:partnext/features/deep_link/partner_link/presentation/partner_link_screen.dart';
 import 'package:partnext/features/deep_link/partner_link/presentation/partner_link_screen_vm.dart';
 import 'package:partnext/features/file/data/repository/file_repository.dart';
@@ -85,6 +87,7 @@ class AppNavigation {
   ];
   static final _deepLinkPaths = [
     AppRoute.partnerLink.path,
+    AppRoute.chatLink.path,
   ];
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -241,6 +244,21 @@ class AppNavigation {
           ),
           dispose: (context, vm) => vm.dispose(),
           child: const PartnerLinkScreen(),
+        ),
+      ),
+      GoRoute(
+        name: AppRoute.chatLink.name,
+        path: AppRoute.chatLink.path,
+        builder: (context, state) => Provider(
+          lazy: false,
+          create: (context) => ChatLinkScreenVm(
+            context,
+            DI.get<NavBarIndexProvider>(),
+            DI.get<ChatRepository>(),
+            chatId: int.tryParse(state.uri.queryParameters['id'] ?? ''),
+          ),
+          dispose: (context, vm) => vm.dispose(),
+          child: const ChatLinkScreen(),
         ),
       ),
       StatefulShellRoute.indexedStack(
