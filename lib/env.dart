@@ -1,9 +1,9 @@
 enum Env {
   dev(
-    'https://partnext.bitango.co.il/',
+    'https://api.partnext.tech/',
   ),
   prod(
-    'https://partnext.bitango.co.il/',
+    'https://api.partnext.tech/',
   );
 
   const Env(

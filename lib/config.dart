@@ -9,7 +9,7 @@ class Config {
   static const isProdBuild = bool.fromEnvironment('PROD_BUILD');
   static const termsAndConditionsUrl = 'https://partnext.tech/terms/';
   static const privacyPolicyUrl = 'https://partnext.tech/privacy/';
-  static const deepLinkHost = 'partnext.bitango.co.il';
+  static const deepLinkHost = 'partnext.tech';
 
   static const paymentTimeoutDuration = Duration(minutes: 10);
 
