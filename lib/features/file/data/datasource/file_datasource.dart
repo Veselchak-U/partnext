@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:partnext/app/service/network/api_endpoints.dart';
 import 'package:partnext/app/service/network/dio_api_client/dio_api_client.dart';
 import 'package:partnext/app/service/storage/file_cache_service.dart';
@@ -41,7 +42,7 @@ class FileDatasourceImpl implements FileDatasource {
         "type": type.name,
         "name": name,
       },
-      onSendProgress: onSendProgress,
+      onSendProgress: onSendProgress ?? _debugSendProgress,
     );
 
     return FileApiModel.fromJson(data);
@@ -50,5 +51,9 @@ class FileDatasourceImpl implements FileDatasource {
   @override
   Future<File> getFile(String url) {
     return _fileCacheService.getFile(url);
+  }
+
+  void _debugSendProgress(int count, int total) {
+    debugPrint('upload file progress: total = $total, count = $count');
   }
 }
